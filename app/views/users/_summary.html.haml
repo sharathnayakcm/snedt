@@ -1,0 +1,108 @@
+:css
+  .windows #tablePricingOption a {
+    padding: 4px 15px 5px !important;
+  }
+
+- plan = @user.membership
+- pricing_plan, button_label = (@user.membership && @user.membership.amount.to_i == 0) ? [Membership.find_by_id(2), "Upgrade to Premium"] : [Membership.find_by_id(1), "Downgrade to free"]
+#contentHeadPersonal1.contentHeading.cornerTop.active
+  %h4
+    %a{:href => "javascript:void(0);"}= t :account_summary
+#accSettingPersonalContent1.accSetupContent
+  / - unless current_user.downgrade
+  /   #tablePricingOption.accSetContentright.flRight
+  /     = render :partial => "shared/pricing_plan", :locals => {:button_label => button_label}, :collection =>  [pricing_plan]
+  #accntInformation.settingInfo.flLeft
+    %ul
+      %li
+        .titles
+          %h5= t :account_information
+        .servicesBoxInner.narrow.cornerAll
+          %ul
+            %li
+              %p= t(:full_name)
+              %span.flRight#userFullname= @user.full_name
+              
+            %li
+              %p= t(:member_since)
+              - if session[:locale] == "arabic"
+                %span.flRight= to_local(current_user.created_at).strftime("%Y %b %d")
+              - else
+                %span.flRight= to_local(current_user.created_at).strftime("%d %b %Y")
+            %li
+              %p= t(:membership_type)
+              %span.flRight= @user.membership.name
+            %li
+              %p= t(:content_violation_count)
+              %span.flRight= @user.violation_count
+            /%li
+            /  .yellowBtn
+            /    = link_to_remote_redbox "#{t :pay_now}", {:url => {:controller => :users, :action => :upgrade_to_premium, :membership_id => plan.id}}, :class => "smlrBtn"
+      %li
+        .titles
+          %h5= t :usage
+        .servicesBoxInner.narrow.cornerAll
+          %ul
+            %li#slider.cornerTop
+              #usageSlider
+                %input#Slider4{:name => "area", :type => "slider", :value => "#{@current_usage}"}
+            %li
+              %p= t :monthly_upload_limit
+              %span.flRight
+                - if session[:locale] == "arabic"
+                  %div== MB #{plan.upload_limit}
+                - else
+                  %div== #{plan.upload_limit} MB
+            %li
+              %p= t :current_usage
+              %span.flRight
+                - usage = @current_usage*100/plan.upload_limit
+                - if session[:locale] == "arabic"
+                  %div== (%#{(usage * 100).round.to_f / 100}) MB #{@current_usage}
+                - else
+                  %div== #{@current_usage} MB (#{(usage * 100).round.to_f / 100}%)
+            %li
+              %p= t :days_left_in_cycle
+              %span.flRight
+                - if session[:locale] == "arabic"
+                  %div== #{t :day_s} #{(((current_user.cycle_start_date + 2592000) - Time.now)/24/60/60).to_i}
+                - else
+                  %div== #{(((current_user.cycle_start_date + 2592000) - Time.now)/24/60/60).to_i} #{t :day_s}
+      %li
+        .titles
+          %h5
+            = t(:current_cycle_user_activites)
+            %span
+              (
+              = ("#{to_local(current_user.cycle_start_date).strftime('%d %b %Y')} - #{to_local(current_user.cycle_start_date + 1.month).strftime('%d %b %Y')}")
+              )
+              %span/
+        .servicesBoxInner.narrow.cornerAll
+          %ul
+            %li
+              %p= t(:total_streamed_content)
+              %span.flRight= @current_cycle_total_streams
+            %li
+              %p= t(:no_of_current_cycle_followers)
+              %span.flRight
+      %li
+        .titles
+          %h5
+            = t(:user_activites)
+            %span/
+        .servicesBoxInner.narrow.cornerAll
+          %ul
+            %li
+              %p= t(:total_streamed_content)
+              %span.flRight= current_user.streams.from_services.count
+:javascript
+  $j(document).ready(function(){
+
+  if(#{plan.id}==1){
+  var arr = [0, '|', 50, '|', '100', '|', 150, '|', 200, '|', 250]
+  }
+  else{
+  var arr = [0, '|', 200, '|', '400', '|', 600, '|', 800, '|', 1024]
+  }
+  $j("#Slider4").slider({ from: 0, to: #{plan.upload_limit}, heterogeneity: [], scale: arr, limits: false, step: 1});
+  });

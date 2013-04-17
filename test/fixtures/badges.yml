@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  level: 1
+  points_required: 1
+  badge_type: MyString
+
+two:
+  name: MyString
+  level: 1
+  points_required: 1
+  badge_type: MyString

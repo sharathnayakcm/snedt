@@ -1,0 +1,17 @@
+:javascript
+  $j('.button').corner("4px");
+  $('RB_window').style.width = "705px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 705)/2) + "px";
+.dialogs
+  .dialog_details
+    %h4== Downgrade to #{t @membership.name}
+    - if @company.brand_user_groups.size > @membership.user_count.to_i
+      == In order to downgrade to #{t @membership.name}, you have to maintain the users group count #{@membership.user_count}
+      %br
+      == Please remove #{@company.brand_user_groups.size - @membership.user_count.to_i} to continue downgrade your membership
+      = render :partial => "companies/brands/users"
+      #downgrade_button{:style => "display:none"}
+        = link_to_remote_with_loader t(:downgrade), :url => downgrade_membership_companies_path(:id => @company.id, :membership_id => @membership.id), :method => :get, :html => {:class => "button"}
+    - else
+      %div== Are you sure want to downgrade to #{t @membership.name}?
+      %div= link_to_remote_with_loader t(:downgrade), :url => downgrade_membership_companies_path(:id => @company.id, :membership_id => @membership.id), :method => :get, :html => {:class => "button"}

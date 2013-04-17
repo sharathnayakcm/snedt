@@ -1,0 +1,78 @@
+:javascript
+  $j('embed').hide();
+  $j('.button').corner("4px");
+  $('RB_window').style.width = "500px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 500)/2) + "px";
+.dialogs
+  #errors
+  - form_remote_for  @custom_tab, :url => custom_tabs_path, :method => :post  do
+    .dialog_details
+      .center
+        .title
+          =t :enter_tab_name
+          = text_field_tag "tab_name"
+        .users
+          =t :select_users
+          #pick_services{:style => "margin-top:10px;"}
+            - User::USER_TYPE_ID.each do |user_type|
+              = check_box_tag "user_type_ids[]", user_type.last
+              = user_type.first.to_s.humanize
+              (
+              = link_to "#{t :show}", "javascript:void(0)", :onclick => "$j('.user_types_list').hide();$('#{user_type.first.to_s.humanize}_list').show();", :style=>"color:#0C3646;"
+              )
+        .selected_users
+          #Followers_list{:class => "user_types_list",:style => "padding:10px;margin-top:10px;margin-bottom:10px;border:solid 1px;display:none;width:200px;max-height:200px;overflow:auto;"}
+            -unless @followers.empty?
+              =t :followers
+              .list
+                - @followers.each do |user|
+                  = check_box_tag "filter_user_ids[]", user.id
+                  = user.display_full_name(current_user)
+                  %br
+            -else
+              =t :no_followers
+          #Followings_list{:class => "user_types_list",:style => "padding:10px;margin-top:10px;margin-bottom:10px;border:solid 1px;display:none;width:200px;max-height:200px;overflow:auto;"}
+            -unless @followings.empty?
+              =t :followings
+              .list
+                - @followings.each do |user|
+                  = check_box_tag "filter_user_ids[]", user.id
+                  = user.display_full_name(current_user)
+                  %br
+            -else
+              =t :no_followings
+          #Friends_list{:class => "user_types_list",:style => "padding:10px;margin-top:10px;margin-bottom:10px;border:solid 1px;display:none;width:200px;max-height:200px;overflow:auto;"}
+            -unless @friends.empty?
+              =t :friends
+              .list
+                - @friends.each do |user|
+                  = check_box_tag "filter_user_ids[]", user.id
+                  = user.display_full_name(current_user)
+                  %br
+            -else
+              =t :no_friends
+        .with_user
+          =t :select_by_username
+          = text_field_tag "user_name"
+          = observe_field("user_name", :update => 'name_observed',:frequency => 0.5, :url => {:controller => "custom_tabs",:action => "get_names", :method => :get},:with => "input_first_name", :loading => "{$j('#spinner_tag').show();}", :success => "{$j('#spinner_tag').hide();}")
+          %div.align_center.display_none{:id => "spinner_tag"}
+            = image_tag("spinner.gif")
+          .clear
+          #name_observed
+
+
+        .services
+          =t :select_services
+          #pick_services{:style => "margin-top:10px;"}
+            - Service.all.each do |service|
+              - unless service.name.downcase.include?("rss")
+                = check_box_tag "service_ids[]", service.id
+                - service_tag, service_count = service_filter(service)
+                = service_tag
+            = check_box_tag "service_ids[]",'NULL'
+            %img{:src=> "/images/services/edintity.gif" , :style=> "width:18px;height:18px"}
+        %p{:style => "float:right"}
+          .float_left
+            = submit_tag "#{t :create}", :id => "submit", :class => "button"
+          .float_left
+            = button_to_close_redbox("#{t :cancel}", :class => "button", :onclick => "$j('embed').show();")

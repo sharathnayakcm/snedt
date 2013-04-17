@@ -1,0 +1,66 @@
+.loadContentIndocator.uploadVideoProgress#uploadVideoProgressbarIE{:style=>"display: none;"}
+  .ui-progress-bar.ui-container
+    .ui-progress#videoProgressIE{:style=>"width: 100%;"}
+.ui-progress-bar.ui-container#videoProgressBar{:style=>"display: none;"}
+  .ui-progress#videoProgress{:style=>"width: 0%;"}
+    %span.ui-label#videoProgressStatus
+
+#uploaded_video_player
+
+:javascript
+  $j(document).ready(function(){
+    var uploader = new qq.FileUploader({
+      // pass the dom node (ex. $(selector)[0] for jQuery users)
+      element: document.getElementById('fileUploaderVideo'),
+      // path to server-side upload script
+      action: '/posts/upload_video',
+      responseType: "text/html",
+      template: '<div class="qq-uploader"><div class="qq-upload-drop-area"><span>Drop here</span></div><div class="qq-upload-button"><span id="uploadBrowse">Add video</span></div><ul class="qq-upload-list"></ul></div>',
+      showMessage: function(message){ notice(message); },
+      allowedExtensions: ['flv','3gp','avi','mpg','mp4','wmv','mov'],
+      onSubmit: function(id, fileName){
+        jQuery('.qq-upload-list').hide();
+        if(navigator.appName != "Microsoft Internet Explorer"){
+          jQuery('#videoProgressBar').show();
+        }
+        else{
+          jQuery('.uploadVideoProgress').show();
+        }
+        jQuery('#videoProgressCancel').show();
+      },
+      onCancel: function(id, fileName){
+        jQuery('.qq-upload-list').hide();
+        if(navigator.appName != "Microsoft Internet Explorer"){
+          jQuery('#videoProgress').attr('style','width:0%');
+          jQuery('#videoProgressBar').hide();
+        }
+        else{
+          jQuery('.uploadProgress').hide();
+        }
+        jQuery('#videoProgressCancel').hide();
+      },
+      onComplete: function(id, fileName, responseJSON){
+        if(navigator.appName == "Microsoft Internet Explorer"){
+          jQuery('.uploadVideProgress').hide();
+        }
+        else{
+          $j('#videoProgressStatus').html('Done');
+          jQuery('#videoProgressBar').hide();
+        }
+        tinymce.editors[0].execCommand('mceInsertContent', false, '<embed src="/player.swf?file=https://s3-eu-west-1.amazonaws.com/edintity/uploads/videos/"+ responseJSON.asset_id +"/" + responseJSON.video_file_name allowfullscreen="true" allowScriptAccess="always" seamlesstabbing="true" width="260" height="170" skin="/stormtrooper.zip" type="application/x-shockwave-flash" />');
+        jQuery('#file_path').val(responseJSON.video);
+        jQuery('#video_asset_id').val(responseJSON.asset_id);
+        jwplayer("uploaded_video_player").setup({
+          flashplayer: "/player.swf",
+          file: "https://s3-eu-west-1.amazonaws.com/edintity/uploads/videos/"+ responseJSON.asset_id +"/" + responseJSON.video_file_name ,
+          height: 170,
+          width: 260,
+          skin: "/stormtrooper.zip",
+          controlbar: "bottom",
+          "logo.file":"/images_1/video_logo.png",
+          "logo.position":"bottom-right",
+          "logo.hide":"false"
+        });
+      }
+    });
+  });

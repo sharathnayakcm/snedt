@@ -1,0 +1,10 @@
+:backgroundrb: 
+  :port: 11006
+  :ip: localhost
+  :environment: development
+:schedules:
+  :payment_reminder_worker:
+    :payment_reminders:
+      :trigger_args: 0 30 1 * * * *
+
+

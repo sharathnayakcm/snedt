@@ -1,0 +1,332 @@
+input.textInput, input.error{
+	background: #fff;
+	border: 1px solid #c8cdcc;
+	position: relative;
+}
+
+input.error:focus{
+	outline: 2px solid #f25555;
+}
+
+textarea.textWrite{
+	background: #fff;
+	border: 1px solid #c8cdcc;
+	position: relative;
+}
+
+.MP-boxes{
+	border-radius: 4px;
+}
+
+.blueBtn a:hover{
+	background-position: 0 -105px;
+}
+
+.greenBtn a:hover{
+	background-position: 0 -166px;
+}
+
+.greyBtn a{
+	background: url(../images/gradSprites.png) repeat-x 0 -381px !important;
+}
+
+#borderTop{
+	background: none;
+	z-index: 99;
+}
+
+.uiLoginForm{
+	z-index: 1;
+	background: none;
+}
+
+.loginButton a{
+	background: #1f5770;
+	border: 1px solid #0d4456;
+	padding: 2px 10px;
+}
+
+.loginButton a:hover{
+	background: #204961;
+}
+
+.privacySetup li.accntSetup{
+	border-top: none;
+	border-bottom: none;
+}
+
+.privacySetup li.accntSetup:last-child .privacyHead{	
+	border: none;
+}
+
+.privacyHead{
+	box-shadow: none;
+}
+
+.servicesBoxInner{
+	background: #FAFAFA;
+	position: relative;
+}
+
+.settingInfo li#slider{
+	background: #F3F5F5;
+}
+
+.paymentHistory li ul.paymentRow li.firstCol{
+	width: 150px;
+}
+
+.paymentHistory li ul.paymentRow li.sixCol{
+	width: 99px;
+}
+
+#searchInstructLast{
+	border-bottom: 1px solid #DBDFE0;
+	margin-bottom: 0;
+	padding-bottom: 15px;
+}
+
+#contactFound h6{
+	border-top: 1px solid #F3F5F6;
+}
+
+#navigation li#logout a{
+	background:  url(/images/uiIconInside.png) no-repeat -4px -59px;
+	z-index: 0;
+}
+
+#dropNav .dropContent{
+	background: #fafafa;
+}
+
+#dropNav .dropContent li:last-child{
+	border: none !important;
+}
+
+#mainLogo{
+	margin-right: 100px;
+}
+
+#headerSearchWrapper{
+	margin-left: 0;
+}
+
+.writeCommentPopup{
+	z-index: 1;
+	left: 167px;
+}
+
+.modalWindow{
+	z-index: 999;
+	background: #fafafa;
+}
+
+
+#delServices, #reConnectService{
+	height: 70px;
+}
+
+#reconnectService .modalConfirmAct{
+	width: 200px;
+}
+.brandSideListWrapper{
+	z-index: 0;
+	position: relative;
+}
+
+#brandsSideStream, .contentHeading {
+	z-index: 0;
+}
+
+.streamController li.streamControl1 {
+	width: 135px;
+}
+
+.streamController li.streamControl6{
+	width: 190px;
+}
+
+span.updateArrowTop{
+	padding-bottom: 5px;
+}
+
+.notifDropdown{
+	z-index: 99;
+}
+
+.transBg, .shareToBrandHead, .shortUrlContent, .shareToBrandContent, .shortUrlHead, #personalNotif{
+	background: #fafafa;
+}
+
+.shareToBrandDropDown{
+	top: 161px;
+}
+
+.shareToBrandContent{
+	top: 29px;
+}
+
+.shareServiceControlBrand, .addShortUrlBrand{
+	top: 161px !important;
+}
+
+.vidPhotoCtrlBrand{
+	top: 195px !important;
+}
+
+.formStatusControl li.caracterCount{
+	padding-right: 105px;
+}
+
+
+.servicesOption{
+	width: 175px;
+	float: right;
+}
+
+ul.serivicesChild li{
+	position: relative;
+}
+
+#modalYoutube, #modalVimeo, #modalFB, #modalTwitter{
+	height: 350px;
+}
+.email, .ePassword{
+	border: 1px solid #C8CDCC !important;
+	z-index: 0;
+	position: relative;
+}
+
+.formError{
+	background: #e24f4f;
+	border: 1px solid #bf4343;
+	z-index: 1;
+}
+
+.notifDropdown{
+	z-index: 10;
+}
+
+.streamSide{
+	z-index: 0;
+}
+
+.streamMain{
+	padding: 20px 0 0;
+	float: left;
+}
+
+.uploadAttachment a{
+	position: relative;
+	padding: 7px 10px 8px 5px;
+}
+
+.shareToBrandDropdown{
+	top: 161px;
+}
+
+.formStatusControl li.photoRestrict, .formStatusControl li.videoRestrict{
+	padding: 8px 200px 7px 10px;
+}
+
+.dashBoard{
+	position: relative;
+	width: 595px;
+	padding: 20px;
+}
+
+.starterFeatures div{
+	width: 250px;
+}
+
+.friendTabNav{
+	margin-top: 18px;
+}
+
+.brandTab{
+	margin-top: -1px !important;
+}
+
+.writeCommentArrow{
+	top: -7px;
+}
+
+.invitationButton .blueBtn a{
+	height: 18px;
+	background-position: 0 -73px !important;
+}
+
+#navigation li.navSelected a, #navigation li:hover a{
+	background: #0e4a61;
+}
+
+.notifArrow{
+	top: -6px;
+	background-position: -10px -1314px !important;
+}
+
+.customSkins .redBtn a{
+	background-position: 0 -434px;
+	height: 20px;
+	padding-bottom: 12px !important;
+}
+
+.customSkins .redBtn a .setSkinIcon{
+	padding-top: 6px !important;
+}
+
+.officeShot ul li .img{
+	min-width: 200px;
+}
+
+.loadContentIndicator{
+	margin: 10px 0;
+}
+
+.styleWrapper li.backgroundEdit div.browseImg .blueBtn{
+	margin-top: -1px;
+}
+
+
+#headerSearchWrapper{
+  margin-left: 0px !important;
+}
+
+/*--- IE 8 CSS Revition - LTR ---*/
+
+.formStatusControl li.caracterCount{
+	padding-right: 103px;
+}
+
+.blankInput{
+	padding-top: 5px;
+}
+
+.qq-upload-button{
+	height: 13px;
+}
+
+.sideSearch{
+	padding-bottom: 4px;
+	height: 30px;
+	padding-top: 0;
+}
+
+.customizeHeader h6{
+	color: #7789c;
+}
+
+.yourSkins a, .yourSkins a span, .addNewSkin a, .addNewSkin a span, a.skinName, .activeSkinsHeader a{
+	color: #4b6973;
+}
+
+input.mColorPicker{
+	width: 100px;
+	height: 20px;
+	margin-right: 10px;
+}
+
+#modalTwitter, #modalYoutube{
+	height: 16px;
+}
+

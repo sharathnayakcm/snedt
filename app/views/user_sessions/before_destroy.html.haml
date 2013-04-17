@@ -1,0 +1,23 @@
+:javascript
+  $j('.button').corner("4px");
+  $('RB_window').style.width = "500px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 500)/2) + "px";
+
+%ul
+  %li
+    %p
+      = t :delete_account_confirm1
+  %li
+    %p
+      = t :delete_account_text
+  - form_for(@current_user, {:url => { :controller => "user_sessions", :action => "delete_streams_and_account", :id => @current_user.id}, :method => :put})  do |f|
+    %li
+      %label.textInput
+        =t :enter_pwd_to_confirm
+        == :
+      = f.password_field :password, :size => 10, :class => "cmmntInput"
+    .modalConfirmAct.flRight.deleteAccount
+      .blueBtn
+        = submit_tag "#{t :yes_delete_account}", :class => "smlrBtn"
+      .yellowBtn
+        = link_to_close_redbox("#{t :no_changed_mind}", :class => "smlrBtn")

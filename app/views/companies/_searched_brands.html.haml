@@ -1,0 +1,19 @@
+#results_div
+  - unless @brands.blank?
+    -@brands.each do |brand|
+      %a{:href => "javascript:void(0)", :onclick => "#{remote_function(:url => {:controller => "companies/dashboard", :action => :load_data}, :with => "'id=#{brand.id}&type=brand&category=#{params[:category]}'")}", :style => "color:#17404E;white-space: nowrap;border-bottom:1px solid #17404E;"}
+        %div{:style => "border:1px solid; width: 165px;"}
+          #pic_div{:style => "float:left;width:35px;height:30px;"}
+            - unless brand.profile_image.blank?
+              = image_tag (brand.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :width => "30", :height => "30")
+            - else
+              = image_tag ("/images_1/profile_pic_imgpng.png", :width => "30", :height => "30")
+          #name_div{:style => "width:auto;height:30px;"}
+            %span{:style => "color:#17404E;"}
+              %b= brand.name
+        #clear{:style => 'clear:both;'}
+  - else
+    %div
+      .small.quiet= t(:no_result)
+      #clear{:style => 'clear:both;'}
+

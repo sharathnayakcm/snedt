@@ -1,0 +1,61 @@
+/* firefox on windows */
+
+.tableLoginTop li input.signInBtn {
+	width:72px;
+} /* local.css (line 39) */
+
+#MP-individualTop, #MP-brandTop {
+	width:380px;
+} /* main.css (line 31) */
+
+.shadeCenter {
+	width: 650px;
+} /* style.Addon.css (line 4)*/
+
+.firefox.windows .shadeCenter {
+	top:13px;
+} /*main.css (line 17)*/
+
+
+/* start home page */
+	.streamUpdater {
+		z-index:2;
+	} /* stream.css (line 114) */
+
+	.windows .shareServiceControl {
+		top:128px;
+	}/*stream.css (line411)*/
+
+	.windows #sharingOptCheck4.shareServiceControl {
+		top:148px;
+	}/* stream.css (add new style)*/
+
+	.windows #sharingOptCheck5.shareServiceControl {
+		top:148px;
+	}/* stream.css (add new style)*/
+
+		/* searchSideBar */
+			.saveSearch li a {
+				padding:5px 10px;
+				width:208px;
+				word-wrap:break-word;
+			} /*stream.css (line 1795)*/
+		/* end of searchSideBar */
+
+/* end of home page */
+
+/* start of profiles page */
+	.addNewSkin .blueArrowDown, yourSkinsHeader a .blueArrowDown {
+		background-position: -8px -120px;
+	} /* modal.css (line 350) */
+
+	.jslider .jslider-scale ins{
+		right:0;/*change left:0*/
+	} /*jslider.css (line 36)*/
+/* end of profile page */
+
+/* end of firefox on windows*/
+
+
+
+

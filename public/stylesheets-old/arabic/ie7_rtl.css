@@ -1,0 +1,196 @@
+/*--- Style for IE 7 - RTL ---*/
+
+/*--MainPage - Login Page--*/
+#loginAre{
+	width: 150px;
+}
+
+#loginForm{
+	top: 40px;
+	right: -270px;
+}
+
+.loginButton a{
+	position:relative;
+}
+
+#MP-individualTop, #MP-brandTop{
+	width: 100%;
+}
+
+#watchScreenCast span.uiIconPlay{
+	padding: 4px 20px 4px 50px;
+}
+
+/* Personal Stream Page */
+.headStreamSection{
+	position: relative;
+}
+
+a.medPhotoStream{
+	padding-left: 2px;
+}
+
+a.medPhotoStream img.userPicMed{
+	padding: 0;
+}
+
+/* on Logout icon there's wrong URL for image please cek again */
+
+#navigation{
+	width: 250px;
+	position: relative;
+}
+
+#dropNav .dropContent{
+	background: #fafafa;
+}
+
+#dropNav .dropContent li{
+	min-width: 195px;
+	float: none !important;
+	display: block;
+	margin: 0;
+}
+
+#headerSearchWrapper{
+	margin-right: 70px;
+}
+
+input#mainSearch{
+	margin: 0;
+	width: 220px;
+}
+
+.personResult{
+	width: 100%;
+	position: relative;
+}
+.personResult li, .brandResult li, .personResult li a, .brandResult li a{
+	float: none;
+	display: block;
+}
+.searchDropWrap{
+	float: none;
+	border: 1px solid #9da4a6;
+	width: 100%;
+}
+
+.personSearchBar, .brandSearchBar{
+	display: block;
+	float: none;
+	background: #dae3e5	;
+}
+
+.loadingSearch{
+	float: none;
+}
+
+.formStatusControl li.caracterCount{
+	padding: 8px 5px 7px 112px;
+}
+.formStatusControl li a span{
+	background-position: 0 -123px;
+	float: left;
+	padding: 0 5px 0 40px;
+}
+
+.updateStreamType li a span{
+	float: left;
+}
+
+.streamController li a.loudIco{
+	height: 10px;
+}
+
+
+/* Side bar */
+.usernameId{
+	position: relative;
+}
+
+.usernameId h1{
+	float: none;
+}
+
+a.editUsrProfile{
+	float: none;
+}
+
+#searchSidebar{
+	float: none;
+	height: 100%;
+	display: block;
+}
+
+.searchOption label{
+	float: none;
+}
+
+.searchSideBottom a .blueArrow{
+	background-position: 0 -121px;
+	float: left;
+}
+
+.searchSideBottom a:hover .blueArrow{
+	background-position: 0 -761px;
+}
+
+.saveSearch li span{
+	width: 10%;
+}
+
+
+span.updateArrowTop{
+	padding-bottom: 5px;
+}
+
+#navigation li#logout a{
+	background: url(http://edintity.com/images/uiIconInside.png) no-repeat -4px -59px;
+}
+
+.customSkins{
+	z-index: 1;
+}
+
+.customSkins .rebBtn a{
+	width: 180px;
+}
+
+.customSkins .rebBtn a span.setSkinIcon{
+	width: 100px;
+}
+
+.customizeHeader{
+	position: relative;
+}
+
+a.closeCustom{
+	position:absolute;
+	top: 5px;
+	left: 5px;
+}
+
+.customSkinContent{
+	float: none;
+}
+
+#usernameId{
+	width: 200px;
+}
+
+.editUsrProfile{
+	float: right !important;
+	margin-right: 0;
+}
+
+.editUsrProfile span.editProfileLink{
+	background-position: 35px -378px !important;
+	margin-left: 10px;
+}
+
+input.mColorPicker{
+	width: 100px;
+	height: 20px;
+	margin-left: 10px;
+}

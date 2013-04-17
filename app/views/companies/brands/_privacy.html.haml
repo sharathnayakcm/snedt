@@ -1,0 +1,86 @@
+#contentHeadBrand4.contentHeading
+  %h4
+    %a{:href => "javascript:void(0);"}
+      =t :privacy
+#accSettingBrandContent4.accSetupContent
+  -form_remote_for(@brand.brand_privacy, {:url => update_privacy_company_brands_path(@brand.company), :method => :put})  do |f|
+    - pgs = @privacy_groups.blank? ? [] : [["#{t :custom_groups}", '0']] + @privacy_groups.collect {|x| x.grp_array}
+
+    .privacySetup.cornerAll
+      %ul
+
+        %li
+          .privacyHead.header
+            .privacyHeadRight.header.column1.flLeft
+              %span 
+                =t :brand_name
+            .privacyHeadRight.header.column2.flLeft
+              %span
+                =t :brand_profile_setting
+            .privacyHeadRight.header.column3.flLeft
+              %span
+                =t :brand_searchable
+            .privacyHeadRight.header.column4.flLeft
+              %span
+                =t :updates_will_seen_by
+        - @company.brands.each do |brand|
+          %li
+            .privacyHead.header
+              .privacyHeadLeft.header.flLeft.column1
+                %span.userSmlPic.flLeft
+                  - unless brand.company.profile_image.blank?
+                    = image_tag brand.company.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :width => "26px"
+                  - else
+                    %img{:alt => brand.name, :src => "/images/brandPicSmall.jpg"}
+                %span#edintityIcon.smlServicesIco.privacyColumn.flLeft
+                  = brand.name
+              .privacyHeadRight.header.flLeft.column2{:style => "padding-left: 44px ! important; width: 229px ! important;"}
+                %span.flLeft
+                  = select("brand_privacy_#{brand.id}", :profile, BrandPrivacy::PRIVACY_TYPES, {:selected => brand.brand_privacy.profile, :disabled => "0"})
+                %span.lockIcon
+                  %a{:href => "javascript:void(0);"}
+              .privacyHeadRight.header.flLeft.column3{:style => "width: 146px ! important;"}
+                %span.flLeft
+                  = select("brand_privacy_#{brand.id}", :is_searchable, [["#{t :yes_true}", true], ["#{t :no_false}", false]],{:selected => brand.brand_privacy.is_searchable, :disabled => "0"})
+                %span.lockIcon
+                  %a{:href => "javascript:void(0);"}
+              .privacyHeadRight.header.flLeft.column4{:style => "padding-left: 47px ! important; width: 158px ! important;"}
+                %span.flLeft
+                  = select("brand_privacy_#{brand.id}", :stream, BrandPrivacy::PRIVACY_TYPES, {:selected => brand.brand_privacy.stream, :disabled => "0"})
+                %span.lockIcon
+                  %a{:href => "javascript:void(0);"}
+          /.privacyContent
+          /  %ul
+          /    %li
+          /      %label{:for => "privacyProfileView"} Allow comment
+          /      %select.privacyProfileView{:name => "privacyProfileView"}
+          /        %option{:value => "everyone"} Everyone
+          /        %option{:value => "followers"} Followers
+          /        %option{:value => "following"} Following
+          /        %option{:value => "just me"} just me
+          /      %span.lockIcon
+          /        %a{:href => "javascript:void(0);"} lock
+          /    %li
+          /      %label{:for => "privacyProfileView"} Mark as Favorite
+          /      %select.privacyProfileView{:name => "privacyProfileView"}
+          /        %option{:value => "everyone"} Everyone
+          /        %option{:value => "followers"} Followers
+          /        %option{:value => "following"} Following
+          /        %option{:value => "just me"} just me
+          /      %span.lockIcon
+          /        %a{:href => "javascript:void(0);"} lock
+      .savePersonalChanges
+        .blueBtn
+          = submit_tag "#{t :save_changes}", :id => "submit", :class => "smlrBtn"
+  #personalblockedUser.redBtn.flRight
+    %a.smlrBtn{:href => "javascript:void(0);", :onclick => "$('personalEditPG').hide();$('personalPrivacySetting').hide();toggle_visibility('personalBlocked');"} Blocked user list
+  #personaEditPrivacyUser.yellowBtn.flRight
+    %a.smlrBtn{:href => "javascript:void(0);", :onclick => "$('personalPrivacySetting').hide();$('personalBlocked').hide();toggle_visibility('personalEditPG');"} Edit privacy group
+  #personalPrivacyBtn.blueBtn.flRight
+    %a.smlrBtn{:href => "javascript:void(0);", :onclick => "$('personalEditPG').hide();$('personalBlocked').hide();toggle_visibility('personalPrivacySetting');"} Create privacy group
+  #personalPrivacySetting.personalPrivacyGroup.privacySetup.cornerAll{:style => "display:none;"}
+    = render :partial => "users/custom_privacy_group"
+  #personalBlocked.personalPrivacyGroup.privacySetup.cornerAll{:style => "display:none;"}
+    = render :partial => "users/blocked_users"
+  #personalEditPG.personalPrivacyGroup.privacySetup.cornerAll{:style => "display:none;"}
+    = render :partial => "users/edit_privacy_groups"

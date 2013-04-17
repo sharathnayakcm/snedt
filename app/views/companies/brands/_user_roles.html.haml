@@ -1,0 +1,27 @@
+#affiliatesBrandList.servicesBoxInner.cornerAll
+  %ul
+    %li{:class => "#{cycle('affiliatesEven', 'affiliatesOdd')}"}
+      %ul.affiliatesBrandRow
+        - if !@brand_user_groups.blank?
+          - @brand_user_groups.each do |brand|
+            - unless brand.company.user.id  == brand.user_id
+              %li.firstCol
+                = brand.user.user_name
+              %li.secondCol
+                - unless brand.brand_id.nil?
+                  = brand.brand.name
+                - else
+                  = brand.company.name
+              %li.thirdCol
+                = brand.show_access_type
+              %li.fourthCol
+                .redBtn
+                  - if @downgrade.blank?
+                    %a.smlrBtn{:href => "javascript:void(0);", :onclick => "#{remote_function(:url => company_brand_user_group_path(@company,:id => brand.id), :method => :delete, :confirm => "Are you sure to delete this user role  permanently?")}"}= t :delete_role
+                    /= link_to_remote "#{t :delete_role}", {:url => company_brand_user_group_path(@company,:id => brand.id)}, :method => :delete, :confirm => "Are you sure to delete this user role  permanently?",:class => "smlrBtn"
+                  - else
+                    = link_to_remote_with_loader "#{t :delete_role}", {:url => company_brand_user_group_path(@company,:id => brand.id, :membership_id => @membership.id)}, :method => :delete, :confirm => "Are you sure to delete this user role  permanently?",:class => "smlrBtn"
+                .greyBtn
+                  - if @downgrade.blank?
+                    %a.smlrBtn{:href => "javascript:void(0);", :onclick => "#{remote_function(:url=> edit_company_brand_user_group_path(:company_id => @company.id,:role => brand.access_type, :id => brand.id), :method => :get, :update => "edit_role_#{brand.id}")}"}= t :edit_role
+            %div{:id => "edit_role_#{brand.id}"}

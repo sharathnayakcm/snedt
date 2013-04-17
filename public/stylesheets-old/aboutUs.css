@@ -1,0 +1,110 @@
+#ednt-About{}
+
+#ednt-OurOffice{
+	float: left;
+	margin: 60px 0 80px;
+}
+
+#aboutWrapper, #officeWrapper{
+	background: #eef1f2;
+	padding: 35px 25px;
+	float: left;
+	width: auto;
+	line-height: 20px;
+}
+
+.aboutUs{
+	float: left;
+	margin: 0 0 20px;
+}
+
+.aboutUs p{
+	color: #5b6773;
+	font-size: 12px;
+	font-weight: normal;
+	text-shadow: 0 1px 0 #fff;
+}
+
+.ourTeam{}
+
+.ourTeam ul{}
+
+.ourTeam li{
+	list-style: none outside none;
+	float: left;
+	display: inline;
+	padding: 0 9px 35px 0;
+}
+
+.teamPhoto{
+	float: left;
+}
+
+.img,.officeMap{
+	background: #FFF;
+	border: 1px solid #ced6d9;
+	padding: 5px 5px 0;
+	box-shadow: 0 0 3px #d9d9d9;
+}
+
+.teamInfo{
+	width: 250px;
+	margin-left: 165px;
+}
+
+.teamTitles{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.teamTitles h3, .teamSubTitle h3, .teamDetail p, .officeLocation p{
+	color: #4b6973;
+	font-size: 18px;
+	font-weight: bold;
+	text-shadow: 0 1px 0 #fff;
+}
+
+.teamSubTitle{
+	margin-bottom: 15px;
+}
+
+.teamSubTitle h3{
+	color: #acbabf;
+}
+
+.teamDetail{}
+
+.teamDetail p, .officeLocation p{
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.officeLocation{
+	margin-bottom: 25px;
+}
+
+.officeShot{
+	width: 466px;
+}
+
+.officeShot ul{}
+
+.officeShot li{
+	list-style: none outside none;
+	float: left;
+	display: inline;
+}
+
+.officeShot li .img{
+	display: block;
+	position: relative;
+	margin: 0 15px 15px 0;
+}
+
+.officeGeoLocation{
+}
+
+.officeMap{
+	height: 300px;
+	width: 370px;
+}

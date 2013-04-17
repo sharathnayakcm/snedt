@@ -1,0 +1,28 @@
+- unless streams.blank?
+  - streams.each do |stream|
+    = render :partial => "streams/show", :locals => {:stream => stream}
+  - unless streams.length < 10
+    %div{:id => "more_link_#{current_page+1}", :class => "more_btn", :style => "text-align: center !important;"}
+      .streamContent{:style => "float: none !important; "}
+        %span.moreLink{:id => "span_link_#{current_page +1}", :style => "text-align: center !important;"}
+          = link_to_remote "Click for more streams",:url => {:user => @user.id, :action => :more_streams, :current_page => current_page+1, :tab_name => @stream_header, :by => params[:by], :service_id => params[:service_id], :filter => params[:filter], :search_filter => params[:search_filter], :search_for => params[:search_for], :search_by => params[:search_by] }, :method => :get, :before => "$('span_link_#{current_page+1}').hide();$('stream_more_#{current_page}').show();", :complete => "$('stream_more_#{current_page}').hide();$('more_link_#{current_page+1}').hide();",:html => { :class => 'more_links_class'}
+      %div{:id => "stream_more_#{current_page}", :style => "padding-left:50px;display:none;"}
+        .loadContentIndocator
+          .ui-progress-bar.ui-container#photoProgressBar{:style => "margin-bottom:50px"}
+            .ui-progress#photoProgress{:style=>"width: 100%;"}
+
+:javascript
+  $j('a').click(function(r){
+      var onClickText = $j(this).attr('onclick');
+      if(onClickText.indexOf('Ajax') >= 0){
+        if(onClickText.indexOf('RedBox') < 0){
+          $j.ajax({
+            cache: false,
+            loading: $j('#ajaxLoaderDiv').removeClass("hide"),
+            complete:function(){
+              $j('#ajaxLoaderDiv').addClass("hide");
+            }
+          });
+        }
+      }
+    });

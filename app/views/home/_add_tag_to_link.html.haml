@@ -1,0 +1,19 @@
+- form_remote_for :tag, :url => {:controller => :tags, :action => :create, :stream_id => stream.id}, :method => :post do |f|
+  #add_tag{:id=>"#{stream.id}"}
+    .url{:style => "float:left;"}
+      == Tag
+      %ul{:id => "link_tags_#{stream.id}", :style => "width:440px", :name => "tags[]"}
+    .clear
+    .blueBtn
+      =  submit_tag "#{t :save}", :class => "button"
+    .hint.quiet= t :tag_hint
+
+:javascript
+  $j(".adding_tag_stream").live("click",function(){
+    var strTags = "#{tags}"
+    $j("#link_tags_#{stream.id}").tagit({
+      maxTags:2,
+      tagSource: strTags.split(','),
+      initialTags: "#{user_tags}"
+    });
+  });

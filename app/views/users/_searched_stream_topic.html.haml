@@ -1,0 +1,47 @@
+- @user_tags = @stream.stream_tags.map{|t| t.tag.name}.join(",")
+#searchtopicDropWrap.transBg.cornerAll
+  - if @topics.blank? 
+    .topicSearchResult
+      %h6{:style => "padding:10px"}
+        = t :modify_search_criteria
+  - else
+    .brandSearchResult
+      %span.topicSearchBar
+        = t :topic
+      .brandResult.clear
+        %ul
+          - unless @topics.blank?
+            - @topics.each do |topic|
+              %li
+                .searched_topic_name{:id=>"topic_name_#{topic.id}", :topic_id => "#{topic.id}",:stream_id =>"#{@streamid}",:style=>"padding: 7px 10px 7px 10px;"}
+                  - if topic.asset
+                    = image_tag topic.asset.asset.url.gsub('/s3.','/s3-eu-west-1.'), :class => "userSmlPic"
+                  - else
+                    = image_tag "/images/userPicMed.png", :class => "userSmlPic"
+                  = topic.title
+    .topic_tag.clear
+      %span.topicSearchBar
+        = t :add_tag
+      - form_remote_for :tag, :url => {:controller => :tags, :action => :create, :stream_id => @streamid}, :method => :post do |f|
+        #add_tag
+          %ul{:id => "topic_tags_#{@streamid}",:style => "width:240px;", :name => "topic_tags[]"}
+        .clear
+        .blueBtn
+          =  submit_tag "#{t :save}", :class => "button"
+
+:javascript
+   $j(document).ready(function() {
+    $j("#topic_tags_#{@streamid}").tagit({
+          initialTags: "#{@user_tags}"
+        });
+    });
+  jQuery(".searched_topic_name").live('click', function(){
+  var topic_id = jQuery(this).attr('topic_id');
+  var stream_id = jQuery(this).attr('stream_id');
+    jQuery.ajax({
+        type:"GET",
+        url : "/streams/"+stream_id+"/update_stream_topic",
+        data :"topic_id="+topic_id
+    });
+
+  });

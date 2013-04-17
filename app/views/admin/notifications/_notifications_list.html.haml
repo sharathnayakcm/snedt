@@ -1,0 +1,15 @@
+- notifications ||= @notifications
+- @notifications_table.render notifications do |table|
+  - notifications.each do |notification|
+    - table.tr :id => "notification_#{notification.id}" do
+      -table.td {notification.name}
+      -table.td {notification.code}
+      -table.td {notification.subject}
+      -table.td {notification.cc}
+      -table.td {notification.bcc}
+      -table.td {notification.is_displayable? ? "Yes" : "No"}
+      -table.td {notification.active? ? "Yes" : "No"}
+      -table.td(:action, :id => "action_#{notification.id}") do
+        = link_to("Preview", admin_notification_path(current_user, :id => notification.id), {:class => "icon", :title => "Preview Notification"} )
+        = link_to("Edit", edit_admin_notification_path(current_user, notification), {:class => "icon", :title => "Edit notification"} )
+        = link_to_remote("Delete", :url => admin_notification_path(current_user, :id => notification.id), :method => :delete, :confirm => "Are you sure want to delete this notification?", :html => {:class => "icon", :title => "Delete Notification"} )

@@ -1,0 +1,26 @@
+- if @user_unused_tabs
+  - unused_tabs = []
+  - @user_unused_tabs.each do |tab|
+    - if tab.name == "Custom"
+      - unused_tabs <<  link_to_remote_redbox("#{t :custom}", :url => new_custom_tab_path, :method => :get)
+    - else
+      - unused_tabs <<  link_to_remote(tab.name,:url => user_tabs_path(:tab => tab), :method => :post)
+
+%div.brandForm{:id => "editBrandForm_#{@brand.id}", :style => "display:block;"}
+  - form_remote_for @brand, :url => company_brand_path(:company_id => @company.id), :method => :put do |f|
+    %ul
+      %li
+        = f.label "#{t :brand_name}"
+        = f.text_field :name
+      %li
+        = f.label "#{t :brand_url}"
+        = f.text_field :brand_url
+      %li
+        = f.label "#{t :about}"
+        = f.text_area :description
+      %li.addBrandConfirmAct
+        .blueBtn
+          = f.submit "#{t :save}",:class => "smlrBtn"
+        .yellowBtn
+          %a.smlrBtn{:href => "javascript:void(0);", :onclick => "jQuery(this).closest('.brandForm').hide();"}
+            = t :cancel

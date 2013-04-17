@@ -1,0 +1,27 @@
+- affiliations = current_user.affiliations
+#affiliationModal.modalWrapper.modalWindow.cornerAll
+  .affiliationHead
+    %h6 Affiliation
+    %a.closeCustom.uiIconInside.flRight{:href => "javascript:void(0);", :onclick => "toggle_visibility('affiliationModal');"}
+  .brandsListModal
+    %ul
+      - unless affiliations.blank?
+        - affiliations.each do |affiliation|
+          - brand = affiliation.affiliation_brand
+          %li.brandsListAffiliates
+            .brandNameList.flLeft
+              %a.brandPic{:href => "#{brand.is_default? ? company_path(:id => affiliation.company.name, :scope => 'affiliation'):company_brand_path(affiliation.company, brand.id)}"}
+                - unless brand.profile_image.blank?
+                  = image_tag (brand.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :width => "26", :height => "26")
+                - else
+                  %img.brandSmlPic{:src => "/images/brandPicSmall.jpg"}
+              %a.brandID{:href => "javascript:void(0);"}
+                = brand.name
+            .switchBtn.flRight
+              .blueBtn
+                %a.smlrBtn{:href => "#{brand.is_default? ? company_path(:id => affiliation.company.name, :scope => 'affiliation'):company_brand_path(affiliation.company, brand.id)}"} Home
+              .blueBtn
+                %a.smlrBtn{:href => brand_profile_path(brand.url)} Profile
+      - else
+        %li.brandsListAffiliates
+          No affiliations

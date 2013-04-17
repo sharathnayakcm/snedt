@@ -1,0 +1,19 @@
+%li{:id => "brand_#{@brand.id}"}
+  .brandNameList
+    %a.brandPic
+      - unless @brand.profile_image.blank?
+        = image_tag @brand.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :class => "brandSmlPic"
+      - else
+        %img.brandSmlPic{:src => "/images/brandPicSmall.jpg"}
+    - if @brand.has_access?((current_user)) || @brand.company.is_brand_admin?(current_user)
+      %a.brandID{:href => company_brand_path(@brand.company, @brand.id)}
+        = @brand.name
+    - else
+      %a.brandID{:href => brand_profile_path(@brand.url)}
+        = @brand.name
+    %a{:href => @brand.brand_url}
+      %small.brandUrl
+        = @brand.brand_url
+  = link_to_remote("", :url => company_brand_path(@brand.company, @brand.id), :method => :delete, :confirm => "Are you sure want to delete '#{@brand.name}' brand?", :html => {:class => "deletingCompany uiIconInside flRight"}) if @brand.company.is_brand_admin?(current_user)
+  %a.goToProfile.uiIconInside.flRight{:href => brand_profile_path(@brand.url)}
+

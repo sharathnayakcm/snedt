@@ -1,0 +1,64 @@
+free:
+  id: 1
+  name: Starter
+  description: <li>Upload Limit of 250MB/month (photos)</li><li>Create 1 Custom Skin</li>
+  active: 1
+  membership_type: individual
+  amount: 0
+  upload_limit: 250
+  skin_count: 1
+
+two:
+  id: 2
+  name: Premium
+  description: <li>Upload limit of 1024 MB/month (photos + videos)</li><li>Create 3 Custom Skins</li>
+  active: 1
+  membership_type: individual
+  amount: 10
+  upload_limit: 1024
+  skin_count: 3
+
+three:
+  id: 3
+  name: Bronze
+  description: <li>Upload limit of 2048 MB/month (photos + videos)</li><li>Add 2 Users</li><li>Add 2 Brands</li>
+  active: 1
+  membership_type: business
+  amount: 25
+  upload_limit: 2048
+  user_count: 2
+  brand_count: 2
+
+four:
+  id: 4
+  name: Silver
+  description: <li>Upload limit of 3072 MB/month (photos + videos)</li><li>Add 4 Users</li><li>Add 6 Brands</li>
+  active: 1
+  membership_type: business
+  amount: 50
+  upload_limit: 3072
+  user_count: 4
+  brand_count: 6
+
+five:
+  id: 5
+  name: Gold
+  description: <li>Upload limit of 4096 MB/month (photos + videos)</li><li>Add 8 Users</li><li>Add 18 Brands</li>
+  active: 1
+  membership_type: business
+  amount: 100
+  upload_limit: 4096
+  user_count: 8
+  brand_count: 18
+
+
+six:
+  id: 6
+  name: Platinum
+  description: <li>Upload limit of 6144 MB/month (photos + videos)</li><li>Add 24 Users</li><li>Add 54 Brands</li>
+  active: 1
+  membership_type: business
+  amount: 300
+  upload_limit: 6144
+  user_count: 24
+  brand_count: 54

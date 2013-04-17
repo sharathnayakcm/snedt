@@ -1,0 +1,94 @@
+- followers.each do |follower_id|
+  - stream ||= @stream
+  %div.dialog{:id => "dialog_#{stream.id}" ,:style => "display:none"}
+    .dialog_heading
+      == Comment
+    .dialog_details
+      - form_remote_for :comment, :url => stream_comments_path(stream) , :method => :post do |f|
+        %p= f.text_field :comment, :id => "name",:size => 20
+        %p= f.submit "Comment"
+  %div.tag_dialog{:id => "tab_dialog_#{stream.id}" ,:style => "display:none"}
+    .dialog_heading
+      == Tag
+    .dialog_details
+      - form_remote_for :stream, :url => create_tags_path(:stream_id => stream.id) , :method => :post do |f|
+        %p= f.text_field :tag, :id => "name",:size => 10
+        %p= f.submit "Tag"
+  %div{:id => "stream_content_#{stream.id}"}
+    - comments_bg =  stream.is_read ? "normal" : "highlight"
+    .comments_section.comments_bg{:onmouseover => "$j(this).find('.profile_services').show();",:onmouseout => "$j(this).find('.profile_services').hide();", }
+      .stream_left_content
+        - follower = User.find(follower_id)
+        .profile_img
+          .profile
+            %img{:src => "#{follower.user_name}"}
+          .time
+            %span= stream.stream_created_at.strftime("%H:%M %p") unless  stream.stream_created_at.blank?
+            %br
+            %span= stream.stream_created_at.strftime("%d %b %Y") unless  stream.stream_created_at.blank?
+          .service
+            = image_tag("services/#{stream.service.name.downcase}.png", :title => "#{follower.user_name if stream.user_service}") if stream.service
+          .clear
+          %div{:id => "stream_rating_#{stream.id}"}
+            - form_remote_for :stream, :url => rate_stream_home_path(:id => stream.id) , :method => :get do |f|
+              .star_post_type_stream
+                %input.auto-submit-star{:name => "star_#{stream.id}", :id => "star_#{stream.id}", :value => '1',:type => "radio",:checked => stream.star_count==1 || nil}
+                %input.auto-submit-star{:name => "star_#{stream.id}", :id => "star_#{stream.id}", :value => '2',:type => "radio",:checked => stream.star_count==2 || nil}
+                %input.auto-submit-star{:name => "star_#{stream.id}", :id => "star_#{stream.id}", :value => '3',:type => "radio",:checked => stream.star_count==3 || nil}
+                %input.auto-submit-star{:name => "star_#{stream.id}", :id => "star_#{stream.id}", :value => '4',:type => "radio",:checked => stream.star_count==4 || nil}
+                %input.auto-submit-star{:name => "star_#{stream.id}", :id => "star_#{stream.id}", :value => '5',:type => "radio",:checked => stream.star_count==5 || nil}
+                = f.submit "rate", :id => "rate_star_#{stream.id}", :style => "display:none"
+        .profile_details
+          %span.profile_name
+            - if stream.rss_link
+              %a{:href => stream.rss_link.url, :target => "_blank", :title => stream.rss_link.title.gsub(/<\/?[^>]*>/, ""), :alt => stream.rss_link.title.gsub(/<\/?[^>]*>/, "")}= truncate(stream.rss_link.title, 50, "...")
+            - else
+            = follower.user_name
+          %span.profile_status
+            = Stream::PROFILE_STATUS[stream.service_id]
+          .profile_comment{:style => "width:340px;"}
+            - if stream.flickr_photo_title
+              = CGI.unescapeHTML(wordwrap(stream.flickr_photo_title))
+              %br
+              - if stream.assets.length > 0
+                = link_to_remote_redbox image_tag("#{stream.assets[0].asset.url.gsub('/s3.','/s3-eu-west-1.')}", :style => "width:50px;height:50px;",:alt=>"",:title=>""), :url => {:controller => :streams, :action => :show_full_image, :id => stream.id}, :html => {:class => "add_btn"}
+              - else
+                = link_to_remote_redbox image_tag("#{stream.stream_media_url}",:alt=>"",:title=>""), :url => {:controller => :streams, :action => :show_full_image, :id => stream.id}, :html => {:class => "add_btn"}
+              %br
+            - else
+              %img{:src => "#{stream.stream_media_url}"}
+            .text= CGI.unescapeHTML(wordwrap(stream.text))
+            .url= CGI.unescapeHTML(wordwrap(stream.facebook_link_url))
+            .desc= CGI.unescapeHTML(wordwrap(stream.facebook_feed_description))
+            .desc= CGI.unescapeHTML(wordwrap(stream.description))
+            - if stream.rss_link_id
+              .text{:style => "font-size:13px;"}= stream.rss_feed_description
+              .clear
+          .profile_comment_action
+            = link_to image_tag("tag.gif",:width=>"15"), "javascript:void(0)", :onclick => "$('tag_div_#{stream.id}').style.display='';$('tag_#{stream.id}').value=''", :html => {:class => "comments", :id => "tag_#{stream.id}"}, :title => "#{t :tags}"
+            %span{:id => "stream_tags_#{stream.id}"}= "(#{stream.tag})" if !stream.tag.blank?
+            = t :max_tags
+            %div{:id => "tag_div_#{stream.id}", :style => "display:none"}
+              - form_remote_for :stream, :url => create_tags_path(:stream_id => stream.id) , :method => :get do |f|
+                %p= f.text_field :tag, :id => "tag_#{stream.id}",:size => 10
+                = f.submit "Tag", :class => "button"
+                = f.submit "Cancel", :class => "button", :onclick => "$('tag_div_#{stream.id}').style.display='none';return false;"
+            %div{ :id => "stream_comments_#{stream.id}" }
+              = render(:partial => "comments/index", :locals => {:comments => stream.comments, :stream => stream}) unless stream.comments.blank?
+            %div{:id => "comment_div_#{stream.id}", :style => "display:none"}
+              - form_remote_for :comment, :url => stream_comments_path(stream) , :method => :get do |f|
+                %p= f.text_area :comment, :id => "comment_#{stream.id}", :cols => 20, :rows => 3
+                = f.submit "Comment", :class => "button"
+                = f.submit "Cancel", :class => "button", :onclick => "$('comment_div_#{stream.id}').style.display='none';return false;"
+      .profile_services{:style => "float:right;display:none", :id => "actions_#{stream.id}"}
+        .love
+          - x = stream.is_favourite ? "#{image_tag('favourite_heart.png')}" : "#{image_tag('love.png')}"
+          = link_to_remote x ,:url => toggle_favourite_stream_path(stream), :method => :get, :html => { :class => "love", :id => "love_#{stream.id}", :title => "#{t :favourite}"}
+        .comments_icon
+          = link_to(image_tag("comments.png"), "javascript:void(0)", :onclick => "$('comment_div_#{stream.id}').style.display='';$('comment_#{stream.id}').value=''", :html => {:class => "comments", :id => "comment_#{stream.id}"}, :title => "#{t :comments}")
+        .db
+          = link_to image_tag("/images/retweet.png"), "javascript:void(0)"
+        .db
+          = link_to image_tag("/images/facebook_like.png", :width => "20"), "javascript:void(0)"
+      .clear
+

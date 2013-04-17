@@ -1,0 +1,16 @@
+:javascript
+  $j('.button').corner("4px");
+  $('RB_window').style.width = "500px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 500)/2) + "px";
+.dialogs
+  .dialog_details
+    .delete_account__1{:style => "width:450px"}
+      %p
+        = t :delete_company_account_text
+      - form_for(@current_user, {:url => { :controller => "companies", :action => "delete_brands_and_company", :id => @current_user.company.id}, :method => :put})  do |f|
+        .modalConfirmAct.flRight.deleteAccount
+          .blueBtn
+            = submit_tag "#{t :yes_delete_account}", :confirm => "#{t :delete_company_account_confirm}", :class => "smlrBtn", :style => "color:white !important"
+          .yellowBtn
+            = link_to_close_redbox("#{t :no_changed_mind}", :class => "smlrBtn")
+              

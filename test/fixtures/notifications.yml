@@ -1,0 +1,73 @@
+
+one:
+  id: 1
+  name: Signup
+  subject: Welcome to Editintity
+  content: "<p>Dear {{ recipient.full_name}},</p>\r\n<p>Welcome to edintity.</p>\r\n<p>Thanks,</p>\r\n<p>Edintity Team</p>"
+  is_displayable: 0
+  code: Signup
+  active: 1
+
+two:
+  id: 2
+  name: Send me an email when someone follows me
+  subject: Edintity - One of your friend is following you
+  content: "<p>Dear User,</p>\r\n<p>&nbsp;</p>\r\n<p>One of your friend is following you,</p>\r\n<p>&nbsp;</p>\r\n<p>regards,</p>\r\n<p>Edintity Teamm</p>"
+  is_displayable: 1
+  code: Follows
+  active: 1
+
+
+three:
+  id: 3
+  name: Email me when someone comments on my Home stream
+  subject: Edintity - You received a comment for your home stream
+  content: "<p>Dear User,</p>\r\n<p>You have reiceived comment for your home stream.</p>\r\n<p>Thanks,</p>\r\n<p>Edintity Team</p>"
+  is_displayable: 1
+  code: Home Comment
+  active: 1
+
+4:
+  id: 4
+  name: Email me when someone comments on my RSS stream
+  subject: "Edintity - You received a comment for your RSS stream"
+  content: "<p>Email me when someone comments on my RSS stream</p>"
+  is_displayable: 1
+  code: RSS Comment
+  active: 1
+
+5:
+  id: 5
+  name: Email me when I'm mentioned in a user activity
+  subject: Edintity -  user activity
+  content: "<p>Email me when I'm mentioned in a user activity</p>"
+  is_displayable: 1
+  code: User Activity
+  active: 1
+
+6:
+  id: 6
+  name: You want to know what's going on in edintity, let us send you an email.
+  subject: Edintity -  New on Edintity
+  content: "<ul>\r\n<li>You want to know what's going on in edintity, let us send you an email.</li>\r\n</ul>"
+  is_displayable: 1
+  code: New
+  active: 1
+
+7:
+  id: 7
+  name: User Activation
+  subject: Edintity - Activation Instruction
+  content: "<p>Dear {{ recipient.full_name }},</p>\r\n<p>&nbsp; Welcome to Edintity.&nbsp; Please click the below URL to activate your account.</p>\r\n<p>&nbsp; {{ params.account_activation_url }}</p>\r\n<p>&nbsp; if the above URL does not work try copying and pasting it into your browser.</p>\r\n<p>&nbsp; If you continue to have problem, please feel free to contact us support@edintity.com</p>\r\n<p>Thanks,</p>\r\n<p>Edintity Team</p>\r\n<p>www.edintity.com</p>\r\n<pre>account_activation_url</pre>"
+  is_displayable: 0
+  code: Activation
+  active: 1
+
+8:
+  id: 8
+  name: Activated
+  subject: Edintity - You acccount has been activated
+  content: "<p>Dear {{ recipient.full_name }},</p>\r\n<p>Your account has been activated successfully.</p>\r\n<p>Thanks,</p>\r\n<p>Edintity Team</p>\r\n<p>www.edintity.com</p>"
+  is_displayable: 0
+  code: Activated
+  active: 1

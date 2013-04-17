@@ -1,0 +1,24 @@
+<% title = "Resend Activation Link" %>
+Fill out the form below and instructions to activate your account will be emailed to you:<br />
+<br />
+
+<% form_tag activation_path(1),:method =>:put do %>
+  <label>Email:</label><br />
+  <%= text_field_tag "email" %><br />
+  <br />
+  <%= submit_tag "Resend activation link" %>
+  <%=link_to "Login", login_path %>
+<% end %>
+
+
+#mainContent
+  #ednt-Activation.ednt-Wrapper
+    .titles
+      %h4=t :account_activation_success
+    #activitionWrapper.MP-boxes
+      .activationInfo
+        %span.infoIcon
+        %p=t :account_activation_confirming_message
+      #toAccSetup.blueBtn
+        =link_to "#{t :continue_account_setup}", user_services_path(@user, :signup => true, :tab => 'services')
+

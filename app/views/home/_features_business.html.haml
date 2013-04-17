@@ -1,0 +1,38 @@
+.features
+  .featureDecription
+    %ol
+      %li= t :features_business_header_1
+      %li= t :features_business_header_2
+  .starterFeatures
+    %ul
+      %li
+        .featuresPlanWrap
+          %h5
+            %span.premiumFeature1.uiBigIcon= t :brand_management
+          %p.featDescription= t :brand_management_description
+        .featuresPlanWrap
+          %h5
+            %span.premiumFeature2.uiBigIcon= t :users_management
+          %p.featDescription= t :users_management_description
+        .featuresPlanWrap
+          %h5
+            %span.premiumFeature3.uiBigIcon= t :brand_admin
+          %p.featDescription= t :brand_admin_description
+      %li
+        .featuresPlanWrap
+          %h5
+            %span.starterFeature4.uiBigIcon= t :brand_manager
+          %p.featDescription= t :brand_manager_description
+        .featuresPlanWrap
+          %h5
+            %span.premiumFeature5.uiBigIcon= t :content_manager
+          %p.featDescription= t :content_manager_description
+
+:javascript
+  function toggle_visibility(id) {
+         var e = document.getElementById(id);
+         if(e.style.display == 'block')
+            e.style.display = 'none';
+         else
+            e.style.display = 'block';
+      }

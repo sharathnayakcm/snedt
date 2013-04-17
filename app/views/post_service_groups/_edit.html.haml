@@ -1,0 +1,13 @@
+.content_div
+  .login_help_container
+    %h3 Post Service Groups
+    #content_header
+      %span
+        = link_to "New", new_post_service_group_path
+      %span
+        = link_to "Edit", :url => {:controller => :post_service_groups, :action => :edit}
+    #content_text
+      #edit_drop_down
+        = render :partial => "post_service_groups/psg_drop_down"
+      #edit_form      
+      

@@ -1,0 +1,1117 @@
+#ednt-BrandStream.mainStreamWrapper
+  .ajaxLoader.cornerAll#ajaxLoaderDiv.hide
+    %span.ajaxSpinner
+      %img{:src=>"/images/ajax-loader.gif", :alt=>"#"}
+  #brandStreamTab
+    %ul
+      %li#main-1.brandTab.cornerTop.activeTab
+        %a{:href => "javascript:void(0);"} Home
+      %li#main-2.brandTab.cornerTop
+        %a{:href => "javascript:void(0);"} Dashboard
+  #main-1-1.tabShow.streamMain.streamWrapper.cornerAll.flLeft
+    .headStreamSection
+      - @bread_crum = []
+      - bread_crumb(@brand)
+      - unless @bread_crum.blank?
+        .breadcrumb
+          %ul
+            - @bread_crum.reverse.each do |bread|
+              %li
+                -unless bread.is_default?
+                  = link_to bread.name.capitalize ,company_brand_path(bread.company, bread.id)
+                -else
+                  = link_to bread.name.capitalize ,company_path(bread.company.name)
+            %li
+              = link_to @brand.name.capitalize ,company_brand_path(@company, @brand.id)
+      .streamUpdater
+        .updateStreamType
+          %ul
+            %li
+              %a#cont-1.tabLink.activeLink{:href => "javascript:;"}
+                %span#updateStatIco Update Status
+            %li
+              %a#cont-2.tabLink{:href => "javascript:;"}
+                %span#updateBlogIco Blog
+            %li
+              %a#cont-3.tabLink{:href => "javascript:;"}
+                %span#photoIco Add Photo
+            %li
+              %a#cont-4.tabLink{:href => "javascript:;"}
+                %span#videoIco Add Video
+            %li
+              %a#cont-5.tabLink{:href => "javascript:;"}
+                %span#linkIco Share link
+        .updateStreamAction
+          #cont-1-1.tabContent.updateStatusForm.updateStreamBox.cornerAll
+            %span.updateArrowTop
+            .formInputStatus
+              %textarea.forStatus{:col => "20", :row => "3"} What are you doing...?
+            .formStatusControl
+              %ul
+                %li.shareRestirict
+                  %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('sharingOptCheck');"}
+                    %span.blueArrow Share to your following services
+                %li.shortLink
+                  %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('shortURL');"}
+                    %span.blueArrow Shorten link
+                %li.caracterCount.brandCaractercount
+                  %a{:href => "javascript:void(0);"} 0
+                %li.shareToBrand
+                  %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('pickBrand');"} gear
+                %li.addToStream
+                  %a{:href => "javascript:void(0);"} Add to stream
+          #cont-2-1.tabContent.updateStatusForm.updateStreamBox.cornerAll.hide
+            %span.updateArrowTop.blogArrowTop
+            .blogTitle
+              %h6
+                %input{:onfocus => "if(!this._haschanged){this.value=''};this._haschanged=true;", :type => "text", :value => "Blog title"}/
+            .formInputStatus
+              %textarea.forStatus.blogContent{:col => "20", :row => "3"} Write Your blog content here...
+            .formStatusControl
+              %ul
+                %li.shareRestirict.blogRestrict
+                  %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('sharingOptCheck');"}
+                    %span.blueArrow Share to your following services
+                %li.shareToBrand
+                  %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('pickBrand');"} gear
+                %li.addToStream
+                  %a{:href => "javascript:void(0);"} Add to stream
+          #cont-3-1.tabContent.addPhotosForm.updateStreamBox.cornerAll.hide
+            %span.updateArrowTop.sharePhoto
+            .formInputStatus
+              %textarea#photoDescription.forStatus.forOthers{:col => "20", :row => "3"} Say something about your photo...
+              .uploadAttachment
+                %a.cornerAll{:href => "javascript:void(0);"}
+                  %span.uploadIco Browse photo
+              .pathBar.cornerAll
+              .loadContentIndocator.uploadProgress
+                %span.progressStream
+            .formStatusControl
+              %ul
+                %li.shareRestirict
+                  %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('sharingOptCheck2');"}
+                    %span.blueArrow Share to your following services
+                %li.caracterCount.photoRestrict
+                  %a{:href => "javascript:void(0);"} 0
+                %li.shareToBrand
+                  %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('pickBrand2');"} gear
+                %li.addToStream
+                  %a{:href => "javascript:void(0);"} Add to stream
+          #cont-4-1.tabContent.addVideosForm.updateStreamBox.cornerAll.hide
+            %span.updateArrowTop.shareVideo
+            .formInputStatus
+              %textarea#videoDescription.forStatus.forOthers{:col => "20", :row => "3"} Say something about your video...
+              .uploadAttachment
+                %a.cornerAll{:href => "javascript:void(0);"}
+                  %span.uploadIco Browse video
+              .pathBar.cornerAll
+              .loadContentIndocator.uploadProgress
+                %span.progressStream
+            .formStatusControl
+              %ul
+                %li.shareRestirict
+                  %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('sharingOptCheck2');"}
+                    %span.blueArrow Share to your following services
+                %li.caracterCount.videoRestrict
+                  %a{:href => "javascript:void(0);"} 0
+                %li.shareToBrand
+                  %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('pickBrand2');"} gear
+                %li.addToStream
+                  %a{:href => "javascript:void(0);"} Add to stream
+          #cont-5-1.tabContent.shareLinkForm.updateStreamBox.cornerAll.hide
+            %span.updateArrowTop.shareLinks
+            .formInputStatus
+              %textarea#linkDescription.forStatus.forOthers{:col => "20", :row => "3"} Say something about your link...
+              .pathBar.linkBar.cornerAll
+                %p http://
+                %span
+                  %input.blankInput{:type => "text", :value => ""}/
+            .formStatusControl
+              %ul
+                %li.shareRestirict
+                  %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('sharingOptCheck');"}
+                    %span.blueArrow Share to your following services
+                %li.shortLink.shorterLink
+                  %input.linkShortener{:type => "checkbox"}/
+                  %a{:href => "javascript:void(0);"} Shorten link
+                %li.caracterCount.brandCaractercount
+                  %a{:href => "javascript:void(0);"} 0
+                %li.shareToBrand
+                  %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('pickBrand');"} gear
+                %li.addToStream
+                  %a{:href => "javascript:void(0);"} Add to stream
+        #sharingOptCheck.shareServiceControl.shareServiceControlBrand{:style => "display:none;"}
+          .shareToServiceDropdown.cornerBottom.transBg
+            %span.closeShareOpt
+              %a.uiIconInside{:href => "javascript:void(0);", :onclick => "toggle_visibility('sharingOptCheck');"} close
+            %ul
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.emptyIco Share all services
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.edintityIco.networkIco
+                    Share on
+                    %strong Edintity
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.twittIco.networkIco
+                    Share on
+                    %strong Twitter
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.fbIco.networkIco
+                    Share on
+                    %strong Facebook
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.vimeoIco.networkIco
+                    Share on
+                    %strong Vimeo
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.youtubeIco.networkIco
+                    Share on
+                    %strong Youtube
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.deliciousIco.networkIco
+                    Share on
+                    %strong Delicious
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.stumbleIco.networkIco
+                    Share on
+                    %strong StumbleUpon
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.tumblrIco.networkIco
+                    Share on
+                    %strong Tumblr
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.flickrIco.networkIco
+                    Share on
+                    %strong Flickr
+        #sharingOptCheck2.shareServiceControl.vidPhotoCtrlBrand{:style => "display:none;"}
+          .shareToServiceDropdown.cornerBottom.transBg
+            %span.closeShareOpt
+              %a.uiIconInside{:href => "javascript:void(0);", :onclick => "toggle_visibility('sharingOptCheck2');"} close
+            %ul
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.emptyIco Share all services
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.edintityIco.networkIco
+                    Share on
+                    %strong Edintity
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.twittIco.networkIco
+                    Share on
+                    %strong Twitter
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.fbIco.networkIco
+                    Share on
+                    %strong Facebook
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.vimeoIco.networkIco
+                    Share on
+                    %strong Vimeo
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.youtubeIco.networkIco
+                    Share on
+                    %strong Youtube
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.deliciousIco.networkIco
+                    Share on
+                    %strong Delicious
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.stumbleIco.networkIco
+                    Share on
+                    %strong StumbleUpon
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.tumblrIco.networkIco
+                    Share on
+                    %strong Tumblr
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "shareServices", :type => "checkbox", :value => ""}/
+                  %span.flickrIco.networkIco
+                    Share on
+                    %strong Flickr
+        #shortURL.addShortUrl.addShortUrlBrand{:style => "display:none;"}
+          .shortUrlHead
+            %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('shortURL');"} Add URL
+          .shortUrlContent.cornerBottom
+            .shortUrlBox
+              %input{:onfocus => "if(!this._haschanged){this.value=''};this._haschanged=true;", :type => "text", :value => "http://"}/
+            .blueBtn.flRight
+              %a.smlrBtn{:href => "javascript:void(0);", :onclick => "toggle_visibility('shortURL');"} Add
+        #pickBrand.shareToBrandDropdown
+          .shareToBrandHead
+            %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('pickBrand');"}
+          .shareToBrandContent
+            %ul
+              %li{:onclick => "toggle_visibility('pickBrand');"}
+                .brandNameList
+                  %a.brandPic{:href => "javascript:void(0);"}
+                    %img.brandSmlPic{:alt => "Procter", :src => "images/brandPicSmall.jpg"}/
+                  %a.brandID{:href => "javascript:void(0);"} H & S
+                  %a{:href => "javascript:void(0);"}
+                    %small.brandUrl http://hs.com
+              %li{:onclick => "toggle_visibility('pickBrand');"}
+                .brandNameList
+                  %a.brandPic{:href => "javascript:void(0);"}
+                    %img.brandSmlPic{:alt => "Procter", :src => "images/brandPicSmall.jpg"}/
+                  %a.brandID{:href => "javascript:void(0);"} Other Brand
+                  %a{:href => "javascript:void(0);"}
+                    %small.brandUrl http://otherbrand.com
+        #pickBrand2.shareToBrandDropdown.vidPhotoCtrl
+          .shareToBrandHead
+            %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('pickBrand');"}
+          .shareToBrandContent
+            %ul
+              %li{:onclick => "toggle_visibility('pickBrand');"}
+                .brandNameList
+                  %a.brandPic{:href => "javascript:void(0);"}
+                    %img.brandSmlPic{:alt => "Procter", :src => "images/brandPicSmall.jpg"}/
+                  %a.brandID{:href => "javascript:void(0);"} H & S
+                  %a{:href => "javascript:void(0);"}
+                    %small.brandUrl http://hs.com
+              %li{:onclick => "toggle_visibility('pickBrand');"}
+                .brandNameList
+                  %a.brandPic{:href => "javascript:void(0);"}
+                    %img.brandSmlPic{:alt => "Procter", :src => "images/brandPicSmall.jpg"}/
+                  %a.brandID{:href => "javascript:void(0);"} Other Brand
+                  %a{:href => "javascript:void(0);"}
+                    %small.brandUrl http://otherbrand.com
+      .streamController.cornerAll
+        %ul
+          %li.streamControl1
+            %a#playStream{:href => "javascript:void(0);", :onclick => "toggle_visibility('pauseStream');"}
+              %span.togglePlay
+            %a#pauseStream{:href => "javascript:void(0);", :onclick => "toggle_visibility('pauseStream');"}
+              %span.togglePause
+            %span.streamLoad
+              %img{:alt => "", :src => "images/loadinfo.gif"}/
+            .loadedCounter
+              %span.streamCounter> 1000
+              new items
+          %li.streamControl2
+            %a{:href => "javascript:void(0);"} All
+          %li.streamControl3
+            %a{:href => "javascript:void(0);"} Read
+          %li.streamControl4
+            %a{:href => "javascript:void(0);"} Unread
+          %li.streamControl5
+            %a.loudIco{:href => "javascript:void(0);", :onclick => "toggle_visibility('personalNotif');"}
+              %span.greyArrow
+            .notifRed 120
+            .notifDropdown
+              #personalNotif.notifIconWrap.cornerAll.transBg{:style => "display:none;"}
+                %span.notifArrow.uiIcoInstream
+                %ul
+                  %li
+                    %a{:href => "javascript:void(0);"}
+                      .notifRed 1
+                      %span.loveIco
+                  %li
+                    %a{:href => "javascript:void(0);"}
+                      .notifRed 2
+                      %span.edintityIco.networkIco
+                  %li
+                    %a{:href => "twitterPost.htm"}
+                      .notifRed 10
+                      %span.twittIco.networkIco
+                  %li
+                    %a{:href => "javascript:void(0);"}
+                      .notifRed 25
+                      %span.fbIco.networkIco
+                  %li
+                    %a{:href => "javascript:void(0);"}
+                      .notifRed 0
+                      %span.vimeoIco.networkIco
+                  %li
+                    %a{:href => "javascript:void(0);"}
+                      .notifRed 3
+                      %span.youtubeIco.networkIco
+                  %li
+                    %a{:href => "javascript:void(0);"}
+                      .notifRed 11
+                      %span.deliciousIco.networkIco
+                  %li
+                    %a{:href => "javascript:void(0);"}
+                      .notifRed 45
+                      %span.stumbleIco.networkIco
+                  %li
+                    %a{:href => "javascript:void(0);"}
+                      .notifRed 1
+                      %span.tumblrIco.networkIco
+                  %li
+                    %a{:href => "javascript:void(0);"}
+                      .notifRed 1
+                      %span.flickrIco.networkIco
+          %li.streamControl6
+            %p Mark as:
+          %li.streamControl7
+            %a{:href => "javascript:void(0);"}
+              %span.markRead
+          %li.streamControl8
+            %a{:href => "javascript:void(0);"}
+              %span.markUnread
+    #brandStreamContentSection.streamContentSection
+      .streamContent
+        %ul
+          %li.SharedPostStream
+            .streamLine
+              %a.medPhotoStream{:href => "javascript:void(0);"}
+                %img.userPicMed{:alt => "", :src => "images/userTes.png"}/
+                %span.overlay
+                  %img{:src => "images/userFrame.png"}/
+              .streamLineWrapper
+                .actSelector.flRight
+                  %ul
+                    %li
+                      %a.fav{:href => "javascript:void(0);"}
+                    %li
+                      %a.markRead{:href => "javascript:void(0);"}
+                    %li
+                      %a.markUnread{:href => "javascript:void(0);"}
+                    %li
+                      %a.removePost{:href => "javascript:void(0);"}
+                %h6
+                  %span#edintityIcon.networkIco
+                  .userDesc
+                    %a{:href => "javascript:void(0);"} Kevin Rose
+                  .msgBody
+                    %a.attacmentImg{:href => "images/previewPostPhoto.png", :rel => "example_group", :title => "User create a post link that contain image. Shown as Unread by default"}
+                      %img{:alt => "#", :src => "images/previewPostPhoto.png", :style => "width: 166px; height:120px;"}/
+                    .attactmentDesc User create a post link that contain image. Shown as Unread by default
+                    .attacmentSource
+                      Source:
+                      %a.attachLink{:href => "javascript:void(0);"} http://cl.ly/123
+                    .attachmentSourceDesc Image description from link
+                .metaCommentTable
+                  %ul
+                    %li.timing
+                      %a{:href => "javascript:void(0);"} 08:32 AM
+                    %li.date
+                      %a{:href => "javascript:void(0);"} 27 September 2011
+                    %li.comment
+                      %a.commentIco{:href => "javascript:void(0);", :onclick => "toggle_visibility('writeComment3');"} 0 comment
+                  .commentedWrapper
+                    %span.commentArrowTop
+                    %ul
+                      %li
+                        %span.userSmlPic
+                          %img{:alt => "Fares Farhan", :src => "images/userPicSmall1.png"}/
+                        .commented
+                          .userDesc
+                            %a{:href => "javascript:void(0);"} Fares Farhan
+                          .userCommentedInfo
+                            %ul
+                              %li.userDesc
+                                %h6
+                                  %a{:href => "javascript:void(0);"}
+                              %li.timing
+                                %a{:href => "javascript:void(0);"} 09:30 AM
+                              %li.date
+                                %a{:href => "javascript:void(0);"} 27 September 2011
+                          .msgBody This is a post comment from followers or friends
+                      %li
+                        %span.userSmlPic
+                          %img{:alt => "Fares Farhan", :src => "images/userPicSmall1.png"}/
+                        .commented
+                          .userDesc
+                            %a{:href => "javascript:void(0);"} Fares Farhan
+                          .userCommentedInfo
+                            %ul
+                              %li.userDesc
+                                %h6
+                                  %a{:href => "javascript:void(0);"}
+                              %li.timing
+                                %a{:href => "javascript:void(0);"} 09:30 AM
+                              %li.date
+                                %a{:href => "javascript:void(0);"} 27 September 2011
+                          .msgBody This is a post comment from followers or friends
+                    %a.toggleCommentExpand.flRight{:href => "javascript:void(0);"} expand all comment
+                  #writeComment3.writeCommentPopup.cornerAll{:style => "display:none;"}
+                    %span.writeCommentArrow
+                    .commentInformation
+                      %ul
+                        %li
+                          %a 10 comment
+                        %li
+                          %a.toggleCommentExpand{:href => "javascript:void(0);"} expand all comment
+                    .commentText
+                      %input.cmmntInput{:onfocus => "if(!this._haschanged){this.value=''};this._haschanged=true;", :type => "text", :value => "write your comment here"}/
+          %li.SharedPostStream
+            .streamLine
+              %a.medPhotoStream{:href => "javascript:void(0);"}
+                %img.userPicMed{:alt => "", :src => "images/userTes.png"}/
+                %span.overlay
+                  %img{:src => "images/userFrame.png"}/
+              .streamLineWrapper
+                .actSelector.flRight
+                  %ul
+                    %li
+                      %a.fav{:href => "javascript:void(0);"}
+                    %li
+                      %a.markRead{:href => "javascript:void(0);"}
+                    %li
+                      %a.markUnread{:href => "javascript:void(0);"}
+                    %li
+                      %a.removePost{:href => "javascript:void(0);"}
+                %h6
+                  %span#edintityIcon.networkIco
+                  .userDesc
+                    %a{:href => "javascript:void(0);"} Kevin Rose
+                  .msgBody
+                    %a.attacmentImg{:href => "images/slicebox.jpg", :rel => "example_group", :title => "User create a post link that contain image. Shown as Unread by default"}
+                      %img{:alt => "example1", :src => "images/slicebox.jpg", :style => "width: 166px; height:120px;"}/
+                    .attactmentDesc User create a post link that contain image. Shown as Unread by default
+                .metaCommentTable
+                  %ul
+                    %li.timing
+                      %a{:href => "javascript:void(0);"} 08:32 AM
+                    %li.date
+                      %a{:href => "javascript:void(0);"} 27 September 2011
+                    %li.comment
+                      %a.commentIco{:href => "javascript:void(0);", :onclick => "toggle_visibility('writeComment3');"} 0 comment
+                  .commentedWrapper
+                    %span.commentArrowTop
+                    %ul
+                      %li
+                        %span.userSmlPic
+                          %img{:alt => "Fares Farhan", :src => "images/userPicSmall1.png"}/
+                        .commented
+                          .userDesc
+                            %a{:href => "javascript:void(0);"} John Doe
+                          .userCommentedInfo
+                            %ul
+                              %li.userDesc
+                                %h6
+                                  %a{:href => "javascript:void(0);"}
+                              %li.timing
+                                %a{:href => "javascript:void(0);"} 09:30 AM
+                              %li.date
+                                %a{:href => "javascript:void(0);"} 27 September 2011
+                          .msgBody This is a post comment from followers or friends
+                      %li
+                        %span.userSmlPic
+                          %img{:alt => "Fares Farhan", :src => "images/userPicSmall1.png"}/
+                        .commented
+                          .userDesc
+                            %a{:href => "javascript:void(0);"} John Doe
+                          .userCommentedInfo
+                            %ul
+                              %li.userDesc
+                                %h6
+                                  %a{:href => "javascript:void(0);"}
+                              %li.timing
+                                %a{:href => "javascript:void(0);"} 09:30 AM
+                              %li.date
+                                %a{:href => "javascript:void(0);"} 27 September 2011
+                          .msgBody This is a post comment from followers or friends
+                    %a.toggleCommentExpand.flRight{:href => "javascript:void(0);"} expand all comment
+                  #writeComment3.writeCommentPopup.cornerAll{:style => "display:none;"}
+                    %span.writeCommentArrow
+                    .commentInformation
+                      %ul
+                        %li
+                          %a 10 comment
+                        %li
+                          %a.toggleCommentExpand{:href => "javascript:void(0);"} expand all comment
+                    .commentText
+                      %input.cmmntInput{:onfocus => "if(!this._haschanged){this.value=''};this._haschanged=true;", :type => "text", :value => "write your comment here"}/
+          %li.SharedPostStream
+            .streamLine
+              %a.medPhotoStream{:href => "javascript:void(0);"}
+                %img.userPicMed{:alt => "", :src => "images/userTes.png"}/
+                %span.overlay
+                  %img{:src => "images/userFrame.png"}/
+              .streamLineWrapper
+                .actSelector.flRight
+                  %ul
+                    %li
+                      %a.fav{:href => "javascript:void(0);"}
+                    %li
+                      %a.markRead{:href => "javascript:void(0);"}
+                    %li
+                      %a.markUnread{:href => "javascript:void(0);"}
+                    %li
+                      %a.removePost{:href => "javascript:void(0);"}
+                %h6
+                  %span#edintityIcon.networkIco
+                  .userDesc
+                    %a{:href => "javascript:void(0);"} Kevin Rose
+                  .msgBody This post is updated from edintity update status.... and shown as read after user click view as read icon on right top of the post
+                .metaCommentTable
+                  %ul
+                    %li.timing
+                      %a{:href => "javascript:void(0);"} 08:32 AM
+                    %li.date
+                      %a{:href => "javascript:void(0);"} 27 September 2011
+                    %li.comment
+                      %a.commentIco{:href => "javascript:void(0);", :onclick => "toggle_visibility('writeComment2');"} 0 comment
+                  .commentedWrapper
+                    %span.commentArrowTop
+                    %ul
+                      %li
+                        %span.userSmlPic
+                          %img{:alt => "Fares Farhan", :src => "images/userPicSmall1.png"}/
+                        .commented
+                          .userDesc
+                            %a{:href => "javascript:void(0);"} Fares Farhan
+                          .userCommentedInfo
+                            %ul
+                              %li.userDesc
+                                %h6
+                                  %a{:href => "javascript:void(0);"}
+                              %li.timing
+                                %a{:href => "javascript:void(0);"} 09:30 AM
+                              %li.date
+                                %a{:href => "javascript:void(0);"} 27 September 2011
+                          .msgBody This is a post comment from followers or friends
+                      %li
+                        %span.userSmlPic
+                          %img{:alt => "Fares Farhan", :src => "images/userPicSmall1.png"}/
+                        .commented
+                          .userDesc
+                            %a{:href => "javascript:void(0);"} Fares Farhan
+                          .userCommentedInfo
+                            %ul
+                              %li.userDesc
+                                %h6
+                                  %a{:href => "javascript:void(0);"}
+                              %li.timing
+                                %a{:href => "javascript:void(0);"} 09:30 AM
+                              %li.date
+                                %a{:href => "javascript:void(0);"} 27 September 2011
+                          .msgBody This is a post comment from followers or friends
+                    %a.toggleCommentExpand.flRight{:href => "javascript:void(0);"} expand all comment
+                  #writeComment2.writeCommentPopup.cornerAll{:style => "display:none;"}
+                    %span.writeCommentArrow
+                    .commentInformation
+                      %ul
+                        %li
+                          %a 10 comment
+                        %li
+                          %a.toggleCommentExpand{:href => "javascript:void(0);"} expand all comment
+                    .commentText
+                      %input.cmmntInput{:onfocus => "if(!this._haschanged){this.value=''};this._haschanged=true;", :type => "text", :value => "write your comment here"}/
+          %li.SharedPostStream
+            .streamLine
+              %a.medPhotoStream{:href => "javascript:void(0);"}
+                %img.userPicMed{:alt => "", :src => "images/userTes.png"}/
+                %span.overlay
+                  %img{:src => "images/userFrame.png"}/
+              .streamLineWrapper
+                .actSelector.flRight
+                  %ul
+                    %li
+                      %a.fav{:href => "javascript:void(0);"}
+                    %li
+                      %a.markRead{:href => "javascript:void(0);"}
+                    %li
+                      %a.markUnread{:href => "javascript:void(0);"}
+                    %li
+                      %a.removePost{:href => "javascript:void(0);"}
+                %h6
+                  %span#edintityIcon.networkIco
+                  .userDesc
+                    %a{:href => "javascript:void(0);"} Kevin Rose
+                  .msgBody
+                    .attactmentDesc.attactmentDescFull User create a post link that contain video full size. Shown as Unread by default
+                    / Attachment share to stream
+                    .attacmentImg.attchmntFull{:href => "javascript:void(0);"}
+                .metaCommentTable
+                  %ul
+                    %li.timing
+                      %a{:href => "javascript:void(0);"} 08:32 AM
+                    %li.date
+                      %a{:href => "javascript:void(0);"} 27 September 2011
+                    %li.comment
+                      %a.commentIco{:href => "javascript:void(0);", :onclick => "toggle_visibility('writeComment1');"} 0 comment
+                  .commentedWrapper
+                    %span.commentArrowTop
+                    %ul
+                      %li
+                        %span.userSmlPic
+                          %img{:alt => "Fares Farhan", :src => "images/userPicSmall1.png"}/
+                        .commented
+                          .userDesc
+                            %a{:href => "javascript:void(0);"} Fares Farhan
+                          .userCommentedInfo
+                            %ul
+                              %li.userDesc
+                                %h6
+                                  %a{:href => "javascript:void(0);"}
+                              %li.timing
+                                %a{:href => "javascript:void(0);"} 09:30 AM
+                              %li.date
+                                %a{:href => "javascript:void(0);"} 27 September 2011
+                          .msgBody This is a post comment from followers or friends
+                      %li
+                        %span.userSmlPic
+                          %img{:alt => "Fares Farhan", :src => "images/userPicSmall1.png"}/
+                        .commented
+                          .userDesc
+                            %a{:href => "javascript:void(0);"} Fares Farhan
+                          .userCommentedInfo
+                            %ul
+                              %li.userDesc
+                                %h6
+                                  %a{:href => "javascript:void(0);"}
+                              %li.timing
+                                %a{:href => "javascript:void(0);"} 09:30 AM
+                              %li.date
+                                %a{:href => "javascript:void(0);"} 27 September 2011
+                          .msgBody This is a post comment from followers or friends
+                    %a.toggleCommentExpand.flRight{:href => "javascript:void(0);"} expand all comment
+                  #writeComment1.writeCommentPopup.cornerAll{:style => "display:none;"}
+                    %span.writeCommentArrow
+                    .commentInformation
+                      %ul
+                        %li
+                          %a 10 comment
+                        %li
+                          %a.toggleCommentExpand{:href => "javascript:void(0);"} expand all comment
+                    .commentText
+                      %input.cmmntInput{:onfocus => "if(!this._haschanged){this.value=''};this._haschanged=true;", :type => "text", :value => "write your comment here"}/
+      .loadContentIndocator
+        %span.progressStream
+    .backToTop.streamWrapper.cornerAll
+      %a{:href => "javascript:void(0);"}
+  / START DASHBOARD
+  #main-2-1.dashBoard.streamMain.streamWrapper.cornerAll.flLeft.hide.tabShow
+    .DB-Wrapper
+      .breadcrumb
+        %ul
+          %li
+            %a{:href => "javascript:void(0);"} Home
+          %li
+            %a{:href => "javascript:void(0);"} Dashboard
+      .DB-Option
+        %ul
+          %li
+            %select
+              %option Main brand
+              %option Brands
+              %option Locations
+              %option Services
+          %li
+            %select
+              %option Sub brand
+              %option Locations
+              %option Services
+          %li
+            %select
+              %option Stream
+              %option Top 10
+      .DB-DateOption
+        .startDate
+          %p Start date
+          %input#statDatePick.textInput{:type => "text"}/
+          %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('calStartPicker');"}
+            %span.dateIcon.uiIconInside
+          / Start Calender Dropdown Wrapper
+          #calStartPicker.calDropdown{:style => "display:none;"}
+            .calDropWrapper.cornerAll
+              %span.arrowTopCal.uiIconInside
+              .headCal.cornerTop
+                %a.monthPickerPrev.flLeft{:href => "javascript:void(0);"}
+                  %span.arrowDatePrev.uiIconInside
+                %a.monthPickerNext.flRight{:href => "javascript:void(0);"}
+                  %span.arrowDateNext.uiIconInside
+                .dateTitle
+                  %span.month October
+                  %span.year 2011
+              %table#calendarUI.calendar.cornerBottom{:cellspacing => "0"}
+                %thead
+                  %tr
+                    %th Su
+                    %th Mo
+                    %th Tu
+                    %th We
+                    %th Th
+                    %th Fr
+                    %th Sa
+                %tbody
+                  %tr
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 25
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 26
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 27
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 28
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 29
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 30
+                    %td
+                      %a.calBox.calToday{:href => "javascript:void(0);"} 1
+                  %tr
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 2
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 3
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 4
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 5
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 6
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 7
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 8
+                  %tr
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 9
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 10
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 11
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 12
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 13
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 14
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 15
+                  %tr
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 16
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 17
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 18
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 19
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 20
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 21
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 22
+                  %tr
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 23
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 24
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 25
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 26
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 27
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 28
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 29
+                  %tr.lastCol.cornerBottom
+                    %td.lastFirst.cornerBl
+                      %a.calBox.cornerBl{:href => "javascript:void(0);"} 30
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 31
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 1
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 2
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 3
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 4
+                    %td.lastLast.cornerBr
+                      %a.calPasive.cornerBr{:href => "javascript:void(0);"} 5
+          / End Calender Dropdown Wrapper
+        .endDate
+          %p End date
+          %input#statDatePick.textInput{:type => "text"}/
+          %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('calEndPicker');"}
+            %span.dateIcon.uiIconInside
+          / Start Calender Dropdown Wrapper
+          #calEndPicker.calDropdown{:style => "display:none;"}
+            .calDropWrapper.cornerAll
+              %span.arrowTopCal.uiIconInside
+              .headCal.cornerTop
+                %a.monthPickerPrev.flLeft
+                  %span.arrowDatePrev.uiIconInside
+                %a.monthPickerNext.flRight
+                  %span.arrowDateNext.uiIconInside
+                .dateTitle
+                  %span.month October
+                  %span.year 2011
+              %table#calendarUI.calendar.cornerBottom{:cellspacing => "0"}
+                %thead
+                  %tr
+                    %th Su
+                    %th Mo
+                    %th Tu
+                    %th We
+                    %th Th
+                    %th Fr
+                    %th Sa
+                %tbody
+                  %tr
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 25
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 26
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 27
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 28
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 29
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 30
+                    %td
+                      %a.calBox.calToday{:href => "javascript:void(0);"} 1
+                  %tr
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 2
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 3
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 4
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 5
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 6
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 7
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 8
+                  %tr
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 9
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 10
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 11
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 12
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 13
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 14
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 15
+                  %tr
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 16
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 17
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 18
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 19
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 20
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 21
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 22
+                  %tr
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 23
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 24
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 25
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 26
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 27
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 28
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 29
+                  %tr.lastCol.cornerBottom
+                    %td.lastFirst.cornerBl
+                      %a.calBox.cornerBl{:href => "javascript:void(0);"} 30
+                    %td
+                      %a.calBox{:href => "javascript:void(0);"} 31
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 1
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 2
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 3
+                    %td
+                      %a.calPasive{:href => "javascript:void(0);"} 4
+                    %td.lastLast.cornerBr
+                      %a.calPasive.cornerBr{:href => "javascript:void(0);"} 5
+          / End Calender Dropdown Wrapper
+      .DB-graphHead
+        %h6 Company follower by brand
+        .DB-graphAction.flRight
+          %a{:href => "javascript:void(0);"}
+            %span.printIco.uiIconInside
+          %a{:href => "javascript:void(0);"}
+            %span.downloadIco.uiIconInside
+      #DB-graphMain.cornerAll
+        .graphInnerHead.cornerTop
+          .graphInfo
+            %ul
+              %li
+                %span.redCircle.circle
+                %span.redLine.line
+                %p Main Brand
+              %li
+                %span.greenCircle.circle
+                %span.greenLine.line
+                %p Sub Brand 1
+              %li
+                %span.blueCircle.circle
+                %span.blueLine.line
+                %p Sub Brand 2
+              %li
+                %span.yellowCircle.circle
+                %span.yellowLine.line
+                %p Sub Brand 2
+        .graphContent.cornerBottom
+      .graphExport
+        .blueBtn.flRight
+          %a.smlrBtn{:href => "javascript:void(0);"} Export as CSV
+        .blueBtn.flRight
+          %a.smlrBtn{:href => "javascript:void(0);"} Get report
+  / END DASHBOARD
+  / SIDE BAR
+  #sideWrapper.flRight
+    #ProfileWrapper.streamSide.streamWrapper.cornerAll
+      .userBigPictId
+        %img.mainPic{:alt => "User Picture", :src => "images/bigProfilePic.jpg"}/
+      .usernameId
+        %h3
+          %a{:href => "personalProfile.htm"} Procter & Gample
+        %a.editCompany{:href => "brandSetting.htm"}
+          %span.editProfileLink edit company
+        %a.brandUrl http://procter-gample.com
+      .socialNetworkWrapper
+        %ul
+          %li
+            %span#twittStream
+          %li
+            %span#fbStream
+          %li
+            %span#vimeoStream
+          %li
+            %span#youtubeStream
+          %li
+            %span#deliciousStream
+          %li
+            %span#stumbleStream
+          %li
+            %span#tumblrStream
+          %li
+            %span#flickrStream
+      .invitationButton
+        .blueBtn
+          %a{:href => "searchFriendPage.htm"} Find / Invite Affiliates
+    #brandsSideStream.brandSideListWrapper.streamWrapper.cornerAll
+      .brandsListSide
+        .brandListHead.cornerTop
+          %h6 Brands
+          %span.addBrandLink.flRight
+            %a{:href => "javascript:void(0);"} +
+        .brandsListing
+          %ul
+            %li.trans
+              .brandNameList
+                %a.brandPic{:href => "javascript:void(0);"}
+                  %img.brandSmlPic{:alt => "Procter", :src => "images/brandPicSmall.jpg"}/
+                %a.brandID{:href => "javascript:void(0);"} H & S
+                %a{:href => "javascript:void(0);"}
+                  %small.brandUrl http://hs.com
+              %a.deletingCompany.uiIconInside.flRight{:href => "javascript:void(0);", :onclick => "toggle_visibility('deleteCompanyFromSide');"}
+              %a.goToProfile.uiIconInside.flRight{:href => "javascript:void(0);"}
+            %li.filled
+              %a.expandBrand.uiIcoInstream{:href => "javascript:void(0);"} +
+              .brandNameList
+                %a.brandPic{:href => "javascript:void(0);"}
+                  %img.brandSmlPic{:alt => "Procter", :src => "images/brandPicSmall.jpg"}/
+                %a.brandID{:href => "javascript:void(0);"} Other Brand
+                %a{:href => "javascript:void(0);"}
+                  %small.brandUrl http://otherbrand.com
+              %a.deletingCompany.uiIconInside.flRight{:href => "javascript:void(0);", :onclick => "toggle_visibility('deleteCompanyFromSide');"}
+              %a.goToProfile.uiIconInside.flRight{:href => "javascript:void(0);"}
+            %li.trans
+              %a.expandEDbrand.uiIcoInstream{:href => "javascript:void(0);"} +
+              .brandNameList
+                %a.brandPic{:href => "javascript:void(0);"}
+                  %img.brandSmlPic{:alt => "Procter", :src => "images/brandPicSmall.jpg"}/
+                %a.brandID{:href => "javascript:void(0);"} Shampooo
+                %a{:href => "javascript:void(0);"}
+                  %small.brandUrl http://shampooo.com
+              %a.deletingCompany.uiIconInside.flRight{:href => "javascript:void(0);", :onclick => "toggle_visibility('deleteCompanyFromSide');"}
+              %a.goToProfile.uiIconInside.flRight{:href => "javascript:void(0);"}
+              .childBrands
+                %ul
+                  %li
+                    .brandNameList
+                      %a.brandPic{:href => "javascript:void(0);"}
+                        %img.brandSmlPic{:alt => "Procter", :src => "images/brandPicSmall.jpg"}/
+                      %a.brandID{:href => "javascript:void(0);"} Childer Brands
+                      %a{:href => "javascript:void(0);"}
+                        %small.brandUrl http://shampooo.com
+                    %a.deletingCompany.uiIconInside.flRight{:href => "javascript:void(0);", :onclick => "toggle_visibility('deleteCompanyFromSide');"}
+                    %a.goToProfile.uiIconInside.flRight{:href => "javascript:void(0);"}
+                  %li
+                    .brandNameList
+                      %a.brandPic{:href => "javascript:void(0);"}
+                        %img.brandSmlPic{:alt => "Procter", :src => "images/brandPicSmall.jpg"}/
+                      %a.brandID{:href => "javascript:void(0);"} Childer Brands 2nd
+                      %a{:href => "javascript:void(0);"}
+                        %small.brandUrl http://shampooo.com
+                    %a.deletingCompany.uiIconInside.flRight{:href => "javascript:void(0);", :onclick => "toggle_visibility('deleteCompanyFromSide');"}
+                    %a.goToProfile.uiIconInside.flRight{:href => "javascript:void(0);"}
+            %li.filled
+              %a.expandBrand.uiIcoInstream{:href => "javascript:void(0);"} +
+              .brandNameList
+                %a.brandPic{:href => "javascript:void(0);"}
+                  %img.brandSmlPic{:alt => "Procter", :src => "images/brandPicSmall.jpg"}/
+                %a.brandID{:href => "javascript:void(0);"} Any Brand
+                %a{:href => "javascript:void(0);"}
+                  %small.brandUrl http://anybrand.com
+              %a.deletingCompany.uiIconInside.flRight{:href => "javascript:void(0);", :onclick => "toggle_visibility('deleteCompanyFromSide');"}
+              %a.goToProfile.uiIconInside.flRight{:href => "javascript:void(0);"}
+        #deleteCompanyFromSide.modalWrapper.modalWindow.cornerAll
+          %p Are you sure you want to delete your brand?
+          .modalConfirmAct.flRight
+            .redBtn
+              %a.smlrBtn{:href => "javascript:void(0);", :onclick => "toggle_visibility('deleteCompanyFromSide');"} Delete
+            .yellowBtn
+              %a.smlrBtn{:href => "javascript:void(0);", :onclick => "toggle_visibility('deleteCompanyFromSide');"} Cancel

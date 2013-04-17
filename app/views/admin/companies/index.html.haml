@@ -1,0 +1,7 @@
+%div.align_right{:style => "margin-right: 200px;"}
+  = text_field_tag("search", params[:search_key], :size => 15, :id => "searchId", :onchange => "window.location = '#{url_for(admin_companies_path(current_user))}?search_key='+ this.value + '&per_page=#{params[:per_page]}';")
+  = link_to(image_tag("/images_old/magnifier.png", :width => 20, :height => 20), "javascript:void(0)", :onclick => "window.location = '#{url_for(admin_companies_path(current_user))}?search_key='+ $(\"searchId\").value + '&per_page=#{params[:per_page]}';")
+= render :partial => "index"
+
+:javascript
+  dashBoardMenuHiglightion('manage');

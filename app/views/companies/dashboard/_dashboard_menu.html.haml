@@ -1,0 +1,40 @@
+.menu_list
+  .line2{:style => "margin-top: 10px;"}
+    %img{:src => "/images_1/line1.png"}
+  .float_left.find_friend_menu.dashboard_company{:style => "height: 100px;", :onmouseover => "$j('#find_by_brands').show();$j('#find_by_locations').show();$j('#find_by_services').show();return false;", :onmouseout => "$j('#find_by_brands').hide();$j('#find_by_locations').hide();$j('#find_by_services').hide();return false;"}
+    %ul#menu1
+      %li
+        %dl.dashboard
+          %dt.active{:style => "width: 124px;font-size:12px;", :id => "company_dt"}
+            %a{:href => "javascript:void(0);"}
+              Main Brand
+              %img{:src => "/images_1/arrow_small.png", :style => "background: #F0F0F0; margin-right:0px; margin-top:-3px; padding:8px 5px 9px;", :class => "float_right"}
+          %dd{:id => "find_by_brands", :style => "width: 126px;display:none;font-size:12px;"}
+            = link_to_remote_with_loader("Brands", :url => load_data_company_dashboard_path(@company.id), :with => "'type=company&category=brands'")
+          %dd{:id => "find_by_locations", :style => "width: 126px;display:none;font-size:12px;"}
+            = link_to_remote_with_loader("Locations", :url => load_data_company_dashboard_path(@company.id), :with => "'type=company&category=locations'")
+          %dd{:id => "find_by_services", :style => "width: 126px; display:none;font-size:12px;"}
+            = link_to_remote_with_loader("Services", :url => load_data_company_dashboard_path(@company.id), :with => "'type=company&category=services'")
+  .float_left.find_friend_menu.dashboard_brand{:style => "height: 100px;", :onmouseover => "$j('#brand_by_locations').show();$j('#brand_by_services').show();return false;", :onmouseout => "$j('#brand_by_locations').hide();$j('#brand_by_services').hide();return false;"}
+    %ul#menu1
+      %li
+        %dl.dashboard
+          %dt{:style => "width: 124px;font-size:12px;", :id => "brand_dt"}
+            %a{:href => "javascript:void(0);"}
+              Sub Brand
+              %img{:src => "/images_1/arrow_small.png", :style => "background: #F0F0F0; margin-right:0px; margin-top:-3px; padding:8px 5px 9px;", :class => "float_right"}
+          %dd{:id => "brand_by_locations", :style => "width: 126px;display:none;font-size:12px;"}
+            = link_to_remote_with_loader("Locations", :url => load_data_company_dashboard_path(@company.id), :with => "'type=brand&category=locations'")
+          %dd{:id => "brand_by_services", :style => "width: 126px; display:none;font-size:12px;"}
+            = link_to_remote_with_loader("Services", :url => load_data_company_dashboard_path(@company.id), :with => "'type=brand&category=services'")
+  .float_left.find_friend_menu.dashboard_stream{:onmouseover => "$j('#top_streams').show();return false;", :onmouseout => "$j('#top_streams').hide();return false;"}
+    %ul#menu1
+      %li
+        %dl.dashboard
+          %dt{:style => "width: 124px;font-size:12px;", :id => "stream_dt"}
+            %a{:href => "javascript:void(0);"}
+              Stream
+              %img{:src => "/images_1/arrow_small.png", :style => "background: #F0F0F0; margin-right:0px; margin-top:-3px; padding:8px 5px 9px;", :class => "float_right"}
+          %dd{:id => "top_streams", :style => "width: 126px;display:none;font-size:12px;"}
+            = link_to_remote_with_loader("Top 10", :url => load_data_company_dashboard_path(@company.id), :with => "'type=stream&limit=10&filter=all'")
+.clear

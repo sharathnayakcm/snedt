@@ -1,0 +1,48 @@
+- form_for :post,  :html => {:id => "postBlog"} do |f|
+  #cont-2-1.tabContent.updateStatusForm.updateStreamBox.cornerAll.hide
+    %span.updateArrowTop.blogArrowTop
+    = hidden_field_tag "stream_post_type", "Blog"
+    = hidden_field_tag :brand_type, @brand.id if @brand
+    = hidden_field_tag :company_id, @brand.company_id if @brand
+    = hidden_field_tag :scope, controller_name if @brand
+    .blogTitle
+      %h6
+        %input#blog_title{:onfocus => "if(!this._haschanged){this.value=''};this._haschanged=true;", :type => "text", :value => "#{t :blog_title}", :name => "blog_title"}
+    .formInputStatus
+      %textarea.forStatus.blogContent#blog_content{:name => "blog_content", :col => "20", :row => "3", :onfocus => "if(!this._haschanged){this.value=''};this._haschanged=true;"}= t :blog_content_here
+    .formStatusControl
+      %ul
+        %li.shareRestirict
+          %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('sharingOptCheck2');"}
+            %span.blueArrow= t :share_service
+        %li.addToStream
+          = link_to_remote "#{t 'add_to_stream'}", :url => posts_path, :method => :post, :with => "$('postBlog').serialize()"
+
+  #sharingOptCheck2.shareServiceControl{:style => "display:none;"}
+    .shareToServiceDropdown.cornerBottom.transBg
+      %span.closeShareOpt
+        %a.uiIconInside{:href=>"#", :onclick=>"toggle_visibility('sharingOptCheck2');"}
+      - if @brand
+        - blog_services = @brand.active_services.blog_sharing_services
+      - else
+        - blog_services = current_user.active_services.blog_sharing_services
+      - if blog_services.length > 0
+        %ul
+          %li
+            %a{:href => "javascript:void(0);"}
+              %input{:name => "select_all", :type => "checkbox", :value => "", :id => "blog_all", :onclick => "if($(this).checked){$j('#sharingOptCheck2').find('input:checkbox').attr({checked: true});}else{$j('#sharingOptCheck2').find('input:checkbox').attr({checked: false});}"}
+              %span.emptyIco Share on all services
+          - blog_services.each do |user_service|
+            %li
+              %a{:href => "javascript:void(0);", :title => user_service.display_name}
+                %input{:name => "serviceid[]", :type => "checkbox", :value => "#{user_service.id}", :onclick => "$j('#blog_all').attr({checked: false});"}
+                %span.networkIco{:id =>"#{user_service.service.name.downcase.gsub(' ','')}Service"}
+                  = t :share_on
+                  %strong
+                    = user_service.service.name.downcase
+      - else
+        %ul
+          %li
+            %a &nbsp;
+          %li
+            %a= t :you_dont_have_service

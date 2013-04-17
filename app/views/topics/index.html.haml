@@ -1,0 +1,48 @@
+:javascript
+  var topNavLinkId = 'topicIco';
+- user = @user || current_user
+#ednt-linksPage.mainStreamWrapper
+  #tabFriend-1-1.fullPage.streamWrapper.cornerAll
+    %ul#sortTabFollowing-1-1.fr-tabContent
+      %li
+        .userSummary.flLeft
+          %span.profilePic== &nbsp;
+          .userInformation
+            %h4= t(:topic)
+            %a.followLink
+        .topics_points{:class => "#{session[:locale] == 'arabic' ? 'flRight' : 'flLeft'}", :style => "padding:0 10px;"}
+          %h4= t(:points)
+        .flleft
+          .privacyMultiselect{:class => "#{session[:locale] == 'arabic' ? 'flRight' : 'flLeft'}", :style => "padding:0 32px;"}
+            %h4= t(:level)
+
+    %ul#sortTabFollowing-1-1.fr-tabContent
+      - @topics.each do |topic|
+        -points =  topic.points(user)
+        %li
+          .userSummary.flLeft
+            %span.profilePic
+              - if topic.asset
+                = image_tag topic.asset.asset.url.gsub('/s3.','/s3-eu-west-1.'), :class => "profilePicMed"
+              - else
+                = image_tag "/images/userPicMed.png", :class => "profilePicMed"
+            .userInformation.topic_points
+              %a.userName{:href => "#{my_streams_path(:topic_id => topic.id)}"}
+                = topic.title
+              %a.followLink#follow_count{:id=>topic.id,:href => "#{show_followers_topic_path(topic.id)}"} Followers : #{topic.users.count}
+              /%a.followLink#points{:id=>topic.id} Points : #{@points}
+          .topics_points{:class => "#{session[:locale] == 'arabic' ? 'flRight' : 'flLeft'}", :style => "padding:0 10px;"}
+            = points > 0 ? points : t(:no_points)
+          .flLeft
+            .privacyMultiselect{:class => "#{session[:locale] == 'arabic' ? 'flRight' : 'flLeft'}", :style => "margin:0 150px 0 10px;width:60px;"}
+              = get_level(points)
+          - if @user.blank? || @user == current_user
+            - if topic.user_follow?(user)
+              #unfollower_block{:id=>topic.id}
+                .redBtn
+                  = link_to_remote "#{t :unfollow}", :url => topic_topic_follower_path(topic.id, user), :method => :delete, :class => "smlrBtn"
+            - else
+              #follower_block{:id=>topic.id}
+                .greenBtn
+                  = link_to_remote "#{t :follow}", :url => topic_topic_followers_path(topic), :method => :post , :class => "smlrBtn"
+

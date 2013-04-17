@@ -1,0 +1,14 @@
+:javascript
+  $j('.button').corner("4px");
+  $('RB_window').style.width = "700px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 700)/2) + "px";
+.dialogs
+  .dialog_details{:style => "padding:15px;"}
+    - if @stream
+      .image{:style => "overflow:auto;width:650px;height:350px;text-align:center"}
+        - if @stream.assets.length > 0
+          %img{:src => "#{@stream.assets[0].asset.url.gsub('/s3.','/s3-eu-west-1.')}",  :height => '345px'}
+        - else
+          %img{:src => "#{@stream.flickr_full_url}", :height => '345px'}
+      %h4= @stream.text
+    .align_center= button_to_close_redbox("#{t :close}", :class => "button", :onclick => "$j('embed').show();")

@@ -1,0 +1,110 @@
+body{
+  min-height: 0px;
+}
+
+select{
+  width: 114px;
+  height: 24px;
+}
+
+.main{
+  min-height: 0px;
+  background: transparent;
+}
+.profile_pic_tab_mid {
+  background-image: none;
+
+  height: auto;
+}
+
+.profile_leftcontent_mid{
+  background-color:#ffffff;
+  border:solid thin #17404e;
+
+  background-repeat: repeat-y;
+  height: auto;
+  padding-top: 18px;
+  padding-bottom: 52px;
+  width: 100%;}
+
+.rightcontent {
+  float: right;
+  min-height: 500px;
+  margin-top: 5px;
+  width: 214px;
+}
+.profile_pic_tab {
+  height: auto;
+  width: 214px;
+}
+.profile_pic_tab_top{
+  background-color:#999;
+}
+.profile_pic_tab_mid {
+  background-color:#fff;
+  border: solid thin #17404e;
+  padding-top:5px;
+  padding-bottom:10px;
+  height: auto;
+}
+.profile_pic {
+  margin-left: 14px;
+  padding-top: 4px;
+}
+.profile_pic_mid {
+
+  height: 136px;
+  width: 184px;
+}
+.profile_pic_img {
+  height: 126px;
+  width: 114px;
+}
+.profile_name {
+  font-size: 12px;
+  font-weight: bold;
+  padding-top: 6px;
+}
+.edit_my_profile {
+  text-align: center;
+  padding-top: 3px;
+}
+.edit_my_profile a {
+  color: #000000;
+  font-size: 11px;
+  font-weight: bold;
+}
+.profile_pic_tab_bottom {
+  background-color:#999;
+  height: 10px;
+  width: 214px;
+}
+
+.popup_details{  height:auto; width:98%}
+.popup_heading{ height:10px; background:url(/images/hdbg.png) repeat-x; float:left; padding:5px; width:100%}
+.popup_heading_text{ float:left;}
+.popup_button a{padding-right:9px; background-color:#C30; color:#FFF;text-decoration:none ; padding-left:9px; padding-bottom: 3px; padding-top: 3px;}
+.skin_background{font-size:14px; font-weight:bold; text-align:center; width:46%;padding:5px;}
+.skin_text{padding:5px;text-align:center; font-size:14px; width:100%;font-weight:bold;}
+.active_tab{ /*background-color:#17404e;*/ color:#fff;padding:0px; }
+.active_tab a{color:#fff;font-size:14px; font-weight:bold; text-decoration:none;}
+.active_tab a:hover{ text-decoration:underline;}
+.passive_tab{ background-color:#000; color:#fff;}
+.passive_tab a{color:#fff; font-weight:bold; text-decoration:none;}
+.passive_tab a:hover{ text-decoration:underline;}
+.popup_body{background-color:#000;  padding-bottom:10px; min-height: 150px; width:104%}
+.style_column_background{ float: left;
+                          padding-left: 10px;
+                          text-align: left;
+                          width: 33px; }
+.style_column_text{float:left; padding-left:10px; width:50px;  }
+.column_right{float:left; padding-left:10px; }
+.row{ padding-top:5px; color:#ececec; clear: both;}
+.skin_tabs{width: 100%; cursor: pointer;}
+h4{ font-size: 12px; }
+h6{ margin: 0;}
+.image_panel{    border: 3px solid antiqueWhite;
+                 height: 187px;
+                 margin-left: 20px;
+                 overflow: auto;
+                 width: 86px;}

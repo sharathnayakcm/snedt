@@ -1,0 +1,89 @@
+:javascript
+  $j(document).ready(function(){
+    round_corner();
+    hide_all();
+    empty_all();
+  });
+
+
+- form_remote_for @company, :url => company_path(@company), :method => :put, :html => { :multipart => true } do |f|
+  .columns.float_right
+    .column.width_3_half
+      .sign_up_page
+        %table.settings{:style => "font-size:14px; margin-left:-72px;"}
+          %tr
+            %td
+              #avatar_delete.align_right{:style => "width: 130px; margin-bottom:-23px;"}= link_to_remote_with_loader image_tag("cancel.png", :style => "border: 3px solid #cad9dc;" ), :url => delete_avatar_users_path, :update => "user_avatar"
+          %tr
+            %td
+              %div
+                %span.avatar#company_avatar
+                  = render :partial => "companies/company_avatar"
+              .avatar_upload{:style => "margin-left:3px;"}
+                #user_avatar_link
+                  = f.file_field :avatar, :style => "vertical-align:top;"
+
+  .columns.float_left.account_edit
+    .column.prepends_1
+      .sign_up_page
+        %p
+          .label.full_name_text
+            =t :name
+            %span.mandatory *
+          .tag.field_image_input= f.text_field :name, :id => "company_name", :tabindex => "2", :autocomplete => "off", :class => "sign_up_text", :onkeyup => "$j('#company_name_check').html('#{t :check_availability}'); #{remote_function(:url => company_name_validation_companies_path, :method => :get, :with => "'company_name='+this.value")}"
+          %span#company_name_check
+          .lable_name.clear
+
+        %p
+          .label.full_name_text
+            =t :url
+            %span.mandatory *
+          .tag.field_image_input= f.text_field :url, :id => "company_url", :tabindex => "2", :autocomplete => "off", :class => "sign_up_text"
+          %span#company_url_check
+          %span#company_url_warning
+          .lable_name.clear
+
+        %p
+          .label.full_name_text
+            =t :description
+          = f.text_area :description, :cols => "40", :rows => "5", :id => "company_description", :tabindex => "2", :autocomplete => "off", :class => "sign_up_text"
+          %span#company_description_check
+          .lable_name.clear
+        %br
+  .clear
+  #create_account_btn.acc_button1.float_left{:style => "color:white"}
+    = submit_tag "#{t :save_changes}", :class => "button", :id => "submit", :onclick => "$j('#create_account_btn').hide();$j('#account_spinner').show();"
+  #account_spinner.align_center{:style => "display:none;"}
+    = image_tag("spinner.gif")
+
+
+:javascript
+  $j(document).ready(function(){
+    $j("#user_avatar_link").makeAsyncUploader({
+      upload_url: "/users/upload?_SNFA_session=#{@sessionid || session.session_id}&authenticity_token=#{form_authenticity_token}&user_id=#{current_user.id}&company_id=#{@company.id}&scope=#{controller_name}",
+      flash_url: '/images/swfupload.swf',
+      file_size_limit : "10240", // 10MB
+      file_types : "*.jpg; *.jpeg; *.png; *.gif",
+      file_types_description : "Image Files",
+      file_upload_limit : "1",
+      file_queue_limit : "0",
+      button_image_url: "/images/upload_new.png",
+
+      button_text: "<font color='#ffffff' face='Arial,sans-serif' size='11pt' background='#17404e;' ><b>&nbsp;&nbsp;" + "#{t :change_photo}" + "</b></font>",
+      button_text_left_padding: 2,
+      button_text_top_padding: 1
+    });
+    $j(".upload_cancel_btn").corner();
+  });
+  function start_upload(){
+  }
+
+  function set_values(){
+  }
+
+:css
+  .ProgressBar{
+    border:1px solid #17404E;
+    height: 20px;
+    width: 120px;
+    }

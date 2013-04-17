@@ -1,0 +1,112 @@
+:javascript
+  $j(document).ready(function(){
+    $j(".lock_bg").corner("5px");
+
+  })
+.dialogs
+  - form_for @user_service , :user => @user, :url => create_service_company_brands_url(:brand_id => params[:brand_id], :user_service_id => params[:user_service_id], :pending_service => params[:pending_service])  do |f|
+    = hidden_field_tag :service_id, @service.id
+    = hidden_field_tag :edit
+    = hidden_field_tag :user_service_id
+    = hidden_field_tag :pending_service
+    .dialog_details
+      - unless params[:user_service_id].blank?
+        - user_service = UserService.find_by_id(params["user_service_id"])
+        - if @service.id == 9
+          %p
+            %b
+              = t :tumblr_url
+              == :
+            = text_field_tag :url,user_service.profile_name, :size => 10
+            = ".tumblr.com"
+        - elsif @service.id == 5
+          %p
+            %b
+              = t :delicious_user_name
+              == :
+            = text_field_tag :url,user_service.profile_name, :size => 10
+        - elsif @service.id == 6
+          %p
+            %b
+              = t :stumbleupon_user_name
+              == :
+            = text_field_tag :url,user_service.profile_name, :size => 10
+        - @service_configurations.each do |config|
+          %p
+            = check_box_tag "service_configuration_ids[]", config.id, !user_service.service_configuration_ids.blank? && user_service.service_configuration_ids.include?(config.id.to_s)
+            =# config.description.to_s.gsub('service', @service.name)
+            = (t config.description.gsub(' ', '_').downcase).gsub('service', @service.name)
+      - else
+        - if @service.id == 9
+          %p
+            %b
+              = t :tumblr_url
+              == :
+            = text_field_tag :url,"", :size => 10
+            = ".tumblr.com"
+        - elsif @service.id == 5
+          %p
+            %b
+              = t :delicious_user_name
+              == :
+            = text_field_tag :url,"", :size => 10
+        - elsif @service.id == 6
+          %p
+            %b
+              = t :stumbleupon_user_name
+              == :
+            = text_field_tag :url,"", :size => 10
+        - @service_configurations.each do |config|
+          %p
+            = check_box_tag "service_configuration_ids[]", config.id, false, :class => "service_options"
+            =# config.description.to_s.gsub('service', @service.name)
+            = (t config.description.gsub(' ', '_').downcase).gsub('service', @service.name)
+      %div.service_privacy_text
+        =t 'service_privacy_text'
+      %div.lock_bg
+        - pgs = @privacy_groups.blank? ? [] : [["#{t :custom_groups}", '0']] + @privacy_groups.collect {|x| x.grp_array}
+        %img{:src => "/images/lock.png", :style=> "vertical-align:text-bottom;"}
+          = select(:user_service, :privacy_type_id, [["#{t 'everyone'}",'1'], ["#{t 'followers'}",'2'], ["#{t 'following'}",'3'],["#{t 'friends'}",'4'], ["#{t 'just_me'}",'5']] + pgs,{:selected => user_service && user_service.privacy_type_id, :disabled => "0"}, :class => "select_type")
+      .clear
+      - unless @service.id == 9 || @service.id == 5 || @service.id == 6
+        .save_text
+          %p{:style => "padding-left:10px;"}
+            =t 'service_redirect_message', :service_name => @service.name
+      .save_text
+        %p{:style => "padding-left:10px;"}
+          - if params[:locale] == "arabic"
+            = @service.notes_arabic
+          - else
+            = @service.notes
+      .center{:style => "padding-left: 50px;"}
+        =#  image_submit_tag ("/images/save.png"), :class => "button_submit"
+        .float_left
+          - if user_service.blank?
+            - if @service.id == 9
+              =  submit_tag "#{t :add}", :class => "button", :onclick => "if($('url').value.trim() == ''){notice('Please enter tubmlr url'); return false;}"
+            - elsif @service.id == 5 || @service.id == 6
+              =  submit_tag "#{t :add}", :class => "button", :onclick => "if($('url').value.trim() == ''){notice('Please enter #{@service.name} username'); return false;}"
+            - else
+              =  submit_tag "#{t :add}", :class => "button", :onclick => "if($j('#service_configuration_ids_:checked').length == 0){notice('Please select sharing options'); return false;}"
+          - if user_service
+            - if user_service.token.blank?
+              - if @service.id == 9
+                =  submit_tag "#{t :add}", :class => "button", :onclick => "if($('url').value.trim() == ''){notice('Please enter tumblr url'); return false;}"
+              - elsif @service.id == 5 || @service.id == 6
+                =  submit_tag "#{t :add}", :class => "button", :onclick => "if($('url').value.trim() == ''){notice('Please enter #{@service.name} username'); return false;}"
+              - else
+                =  submit_tag "#{t :add}", :class => "button", :onclick => "if($j('#service_configuration_ids_:checked').length == 0){notice('Please select sharing options'); return false;}"
+            - else
+              - if @service.id == 9
+                =  submit_tag "#{t :save}", :class => "button", :onclick => "if($('url').value.trim() == ''){notice('Please enter tumblr url'); return false;}", :user_service => params[:user_service_id] if user_service.token
+              - elsif @service.id == 5 || @service.id == 6
+                =  submit_tag "#{t :save}", :class => "button", :onclick => "if($('url').value.trim() == ''){notice('Please enter #{@service.name} username'); return false;}", :user_service => params[:user_service_id] if user_service.token
+              - else
+                =  submit_tag "#{t :save}", :class => "button", :onclick => "if($j('#service_configuration_ids_:checked').length == 0){notice('Please select sharing options'); return false;}", :user_service => params[:user_service_id] if user_service.token
+        .float_left
+          .button.button_anchor
+            =  link_to_close_redbox("#{t :cancel}")
+          - unless user_service.blank?
+            .button.button_anchor
+              =  link_to "#{t :remove}", :delete => true, :confirm => 'All your streams configured with this service also will get deleted. Are you sure you want to continue?', :action => "delete_user_service",:controller => "Users::Services", :id => user_service.id ,  :method => :delete if user_service
+          

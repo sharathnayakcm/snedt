@@ -1,0 +1,29 @@
+.edit_service_group_div
+  .esg_heading
+    %h4.normal_font
+      == Add new service group
+  .box.box_psg
+    .box_mid_psg
+      - form_remote_tag( :url => {:controller => :post_service_groups, :action => :create }, :html => {:id => "psgForm"}) do
+        .pg_div
+          .group_name_div
+            .group_name
+              %h5.normal_font
+                = t(:post_group_name)
+            .group_name_field#pg_name
+              = text_field_tag "pg_name", ""
+          .your_privacy_groups_div.members
+            .your_privacy_groups
+              %h5.normal_font
+                = t(:your_post_type)
+            .psg
+              = select_tag "type", "<option value=>#{t :pick_type}</option>" + options_from_collection_for_select(@pick_types,:id,:name), :class => "rounded", :onchange => remote_function(:url => {:action => :load_service_list}, :with => "'type=' + $('type').value")
+          .services#service_list
+            = render :partial => "post_service_groups/services_list"
+          .psg_buttons
+            .button.button_anchor{:style=> "margin-top: 3px;"}
+              = link_to t(:cancel), root_url
+            = submit_tag t(:save), :class => "button",  :onclick => "return validate();"
+            %div.display_none.left{:id => "spinner_tag"}
+              = image_tag("spinner.gif")
+            .clear

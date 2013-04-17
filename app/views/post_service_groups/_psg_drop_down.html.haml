@@ -1,0 +1,5 @@
+- if @post_service_groups.count > 0
+  =t :your_post_service_groups
+  = select_tag "post_service_grp", "<option value=''>select</option>" + options_from_collection_for_select(@post_service_groups, "id", "name"), :onchange =>remote_function(:url => {:action => :edit_form }, :with => "'type_id='+ +this.options[this.selectedIndex].value")
+- else
+  =t :no_pg_text

@@ -1,0 +1,52 @@
+#ednt-AccountSetup.ednt-Wrapper
+  .titles
+    %h4= t :account_setup
+  #accordion.accSetupWrapper.MP-boxes
+    #accountSetup.accSetupGroup
+      #contentHeadingSection1.contentHeading.cornerTop.active
+        %span.contentHeadingSpan.contentHeadingSpanFirst
+          %h4
+            %span.steps.cornerAll 1
+            %a{:href => "javascript:void(0);"}= t :services
+        %span.contentHeadingBtn
+          .greyBtn
+            = link_to "#{t :next}", "javascript:void(0)", :onclick => "$j('#accSetupContent1').hide();$j('#accSetupContent2').show();", :class => "smlrBtn"
+            /%a.smlrBtn{:href => "javascript:void(0);"} Next
+      = render :partial => "services/add_services"
+      /#contentHeadingSection2.contentHeading
+      /  %span.contentHeadingSpan
+      /    %h4
+      /      %span.steps 2
+      /      %a{:href => "javascript:void(0);"}= t :find_invite_friend
+      /  %span.contentHeadingBtn
+      /    .greyBtn
+      /      = link_to "#{t :next}", "javascript:void(0)", :onclick => "$j('.accSetupContent').hide();$j('#accSetupContent4').show();", :class => "smlrBtn"
+      /    .greyBtn.acc_setup_previous
+      /      = link_to "#{t :previous}", "javascript:void(0)", :onclick => "$j('.accSetupContent').hide();$j('#accSetupContent').show();", :class => "smlrBtn"
+      /#accSetupContent2.accSetupContent
+      /  #affiliatesSearchContent.servicesBoxInner.cornerAll
+      /    = render :partial => "users/friends/find_friends"
+      #contentHeadingSection2.contentHeading
+        %span.contentHeadingSpan
+          %h4
+            %span.steps 2
+            %a{:href => "javascript:void(0);"}= t :you_are_intreseted
+        %span.contentHeadingBtn
+          .greyBtn
+            %a.smlrBtn{:href => "/welcome"}= t :i_m_done
+          .greyBtn.acc_setup_previous
+            = link_to "#{t :previous}", "javascript:void(0)", :onclick => "$j('#accSetupContent2').hide();$j('#accSetupContent1').show();", :class => "smlrBtn"
+      #accSetupContent2.accSetupContent
+        #affiliatesSearchContent.servicesBoxInner.cornerAll
+          = render :partial => "users/select_topic"
+      /#contentHeadingSection3.contentHeading.cornerBottom
+      /  %span.contentHeadingSpan
+      /    %h4
+      /      %span.steps 4
+      /      %a{:href => "javascript:void(0);"}= t :privacy_settings_header
+      /  %span.contentHeadingBtn
+      /    .greyBtn
+      /      %a.smlrBtn{:href => "/welcome"}= t :i_m_done
+      /    .greyBtn.acc_setup_previous
+      /      = link_to "#{t :previous}", "javascript:void(0)", :onclick => "$j('.accSetupContent').hide();$j('#accSetupContent4').show();", :class => "smlrBtn"
+      /= render :partial => "services/privacy"

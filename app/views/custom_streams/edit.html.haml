@@ -1,0 +1,46 @@
+:javascript
+  $('RB_window').style.width = "500px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 500)/2) + "px";
+.dialogs
+  .dialog_details{:style => "font-size:10pt;color:#0C3646;width:435px"}
+    - form_remote_for :custom_stream, :url => {:controller => :custom_streams, :action => :update, :custom_id => @custom_stream.id}, :method => :post do |f|
+      = hidden_field_tag "apply_filter", 0
+      .name{:style=>"padding-bottom:10px;"}
+        =t :name
+        .name_field= text_field_tag :name, @custom_stream.name
+      #service_list{:style=>"padding-bottom:10px;"}
+        =t :services
+        = render :partial => "services_list"
+      .posted_date{:style=>"padding-bottom:10px;"}
+        =t :start_date
+        .date_field= text_field_tag :stream_start_date, @custom_stream.stream_start_date.blank? ? '' : @custom_stream.stream_start_date.strftime("%d/%m/%y"), {:readonly => true}
+      .posted_date{:style=>"padding-bottom:10px;"}
+        =t :end_date
+        .date_field= text_field_tag :stream_end_date, @custom_stream.stream_end_date.blank? ? '' : @custom_stream.stream_end_date.strftime("%d/%m/%y"), {:readonly => true}
+      .tags
+        =t :tag_s
+        %ul{:id => "mytags", :style => "width:440px", :name => "stream_tags[]"}
+      %p.hint
+        =t :tags_text
+      %p{:style => "float:right"}
+        .float_left
+          =  submit_tag "#{t :save}", :class => "button", :onclick => "if($j('#name').val()==''){notice('name should not be blank');return false;}else{if($j('#pick_services input:checked').size()==0){notice('select at least one service');return false;}}"
+        .float_left
+          =  submit_tag "#{t :save_and_filter}", :class => "button", :onclick => "if($j('#name').val()==''){notice('name should not be blank');return false;}else{if($j('#pick_services input:checked').size()==0){notice('select at least one service');return false;}else{$j('#apply_filter').val(1)}}"
+        .float_left
+          = button_to_close_redbox("#{t :cancel}", :class => "button", :onclick => "$j('embed').show();")
+        
+:javascript
+  $j(document).ready(function(){
+    var strTags = "#{@tags}";
+    $j("#stream_start_date,#stream_end_date").datepicker({
+      showOn: "button",
+      buttonImage: "/images/calendar.gif",
+      buttonImageOnly: true
+    });
+    $j("#mytags").tagit({
+      tagSource: strTags.split(','),
+      initialTags: "#{@filter_tags}",
+      select: true
+    });
+  });

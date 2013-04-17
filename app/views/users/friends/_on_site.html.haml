@@ -1,0 +1,32 @@
+:javascript
+  var htmlContent = "";
+
+.column.check_friends
+  %br
+  =t :on_site_description
+
+.onsite_form
+  #email_note.email_note
+    .left_form
+      %img{:src => "/images_1/left_regi_form.png"}
+    .inner_form#email_form
+      .inner_text
+        =t :who_r_u_looking_for
+      - form_remote_tag :url => search_friends_user_friends_path(current_user, :scope => params[:scope], :company_id => @company.id), :method => :get, :loading => "htmlContent = $('email_form').innerHTML; $('email_form').innerHTML = '<div align=\"center\"><div align=\"center\"><div class=\"contacting_div\"><h5>#{t :searching}....</h5></div></div> <img src=\"/images/redbox_spinner.gif\" /> <br /> <div class=\"contacting\">#{t :searching_text}</div></div>' ;" do |f|
+        %div
+          %div
+            .form_field
+              .text_email= text_field_tag("keyword", "", :size => 40, :style => "height:20px;padding-left:5px;")
+              .italic.prepends_1=t :on_site_example
+              = hidden_field_tag "search_friends", true
+          .column.width_12.left_most.on_edintity_btn
+            .prepends_1
+              =submit_tag "#{t :search}", :class => "button", :name => "search"
+    .right_form
+      %img{:src => "/images_1/right_regi_form.png"}
+  .clear
+.column.width_17.prepends_1.left_most
+  #contact_list
+
+:javascript
+  $j("#email_note").corner();

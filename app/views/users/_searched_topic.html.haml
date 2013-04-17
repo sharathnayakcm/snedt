@@ -1,0 +1,21 @@
+#searchtopicDropWrap.transBg.cornerAll
+  - if @topics.blank? && @companies.blank?
+    .personSearchResult
+      %h6{:style => "padding:10px"}
+        = t :modify_search_criteria
+  - else
+    .brandSearchResult
+      %span.topicSearchBar
+        = t :topic
+      .brandResult
+        %ul
+          - unless @topics.blank?
+            - @topics.each do |topic|
+              %li
+                .searched_topic_name{:id=>"topic_name_#{topic.id}", :topic_id => "#{topic.id}",:style=>"padding: 7px 10px 7px 10px;"}
+                  - if topic.asset
+                    = image_tag topic.asset.asset.url.gsub('/s3.','/s3-eu-west-1.'), :class => "userSmlPic"
+                  - else
+                    = image_tag "/images/userPicMed.png", :class => "userSmlPic"
+                  = topic.title
+

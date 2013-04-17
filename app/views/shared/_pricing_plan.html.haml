@@ -1,0 +1,37 @@
+- button_label ||= @button_label
+- pricing_plan ||= @pricing_plan
+.MP-boxes.pricingBox{:id => "#{pricing_plan.name.downcase}Wrap"}
+  .pricePlan
+    .pricingInner
+      - if pricing_plan.amount.to_i == 0
+        = "#{t :free_user_account_name}<small>/</small>"
+        %span#round8Icon
+      - else
+        = "#{session[:locale]=='arabic' ? '$' : ''} #{number_to_currency(pricing_plan.amount, :precision => 0)}<small>/mo</small>"
+    %span.triangleBack
+  .titles
+    %h2= pricing_plan.name
+  .feature01
+    %span.uploadIcon
+      =t :upload_limit
+      %b= pricing_plan.display_upload_limit
+  - if pricing_plan.membership_type == 'business'
+    .feature02
+      %span.usersIcon== #{pricing_plan.user_count} Users
+    .feature03
+      %span.brandIcon== #{pricing_plan.brand_count} Brands
+    .feature04
+      %span.statusIcon= t :post_status_update_link_blog_photos_video
+  - else
+    .feature02
+      - if pricing_plan.id == 1
+        %span.statusIcon=t :post_status_update_link_blog_photos
+      - else
+        %span.statusIcon=t :post_status_update_link_blog_photos_video
+    .feature03
+      %span.themesIcon
+        %b= pricing_plan.skin_count
+        =t :custom_profile_skin
+  .choosePlanButton
+    %div{:class => "#{pricing_plan.membership_type == 'business' ? 'blueBtn' : 'yellowBtn'}"}
+      = pricing_submit_button(button_label, pricing_plan)

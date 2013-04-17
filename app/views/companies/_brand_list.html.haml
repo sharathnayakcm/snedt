@@ -1,0 +1,62 @@
+/%ul#brand_tree
+/  - unless @brand.subbrands.blank?
+/    - @brand.subbrands.each do |brand|
+/      %li{:class => "#{cycle "li_odd", "li_even"}", :id => "brand_#{brand.id}", :style => "margin-left:-5px;"}
+/        - if brand.has_access?((current_user)) || brand.company.is_brand_admin?(current_user)
+/          = link_to "#{brand.name}", company_brand_path(@brand.company, brand.id)
+/          = link_to_remote_with_loader("X", :url => company_brand_path(@brand.company, brand.id), :method => :delete, :confirm => "Are you sure want to delete '#{brand.name}' brand?", :html => {:class => "small_close"}) if brand.company.is_brand_admin?(current_user)
+/          %ul
+/            -brand.subbrands.each do |sub_brand|
+/              %li{:class => "#{cycle "li_odd", "li_even"}", :id => "sbrand_#{sub_brand.id}"}
+/                = link_to "#{sub_brand.name}", company_brand_path(current_user.company, sub_brand.id)
+/        - else
+/          = link_to "#{brand.name}", profile_brand_path(brand), :title => t(:no_access_to_brand)
+/  - else
+/    .quiet= t :no_brand
+%ul
+  - unless @brand.subbrands.blank?
+    - @brand.subbrands.each do |brand|
+      %li{:class => "#{cycle "trans", "filled"}", :id => "brand_#{brand.id}"}
+        - if brand.subbrands.length > 0
+          %a.expandBrand.uiIcoInstream{:href => "javascript:void(0)", :onclick => "toggle_visibility('subBrandsList_#{brand.id}');"} +
+        .brandNameList
+          %a.brandPic
+            - unless brand.profile_image.blank?
+              = image_tag brand.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :class => "brandSmlPic"
+            - else
+              %img.brandSmlPic{:src => "/images/brandPicSmall.jpg"}
+          - if brand.has_access?((current_user)) || brand.company.is_brand_admin?(current_user)
+            %a.brandID{:href => "/brands/#{brand.company.id}/#{brand.id}"}
+              = brand.name
+          - else
+            %a.brandID{:href => brand_profile_path(brand.url)}
+              = brand.name
+          %a{:href => brand.brand_url}
+            %small.brandUrl
+              = brand.brand_url
+        - if brand.has_access?((current_user)) || brand.company.is_brand_admin?(current_user)
+          = link_to_remote("", :url => company_brand_path(brand.company, brand.id), :method => :delete, :confirm => "Are you sure want to delete '#{brand.name}' brand?", :html => {:class => "deletingCompany uiIconInside flRight"}) if brand.company.is_brand_admin?(current_user)
+          %a.goToProfile.uiIconInside.flRight{:href => brand_profile_path(brand.url)}
+        .hide{:id => "subBrandsList_#{brand.id}"}
+          - brand.subbrands.each do |sub_brand|
+            .childBrands
+              %ul
+                %li{:id => "brand_#{sub_brand.id}"}
+                  .brandNameList
+                    %a.brandPic
+                      - unless sub_brand.profile_image.blank?
+                        = image_tag sub_brand.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :class => "brandSmlPic"
+                      - else
+                        %img.brandSmlPic{:src => "/images/brandPicSmall.jpg"}
+                    - if sub_brand.has_access?((current_user)) || sub_brand.company.is_brand_admin?(current_user)
+                      %a.brandID{:href => "/brands/#{sub_brand.company.id}/#{sub_brand.id}"}
+                        = sub_brand.name
+                    - else
+                      %a.brandID{:href => brand_profile_path(sub_brand.url)}
+                        = sub_brand.name
+                    %a{:href => sub_brand.brand_url}
+                      %small.brandUrl
+                        = sub_brand.brand_url
+                  = link_to_remote("", :url => company_brand_path(sub_brand.company, sub_brand.id), :method => :delete, :confirm => "Are you sure want to delete '#{sub_brand.name}' brand?", :html => {:class => "deletingCompany uiIconInside flRight"}) if sub_brand.company.is_brand_admin?(current_user)
+                  %a.goToProfile.uiIconInside.flRight{:href => brand_profile_path(sub_brand.url)}
+ 

@@ -1,0 +1,7 @@
+- reported_videos ||= @reported_videos
+- @reported_videos_table.render reported_videos do |table|
+  - reported_videos.each do |reported_video|
+    - table.tr :id => "reported_video_#{reported_video.id}" do
+      -table.td {reported_video.stream_id}
+      -table.td {reported_video.reporter_id}
+      -table.td {reported_video.description}

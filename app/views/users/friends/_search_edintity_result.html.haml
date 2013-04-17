@@ -1,0 +1,27 @@
+#searcFriendNameResult.searchByNameResult{:class => "#{session[:signup] ? 'affiliatesResult' : ''}"}
+  .titles
+    %h6
+      %span.addressBook 
+        =t :edintity_user
+    %p.subtitle
+      =t :search_result_for
+      %span.stress
+        = params[:keyword]
+  %ul.cornerAll
+    - unless @users && @users.length > 0
+      %li
+        .flLeft
+          %span.nameResult.flLeft
+            %i
+              =t :no_friend_band_found
+    - else
+      - @users.each do |user|
+        %li{:id => "on_edintity_#{user.id}"}
+          - if(user.kind_of?(User))
+            - unless @company
+              = render :partial => "users/friends/edintity_users", :locals => {:user => user}
+            - else
+              = render :partial => "users/friends/my_brand_friends", :locals => {:user => user, :company => @company}
+          - else
+            - unless @company
+              = render :partial => "users/friends/edintity_brands", :locals => {:user => user}

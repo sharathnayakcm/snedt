@@ -1,0 +1,42 @@
+%ul
+  %li.streamControl1
+    %div#playStreamRefresh{:style => "margin-top: 2px;"}
+      = link_to_remote image_tag("../images/refresh.png"), :url => get_stream_from_db_streams_path(:scope => params[:scope], :brand_id => @brand.blank? ? "" : @brand.id), :method => :get, :html => {:title => "Refresh"},  :before => "$j('#stream_notify').show();", :complete => "$j('#stream_notify').hide();$j('#is_in_play_mode').val(true);$j('#pauseStream').show();$j('#playStream').hide();"
+    /%a#pauseStream.hide{:href => "javascript:void(0)", :onclick => "$j('#is_in_play_mode').val(false);$j('#pauseStream').hide();$j('#playStream').show();"}
+    /  %span.togglePause
+    /= hidden_field_tag :is_in_play_mode, false
+    %span.streamLoad#stream_notify.hide
+      %img{:alt => "", :src => "/images/process.png", :style =>"height:20px;"}
+    .statusDropDown{:style => "margin-left:25px; margin-top: 8px;"}
+      %img{:alt => "", :src => "/images/arrow_grey.png", :onclick => "toggle_visibility('refreshOptions');"}
+    .notifDropdown
+      #refreshOptions.shareToServiceDropdown.cornerBottom.transBg{:style => "display:none;width:152px; margin-top:-3px;"}
+        .menuitem_header.bold{:style => "border-bottom: 1px solid #9DA4A6;"}
+          = t(:set_auto_refresh)
+        .menuitem{:class => "#{current_user.refresh_period.blank? ? 'selected_item' : ''}", :onclick => remote_function(:url => {:action => "set_periodic_refresh_frequency", :controller => "home", :period => ""}, :before => "$j('.menuitem').removeClass('selected_item');$j(this).addClass('selected_item');")}
+          = t(:manual_refresh)
+        .menuitem{:class => "#{current_user.refresh_period == 120 ? 'selected_item' : ''}", :onclick => remote_function(:url => {:action => "set_periodic_refresh_frequency", :controller => "home", :period => 120}, :before => "$j('.menuitem').removeClass('selected_item');$j(this).addClass('selected_item');")}
+          = t(:refresh_2_min)
+        .menuitem{:class => "#{current_user.refresh_period == 300 ? 'selected_item' : ''}", :onclick => remote_function(:url => {:action => "set_periodic_refresh_frequency", :controller => "home", :period => 300}, :before => "$j('.menuitem').removeClass('selected_item');$j(this).addClass('selected_item');")}
+          = t(:refresh_5_min)
+        .menuitem{:class => "#{current_user.refresh_period == 600 ? 'selected_item' : ''}", :onclick => remote_function(:url => {:action => "set_periodic_refresh_frequency", :controller => "home", :period => 600}, :before => "$j('.menuitem').removeClass('selected_item');$j(this).addClass('selected_item');")}
+          = t(:refresh_10_min)
+        .menuitem{:class => "#{current_user.refresh_period == 900 ? 'selected_item' : ''}", :onclick => remote_function(:url => {:action => "set_periodic_refresh_frequency", :controller => "home", :period => 900}, :before => "$j('.menuitem').removeClass('selected_item');$j(this).addClass('selected_item');")}
+          = t(:refresh_15_min)
+        .menuitem{:class => "#{current_user.refresh_period == 1800 ? 'selected_item' : ''}", :onclick => remote_function(:url => {:action => "set_periodic_refresh_frequency", :controller => "home", :period => 1800}, :before => "$j('.menuitem').removeClass('selected_item');$j(this).addClass('selected_item');")}
+          = t(:refresh_30_min)
+    .loadedCounter{:style => "margin-top:-26px"}
+      %span.streamCounter#stream_count
+        = @stream_count.to_i
+      &nbsp;
+      = t :new_items
+  = render :partial => "streams/user_tab_filters"
+  %li.streamControl6
+    %p= "#{t :mark_as}:"
+  %li.streamControl7
+    /= link_to_remote "",:url => {:action => :mark_all_read, :controller => "streams", :controller_name => @controller_name || controller.controller_name}, :method => :get, :class => "markRead"
+    %a{:onclick => remote_function(:url => {:action => :mark_all_read, :controller => "streams", :controller_name => @controller_name || controller.controller_name, :brand_id=>(@brand.id if @brand)})}
+      %span.markRead
+  %li.streamControl8
+    %a{:onclick => remote_function(:url => {:action => :mark_all_unread, :controller => "streams", :controller_name => @controller_name || controller.controller_name, :brand_id=>(@brand.id if @brand)})}
+      %span.markUnread

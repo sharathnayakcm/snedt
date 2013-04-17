@@ -1,0 +1,87 @@
+- if @user_unused_tabs
+  - unused_tabs = []
+  - @user_unused_tabs.each do |tab|
+    - if tab.name == "Custom"
+      - unused_tabs <<  link_to_remote_redbox("#{t :custom}", :url => new_custom_tab_path, :method => :get)
+    - else
+      - unused_tabs <<  link_to_remote(tab.name,:url => user_tabs_path(:tab => tab), :method => :post)
+
+:javascript
+  $j(document).ready(function(){
+    $j('#share_to_services').corner();
+    $j('#tag_extras').corner();
+    $j('.tab_link').click(function(){
+    alert("clicked");
+    $j('.tab_link').parent().removeClass('current');
+    $j(this).parent().addClass('current');
+    $j(this).parent().removeClass('normal_link');
+    });
+    $j("#tabs_user").jSlide({elemByPages:1,pagination:false});
+    });
+- if session[:locale] == "arabic"
+  %div{:style => "direction:ltr !important; margin-left:-4px;"}
+    #tabs_user.boxSlide.boxSlideHorizontal
+      .float_right= dropdownmenu_for((".."), unused_tabs, {:tooltip_text => "#{t :add_tab}"})
+      = link_to image_tag("arrow_left.png"), "javascript:;", :class => "btnNext", :style => "margin-left:1px;"
+      .slide
+        %ul.horizontal{:id => "user_tabs_new"}
+          = render :partial => "shared/user_tabs", :locals => {:unused_tabs => unused_tabs ? unused_tabs : []}
+      = link_to image_tag("arrow_right.png"), "javascript:;", :class => "btnPrev"
+
+- else
+  %div
+    #tabs_user.boxSlide.boxSlideHorizontal
+      = link_to image_tag("arrow_left.png"), "javascript:;", :class => "btnPrev", :style => "margin-left:5px;"
+      .slide
+        %ul.horizontal{:id => "user_tabs_new"}
+          = render :partial => "shared/user_tabs", :locals => {:unused_tabs => unused_tabs ? unused_tabs : []}
+      = link_to image_tag("arrow_right.png"), "javascript:;", :class => "btnNext"
+      = dropdownmenu_for(("."), unused_tabs, {:tooltip_text => "#{t :add_tab}"})
+- unless @stream_header.blank?
+  %div{:style => "font-size: 20px; font-weight:normal;color:#17404E;margin-top:10px;"}
+    %span{:style => "margin-left: 45px;text-transform: capitalize;"}= @stream_header
+    - unless @custom_tab.blank?
+      %span== ( #{custom_tab_header @custom_tab} )
+      %span.custom_tab
+        = link_to_remote_redbox("#{t :edit}", :url => edit_custom_tab_path, :method => :get, :id => @custom_tab.id, :class => "button_green")
+.posttype{ :style => "#{@no_post_panel.blank? ? '' : 'display:none'}"}
+
+  .posttypelable
+    = t :post_type
+  .selected.rounded
+    = select_tag "pick_a_type", options_from_collection_for_select(@post_types,:name,:name), :class => "rounded", :onchange => remote_function(:url => {:action => :load_post_stream_form}, :with => "'type=' + $('pick_a_type').value")
+%div.stream.rounded.contentspace{ :style => "#{@no_post_panel.blank? ? '' : 'display:none'}"}
+  .tabs
+
+  - form_for :post,  :html => {:id => "postForm"} do |f|
+    = render :partial => "home/stream_post_footer"
+    #stream_extras{:style => "display:none;margin-top:3px;"}
+      = render :partial => "home/shorten_link"
+    #tag_extras{:style => "display:none;margin-top:3px;"}
+      = render :partial => "home/add_tag_to_link"
+    #share_to_services_extras{:style => "display:none;margin-top:3px;"}
+      = render :partial => "home/share_to_services"
+    #share_status_to_services_extras{:style => "display:none;margin-top:3px;"}
+      = render :partial => "home/share_status_to_services"
+    #share_photo_to_services_extras{:style => "display:none;margin-top:3px;"}
+      = render :partial => "home/share_photo_to_services"
+    #share_blog_to_services_extras{:style => "display:none;margin-top:3px;"}
+      = render :partial => "home/share_blog_to_services"
+    #stream_upload{:style => "display:none;margin-top:3px;"}
+      = render :partial => "home/upload_photo"
+
+  .button#add_to_stream_btn{:style => "margin-right: 14px;margin-top: 10px;font-size: 14px;"}
+    = link_to_remote "#{t 'add_to_stream'}", :url => posts_path, :method => :post, :with => "$('postForm').serialize()", :before => "$('stream_post_type').value=$('pick_a_type').value;$('stream_add').style.display = '';$('add_to_stream_btn').hide();", :complete => "$('stream_add').style.display = 'none';$('add_to_stream_btn').show();"
+
+  #stream_add{:style => "display:none;"}
+    = image_tag("spinner.gif")
+  .clear
+- unless @display_in_tabs
+  = render :partial => "streams/status_panel"
+%div{:id => "unread_items_count"}
+  - if ((controller_name == "home" && action_name == "index") && ((@user_type_count.to_i > 0 ) or (!@streams.blank?)))
+    = render :partial => "streams/unread_items"
+  - elsif (controller_name == "home" && !@custom_tab.blank?)
+    = render :partial => "streams/user_tab_filters"
+.clear
+#stream_content= render :partial => "streams/index"

@@ -1,0 +1,36 @@
+- upload_setting = UploadSetting.first
+:javascript
+  function showUploadButtonVideo(){
+    $j("#s_link_attach").makeAsyncUploader({
+      upload_url: "/posts/upload_video?_SNFA_session=#{session.session_id}&authenticity_token=#{form_authenticity_token}&user_id=#{current_user.id}&company_id=#{controller_name == 'companies' ? current_user.company.id : ''}",
+      flash_url: '/images/swfupload_new.swf',
+      file_size_limit : "#{upload_setting.video_size} MB",
+      file_types_description : "Video Files",
+      file_types: "*.flv;*.3gp;*.avi;*.mpeg;*.mpg;*.mp4;*.wmv;*.mov",
+      file_upload_limit : "1",
+      file_queue_limit : "0",
+      button_image_url: "/images/upload_bg_new.png",
+      assume_success_timeout : 0,
+      button_width: 75,
+      button_height: 18,
+      button_text: "<font color='#ffffff' face='Arial,sans-serif' size='11pt' background='#17404e' ><b>Select a file to upload</b></font>",
+      button_text_left_padding: 2,
+      button_text_top_padding: 1
+    });
+    $j(".upload_cancel_btn").corner();
+    $j("#video_uploader_div").hide();
+  }
+
+  function start_upload(){
+    //$('add_to_stream_btn').style.display='none';
+  }
+
+  function set_values(){
+    $('add_to_stream_btn').style.display='';
+  }
+#upload_video_text
+  Select a file to upload
+#upload_video_link
+.clear
+
+%iframe#upload_frame{:name => "upload_frame"}

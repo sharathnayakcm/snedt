@@ -1,0 +1,17 @@
+#ednt-PersonalStream.mainStreamWrapper
+  .ajaxLoader.cornerAll#ajaxLoaderDiv.hide
+    %span.ajaxSpinner
+      %img{:src=>"/images/ajax-loader.gif", :alt=>"#"}
+  = render :partial => 'shared/search_left_content'
+  = render :partial => 'shared/personal_right_content'
+
+- if current_user
+  #activationReminder{:style => 'display: none;'}
+    = link_to_remote_redbox "", {:url => activation_reminder_home_path, :method => :get}, :class => "smlrBtn", :id => "activationReminderBtn"
+
+:javascript
+  $j(document).ready(function(){
+    if(#{!session[:activation_reminder].blank?}){
+      #{session[:activation_reminder] = nil}
+      $j('#activationReminderBtn').click();}
+    });

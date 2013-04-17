@@ -1,0 +1,45 @@
+:javascript
+  $j(document).ready(function(){
+   $j(".followers select").multiSelect();
+  });
+.content
+  .left_content#left_content_div.followers
+    #stream_content
+    %div#no_users{:style => "padding:10px;font-weight:bold;font-size:14px;"}
+      - unless @followers.blank?
+        = t :you_have
+        %span.followers_list_count
+          = @followers.count
+        =t :followers
+    - form_remote_tag(:url => {:controller => :side_bar, :action => :followers_list }) do
+      %table.users_list
+        - unless @followers.blank?
+          - @followers.each do |follower|
+            %tr
+              %td
+                - unless follower.avatar.blank?
+                  = image_tag follower.avatar.url.gsub("/s3.","/s3-eu-west-1."), :style => "width:50px;height:50px;"
+                - else
+                  = image_tag :src => "/images/person.png"
+              %td.bold
+                = follower.display_full_name(current_user)
+                =# select_tag :follow, "<option value='select'>Select</option><option value='follow'>#{t :follow}</option><option value='block'>#{t :block}</option>"
+                =# observe_field("follow", :update => 'observed', :url => get_unfollow_side_bar_path(:id => follower.id), :with => "follow")
+              %td.select
+                - @privacy_groups =  current_user.privacy_groups
+                = collection_select("task", "groups_#{follower.id}" , @privacy_groups, "id", "name", {:selected => lambda{|pg| pg.has_this_user(follower.id)}},{:multiple => true})
+              %td{:id=>"follow_#{follower.id}"}
+                = link_to_remote "#{t :follow}", :url => toggle_follow_side_bar_path(current_user, :follower => follower.id, :id => "follow"), :method => :get, :html => {:class => "button"}
+              - @follower = User.find(follower)
+              %td{ :id => "block_#{follower.id}"}
+                = link_to_remote(@follower.is_blocked ? '#{t :unblock}' : "#{t :block}", :url => toggle_block_side_bar_path(current_user, :follower => follower.id), :method => :get, :html => {:class => "button"})
+
+        - else
+          %div.no_users{:style => "padding:10px;font-weight:bold;font-size:14px;"}
+            %div
+              =t :no_followers
+            %div.find_friends
+              =t :click_to_invite_friends
+              = link_to "#{t :invite_friends}", new_user_friend_path(current_user)
+      = submit_tag ("#{t :save}"), :class => "button_submit", :style => " background-color: #94B080; border: medium none #94B080;margin-left: 13px;  color: #17404E;    font-family: arial;    font-size: 12px;    font-weight: bold;    margin-left: 13px;    padding: 4px;" unless @followers.blank?
+  

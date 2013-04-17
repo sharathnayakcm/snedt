@@ -1,0 +1,19 @@
+- @company ||= @current_company
+- membership = @company.membership
+.plan.personal.div
+  %h3
+    %span.price
+      %span.symbol= number_to_currency(subscription_plan.amount).to_s + "/mo" unless subscription_plan.amount.blank?
+    %span.float_left
+    = subscription_plan.name
+  .clear
+  .rule
+  %ul.smallpoints
+    = subscription_plan.description
+  .plan_button
+    -if membership.id == subscription_plan.id
+      = link_to "#{t :current_plan}", "javascript:void(0)"
+    -elsif subscription_plan.amount.to_i <= membership.amount.to_i
+      = link_to_remote_redbox "#{t :downgrade}", :url => down_or_upgrade_companies_path(:id => @company.id, :membership_id => subscription_plan.id, :membership_scope => "Downgrade")
+    -else
+      = link_to_remote_redbox "#{t :upgrade}", :url => down_or_upgrade_companies_path(:id => @company.id, :membership_id => subscription_plan.id, :membership_scope => "Upgrade")

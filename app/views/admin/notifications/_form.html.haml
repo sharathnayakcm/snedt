@@ -1,0 +1,49 @@
+.columns
+  .column.width_12.leftmost
+    .form_field
+      .label_name= "Notificaion Name(English)<font color='red'>*</font>"
+      .tag= f.text_field :name
+    .form_field
+      .label_name= "Notificaion Name(Arabic)<font color='red'>*</font>"
+      .tag= f.text_field :name_arabic
+    .form_field
+      .label_name= "Code<font color='red'>*</font>"
+      .tag= f.text_field :code
+    .form_field
+      .label_name= "Subject-English<font color='red'>*</font>"
+      .tag= f.text_field :subject
+    .form_field
+      .label_name= "Subject-Arabic<font color='red'>*</font>"
+      .tag= f.text_field :subject_arabic
+    .form_field
+      .label_name= "CC"
+      .tag= f.text_field :cc
+    .form_field
+      .label_name= "BCC"
+      .tag= f.text_field :bcc
+    .form_field
+      .tag
+        = f.check_box :is_displayable, {:style => ""}, 1, 0
+        = "Displayable to User in Settings/Notification"
+    .form_field
+      .tag
+        = f.check_box :active, {:style => ""}, 1, 0
+        = "Active"
+    .form_field
+      .label_name= "Content-English"
+      .tag= f.text_area :content, :rows => 5, :cols => 50
+      .clear
+    .form_field
+      .label_name= "Content-Arabic"
+      .tag= f.text_area :content_arabic, :rows => 5, :cols => 50
+      .clear
+    = hidden_field_tag :page, @page
+    = hidden_field_tag :per_page, @per_page
+
+.columns
+  .column.width_10.leftmost
+    .align_right= submit_tag "Save", :class => "button"
+
+.columns
+  .column.width_12.leftmost
+    = "Note: Fields marked as <font color='red'>*</font> are mandatory."

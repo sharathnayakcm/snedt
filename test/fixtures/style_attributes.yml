@@ -1,0 +1,53 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one:
+ id: 1
+ name: background-color
+ category: background
+ display_name: Color
+
+two:
+ id: 2
+ name: background-image
+ category: background
+ display_name: Image
+
+three:
+ id: 3
+ name: font-style
+ category: font
+ display_name: Style
+
+four:
+ id: 4
+ name: font-family
+ category: font
+ display_name: Family
+
+five:
+ id: 5
+ name: color
+ category: font
+ display_name: Color
+
+six:
+ id: 6
+ name: border
+ category: background
+ display_name: Border
+
+seven:
+ id: 7
+ name: background-repeat
+ category: background
+ display_name: Repeat
+
+eight:
+ id: 8
+ name: text-transform
+ category: font
+ display_name: Transform

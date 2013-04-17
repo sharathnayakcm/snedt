@@ -1,0 +1,28 @@
+.registration_mid
+  .main_all
+    .mid_top
+      %img{:src => "/images_1/mid_top.png"}
+    .mid_inner
+      .mid_inner_content
+        .signup_process
+          .signup_process_text1
+            = t :sign_up_process
+          .signup_process_text2
+            = t :done_header
+        .line1
+          %img{:src => "/images_1/line1.png"}
+        .step4_note
+          .step4_note_text
+            = t :done_text1
+            %br
+              = t :done_text2
+          .new_home_button
+            = link_to "#{t :done_link}", root_url
+          -if current_user.company
+            .new_home_button
+              = link_to "#{t :done_company}", company_path(current_user.company.name)
+          .video_display_div
+            .video_dispaly
+              .video_pic
+    .mid_bottom
+      %img{:src => "/images_1/mid_bottom.png"}

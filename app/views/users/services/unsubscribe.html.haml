@@ -1,0 +1,6 @@
+- unless @user_service.blank?
+  All your streams configured with this service also will get deleted. Are you sure you want to continue?
+  .redBtn
+    =  link_to "#{t :remove}", :class => "smlrBtn", :delete => true, :action => "delete_user_service",:controller => "Users::Services", :id => @user_service.id ,  :method => :delete
+  .yellowBtn
+    = link_to_close_redbox("#{t :cancel}", :class => "smlrBtn")

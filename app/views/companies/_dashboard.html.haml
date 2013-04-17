@@ -1,0 +1,33 @@
+.DB-Wrapper
+  .breadcrumb
+    %ul
+      %li
+        %a{:href => "javascript:void(0);"} Home
+      %li
+        %a{:href => "javascript:void(0);"} Dashboard
+  .DB-Option
+    .blueBtn.startDate
+      = link_to "Followers by Location", "javascript:void(0)", :onclick => remote_function(:url => load_data_company_dashboard_path(@company.id, :id => @brand.id), :with => "'type=brand&category=locations'"), :class => "smlrBtn"
+    .blueBtn.startDate
+      = link_to "Followers by Service", "javascript:void(0)", :onclick => remote_function(:url => load_data_company_dashboard_path(@company.id, :id => @brand.id), :with => "'type=brand&category=services'"), :class => "smlrBtn"
+    .blueBtn.startDate
+      = link_to "Top 10 Streams", "javascript:void(0)", :onclick => remote_function(:url => load_data_company_dashboard_path(@company.id, :id => @brand.id), :with => "'type=stream&limit=10&filter=all'"), :class => "smlrBtn"
+    /%ul
+    /  %li
+    /    %select{:id => "company_dashboard", :onchange => remote_function(:url => load_data_company_dashboard_path(@company.id), :with => "'type=company&category='+this.value")}
+    /      %option{:value => "brands"} Main brand
+    /      %option{:value => "brands"} Brands
+    /      %option{:value => "locations"} Locations
+    /      %option{:value => "services"} Services
+    /  %li
+    /    %select{:id => "brand_dashboard", :onchange => remote_function(:url => load_data_company_dashboard_path(@company.id), :with => "'type=brand&category='+this.value")}
+    /      %option{:value => "locations"} Sub brand
+    /      %option{:value => "locations"} Locations
+    /      %option{:value => "services"} Services
+    /  %li
+    /    %select{:id => "top_streams", :onchange => remote_function(:url => load_data_company_dashboard_path(@company.id), :with => "'type=stream&limit=10&filter=all'")}
+    /      %option Stream
+    /      %option Top 10
+  #graph_data
+    %div= render :partial => "companies/dashboard/brand_locations"
+    

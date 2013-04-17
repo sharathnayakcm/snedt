@@ -1,0 +1,17 @@
+#contentHeadPersonal5.contentHeading
+  %h4
+    %a{:href => "javascript:void(0);"}= t:notification
+#accSettingPersonalContent5.accSetupContent
+  #personalNotification.cornerAll
+    - form_remote_tag :url => update_notifications_users_path, :method => :put do
+      - @notifications.each do |notification|
+        %ul
+          %li
+            = check_box_tag "user_notifications[]",notification.id, !current_user.notifications.blank? && current_user.notifications.collect(&:id).include?(notification.id)
+            - if session[:locale] == "arabic"
+              = notification.name_arabic
+            - else
+              = notification.name
+      %br
+      .blueBtn
+        = submit_tag t(:save_changes), :class => "smlrBtn"

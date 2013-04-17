@@ -1,0 +1,3 @@
+- tags.split(",").each do |t|
+  %span{:class => "stream_tags"}
+    = link_to t ,social_inbox_path(:tag_name => t) , :id => 'selected_tags'

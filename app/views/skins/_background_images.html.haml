@@ -1,0 +1,3 @@
+.bg_image{:class => "bg_image_#{image.id}"}
+  = link_to_remote_with_loader image_tag("/images_old/close.gif", :alt => "#{t :delete}", :title => "#{t :delete}", :style => "float:right"), :url => delete_image_skins_path(:id => image.id)
+  = link_to image_tag("#{url}", :width => "70", :height => "50", :border => "1" ), "javascript:void(0)", :onclick => "changeStyle('background-image', '#{skin_style.panel_type.element_name}', 'url(#{url})'); $('#{skin_style.panel_type.name}_background-image').value = 'url(#{url})'"

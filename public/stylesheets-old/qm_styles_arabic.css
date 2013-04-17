@@ -1,0 +1,196 @@
+/*!!!!!!!!!!! QuickMenu Core CSS [Do Not Modify!] !!!!!!!!!!!!!*/
+.qmclear {font-size:1px;height:0px;width:0px;clear:left;line-height:0px;display:block;}
+.qmmc {position:relative;}
+.qmmc a {float:left;display:block;white-space:nowrap;}
+.qmmc div a {float:none;}
+.qmmc div {visibility:hidden;position:absolute;width:75px;}
+
+/*!!!!!!!!!!! QuickMenu Styles [Please Modify!] !!!!!!!!!!!*/
+
+/*"""""""" (MAIN) Container """"""""*/
+.qm0
+{
+  /*  background-color: #94B080;*/
+  padding-left:10px;
+  background-image: none;
+  background-repeat:no-repeat;
+}
+
+/*"""""""" (MAIN) Items """"""""*/
+.qm0 a
+{
+  font-weight: bold;
+  text-decoration:none;
+  padding-left: 4px;
+  padding-right: 5px;
+  color:transparent;
+  /*		color:#ffffff;
+  background-color:transparent;
+  font-family:Arial;
+  font-size:.8em;
+
+  padding:5px 20px 5px 8px;
+  border-style:solid;
+  border-color:#000000;
+  border-width:0px 0px 0px 1px;*/
+}
+
+.qm0 a.home_tab_menu_link{
+  padding: 7px 5px !important;
+  /*  padding-right: 5px !important;*/
+}
+
+/*"""""""" (MAIN) Hover State """"""""*/
+.qm0 a:hover
+{
+  /*border-color:#333333;*/
+  color: transparent;
+  text-decoration: none;
+  background-color:transparent;
+  font-weight: bold;
+}
+
+
+/*"""""""" (MAIN) Active State """"""""*/
+body .qm0 .qmactive, body .qm0 .qmactive:hover
+{
+  color:transparent;
+  background-color:transparent;
+  text-decoration:none;
+  font-weight: bold;
+}
+
+
+/*"""""""" (MAIN) Parent Items """"""""*/
+.qm0 .qmparent
+{
+  /*  background-color: #94B080;
+    background-repeat:no-repeat;
+    background-position:92%;
+    cursor:pointer;
+    font-family: Verdana, Arial, sans-serif;
+    margin-bottom: -5px;*/
+}
+
+
+
+
+/*"""""""" [SUB] Containers """"""""*/
+.qm0 div
+{
+  background-color:#94b080; /* drop down green color to be changed*/
+  border-style:solid;
+  border-width:1px 1px 1px 1px;
+  margin:0px;
+  border-color:#94b080;
+  font-size: 16px;
+}
+
+
+/*"""""""" [SUB] Items """"""""*/
+.qm0 div span
+{
+  font-size:.7em;
+  border-width:0px 0px 0px 0px;
+  border-color:#17404e;
+  border-style:solid;
+  color: #17404e;
+  font-weight:bold;
+  padding: 0px 5px 0px 5px;
+  white-space:nowrap;
+  background: #94b080;
+}
+
+.qm0 div a
+{
+  font-size:.7em;
+  border-width:0px 0px 0px 0px;
+  border-color:#17404e;
+  border-style:solid;
+  color: #17404e;
+  font-weight:bold;
+  height:15px;
+  padding-bottom:5px !important;
+  padding-top:5px !important;
+  margin:0;
+  direction: rtl;
+}
+
+
+
+/*"""""""" [SUB] Hover State """"""""*/
+.qm0 div a:hover
+{
+  font-size:.7em;
+  border-width:0px 0px 0px 0px;
+  border-color:#17404e;
+  border-style:solid;
+  color: #17404e;
+  font-weight:bold;
+  background-color:#17404e;
+  text-decoration:none;
+  color: #94b080;
+  height:15px;
+  padding-bottom:5px !important;
+  padding-top:5px !important;
+  margin:0;
+
+}
+
+.qm0 div div
+{
+  margin:0px 0px 0px 3px;
+}
+
+/*""""""""[SUB] Active State """"""""*/
+body .qm0 div .qmactive, body .qm0 div .qmactive:hover
+{
+  /*  border-color:#666666;*/
+  background-color:#EFF4FA;
+  color:#000000;
+  text-decoration:none;
+  background-image:none;
+}
+
+
+/*"""""""" [SUB] Parent Items """"""""*/
+.qm0 div .qmparent
+{
+  background-image:none;
+}
+
+.qmfv{visibility:visible !important;}
+
+.qmfh{visibility:hidden !important;}
+
+.qm0 a
+{
+  background-image:url(/images_1/feedbutton.png) !important;
+  padding: 2px 10px !important;
+  background-repeat: no-repeat !important;
+}
+
+.menu_child{
+  margin-left: -20px;
+  left: 555px;
+  top: 24px;
+  z-index: 21;
+}
+.menu_child a{
+  background-image:none !important;
+  background-color: #17404E !important;
+  color: white !important;
+  font-weight: bold;
+  margin-left:0px;
+}
+
+.menu_child a:hover{
+  background-image:none !important;
+  background-color: #006BAF !important;
+  text-decoration: none;
+  color: white !important;
+  font-weight: bold;
+  padding-left:1px;
+  padding-right:5px;
+  height:15px;
+}

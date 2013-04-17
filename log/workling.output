@@ -1,0 +1,23 @@
+=> Loading Rails...
+config.load_paths is deprecated and removed in Rails 3, please use autoload_paths instead
+WARNING: Nokogiri was built against LibXML version 2.7.6, but has dynamically loaded 2.7.7
+/home/rorouser/Projects/SNFA_UI/lib/extensions/password.rb:177: warning: already initialized constant METHODS
+** Rails loaded.
+** Starting Workling::Remote::Invokers::ThreadedPoller...
+** Use CTRL-C to stop.
+** Exiting
+/home/rorouser/.rvm/gems/ruby-1.8.7-p302/gems/activerecord-2.3.11/lib/active_record/connection_adapters/mysql_adapter.rb:620:in `real_connect': Access denied for user 'edintity'@'localhost' (using password: YES) (Mysql::Error)
+	from /home/rorouser/Projects/SNFA_UI/vendor/plugins/workling/script/../lib/workling/remote/invokers/threaded_poller.rb:37:in `join'
+	from /home/rorouser/Projects/SNFA_UI/vendor/plugins/workling/script/../lib/workling/remote/invokers/threaded_poller.rb:37:in `listen'
+	from /home/rorouser/Projects/SNFA_UI/vendor/plugins/workling/script/../lib/workling/remote/invokers/threaded_poller.rb:37:in `each'
+	from /home/rorouser/Projects/SNFA_UI/vendor/plugins/workling/script/../lib/workling/remote/invokers/threaded_poller.rb:37:in `listen'
+	from /home/rorouser/Projects/SNFA_UI/vendor/plugins/workling/script/listen.rb:24
+	from /home/rorouser/.rvm/gems/ruby-1.8.7-p302/gems/daemons-1.0.10/lib/daemons/application.rb:176:in `load'
+	from /home/rorouser/.rvm/gems/ruby-1.8.7-p302/gems/daemons-1.0.10/lib/daemons/application.rb:176:in `start_load'
+	from /home/rorouser/.rvm/gems/ruby-1.8.7-p302/gems/daemons-1.0.10/lib/daemons/application.rb:257:in `start'
+	from /home/rorouser/.rvm/gems/ruby-1.8.7-p302/gems/daemons-1.0.10/lib/daemons/controller.rb:69:in `run'
+	from /home/rorouser/.rvm/gems/ruby-1.8.7-p302/gems/daemons-1.0.10/lib/daemons.rb:139:in `run'
+	from /home/rorouser/.rvm/gems/ruby-1.8.7-p302/gems/daemons-1.0.10/lib/daemons/cmdline.rb:105:in `call'
+	from /home/rorouser/.rvm/gems/ruby-1.8.7-p302/gems/daemons-1.0.10/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+	from /home/rorouser/.rvm/gems/ruby-1.8.7-p302/gems/daemons-1.0.10/lib/daemons.rb:138:in `run'
+	from script/workling_client:17

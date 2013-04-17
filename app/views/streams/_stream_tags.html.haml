@@ -1,0 +1,11 @@
+- if !stream.stream_tags_array_with_id.blank?
+  - unless stream.user == current_user
+    .float_left= image_tag "tag.gif", :title => "Tags"
+  %ul.tagit{:style => "background:none !important; border: none !important; margin-left:25px; margin-top:-5px;"}
+    - stream.stream_tags_array_with_id.each do |tag|
+      %li.tagit-choice
+        = "#{tag[1]} "
+        - if stream.user == current_user
+          %span{:id => "tag_#{tag[1]}_#{stream.id}"}
+            = link_to_remote image_tag("cross_small.png", :width => "12px", :alt => "#{t :remove}", :title => "#{t :remove}"), :url => {:controller => :tags, :action => :delete, :stream_id => stream.id, :stream_tag => tag[0]}
+.clear

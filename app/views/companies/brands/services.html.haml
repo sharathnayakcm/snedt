@@ -1,0 +1,45 @@
+#ednt-personalServicesOnly.mainStreamWrapper
+  .ajaxLoader.cornerAll#ajaxLoaderDiv.hide
+    %span.ajaxSpinner
+      %img{:src=>"/images/ajax-loader.gif", :alt=>"#"}
+  #personalServices.servicesFullpage.streamWrapper.cornerAll
+    #socialNetSetup.socialWrap
+      .titles
+        %h5
+          =t :social_networks
+      .servicesBoxInner.cornerAll
+        %ul
+          - @social_networking_services.each do |service|
+            = render :partial => "companies/services/added_services", :locals => {:service => service}
+    #vidPublishSetup.socialWrap
+      .titles
+        %h5
+          =t :video_publishing
+      .servicesBoxInner.cornerAll
+        %ul
+          - @video_publishing_services.each do |service|
+            = render :partial => "companies/services/added_services", :locals => {:service => service}
+    #bookmarkSetup.socialWrap
+      .titles
+        %h5
+          =t :bookmarking
+      .servicesBoxInner.cornerAll
+        %ul
+          - @bookmarking_services.each do |service|
+            = render :partial => "companies/services/added_services", :locals => {:service => service}
+    #bloggingSetup.socialWrap
+      .titles
+        %h5
+          =t :blogging_platform
+      .servicesBoxInner.cornerAll
+        %ul
+          - @blogging_services.each do |service|
+            = render :partial => "companies/services/added_services", :locals => {:service => service}
+    #photosShareSetup.socialWrap
+      .titles
+        %h5
+          =t :photo_sharing
+      .servicesBoxInner.cornerAll
+        %ul
+          - @photo_sharing_services.each do |service|
+            = render :partial => "companies/services/added_services", :locals => {:service => service}

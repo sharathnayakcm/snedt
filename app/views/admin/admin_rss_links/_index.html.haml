@@ -1,0 +1,88 @@
+
+
+%script{:src => "http://www.google.com/jsapi?key=ABQIAAAAoUzFdlbp-hDhtiDmjOawSBTJQa0g3IQ9GZqIMmInSLzwtGDKaBRzjR_y32ORpDqf40yuHl4bevlS7g", :type => "text/javascript"}
+:javascript
+  var rss_url = ""
+  var defaultQuery = '';
+  google.load("feeds", "1");
+
+  function findFeeds(query) {
+    google.feeds.findFeeds(query, feedSearchDone);
+  }
+
+  function getLongURL(name) {
+    var url = name;
+    url = url.replace(/\=/g,"^equal_to^");
+    url = url.replace(/\?/g,"^question_mark^");
+    url = url.replace(/\&/g,"^and^");
+    return url;
+  }
+
+  function feedSearchDone(result) {
+    var el = document.getElementById("feedControl");
+    el.innerHTML = '';
+    el.style.height = "210px";
+    el.style.overflow = "auto";
+    el.style.marginBottom = "10px";
+    if (result.error || result.entries.length <= 0) {
+      el.innerHTML = '<center>No Results Found</center>';
+      return;
+    }
+    for (var i = 0; i < result.entries.length; i++) {
+      rss_url = result.entries[i].url
+      rss_title = result.entries[i].title
+      var link_div = document.createElement("DIV");
+      link_div.id = rss_url;
+      el.appendChild(link_div);
+      var link = document.createElement("A");
+      link.id = 'add_rss_link_' + i;
+      link.href = "#";
+      link.name = rss_url;
+      link.title = rss_title;
+      link.onclick = "function(){#{remote_function(:url => admin_admin_rss_links_path, :method => :post, :with => "'rss_title='+this.title+'&results=true&rss_link='+getLongURL(this.name)")}};return false;";
+      link.innerHTML = "<img title='Add' src='/images_old/netvibes.png' alt='Add'>";
+      link_div.appendChild(link);
+      link_div.innerHTML += rss_title
+      link_div.innerHTML +=  '<br/>' + '<div class="quiet">' + result.entries[i].url +'</div>'
+      $('add_rss_link_' + i).setAttribute("onclick", "#{remote_function(:url => admin_admin_rss_links_path, :method => :post, :with => "'rss_title='+this.title+'&results=true&rss_link='+getLongURL(this.name)")};return false;");
+
+    }
+  }
+
+  function onSubmit() {
+    inputChange(document.getElementById("input"));
+    return false;
+  }
+
+  function inputChange(input) {
+    var query = input.value.toLowerCase();
+    var el = document.getElementById('feedControl');
+    el.innerHTML = 'Loading...';
+    if (!query) {
+      query = defaultQuery;
+      input.value = query;
+    }
+    findFeeds(query);
+  }
+
+
+.columns
+  .width_24
+    -if !request.xhr? || @new_record == true
+      .resource_panel
+        - rounded_box_for( |
+            nil, |
+            :header => {:text => "Manage RSS Links", :level => 4, :color => "green"}, |
+            :footer => { :color => "chrome"}, |
+            :group_name => "admin_rss_links" |
+          ) do |rounded_box| |
+          = render :partial => "rss_links_list"
+    -else
+      = render :partial => "rss_links_list"
+- total_flag =  (@admin_rss_links.total_entries.to_i % (params[:per_page].blank? ? 10 : params[:per_page]).to_i)
+= update_rounded_box_actions( |
+    [ |
+      link_to_remote_redbox("#{t :add_rss}", {:url => new_admin_admin_rss_link_path, :method => :get}, :class => "button") |
+    ], |
+    :group_name => 'admin_rss_links' |
+  ) |

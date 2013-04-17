@@ -1,0 +1,7 @@
+/= render :partial => "shared/top_nav"
+.streamContentSection
+  - if current_user.user_services.blank? && request.path.inspect.index("social_inbox")
+    %div{ :style => "margin-top:20px; margin-left:130px; font-size: 15px; "}
+      = link_to t(:click_here), user_services_path(current_user,:signup =>"false"), :style => "  color: #77898C; font-weight: bold; text-decoration: underline;"
+      = t(:stay_connected_message)
+  = render :partial => "streams/index"

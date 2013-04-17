@@ -1,0 +1,25 @@
+:javascript
+  $('RB_window').style.width = "500px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 500)/2) + "px";
+  $j('.button').corner("4px");
+.dialogs
+  .dialog_details{:style => "padding-left:35px;padding:0px;"}
+    - unless @confirm_delete
+      #link_list= render :partial => "rss/feed_links", :locals => {:links => @links}
+    - else
+      .strong
+        =t :selected_rss_links
+        (
+        %b= @link_names
+        )
+      .strong
+        =t :rss_delete_text
+      .strong
+        =t :want_to_continue
+      .button.rss_btn
+        = link_to_remote_redbox "#{t :cancel}", :url => {:controller => :rss, :action => :manage_rss}, :html => {:class => "add_btn"}
+      .button.rss_btn
+        = link_to_remote "#{t :okay}", :url => {:controller => :rss, :action => :delete_link, :id => @id}, :method => :get, :html => {:class => "add_btn"}
+      .hidden_btn{:style=>"display:none"}
+        = button_to_close_redbox("#{t :close}", :id => "button_to_close")
+      

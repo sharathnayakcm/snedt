@@ -1,0 +1,364 @@
+.columns
+  .width_18
+    .resource_panel
+      - rounded_box_for( |
+          nil, |
+          :header => {:text => "Users Stat by Membership", :level => 4, :color => "green"}, |
+          :footer => { :color => "chrome"}, |
+          :group_name => "report_1" |
+        ) do |rounded_box| |
+        #report_div
+          - @user_table.render do |table|
+            - table.tr do
+              - table.td { User.get_stats(1)}
+              - table.td { User.get_stats(2) }
+              - table.td { Company.get_stats(3) }
+              - table.td { Company.get_stats(4) }
+              - table.td { Company.get_stats(5) }
+              - table.td { Company.get_stats(6) }
+              - table.td { Company.get_stats.to_i + User.get_stats.to_i }
+
+.columns
+  .width_18
+    .resource_panel
+      - rounded_box_for( |
+          nil, |
+          :header => {:text => "Payment Stat by Membership", :level => 4, :color => "green"}, |
+          :footer => { :color => "chrome"}, |
+          :group_name => "report_2" |
+        ) do |rounded_box| |
+        #report_div
+          - @user_table.render do |table|
+            - table.tr do
+              - table.td { number_to_currency(Payment.get_stats(1))}
+              - table.td { number_to_currency(Payment.get_stats(2)) }
+              - table.td { number_to_currency(Payment.get_stats(3)) }
+              - table.td { number_to_currency(Payment.get_stats(4)) }
+              - table.td { number_to_currency(Payment.get_stats(5)) }
+              - table.td { number_to_currency(Payment.get_stats(6)) }
+              - table.td { number_to_currency(Payment.get_stats) }
+
+.columns
+  .width_18
+    .resource_panel
+      - rounded_box_for( |
+          nil, |
+          :header => {:text => "Usage Stats by Service", :level => 4, :color => "green"}, |
+          :footer => { :color => "chrome"}, |
+          :group_name => "report_3" |
+        ) do |rounded_box| |
+        #report_div
+          - @service_usage.render do |table|
+            - table.tr do
+              - table.td { bytes_to_mb(Stream.get_usage_stats(Service::SERVICES_ID[:twitter]))}
+              - table.td { bytes_to_mb(Stream.get_usage_stats(Service::SERVICES_ID[:facebook]))}
+              - table.td { bytes_to_mb(Stream.get_usage_stats(Service::SERVICES_ID[:youtube]))}
+              - table.td { bytes_to_mb(Stream.get_usage_stats(Service::SERVICES_ID[:vimeo]))}
+              - table.td { bytes_to_mb(Stream.get_usage_stats(Service::SERVICES_ID[:delicious]))}
+              - table.td { bytes_to_mb(Stream.get_usage_stats(Service::SERVICES_ID[:stumbleupon]))}
+              - table.td { bytes_to_mb(Stream.get_usage_stats(Service::SERVICES_ID[:flickr]))}
+              //- table.td { bytes_to_mb(Stream.get_usage_stats(8))}
+              - table.td { bytes_to_mb(Stream.get_usage_stats(Service::SERVICES_ID[:tumblr]))}
+              - table.td { bytes_to_mb(Stream.get_usage_stats(10))}
+              - table.td { bytes_to_mb(Stream.get_usage_stats("edintity"))}
+              - table.td { bytes_to_mb(Stream.get_usage_stats) }
+
+.columns
+  .width_18
+    .resource_panel
+      - rounded_box_for( |
+          nil, |
+          :header => {:text => "Usage Stats by Post Type", :level => 4, :color => "green"}, |
+          :footer => { :color => "chrome"}, |
+          :group_name => "report_4" |
+        ) do |rounded_box| |
+        #report_div
+          - @service_usage_by_post_type.render do |table|
+            - table.tr do
+              - table.td { bytes_to_mb(Stream.get_usage_stats_by_post_type(PostType::POST_TYPE_ID[:blog]))}
+              - table.td { bytes_to_mb(Stream.get_usage_stats_by_post_type(PostType::POST_TYPE_ID[:photo]))}
+              - table.td { bytes_to_mb(Stream.get_usage_stats_by_post_type(PostType::POST_TYPE_ID[:link]))}
+              - table.td { bytes_to_mb(Stream.get_usage_stats_by_post_type(PostType::POST_TYPE_ID[:status_update]))}
+              - table.td { bytes_to_mb(Stream.get_usage_stats_by_post_type(PostType::POST_TYPE_ID[:video]))}
+              - table.td { bytes_to_mb(Stream.get_usage_stats_by_post_type) }
+
+.columns
+  .width_18
+    .resource_panel
+      - rounded_box_for( |
+          nil, |
+          :header => {:text => "Stream Stats by Service(Stream Count)", :level => 4, :color => "green"}, |
+          :footer => { :color => "chrome"}, |
+          :group_name => "report_5" |
+        ) do |rounded_box| |
+        #report_div
+          - @service_usage.render do |table|
+            - table.tr do
+              - table.td { Stream.get_count_stats(Service::SERVICES_ID[:twitter])}
+              - table.td { Stream.get_count_stats(Service::SERVICES_ID[:facebook])}
+              - table.td { Stream.get_count_stats(Service::SERVICES_ID[:youtube])}
+              - table.td { Stream.get_count_stats(Service::SERVICES_ID[:vimeo])}
+              - table.td { Stream.get_count_stats(Service::SERVICES_ID[:delicious])}
+              - table.td { Stream.get_count_stats(Service::SERVICES_ID[:stumbleupon])}
+              - table.td { Stream.get_count_stats(Service::SERVICES_ID[:flickr])}
+              /- table.td { Stream.get_count_stats(8)}
+              - table.td { Stream.get_count_stats(Service::SERVICES_ID[:tumblr])}
+              - table.td { Stream.get_count_stats(10)}
+              - table.td { Stream.get_count_stats("edintity")}
+              - table.td { Stream.get_count_stats }
+
+
+.columns
+  .width_18
+    .resource_panel
+      - rounded_box_for( |
+          nil, |
+          :header => {:text => "Service Stats by Individual", :level => 4, :color => "green"}, |
+          :footer => { :color => "chrome"}, |
+          :group_name => "report_6" |
+        ) do |rounded_box| |
+        #report_div
+          - @service_usage.render do |table|
+            - table.tr do
+              - table.td { UserService.count_by_service_id(Service::SERVICES_ID[:twitter])}
+              - table.td { UserService.count_by_service_id(Service::SERVICES_ID[:facebook])}
+              - table.td { UserService.count_by_service_id(Service::SERVICES_ID[:youtube])}
+              - table.td { UserService.count_by_service_id(Service::SERVICES_ID[:vimeo])}
+              - table.td { UserService.count_by_service_id(Service::SERVICES_ID[:delicious])}
+              - table.td { UserService.count_by_service_id(Service::SERVICES_ID[:stumbleupon])}
+              - table.td { UserService.count_by_service_id(Service::SERVICES_ID[:flickr])}
+              /- table.td { UserService.count_by_service_id(8)}
+              - table.td { UserService.count_by_service_id(Service::SERVICES_ID[:tumblr])}
+              - table.td { UserService.count_by_service_id(10)}
+              - table.td { "NA"}
+              - table.td { UserService.count_by_service_id }
+
+.columns
+  .width_18
+    .resource_panel
+      - rounded_box_for( |
+          nil, |
+          :header => {:text => "Service Stats  by Company", :level => 4, :color => "green"}, |
+          :footer => { :color => "chrome"}, |
+          :group_name => "report_7" |
+        ) do |rounded_box| |
+        #report_div
+          - @service_usage.render do |table|
+            - table.tr do
+              - table.td { BrandService.count_by_service_id(Service::SERVICES_ID[:twitter])}
+              - table.td { BrandService.count_by_service_id(Service::SERVICES_ID[:facebook])}
+              - table.td { BrandService.count_by_service_id(Service::SERVICES_ID[:youtube])}
+              - table.td { BrandService.count_by_service_id(Service::SERVICES_ID[:vimeo])}
+              - table.td { BrandService.count_by_service_id(Service::SERVICES_ID[:delicious])}
+              - table.td { BrandService.count_by_service_id(Service::SERVICES_ID[:stumbleupon])}
+              - table.td { BrandService.count_by_service_id(Service::SERVICES_ID[:flickr])}
+              /- table.td { BrandService.count_by_service_id(8)}
+              - table.td { BrandService.count_by_service_id(Service::SERVICES_ID[:tumblr])}
+              - table.td { BrandService.count_by_service_id(10)}
+              - table.td { "NA"}
+              - table.td { BrandService.count_by_service_id }
+
+.columns
+  .width_18
+    .resource_panel
+      - rounded_box_for( |
+          nil, |
+          :header => {:text => "Signup by Individual", :level => 4, :color => "green"}, |
+          :footer => { :color => "chrome"}, |
+          :group_name => "report_8" |
+        ) do |rounded_box| |
+        #report_div
+          - @individual_table.render @individual_data do |table|
+            - @individual_data.each do |individual|
+              - table.tr do
+                - table.td { individual.date.to_date.strftime("%d %b %Y")}
+                - table.td { individual.membership_name == "Premium" ? individual.user_count : 0 }
+                - table.td { individual.membership_name == "Starter" ? individual.user_count : 0 }
+
+.columns
+  .width_18
+    .resource_panel
+      - rounded_box_for( |
+          nil, |
+          :header => {:text => "Signup by Company", :level => 4, :color => "green"}, |
+          :footer => { :color => "chrome"}, |
+          :group_name => "report_9" |
+        ) do |rounded_box| |
+        #report_div
+          - @company_table.render @company_data do |table|
+            - @company_data.each do |company|
+              - table.tr do
+                - table.td { company.date.to_date.strftime("%d %b %Y")}
+                - table.td { company.membership_name == "Bronze" ? company.company_count : 0 }
+                - table.td { company.membership_name == "Silver" ? company.company_count : 0 }
+                - table.td { company.membership_name == "Gold" ? company.company_count : 0 }
+                - table.td { company.membership_name == "Platinum" ? company.company_count : 0 }
+
+.columns
+  .width_18
+    .resource_panel
+      - rounded_box_for( |
+          nil, |
+          :header => {:text => "Usage by Individual", :level => 4, :color => "green"}, |
+          :footer => { :color => "chrome"}, |
+          :group_name => "report_10" |
+        ) do |rounded_box| |
+        #report_div
+          - @individual_table.render @user_usage_data do |table|
+            - @user_usage_data.each do |individual|
+              - table.tr do
+                - table.td { individual.date.to_date.strftime("%d %b %Y")}
+                - table.td { individual.membership_name == "Starter" ? (((individual.asset_size.to_i/1024/1024.0)*1000).round.to_f/1000).to_s + ' MB'  : 0 }
+                - table.td { individual.membership_name == "Premium" ? (((individual.asset_size.to_i/1024/1024.0)*1000).round.to_f/1000).to_s + ' MB' : 0 }
+
+
+.columns
+  .width_18
+    .resource_panel
+      - rounded_box_for( |
+          nil, |
+          :header => {:text => "Usage by Company", :level => 4, :color => "green"}, |
+          :footer => { :color => "chrome"}, |
+          :group_name => "report_11" |
+        ) do |rounded_box| |
+        #report_div
+          - @company_table.render @company_usage_data do |table|
+            - @company_usage_data.each do |company|
+              - table.tr do
+                - table.td { company.date.to_date.strftime("%d %b %Y")}
+                - table.td { company.membership_name == "Bronze" ? (((company.asset_size.to_i/1024/1024.0)*1000).round.to_f/1000).to_s + ' MB' : 0 }
+                - table.td { company.membership_name == "Silver" ? (((company.asset_size.to_i/1024/1024.0)*1000).round.to_f/1000).to_s + ' MB' : 0 }
+                - table.td { company.membership_name == "Gold" ? (((company.asset_size.to_i/1024/1024.0)*1000).round.to_f/1000).to_s + ' MB' : 0 }
+                - table.td { company.membership_name == "Platinum" ? (((company.asset_size.to_i/1024/1024.0)*1000).round.to_f/1000).to_s + ' MB' : 0 }
+
+
+.columns
+  .width_18
+    .resource_panel
+      - rounded_box_for( |
+          nil, |
+          :header => {:text => "Service by Individual", :level => 4, :color => "green"}, |
+          :footer => { :color => "chrome"}, |
+          :group_name => "report_12" |
+        ) do |rounded_box| |
+        #report_div
+          - @service_table.render  @user_service_data do |table|
+            - @user_service_data.each do |service|
+              - table.tr do
+                - table.td { service.date.to_date.strftime("%d %b %Y")}
+                - table.td { service.service_name == "Flickr" ? service.service_count : 0 }
+                - table.td { service.service_name == "Delicious" ? service.service_count : 0 }
+                - table.td { service.service_name == "RSS Feed" ? service.service_count : 0 }
+                - table.td { service.service_name == "Vimeo" ? service.service_count : 0 }
+                - table.td { service.service_name == "Youtube" ? service.service_count : 0 }
+                - table.td { service.service_name == "Stumbleupon" ? service.service_count : 0 }
+                - table.td { service.service_name == "Facebook" ? service.service_count : 0 }
+                - table.td { service.service_name == "Tumblr" ? service.service_count : 0 }
+                - table.td { service.service_name == "Facebook Page" ? service.service_count : 0 }
+
+.columns
+  .width_18
+    .resource_panel
+      - rounded_box_for( |
+          nil, |
+          :header => {:text => "Service by Company", :level => 4, :color => "green"}, |
+          :footer => { :color => "chrome"}, |
+          :group_name => "report_13" |
+        ) do |rounded_box| |
+        #report_div
+          - @service_table.render  @company_service_data do |table|
+            - @company_service_data.each do |service|
+              - table.tr do
+                - table.td { service.date.to_date.strftime("%d %b %Y")}
+                - table.td { service.service_name == "Flickr" ? service.service_count : 0 }
+                - table.td { service.service_name == "Delicious" ? service.service_count : 0 }
+                - table.td { service.service_name == "RSS Feed" ? service.service_count : 0 }
+                - table.td { service.service_name == "Vimeo" ? service.service_count : 0 }
+                - table.td { service.service_name == "Youtube" ? service.service_count : 0 }
+                - table.td { service.service_name == "Stumbleupon" ? service.service_count : 0 }
+                - table.td { service.service_name == "Facebook" ? service.service_count : 0 }
+                - table.td { service.service_name == "Tumblr" ? service.service_count : 0 }
+                - table.td { service.service_name == "Facebook Page" ? service.service_count : 0 }
+
+.columns
+  .width_18
+    .resource_panel
+      - rounded_box_for( |
+          nil, |
+          :header => {:text => "Conversion by Individual", :level => 4, :color => "green"}, |
+          :footer => { :color => "chrome"}, |
+          :group_name => "report_14" |
+        ) do |rounded_box| |
+        #report_div
+          - @individual_upgrade_table.render @individual_upgrade_data do |table|
+            - @individual_upgrade_data.each do |individual|
+              - table.tr do
+                - table.td { individual.date.to_date.strftime("%d %b %Y")}
+                - table.td { individual.from_to_count}
+
+.columns
+  .width_18
+    .resource_panel
+      - rounded_box_for( |
+          nil, |
+          :header => {:text => "Conversion by Company", :level => 4, :color => "green"}, |
+          :footer => { :color => "chrome"}, |
+          :group_name => "report_15" |
+        ) do |rounded_box| |
+        #report_div
+          - @company_upgrade_table.render @company_upgrade_data do |table|
+            - @company_upgrade_data.each do |company|
+              - table.tr do
+                - table.td { company.date.to_date.strftime("%d %b %Y")}
+                - table.td { company.from_to == "5-4" ? company.from_to_count : "0"}
+                - table.td { company.from_to == "4-3" ? company.from_to_count : "0"}
+                - table.td { company.from_to == "3-5" ? company.from_to_count : "0"}
+                - table.td { company.from_to == "5-3" ? company.from_to_count : "0"}
+                - table.td { company.from_to == "4-5" ? company.from_to_count : "0"}
+                - table.td { company.from_to == "3-4" ? company.from_to_count : "0"}
+                - table.td { company.from_to == "6-5" ? company.from_to_count : "0"}
+                - table.td { company.from_to == "6-4" ? company.from_to_count : "0"}
+                - table.td { company.from_to == "6-3" ? company.from_to_count : "0"}
+                - table.td { company.from_to == "5-6" ? company.from_to_count : "0"}
+                - table.td { company.from_to == "4-6" ? company.from_to_count : "0"}
+                - table.td { company.from_to == "3-6" ? company.from_to_count : "0"}
+
+.columns
+  .width_18
+    .resource_panel
+      - rounded_box_for( |
+          nil, |
+          :header => {:text => "Revenue Report", :level => 4, :color => "green"}, |
+          :footer => { :color => "chrome"}, |
+          :group_name => "report_16" |
+        ) do |rounded_box| |
+        #report_div
+          - @revenue_table.render @revenue_report do |table|
+            - @revenue_report.each do |company|
+              - table.tr do
+                - table.td(:number) { company.date.to_date.strftime("%d %b %Y")}
+                - table.td(:currency) { company.membership_name == "Premium" ? number_to_currency(company.amount) : "$0.00"}
+                - table.td(:currency) { company.membership_name == "Bronze" ? number_to_currency(company.amount) : "$0.00"}
+                - table.td(:currency) { company.membership_name == "Silver" ? number_to_currency(company.amount) : "$0.00"}
+                - table.td(:currency) { company.membership_name == "Gold" ? number_to_currency(company.amount) : "$0.00"}
+                - table.td(:currency) { company.membership_name == "Platinum" ? number_to_currency(company.amount) : "$0.00"}
+
+
+= update_rounded_box_actions([ link_to("EXPORT TO CSV", export_csv_admin_dashboard_path(current_user, :type => "user_stats"), :class => "button") ], :group_name => "report_1")
+= update_rounded_box_actions([ link_to("EXPORT TO CSV", export_csv_admin_dashboard_path(current_user, :type => "payment_stats"), :class => "button") ], :group_name => "report_2")
+= update_rounded_box_actions([ link_to("EXPORT TO CSV", export_csv_admin_dashboard_path(current_user, :type => "usage_by_service"), :class => "button") ], :group_name => "report_3")
+= update_rounded_box_actions([ link_to("EXPORT TO CSV", export_csv_admin_dashboard_path(current_user, :type => "usage_by_post_type"), :class => "button") ], :group_name => "report_4")
+= update_rounded_box_actions([ link_to("EXPORT TO CSV", export_csv_admin_dashboard_path(current_user, :type => "stream_stats"), :class => "button") ], :group_name => "report_5")
+= update_rounded_box_actions([ link_to("EXPORT TO CSV", export_csv_admin_dashboard_path(current_user, :type => "service_by_individual"), :class => "button") ], :group_name => "report_6")
+= update_rounded_box_actions([ link_to("EXPORT TO CSV", export_csv_admin_dashboard_path(current_user, :type => "service_by_company"), :class => "button") ], :group_name => "report_7")
+= update_rounded_box_actions([ link_to("EXPORT TO CSV", export_csv_admin_dashboard_path(current_user, :start_date => @start_date, :end_date => @end_date, :type => 'individual_user_signup', :name => "individual_signup_stats_#{Time.now.to_i}"), :class => "button") ], :group_name => "report_8")
+= update_rounded_box_actions([ link_to("EXPORT TO CSV", export_csv_admin_dashboard_path(current_user, :start_date => @start_date, :end_date => @end_date, :type => 'company_user_signup', :name => "company_signup_stats_#{Time.now.to_i}"), :class => "button") ], :group_name => "report_9")
+= update_rounded_box_actions([ link_to("EXPORT TO CSV", export_csv_admin_dashboard_path(current_user, :start_date => @start_date, :end_date => @end_date, :type => 'individual_user_usage', :name => "individual_user_usage_stats_#{Time.now.to_i}"), :class => "button") ], :group_name => "report_10")
+= update_rounded_box_actions([ link_to("EXPORT TO CSV", export_csv_admin_dashboard_path(current_user, :start_date => @start_date, :end_date => @end_date, :type => 'company_user_usage', :name => "company_user_usage_stats_#{Time.now.to_i}"), :class => "button") ], :group_name => "report_11")
+= update_rounded_box_actions([ link_to("EXPORT TO CSV", export_csv_admin_dashboard_path(current_user, :start_date => @start_date, :end_date => @end_date, :type => 'individual_user_service', :name => "individual_user_service_stats_#{Time.now.to_i}"), :class => "button") ], :group_name => "report_12")
+= update_rounded_box_actions([ link_to("EXPORT TO CSV", export_csv_admin_dashboard_path(current_user, :start_date => @start_date, :end_date => @end_date, :type => 'company_user_service', :name => "company_user_service_stats_#{Time.now.to_i}"), :class => "button") ], :group_name => "report_13")
+= update_rounded_box_actions([ link_to("EXPORT TO CSV", export_csv_admin_dashboard_path(current_user, :start_date => @start_date, :end_date => @end_date, :type => 'individual_upgrade', :name => "individual_upgrade_stats_#{Time.now.to_i}"), :class => "button") ], :group_name => "report_14")
+= update_rounded_box_actions([ link_to("EXPORT TO CSV", export_csv_admin_dashboard_path(current_user, :start_date => @start_date, :end_date => @end_date, :type => 'company_upgrade', :name => "company_upgrade_stats_#{Time.now.to_i}"), :class => "button") ], :group_name => "report_15")
+= update_rounded_box_actions([ link_to("EXPORT TO CSV", export_csv_admin_dashboard_path(current_user, :start_date => @start_date, :end_date => @end_date, :type => 'revenue_report', :name => "revenue_report_#{Time.now.to_i}"), :class => "button") ], :group_name => "report_16")
+
+

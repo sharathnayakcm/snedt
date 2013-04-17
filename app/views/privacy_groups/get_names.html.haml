@@ -1,0 +1,10 @@
+- unless @names.blank?
+  - i = 1
+  - for n in @names
+    .searched_user_name
+      = check_box_tag 'user_ids[]', n.id
+      = n.display_full_name(current_user)
+    - i +=1
+- else
+  =t :no_user_found
+   

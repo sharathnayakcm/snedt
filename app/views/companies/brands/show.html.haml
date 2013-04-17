@@ -1,0 +1,2 @@
+= periodically_call_remote(:url => get_streams_home_path(:scope => controller_name,:brand_id => @brand.blank? ? "" : @brand.id), :method => :get, :frequency => 150, :loading => "$('stream_notify').show();", :success => "$('stream_notify').hide();", :with => "'is_in_play_mode=' + $('is_in_play_mode').value")
+= render :partial => "shared/company/company_content"

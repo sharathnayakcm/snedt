@@ -1,0 +1,268 @@
+div.rounded_box {
+  zoom: 1;
+  margin-bottom: 10px; }
+  div.rounded_box:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden; }
+  div.rounded_box div.rounded_box_header, div.rounded_box div.rounded_box_content, div.rounded_box div.rounded_box_footer {
+    zoom: 1; }
+    div.rounded_box div.rounded_box_header:after, div.rounded_box div.rounded_box_content:after, div.rounded_box div.rounded_box_footer:after {
+      clear: both;
+      content: ".";
+      display: block;
+      height: 0;
+      overflow: hidden;
+      visibility: hidden; }
+  div.rounded_box div.rounded_box_header table.rounded_box_header_cap {
+    width: 100%; }
+    div.rounded_box div.rounded_box_header table.rounded_box_header_cap tr td.rounded_box_header_cap_left, div.rounded_box div.rounded_box_header table.rounded_box_header_cap tr td.rounded_box_header_cap_center, div.rounded_box div.rounded_box_header table.rounded_box_header_cap tr td.rounded_box_header_cap_right {
+      height: 10px; }
+    div.rounded_box div.rounded_box_header table.rounded_box_header_cap tr td.rounded_box_header_cap_left, div.rounded_box div.rounded_box_header table.rounded_box_header_cap tr td.rounded_box_header_cap_right {
+      background-repeat: no-repeat;
+      width: 10px; }
+    div.rounded_box div.rounded_box_header table.rounded_box_header_cap tr td.rounded_box_header_cap_center {
+      background-repeat: repeat-x; }
+    div.rounded_box div.rounded_box_header table.rounded_box_header_cap tr td.rounded_box_header_cap_left {
+      background-position: top left; }
+    div.rounded_box div.rounded_box_header table.rounded_box_header_cap tr td.rounded_box_header_cap_center {
+      background-position: top center; }
+    div.rounded_box div.rounded_box_header table.rounded_box_header_cap tr td.rounded_box_header_cap_right {
+      background-position: top right; }
+  div.rounded_box div.rounded_box_header table.rounded_box_header {
+    width: 100%; }
+    div.rounded_box div.rounded_box_header table.rounded_box_header tr td.rounded_box_header_left, div.rounded_box div.rounded_box_header table.rounded_box_header tr td.rounded_box_header_right {
+      background-repeat: repeat-y;
+      width: 3px; }
+    div.rounded_box div.rounded_box_header table.rounded_box_header tr td.rounded_box_header_left {
+      background-position: center left; }
+    div.rounded_box div.rounded_box_header table.rounded_box_header tr td.rounded_box_header_center div.rounded_box_header_padding {
+      border-bottom-width: 1px;
+      padding: 5px 5px; }
+      div.rounded_box div.rounded_box_header table.rounded_box_header tr td.rounded_box_header_center div.rounded_box_header_padding div.tabs_offset {
+        margin-bottom: -5px;
+        margin-top: -5px; }
+    div.rounded_box div.rounded_box_header table.rounded_box_header tr td.rounded_box_header_right {
+      background-position: center right; }
+  div.rounded_box div.rounded_box_content table.rounded_box_content {
+    width: 100%; }
+    div.rounded_box div.rounded_box_content table.rounded_box_content tr td.rounded_box_content_left, div.rounded_box div.rounded_box_content table.rounded_box_content tr td.rounded_box_content_right {
+      background-repeat: repeat-y;
+      width: 3px; }
+    div.rounded_box div.rounded_box_content table.rounded_box_content tr td.rounded_box_content_left {
+      background-position: center left; }
+    div.rounded_box div.rounded_box_content table.rounded_box_content tr td.rounded_box_content_center div.rounded_box_content_padding {
+      padding: 10px 17px; }
+    div.rounded_box div.rounded_box_content table.rounded_box_content tr td.rounded_box_content_right {
+      background-position: center right; }
+  div.rounded_box div.rounded_box_footer table.rounded_box_footer {
+    width: 100%; }
+  div.rounded_box div.rounded_box_footer table.rounded_box_footer_cap {
+    width: 100%; }
+    div.rounded_box div.rounded_box_footer table.rounded_box_footer_cap tr td.rounded_box_footer_cap_left, div.rounded_box div.rounded_box_footer table.rounded_box_footer_cap tr td.rounded_box_footer_cap_center, div.rounded_box div.rounded_box_footer table.rounded_box_footer_cap tr td.rounded_box_footer_cap_right {
+      height: 10px; }
+    div.rounded_box div.rounded_box_footer table.rounded_box_footer_cap tr td.rounded_box_footer_cap_left, div.rounded_box div.rounded_box_footer table.rounded_box_footer_cap tr td.rounded_box_footer_cap_right {
+      background-repeat: no-repeat;
+      width: 10px; }
+    div.rounded_box div.rounded_box_footer table.rounded_box_footer_cap tr td.rounded_box_footer_cap_center {
+      background-repeat: repeat-x; }
+    div.rounded_box div.rounded_box_footer table.rounded_box_footer_cap tr td.rounded_box_footer_cap_left {
+      background-position: bottom left; }
+    div.rounded_box div.rounded_box_footer table.rounded_box_footer_cap tr td.rounded_box_footer_cap_center {
+      background-position: bottom center; }
+    div.rounded_box div.rounded_box_footer table.rounded_box_footer_cap tr td.rounded_box_footer_cap_right {
+      background-position: bottom right; }
+
+div.accordion {
+  margin-bottom: -10px; }
+  div.accordion div.accordion_toggle table.rounded_box_header tr td.rounded_box_header_center div.rounded_box_header_padding div {
+    opacity: 0.25; }
+  div.accordion div.accordion_toggle_active table.rounded_box_header tr td.rounded_box_header_center div.rounded_box_header_padding div {
+    opacity: 1; }
+  div.accordion div.accordion_content table.rounded_box_content {
+    height: 100%; }
+    div.accordion div.accordion_content table.rounded_box_content tr td.rounded_box_content_center {
+      vertical-align: top; }
+
+div.collapsed div.rounded_box_header table.rounded_box_header tr td.rounded_box_header_center div.rounded_box_header_padding h1, div.collapsed div.rounded_box_header table.rounded_box_header tr td.rounded_box_header_center div.rounded_box_header_padding h2, div.collapsed div.rounded_box_header table.rounded_box_header tr td.rounded_box_header_center div.rounded_box_header_padding h3, div.collapsed div.rounded_box_header table.rounded_box_header tr td.rounded_box_header_center div.rounded_box_header_padding h4, div.collapsed div.rounded_box_header table.rounded_box_header tr td.rounded_box_header_center div.rounded_box_header_padding h5, div.collapsed div.rounded_box_header table.rounded_box_header tr td.rounded_box_header_center div.rounded_box_header_padding h6 {
+  opacity: 0.25; }
+
+div.fused {
+  margin-bottom: -10px;
+  margin-left: -3px;
+  margin-right: -3px; }
+  div.fused div.rounded_box_header, div.fused div.rounded_box_footer {
+    position: relative; }
+  div.fused div.rounded_box_header {
+    z-index: 2; }
+  div.fused div.rounded_box_footer {
+    z-index: 1; }
+  div.rounded_box_content_padding div.fused {
+    margin-bottom: -20px;
+    margin-left: -20px;
+    margin-right: -20px; }
+
+div.tabbed div.rounded_box_header table.rounded_box_header tr td.rounded_box_header_center div.rounded_box_header_padding {
+  border-bottom-width: 2px; }
+
+div.rounded_box div.white table.rounded_box_header_cap tr td.rounded_box_header_cap_white_left, div.rounded_box div.white table.rounded_box_header_cap tr td.rounded_box_header_cap_white_right {
+  background-image: url("/images/rounded_box/white/corners.png"); }
+div.rounded_box div.white table.rounded_box_header_cap tr td.rounded_box_header_cap_white_center {
+  background-image: url("/images/rounded_box/white/top_bottom.png"); }
+div.rounded_box div.white table.rounded_box_header tr td.rounded_box_header_white_left, div.rounded_box div.white table.rounded_box_header tr td.rounded_box_header_white_right {
+  background-image: url("/images/rounded_box/white/left_right.png"); }
+div.rounded_box div.white table.rounded_box_header tr td.rounded_box_header_white_center {
+  background-color: white; }
+  div.rounded_box div.white table.rounded_box_header tr td.rounded_box_header_white_center div.rounded_box_header_padding {
+    border-bottom-color: gray; }
+div.rounded_box div.white table.rounded_box_content tr td.rounded_box_content_white_left, div.rounded_box div.white table.rounded_box_content tr td.rounded_box_content_white_right {
+  background-image: url("/images/rounded_box/white/left_right.png"); }
+div.rounded_box div.white table.rounded_box_content tr td.rounded_box_content_white_center {
+  background-color: white; }
+  div.rounded_box div.white table.rounded_box_content tr td.rounded_box_content_white_center hr {
+    border-color: #a2b8c0; }
+div.rounded_box div.white table.rounded_box_footer_cap tr td.rounded_box_footer_cap_white_left, div.rounded_box div.white table.rounded_box_footer_cap tr td.rounded_box_footer_cap_white_right {
+  background-image: url("/images/rounded_box/white/corners.png"); }
+div.rounded_box div.white table.rounded_box_footer_cap tr td.rounded_box_footer_cap_white_center {
+  background-image: url("/images/rounded_box/white/top_bottom.png"); }
+div.rounded_box div.red table.rounded_box_header_cap tr td.rounded_box_header_cap_red_left, div.rounded_box div.red table.rounded_box_header_cap tr td.rounded_box_header_cap_red_right {
+  background-image: url("/images/rounded_box/red/corners.png"); }
+div.rounded_box div.red table.rounded_box_header_cap tr td.rounded_box_header_cap_red_center {
+  background-image: url("/images/rounded_box/red/top_bottom.png"); }
+div.rounded_box div.red table.rounded_box_header tr td.rounded_box_header_red_left, div.rounded_box div.red table.rounded_box_header tr td.rounded_box_header_red_right {
+  background-image: url("/images/rounded_box/red/left_right.png"); }
+div.rounded_box div.red table.rounded_box_header tr td.rounded_box_header_red_center {
+  background-color: #e5d7d4; }
+  div.rounded_box div.red table.rounded_box_header tr td.rounded_box_header_red_center div.rounded_box_header_padding {
+    border-bottom-color: #d5c7c4; }
+div.rounded_box div.red table.rounded_box_content tr td.rounded_box_content_red_left, div.rounded_box div.red table.rounded_box_content tr td.rounded_box_content_red_right {
+  background-image: url("/images/rounded_box/red/left_right.png"); }
+div.rounded_box div.red table.rounded_box_content tr td.rounded_box_content_red_center {
+  background-color: #e5d7d4; }
+  div.rounded_box div.red table.rounded_box_content tr td.rounded_box_content_red_center hr {
+    border-color: #d5c7c4; }
+div.rounded_box div.red table.rounded_box_footer_cap tr td.rounded_box_footer_cap_red_left, div.rounded_box div.red table.rounded_box_footer_cap tr td.rounded_box_footer_cap_red_right {
+  background-image: url("/images/rounded_box/red/corners.png"); }
+div.rounded_box div.red table.rounded_box_footer_cap tr td.rounded_box_footer_cap_red_center {
+  background-image: url("/images/rounded_box/red/top_bottom.png"); }
+div.rounded_box div.green {
+  color: white !important; }
+  div.rounded_box div.green table.rounded_box_header_cap tr td.rounded_box_header_cap_green_left, div.rounded_box div.green table.rounded_box_header_cap tr td.rounded_box_header_cap_green_right {
+    background-image: url("/images/rounded_box/green/corners.png"); }
+  div.rounded_box div.green table.rounded_box_header_cap tr td.rounded_box_header_cap_green_center {
+    background-image: url("/images/rounded_box/green/top_bottom.png"); }
+  div.rounded_box div.green table.rounded_box_header tr td.rounded_box_header_green_left, div.rounded_box div.green table.rounded_box_header tr td.rounded_box_header_green_right {
+    background-image: url("/images/rounded_box/green/left_right.png"); }
+  div.rounded_box div.green table.rounded_box_header tr td.rounded_box_header_green_center {
+    background-color: #1b4a4e; }
+    div.rounded_box div.green table.rounded_box_header tr td.rounded_box_header_green_center div.rounded_box_header_padding {
+      border-bottom-color: #93b38c; }
+  div.rounded_box div.green table.rounded_box_content tr td.rounded_box_content_green_left, div.rounded_box div.green table.rounded_box_content tr td.rounded_box_content_green_right {
+    background-image: url("/images/rounded_box/green/left_right.png"); }
+  div.rounded_box div.green table.rounded_box_content tr td.rounded_box_content_green_center {
+    background-color: #ebf2e9; }
+    div.rounded_box div.green table.rounded_box_content tr td.rounded_box_content_green_center hr {
+      border-color: #93b38c; }
+  div.rounded_box div.green table.rounded_box_footer_cap tr td.rounded_box_footer_cap_green_left, div.rounded_box div.green table.rounded_box_footer_cap tr td.rounded_box_footer_cap_green_right {
+    background-image: url("/images/rounded_box/green/corners.png"); }
+  div.rounded_box div.green table.rounded_box_footer_cap tr td.rounded_box_footer_cap_green_center {
+    background-image: url("/images/rounded_box/green/top_bottom.png"); }
+div.rounded_box div.blue table.rounded_box_header_cap tr td.rounded_box_header_cap_blue_left, div.rounded_box div.blue table.rounded_box_header_cap tr td.rounded_box_header_cap_blue_right {
+  background-image: url("/images/rounded_box/blue/corners.png"); }
+div.rounded_box div.blue table.rounded_box_header_cap tr td.rounded_box_header_cap_blue_center {
+  background-image: url("/images/rounded_box/blue/top_bottom.png"); }
+div.rounded_box div.blue table.rounded_box_header tr td.rounded_box_header_blue_left, div.rounded_box div.blue table.rounded_box_header tr td.rounded_box_header_blue_right {
+  background-image: url("/images/rounded_box/blue/left_right.png"); }
+div.rounded_box div.blue table.rounded_box_header tr td.rounded_box_header_blue_center {
+  background-color: #edf4f6; }
+  div.rounded_box div.blue table.rounded_box_header tr td.rounded_box_header_blue_center div.rounded_box_header_padding {
+    border-bottom-color: #a2b8c0; }
+div.rounded_box div.blue table.rounded_box_content tr td.rounded_box_content_blue_left, div.rounded_box div.blue table.rounded_box_content tr td.rounded_box_content_blue_right {
+  background-image: url("/images/rounded_box/blue/left_right.png"); }
+div.rounded_box div.blue table.rounded_box_content tr td.rounded_box_content_blue_center {
+  background-color: #edf4f6; }
+  div.rounded_box div.blue table.rounded_box_content tr td.rounded_box_content_blue_center hr {
+    border-color: #a2b8c0; }
+div.rounded_box div.blue table.rounded_box_footer_cap tr td.rounded_box_footer_cap_blue_left, div.rounded_box div.blue table.rounded_box_footer_cap tr td.rounded_box_footer_cap_blue_right {
+  background-image: url("/images/rounded_box/blue/corners.png"); }
+div.rounded_box div.blue table.rounded_box_footer_cap tr td.rounded_box_footer_cap_blue_center {
+  background-image: url("/images/rounded_box/blue/top_bottom.png"); }
+div.rounded_box div.yellow table.rounded_box_header_cap tr td.rounded_box_header_cap_yellow_left, div.rounded_box div.yellow table.rounded_box_header_cap tr td.rounded_box_header_cap_yellow_right {
+  background-image: url("/images/rounded_box/yellow/corners.png"); }
+div.rounded_box div.yellow table.rounded_box_header_cap tr td.rounded_box_header_cap_yellow_center {
+  background-image: url("/images/rounded_box/yellow/top_bottom.png"); }
+div.rounded_box div.yellow table.rounded_box_header tr td.rounded_box_header_yellow_left, div.rounded_box div.yellow table.rounded_box_header tr td.rounded_box_header_yellow_right {
+  background-image: url("/images/rounded_box/yellow/left_right.png"); }
+div.rounded_box div.yellow table.rounded_box_header tr td.rounded_box_header_yellow_center {
+  background-color: #fdf8e8; }
+  div.rounded_box div.yellow table.rounded_box_header tr td.rounded_box_header_yellow_center div.rounded_box_header_padding {
+    border-bottom-color: #d5c284; }
+div.rounded_box div.yellow table.rounded_box_content tr td.rounded_box_content_yellow_left, div.rounded_box div.yellow table.rounded_box_content tr td.rounded_box_content_yellow_right {
+  background-image: url("/images/rounded_box/yellow/left_right.png"); }
+div.rounded_box div.yellow table.rounded_box_content tr td.rounded_box_content_yellow_center {
+  background-color: #fdf8e8; }
+  div.rounded_box div.yellow table.rounded_box_content tr td.rounded_box_content_yellow_center hr {
+    border-color: #d5c284; }
+div.rounded_box div.yellow table.rounded_box_footer_cap tr td.rounded_box_footer_cap_yellow_left, div.rounded_box div.yellow table.rounded_box_footer_cap tr td.rounded_box_footer_cap_yellow_right {
+  background-image: url("/images/rounded_box/yellow/corners.png"); }
+div.rounded_box div.yellow table.rounded_box_footer_cap tr td.rounded_box_footer_cap_yellow_center {
+  background-image: url("/images/rounded_box/yellow/top_bottom.png"); }
+div.rounded_box div.chrome table.rounded_box_header_cap tr td.rounded_box_header_cap_chrome_left, div.rounded_box div.chrome table.rounded_box_header_cap tr td.rounded_box_header_cap_chrome_right {
+  background-image: url("/images/rounded_box/chrome/corners.png"); }
+div.rounded_box div.chrome table.rounded_box_header_cap tr td.rounded_box_header_cap_chrome_center {
+  background-image: url("/images/rounded_box/chrome/top_bottom.png"); }
+div.rounded_box div.chrome table.rounded_box_header tr td.rounded_box_header_chrome_left, div.rounded_box div.chrome table.rounded_box_header tr td.rounded_box_header_chrome_right {
+  background-image: url("/images/rounded_box/chrome/left_right.png"); }
+div.rounded_box div.chrome table.rounded_box_header tr td.rounded_box_header_chrome_center {
+  background-color: #e1e1e1; }
+  div.rounded_box div.chrome table.rounded_box_header tr td.rounded_box_header_chrome_center div.rounded_box_header_padding {
+    border-bottom-color: #d1d1d1; }
+div.rounded_box div.chrome table.rounded_box_content tr td.rounded_box_content_chrome_left, div.rounded_box div.chrome table.rounded_box_content tr td.rounded_box_content_chrome_right {
+  background-image: url("/images/rounded_box/chrome/left_right.png"); }
+div.rounded_box div.chrome table.rounded_box_content tr td.rounded_box_content_chrome_center {
+  background-color: #e1e1e1; }
+  div.rounded_box div.chrome table.rounded_box_content tr td.rounded_box_content_chrome_center hr {
+    border-color: #d1d1d1; }
+div.rounded_box div.chrome table.rounded_box_footer_cap tr td.rounded_box_footer_cap_chrome_left, div.rounded_box div.chrome table.rounded_box_footer_cap tr td.rounded_box_footer_cap_chrome_right {
+  background-image: url("/images/rounded_box/chrome/corners.png"); }
+div.rounded_box div.chrome table.rounded_box_footer_cap tr td.rounded_box_footer_cap_chrome_center {
+  background-image: url("/images/rounded_box/chrome/top_bottom.png"); }
+
+div.rounded_box div.about {
+  text-align: left;
+  background-color: white;
+  padding-bottom: 1px;
+  padding-top: 1px;
+  color: #404040; }
+  div.rounded_box div.about .heading {
+    color: #5eac2a;
+    font-weight: bold;
+    font-size: 17px; }
+  div.rounded_box div.about .title {
+    font-weight: bold;
+    font-size: 12px; }
+
+div.simple_header {
+  background-color: #f6faf5;
+  color: #404040;
+  font-weight: bold;
+  padding-bottom: 1px;
+  padding-top: 1px;
+  padding-right: 1px;
+  border-top-color: silver;
+  border-top-width: 1px;
+  border-bottom-color: silver;
+  border-bottom-width: 1px; }
+
+div.old_box {
+  zoom: 1;
+  position: relative;
+  background-color: white;
+  border-color: silver;
+  border-width: 1px; }
+
+.narrow_rounded_box_content_padding {
+  padding: 10px 9px; }

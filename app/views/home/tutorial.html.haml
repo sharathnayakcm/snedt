@@ -1,0 +1,19 @@
+.attactmentDesc.attactmentDescFull{ :style => "margin-top:45px; text-align:center;" }
+  = wordwrap(@video_url)
+  #watchScreenCast.MP-boxes
+    %div{ :style => "margin-left:82px;" }
+      - unless params[:name] == "what_is_edintity"
+        .blueBtn
+          %a#embedVideo.iframe{:href=>"/tutorial/what_is_edintity"}
+            %span.uiIconPlay
+              =t :watch_screencast
+      - unless params[:name] == "signing_up_for_an_account"
+        .blueBtn
+          %a#embedVideo.iframe{:href=>"/tutorial/signing_up_for_an_account"}
+            %span.uiIconPlay
+              =t :signup_tutorial
+      - unless params[:name] == "explore_edintity"
+        .blueBtn
+          %a#embedVideo.iframe{:href=>"/tutorial/explore_edintity"}
+            %span.uiIconPlay
+              =t :explore_edintity

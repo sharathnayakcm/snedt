@@ -1,0 +1,30 @@
+-form_remote_for(:default_stream_action, {:url => { :id => current_user.id, :user_id => @privacy_setting.id, :controller => "Users::Privacies", :action => "update_stream_actions"}})  do |f|
+  #privacy_page_spacing{:style => "padding-top:10px;"}
+    %div.privacy_text.stream_actions_text{:style => "width:200px;"}
+      %span.label
+        = t :allow_comments
+    .chk_box
+      = check_box_tag :allow_comments, 1, @stream_actions.allow_comments
+  #privacy_page_spacing{:style => "padding-top:10px;"}
+    %div.privacy_text.stream_actions_text{:style => "width:200px;"}
+      %span.label
+        = t :retweet
+    .chk_box
+      = check_box_tag :retweet, 1, @stream_actions.retweet
+  #privacy_page_spacing{:style => "padding-top:10px;"}
+    %div.privacy_text.stream_actions_text{:style => "width:200px;"}
+      %span.label
+        = t :favourite
+    .chk_box
+      = check_box_tag :favourite, 1, @stream_actions.favourite
+  #privacy_page_spacing{:style => "padding-top:10px;"}
+    %div.privacy_text.stream_actions_text{:style => "width:200px;"}
+      %span.label
+        = t :review
+    .chk_box
+      = check_box_tag :review, 1, @stream_actions.review
+  .clear
+  %br
+  .button_1
+    = f.submit  "#{t :save}", :class => "button"
+  .clear

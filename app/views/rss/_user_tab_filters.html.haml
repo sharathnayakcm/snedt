@@ -1,0 +1,9 @@
+.new_item_bar_div
+  .new_item_bar
+    .filter_panel_actions
+      .float_left.text.text_header.bold== Select:
+      .float_left.text= link_to_remote_with_loader " #{t :all} ",:url => {:action => :filter_streams, :controller => "rss", :by => "all", :id => @custom_tab ? @custom_tab.id : nil}
+      .float_left.text= link_to_remote_with_loader " #{t :read} ",:url => {:action => :filter_streams, :controller => "rss", :by => "read", :id => @custom_tab ? @custom_tab.id : nil}
+      .float_left.text= link_to_remote_with_loader " #{t :unread} ",:url => {:action => :filter_streams, :controller => "rss", :by => "unread", :id => @custom_tab ? @custom_tab.id : nil}
+      .float_left.fav_filter= link_to_remote_with_loader "#{image_tag('favourite_heart.png')}",:url => {:action => :filter_streams, :controller => "rss", :by => "favourites", :id => @custom_tab ? @custom_tab.id : nil}, :html => {:title => "#{t :favourites}"}
+.clear

@@ -1,0 +1,2 @@
+class EdintityController < ApplicationController
+end

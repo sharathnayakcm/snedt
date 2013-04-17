@@ -1,0 +1,47 @@
+- unused_tabs ||= @unused_tabs
+- @user_tabs = session[:locale] == "arabic" ? @user_tabs.reverse : @user_tabs
+
+- if session[:locale] == nil || session[:locale] == "en"
+  %li.tabs_div
+    .homebutton
+      .homebuttoninner.user_tabs_div#home_tab
+        - if @brand.company
+          = link_to "#{t :home}", @brand.company.is_brand_admin?(current_user) ? company_path(@brand.company.name, :scope => @brand.company.user_id != current_user.id ? "affiliation" : "") : "#", :class => "home_link"
+        - else
+          = link_to "#{t :home}", "#", :class => "home_link"
+  -if @brand.company
+    - if @brand.company.is_brand_admin?(current_user)
+      %li.tabs_div
+        .dashboardbutton
+          .dashboardbuttoninner.user_tabs_div#dashboard_tab
+            = link_to "#{t :dashboard}", company_dashboard_url(:company_id => @brand.company.id, :id => @brand.id), :class => "dashboard_link"
+
+- if session[:locale] == "arabic"
+  - if @brand.company
+    %li.tabs_div{:style => "margin-top: 20px;"}
+      .dashboardbutton
+        .dashboardbuttoninner.user_tabs_div#dashboard_tab
+          = link_to "#{t :dashboard}", company_dashboard_url(:company_id => @brand.company.id, :id => @brand.id), :class => "dashboard_link"
+  - if @brand.company
+    %li.tabs_div{:style => "margin-top: 20px;"}
+      .homebutton
+        .homebuttoninner.user_tabs_div#home_tab
+          - if @brand.company
+            = link_to "#{t :home}", @brand.company.is_brand_admin?(current_user) ? company_path(@brand.company.name) : "#", :class => "home_link"
+          - else
+            = link_to "#{t :home}", "#", :class => "home_link"
+  - else
+    %li.tabs_div
+      .homebutton
+        .homebuttoninner.user_tabs_div#home_tab
+          - if @brand.company
+            = link_to "#{t :home}", @brand.company.is_brand_admin?(current_user) ? company_path(@brand.company.name) : "#", :class => "home_link"
+          - else
+            = link_to "#{t :home}", "#", :class => "home_link"
+.clear
+:javascript
+  $j(document).ready(function(){
+    $j('.user_tabs_div').removeClass('homebuttoninner').addClass('rssbuttoninner');
+    $j("##{@tab_name}_tab").removeClass('rssbuttoninner').addClass('homebuttoninner');
+  });
+

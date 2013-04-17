@@ -1,0 +1,38 @@
+- if stream.tumblr_feed_type == "audio"
+  .data_one
+    %p
+      = stream.tumblr_data_one.gsub("FFFFFF", "CBD8CE")
+  .data_two
+    %p
+      = CGI.unescapeHTML(wordwrap(stream.tumblr_data_two))
+- elsif stream.tumblr_feed_type == "video"
+  .data_one
+    %p
+      = stream.tumblr_data_one
+  .data_two
+    %p
+      = CGI.unescapeHTML(wordwrap(stream.tumblr_data_two))
+- elsif stream.tumblr_feed_type == "link"
+  %a{:href => stream.tumblr_data_two, :target => "_blank"}
+    %p
+      = stream.tumblr_data_one
+- elsif stream.tumblr_feed_type == "quote"
+  %b
+    "
+    = CGI.unescapeHTML(wordwrap(stream.tumblr_data_one))
+    "
+  .data_two
+    %p
+      = CGI.unescapeHTML(wordwrap(stream.tumblr_data_two))
+- elsif stream.tumblr_feed_type == "photo"
+  %a.attacmentImg{:href => "#{stream.tumblr_data_one}", :rel => "example_group", :title => "", :target => "_blank"}
+    %img{:alt => "", :src => "#{stream.tumblr_data_one}", :style => "width: 166px; height:120px;"}
+  .attactmentDesc
+    = CGI.unescapeHTML(wordwrap(stream.tumblr_data_two))
+- else
+  %b.data_one
+    %p
+      = CGI.unescapeHTML(wordwrap(stream.tumblr_data_one))
+  .data_two
+    %p
+      = CGI.unescapeHTML(wordwrap(stream.tumblr_data_two))

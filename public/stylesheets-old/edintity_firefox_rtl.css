@@ -1,0 +1,142 @@
+/* firefox rtl on windows*/
+
+.tableTop li input.signInBtn {
+	width:72px;
+} /* ar_local.css (line 43) */
+
+#MP-individualTop, #MP-brandTop {
+	width:380px;
+} /* ar_main.css (line 30) *
+
+.shadeCenter {
+	width: 650px;
+} /* style.Addon.css (line 4)*/
+
+.shadeCenter {
+	margin:-20px auto 0px;
+} /*ar_main.css (line 5)*/
+
+.firefox.windows .shadeCenter {
+	top:13px;
+} /*main.css (line 16)*/
+
+#watchScreenCast span.uiIconPlay {
+	float:right;
+} /*ar_main.css (line 149)*/
+
+#watchScreenCast .blueBtn a {
+	width:23%;
+	padding:0 10px !important;
+} /*ar_main.css (line 145)*/
+
+
+/* start of home page rtl*/
+	.streamUpdater {
+		z-index:2;
+	} /* ar_stream.css (line 109) */
+
+	.windows .shareServiceControl {
+		top:128px;
+	} /* ar_stream.css (line 399) */
+
+	.addShortUrl {
+		right:139px;
+	} /* ar_stream (line 496)*/
+
+	.windows #sharingOptCheck4.shareServiceControl {
+		top:148px;
+	} /* ar_stream.css (add new) */
+
+	.windows #sharingOptCheck5.shareServiceControl {
+		top:148px;
+	} /* ar_stream.css (add new) */
+
+		/* searchSideBar */
+			.saveSearch li a {
+				padding:5px 10px;
+				width:218px;
+				word-wrap:break-word;
+			} /*ar_stream.css (line 1827) */
+
+			.usernameId .editProfileLink {
+				background-position:26px -378px;
+			} /*ar_stream.css (line 1580)*/
+
+			.usernameId a.editUsrProfile:hover span{
+				background-position:26px -728px;
+			} /*ar_stream.css (line 1579)*/
+		/* end of  searchSideBar */
+/* end of home page rtl*/
+
+/*start of profile page rtl */
+	.addNewSkin a, .skinName, .addSkinForm .newSkinText {
+		padding-right:0;
+	} /* ar_modal.css (line 344) */
+
+	.addNewSkin .blueArrowDown, .yourSkinHeader a .blueArrowDown {
+		background-position:-8px -120px;
+	} /* ar_modal.css (line 361) */
+
+	.skinAct li {
+		padding: 2px 5px 2px 0;
+	} /*ar_modal.css (line 379)*/
+
+	.yourSkinsHeader a .blueArrowDown, .activeSkinHeader a.blueArrowDown {
+		background-position:76px -123px;
+		padding:0 20px;
+	} /* ar_modal.css (line 367) */
+
+	.activeSkinsHeader a .blueArrow {
+		padding: 0 20px;
+	} /* ar_modal.css (line 310)*/
+
+	.activeSkinsHeader a .blueArrow {
+		background-position: 89px -1521px;
+	} /* ar-local.css (line 643) */
+/*end of profile page rtl*/
+
+
+/* edit/setting page rtl*/
+	.uploadIcon {
+		background-position:167px -66px;
+	} /* ar_pricing.css (line 133) */
+
+	.feature02 span.statusIcon {
+		padding:0 35px 10px 0!important;
+	} /* common.css (line 84) */
+
+	#deleteAccount .redBtn a.smlrBtn {
+		padding:4px 40px;
+	} /* add new */
+
+	#customizePersonalPswrd li.changePassword label span {
+		float:left;
+	} /* ar_accSetup.css (line 1064) */
+
+/* end of edit/setting page rtl*/
+
+
+
+/* companies page rtl*/
+	.uploadIcon {
+		background-position: 167px -66px;
+	} /*ar_pricing.css (line 133)*/
+
+	.userIcon {
+		background-position: 167px -195px;
+	} /* ar_pricing.css (line 148) */
+
+	.brandIcon {
+		background-position: 167px -234px;
+	} /* ar_pricing.css (line 152) */
+
+	.feature04 span.statusIcon {
+		padding: 0 35px 10px 0 !important;
+	} /* common.css (line 80) */
+
+	.windows .choosePlanButton .yellowBtn a, .windows .choosePlanButton .blueBtn a {
+		padding: 4px 52px 5px !important;
+	} /* ar_pricing.css (line 120) */
+/* end of companies page rtl*/
+
+/*end of firefox rtl on windows */

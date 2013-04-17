@@ -1,0 +1,18 @@
+- brand ||= @brand
+%li{:class => "#{cycle('paymentEven', 'paymentOdd')}", :id => "brand_#{brand.id}"}
+  %ul.paymentRow
+    %li.firstCol= brand.name
+    %li.secondCol= brand.company.user.user_name
+    %li.thirdCol= brand.company.name
+    %li.fourthCol= brand.active_services.count
+    %li.fifthCol= brand.pending_services.count
+    %li.sixCol
+      %span.editBrand.brandAction
+        %a{:href => "javascript:void(0);", :onclick => "#{remote_function(:url => edit_company_brand_path(:company_id => @company.id, :id => brand.id), :method => :get, :update => "edit_or_add_brand_#{brand.id}")}"}= t :edit_brand
+      %span.addSubBrand.brandAction
+        %a{:href => "javascript:void(0);", :onclick => "#{remote_function(:url => new_company_brand_path(@company, :brand_id => brand.id), :method => :get, :update => "edit_or_add_brand_#{brand.id}")}"}= t :add_sub_brand
+      %span.delSubBrand.brandAction
+        /= link_to(image_tag("icon-delete.png"), company_brand_path(@company, brand.id), :method => :delete, :confirm => "Are you sure to delete brand #{brand.name} permanently?") unless brand.is_default?
+        - unless brand.is_default?
+          %a{:href => "javascript:void(0);",:onclick => "#{remote_function(:url => company_brand_path(@company, brand.id),:method => :delete, :confirm => "Are you sure to delete brand #{brand.name} permanently?") unless brand.is_default?}"}= t :delete
+  %div{:id => "edit_or_add_brand_#{brand.id}"}

@@ -1,0 +1,1605 @@
+.accSetupWrapper{
+	width: 900px !important;
+	float: left;
+	border: 1px solid #b6bdbf !important;
+	outline: none;
+}
+
+.accSetupGroup{
+	width: 900px;
+	display: block;
+	position: relative;
+}
+
+.contentHeading{
+	background: url(../images/gradSprites.png) repeat-x 0 -337px;
+	box-shadow: inset 0 1px 0 #fff, 0 0 1px #fff inset;
+	border: 1px solid #98acb3;
+	height: 19px;
+	float: left;
+	width: 880px;
+	margin: -1px 0 0 -1px;
+	padding: 9px 10px 12px;
+	cursor: pointer;
+}
+
+.contentHeading:hover{
+	background: #e8eced;
+}
+
+.contentHeading h4{
+	float: left;
+}
+
+.contentHeading h4 a{
+	color: #4b6973;
+	text-shadow: 0 1px 0 #e9eced;
+	font-weight: bold;
+	padding-left: 5px;
+	line-height: 22px;
+	float: left;
+}
+
+span.steps{
+	background: url(../images/gradSprites.png) repeat-x 0 -493px;
+	box-shadow: 0 1px 0 #edf0f0;
+	padding: 3px 7px;
+	border-radius: 10px;
+	font-size: 12px;
+	color: white;
+	font-weight: bold;
+	float: left;
+}
+
+.windows span.steps{
+	padding: 3px 7px 2px;
+}
+
+.contentHeading .greyBtn{
+	float: right;
+	margin: 0 5px;
+	display: block;
+}
+
+.accSetupContent{
+	display: none;
+	float: left;
+	/*
+	padding: 10px 20px 20px 20px;*/
+	padding: 20px;
+	width: 860px;
+}
+
+.active{display: block;}
+.last{border-radius: 0 !important;}
+
+.socialWrap{
+	float: left;
+	margin-bottom: 20px;
+}
+
+.socialWrap .titles h5{
+	margin-bottom: 10px;
+}
+
+#photosShareSetup{
+	margin-bottom: 0;
+}
+
+.servicesBoxInner{
+	background: #fafafa;
+	float: left;
+	border: 1px solid #d4d8d9;
+	width: 860px;
+}
+
+.servicesBoxInner ul, ul.serivicesChild{
+	list-style: none outside none;
+}
+
+.servicesBoxInner li.serviceGroup, ul.serivicesChild li{
+	border-bottom: 1px solid #d4d8d9;
+	display: block;
+	padding: 5px 0 0;
+	float: left;
+	width: 860px;
+}
+
+.servicesBoxInner li.serviceGroup:last-child{
+	border-bottom: none;
+}
+
+.servicesBoxInner li.serviceGroup .servicesHeading{
+	padding: 0 10px 5px;
+	float: left;
+	width: 840px;
+	color: #4b6973;
+}
+
+.servicesHeading .optBtn{
+	margin: 1px 0 0;
+}
+
+.servicesHeading .blueBtn a.smlrBtn, .servicesOption .greenBtn a.smlrBtn, .servicesOption .redBtn a.smlrBtn, 
+.servicesOption .yellowBtn a.smlrBtn, .contentHeading  .greyBtn a.smlrBtn{
+	width: 56px;
+	text-align: center;
+}
+
+.smlServicesIco, .networkIco{
+	background: url(../images/socialIconSml.png) no-repeat 0 0;
+	height: 16px;
+	width: 16px;
+	padding: 0 0 0 30px;
+	margin: 5px 0;
+	line-height: 18px;
+	font-weight: bold;
+}
+
+#twitterService, #twitPrivacy, #modalTweetIco, #twittStream, .twittIco{
+	background-position: 0 0;
+}
+
+#faceBookService, #fbPrivacy, #modalFB, #fbStream, .fbIco{
+	background-position: 0 -23px;
+}
+
+#vimeoService, #vimeoPrivacy, #modalVimeo, #vimeoStream, .vimeoIco{
+	background-position: 0 -46px;
+}
+
+#youtubeService, #youtubePrivacy, #modalYoutube, #youtubeStream, .youtubeIco{
+	background-position: 0 -69px;
+}
+
+#deliciousService, #deliciousPrivacy, #modalDelicious, #deliciousStream, .deliciousIco{
+	background-position: 0 -92px;
+}
+
+#stumbleService, #stumblePrivacy, #modalStumble, #stumbleStream, .stumbleIco{
+	background-position: 0 -115px;
+}
+
+#tumblrService, #tumblrPrivacy, #modalTumblr, #tumblrStream, .tumblrIco{
+	background-position: 0 -138px;
+}
+
+#flickrService, #flickrPrivacy, #modalFlickr, #flickrStream, .flickrIco{
+	background-position: 0 -161px;
+}
+
+#edintityIcon, .edintityIco{
+	background-position: 0 -183px;
+}
+
+ul.serivicesChild{
+	float: left;
+}
+
+ul.serivicesChild li{
+	padding: 5px 10px 5px 40px;
+	width: 810px;
+	float: left;
+	display: block;
+	cursor: pointer;
+}
+
+ul.serivicesChild li:first-child{
+	border-top: 1px solid #d4d8d9;
+}
+
+ul.serivicesChild li:last-child{
+	border-bottom: none;
+}
+
+ul.serivicesChild li:hover{
+	background: #f3f5f5;
+}
+
+ul.serivicesChild li:hover .servicesOption .redBtn{
+	display: block;
+}
+
+.usersID{
+	float: left;
+	line-height: 30px;
+	color: #4b6973;
+	font-weight: bold;
+}
+
+.userSmlPic{
+	float: left;
+	background: #fff;
+	box-shadow: 0 1px 1px #bfbfbf;
+	border: 1px solid #fff;
+	white-space: nowrap;
+	width: 26px;
+	height: 26px;
+	padding: 1px;
+	margin-right: 5px;
+}
+
+.servicesOption{
+	padding: 3px 0 0;
+}
+
+.servicesOption .greenBtn, .servicesOption .yellowBtn{
+	float: right;
+	margin-left: 10px;
+}
+.servicesOption .redBtn{
+	float: left;
+	display: none;
+}
+
+/*#searchFriend, #searchFriendByMail{
+	margin: 15px 0 5px;
+}*/
+#searchFriend{
+	margin: 0 0 15px;
+}
+
+#searchFriendByMail{
+	margin: 0;
+}
+
+.searchInstuction{
+	margin-bottom: 10px;
+	line-height: 20px;
+	float: left;
+	width: 100%;
+}
+
+.searchBox{
+	background: #eff2f3;
+	border: 1px solid #d4d8d9;
+	padding: 5px;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.searchBox .blueBtn{
+	float: left;
+	margin: 1px 0 0 0;
+}
+
+.searchBox .textInput{
+	margin: 0 10px 0 0;
+	padding: 4px 5px;
+}
+
+#searchOnEdintity{
+	width: 400px;
+}
+
+#searchOnEdintity, #searchByMail, #searchByMailPswrd{
+	box-shadow: 0 1px 0 #fff;
+	font-size: 12px;
+	color: #adb3b9;
+}
+#searchOnEdintity:focus, #searchByMail:focus, #searchByMailPswrd:focus{
+	color: #5b6773;
+}
+
+#searchByMail{
+	background: #fff url(../images/uiIcon.png) no-repeat 0 5px;
+	padding: 4px 5px 4px 30px;
+	width: 185px;
+}
+
+#searchByMailPswrd{
+	background: #fff url(../images/uiIcon.png) no-repeat 0 -28px;
+	padding: 4px 5px 4px 28px;
+	width: 144px;
+}
+
+#contactFound{
+	float: left;
+	width: 100%;
+	/*margin: 15px 0;*/
+}
+
+#contactFound h6{
+	border-top: 1px solid #f3f5f6;
+	box-shadow: 0 -1px 0 #dbdfe0;
+	padding-top: 20px;
+}
+
+#contactFound h6 span.addressBook{
+	background: url(../images/uiIcon.png) no-repeat 0 -549px;
+	padding: 1px 30px;
+}
+
+#contactTable{
+	background: #fff;
+	border: 1px solid #d4d8d9;
+	float: left;
+	width: 860px;
+}
+
+#contactTable ul{
+	list-style: none outside none;
+}
+
+#contactTable li.contactContent{
+	cursor: pointer;
+	float: left;
+	border-bottom: 1px solid #e5e5e5;
+	padding: 5px 10px;
+	width: 840px;
+	position: relative;
+}
+#contactTable li span, #contactTable li p{
+	float: left;
+	margin: 0 3px;
+}
+
+#contactTable li.contactHead, #contactTable li.contactFoot, #contactTable li.contactContent:hover{
+	background: url(../images/gradSprites.png) repeat-x 0 -513px;
+	box-shadow: 0 1px 0 #fdfdfd inset, 0 0 0 1px #f0f0f0 inset;
+	float: left;
+	padding: 5px 10px;
+	width: 840px;
+}
+#contactTable li.contactContent:hover .addContactHover, #contactTable li.contactContent:hover .addContactIcon{
+	display: block;
+}
+
+#contactTable li.contactContent:hover .mailIcon{
+	display: none;
+}
+
+#contactTable li.contactHead{
+	border-bottom: 1px solid #d4d8d9;
+}
+
+#contactTable li.contactHead, #contactTable li.contactFoot{
+	padding: 9px 10px 0px;
+	float: left;
+	height: 20px;
+}
+
+.addContactHover{
+	display: none;
+	padding-right: 20px;
+}
+
+
+.mailIcon{
+	background: url(../images/uiIcon.png) no-repeat 0 0;
+	padding: 7px 13px;
+	margin: 0 !important;
+}
+
+.addContactIcon{
+	background: url(../images/uiIcon.png) no-repeat 0 -786px;
+	padding: 7px 13px;
+	position: absolute;
+	right: 8px;
+	top: 6px;
+	display: none;
+}
+
+.showContactInfo{
+	float: left;
+	margin-right: 240px;
+}
+
+.showContactInfo, .contactPagination ul li a, .paymentPagination ul li a{
+	text-shadow: 0 1px 0 #fff;
+	font-weight: normal;
+	font-size: 11px;
+	color: #5b6773;
+}
+
+.contactPagination{}
+
+.contactPagination ul{}
+
+.contactPagination ul li, .paymentPagination ul li{
+	display: inline;
+	float: left;
+	padding: 0;
+	width: auto;
+}
+.contactPagination ul li a, .paymentPagination ul li a{
+	cursor: pointer;
+	padding: 2px 5px;
+}
+
+.contactPagination ul li.pages, .paymentPagination ul li.pages{}
+
+.contactPagination ul li.mark, .contactPagination ul li.pText, .paymentPagination ul li.pText, .paymentPagination ul li.mark{
+	float: right;
+}
+
+.contactPagination ul li.off a, .contactPagination ul li.off:hover a, .paymentPagination ul li.off a,
+.paymentPagination ul li.off:hover a{
+	color: #B8C0C5 !important;
+	border: 1px solid transparent;
+	background: none;
+	padding: 0;
+	margin-left: 5px;
+}
+
+.contactPagination ul li:hover a, .contactPagination ul li.selectedPg a, .paymentPagination ul li:hover a,
+.paymentPagination ul li.selectedPg a{
+	background: #fff;
+	border: 1px solid #a5a6a7;
+	padding: 1px 4px;
+	border-radius: 10px;
+}
+
+.privacyRestrict, .brandGeneralSetup{
+	padding: 10px 15px;
+	float: left;
+	width: 830px;
+	height: 20px;
+	
+}
+
+.privacyRestrict .accntPrivacyGeneral{
+	text-align: left;
+	width: auto;
+}
+
+.privacyRestrict label, .brandGeneralSetup label{
+	font-weight: bold;
+	float: left;
+	line-height: 20px;
+	text-align: right;
+	width: 193px;
+}
+
+.privacyRestrict select, .brandGeneralSetup select{
+	margin-left: 10px;
+	width: 100px;
+	float: left;
+}
+
+.privacySetup{
+	background: #eff2f3;
+	border: 1px solid #D4D8D9;
+	float: left;
+	width: 860px;
+}
+
+.privacySetup ul{
+	list-style: none outside none;
+}
+
+.privacySetup li{
+	border-bottom: 1px solid #D7DADA;
+	display: block;
+	float: left;
+	width: 100%;
+	border-top: 1px solid white;
+}
+
+.privacySetup li.accntSetup{
+	border-bottom: 1px solid #e3e5e5;
+	border-top: none;
+}
+
+.privacySetup li.accntSetup .privacyRestrict{
+	border-bottom: 1px solid #D7DADA;
+	box-shadow: 0 1px 0 #FFF;
+}
+
+.privacySetup li.accntSetup:last-child, .privacySetup li.accntSetup:last-child .privacyHead{
+	border-bottom: none !important;
+	border-top: none !important;
+	box-shadow: none;
+}
+
+.privacySetup li:first-child{
+	border-top: none;
+}
+
+.privacySetup li:last-child{
+	border-bottom: none;
+}
+
+.privacyHead{
+	display: block;
+	float: left;
+	border-bottom: 1px solid #d7dada;
+	box-shadow: 0 1px 0 #FFF;
+	padding: 5px 15px 5px 15px;
+	width: 830px;
+}
+
+.privacyHeadLeft{}
+
+.privacyHeadLeft .userSmlPic{
+	margin-right: 5px;
+	float: left;
+}
+
+.privacyHeadLeft .smlServicesIco{
+	margin: 7px 5px;
+	padding: 0 0 0 25px;
+	width: 380px;
+}
+
+.privacyHeadRight{
+	width: 340px;
+	padding: 5px 0 0;
+}
+
+.mainPrivacyControl{
+	float: left;
+	margin: 4px 10px 0 0;
+	font-size: 12px;
+}
+
+.selectOption{}
+
+.selectOption select{
+	width: 100px;
+}
+
+/**/
+.privacyContent{
+	float: left;
+	padding: 20px;
+}
+
+.privacyContent ul{}
+
+.privacyContent li{
+	border: none;
+}
+
+.privacyContent li label{
+	line-height: 20px;
+	text-align: right;
+	float: left;
+	width: 250px;
+	margin: 0 10px 15px;
+}
+
+.privacyContent li select{
+	float: left;
+	width: 100px;
+}
+
+.lockIcon a{
+	background: url(../images/uiIcon.png) no-repeat 0 -819px;
+	float: left;
+	padding: 10px 12px;
+	text-indent: -1999px;
+}
+
+.lockIconOpen a{
+	background: url(../images/uiIcon.png) no-repeat 3px -858px;
+	float: left;
+	padding: 2px 14px;
+	text-indent: -1999px;
+	
+}
+
+#personalPrivacyBtn, #personalblockedUser{
+	margin: 15px 0 0;
+}
+
+#personalblockedUser{
+	margin-left: 15px;
+}
+
+#personaEditPrivacyUser{
+	margin: 15px 0 0 15px;
+}
+
+.personalPrivacyGroup li.blocked{
+	background: #E2E6E8 !important;
+	float: left;
+	padding: 5px 10px;
+	margin: 3px 0;
+	border-radius: 4px;
+	width: 820px;
+}
+
+.personalPrivacyGroup li.blocked a.userBlocked, .personalPrivacyGroup li.addedUser a.userBlocked, 
+.personalPrivacyGroup li.addUserPick div ul.addUserResultShow li a.userBlocked{
+	color: #77898C;
+	font-weight: bold;
+	line-height: 24px;
+}
+
+.personalPrivacyGroup li.addedUser{
+	border-bottom: 1px solid #E2E6E8 !important;
+	border-right: 1px solid #E2E6E8 !important;
+	border-left: 1px solid #E2E6E8 !important;
+	padding: 5px 5px;
+	float: left;
+}
+
+.personalPrivacyGroup li.first{
+	border-top: 1px solid #E2E6E8 !important;
+	border-right: 1px solid #E2E6E8 !important;
+	border-left: 1px solid #E2E6E8 !important;
+	margin-top: 10px;
+}
+.personalPrivacyGroup li.last{
+	border-bottom: 1px solid #E2E6E8 !important;
+	border-right: 1px solid #E2E6E8 !important;
+	border-left: 1px solid #E2E6E8 !important;
+}
+
+#personalEditPG li.first{
+	margin-top: 0px;
+}
+
+
+.unblock{
+	margin: 3px 0 0;
+}
+
+.unblock div a{
+	width: 70px;
+	text-align: center;
+}
+
+.unblock .yellowBtn{
+	margin-right: 10px;
+}
+
+#accntInformation{
+	width: 648px;
+}
+
+.personalPrivacyGroup{
+	padding: 10px;
+	width: 840px;
+	margin-top: 15px;
+}
+
+.personalPrivacyGroup li{
+	float: left;
+	padding: 10px;
+	border: none !important;
+	width: 830px;
+	position: relative;
+}
+
+.personalPrivacyGroup li label{
+	float: left;
+	text-align: right;
+	width: 200px;
+	margin-right: 15px;
+	line-height: 25px;
+}
+
+.personalPrivacyGroup li input{
+	padding: 4px 5px 4px;
+	width: 350px;
+}
+
+.personalPrivacyGroup li .streamLoad{
+	position: absolute;
+	top: 9px;
+	right: 267px;
+}
+
+.personalPrivacyGroup li.savePrivacy{
+	width: 829px;
+	margin-bottom: 10px;
+	border: none !important;
+	padding: 20px 5px 10px;
+}
+
+.personalPrivacyGroup li.savePrivacy div{
+	margin: 0 0 0 10px;
+}
+
+.personalPrivacyGroup li.savePrivacy div a{
+	width: 70px;
+	text-align: center;
+}
+
+.personalPrivacyGroup li.addUserPick div{}
+
+.personalPrivacyGroup li.addUserPick div ul.addUserResultShow{
+	margin-left: 203px;
+}
+
+.personalPrivacyGroup li.addUserPick div ul.addUserResultShow li{
+	padding: 5px 0 5px 10px;
+}
+
+.personalPrivacyGroup li.addUserPick div ul.addUserResultShow li input.checkUser{
+	width: 10px;
+	margin: 11px 0 0;
+}
+
+.personalPrivacyGroup li.addUserPick div ul.addUserResultShow li .userSmlPic{
+	margin-left: 10px;
+}
+
+.personalPrivacyGroup li.addUserPick div ul.addUserResultShow li a.userBlocked{}
+
+
+#personalEditPGDetail{
+	background: white;
+	float: left;
+	padding: 10px;
+	width: 820px;
+	border-left: 1px solid #E2E6E8;
+	border-right: 1px solid #E2E6E8;
+	border-bottom: 1px solid #E2E6E8;
+}
+
+.editDetailPG{}
+
+.editDetailPG ul{}
+
+.editDetailPG li{
+	width: 815px !important;
+}
+
+
+.settingInfo li{
+	padding: 0 0 30px;
+	display: block;
+	float: left;
+}
+
+.settingInfo li:last-child{
+	padding-bottom: 0;
+}
+
+.settingInfo li#slider{
+	background: #f3f5f5;
+}
+
+#usageSlider{}
+
+.narrow{
+	width: 628px !important;
+}
+
+.narrow li{
+	float: left;
+	width: 598px;
+	border-bottom: 1px solid #E3E5E5;
+	padding: 10px 15px !important;
+}
+
+.narrow li:last-child{
+	border-bottom: none;
+}
+
+.narrow li p{
+	font-weight: bold;
+	float: left;
+}
+
+.narrow li span{
+	text-align: right;
+}
+
+#tablePricingOption a{
+/*	padding: 5px 20px !important;*/
+}
+
+.windows #tablePricingOption a{
+	padding: 4px 20px 5px !important;
+}
+
+#personalInfoSetting .narrow li{
+	padding: 0 !important;
+	width: 628px;
+}
+
+#personalInfoSetting .narrow li.lessPadding{
+	float: left;
+}
+
+#personalInfoSetting .narrow li.morePadding{}
+
+.settingListItemLabel{
+	 padding: 0 0 10px;
+}
+
+.settingPersonalInner{
+	padding: 10px 0 0;
+}
+
+.settingListItemLabel, .formChangeSetting label, #customizePersonalPswrd label{
+	text-align: right;
+	width: 200px;
+	margin-right: 10px;
+	font-weight: bold;
+	line-height: 20px;
+}
+
+.settingListItemLabel strong, .changePassword strong{
+	color: red;
+	font-weight: bold;
+}
+
+.settingListItemContent{
+	font-weight: bold;
+	text-align: left;
+	line-height: 20px;
+	float: left;
+}
+
+.uiEditIcon{
+	background: url(../images/uiIcon.png) no-repeat 0 -1023px;
+	padding: 0 13px;
+	float: left;
+	text-indent: -1999px;
+	width: 16px;
+	height: 16px;
+}
+
+.personalSettingPrivacyOpt, .personalURL{
+	margin: 0 0 10px 210px;
+	float: left;
+}
+
+.personalURL{
+	float: left;
+}
+
+.personalSettingPrivacyOpt label{
+	font-weight: normal;
+}
+
+.personalSettingPrivacyOpt select{
+	width: 120px;
+}
+
+/* Form Change Name or Username */
+.formChangeSetting{
+	background: #F3F5F5;
+	border-top: 1px solid #fff;
+	box-shadow: 0 -1px 0 #DADCDC;
+	padding: 15px 0;
+	float: left;
+	width: 628px;
+	position: relative;
+}
+
+#emailEdit{
+	
+}
+
+.formChangeSetting label{
+	float: left;
+	line-height: 33px;
+	
+}
+
+.formChangeSetting input.textInput{
+	width: 240px;
+}
+
+.formChangeSetting .formError{
+	word-wrap: normal;
+	white-space: normal;
+	top: 16px;
+	left: 475px;
+	width: 230px;
+}
+
+#customizePersonalPswrd li.changePassword{
+	padding: 10px !important;
+	float: left;
+	position: relative;
+	width: 608px;
+}
+
+#customizePersonalPswrd input{
+	float: left;
+	width: 380px;
+}
+
+
+#customizePersonalPswrd label{
+	line-height: 28px;
+}
+
+#customizePersonalPswrd label#newPswrd{
+	line-height: 16px;
+}
+
+#customizePersonalPswrd li.changePassword label span{
+	font-weight: normal;
+	float: right;
+	font-size: 11px;
+	text-align: right;
+}
+
+#customizePersonalPswrd{
+	float: left;
+	position: relative;
+}
+
+#customizePersonalPswrd .formError{
+	top: 10px;
+	left: 625px;
+	display: block;
+	white-space: normal;
+}
+
+#customizePersonalPswrd li.changePassword .errorCheckIco{
+	top: 15px;
+	right: 18px;
+}
+
+#customizePersonalPswrd li.changePassword .correctCheckIco{
+	top: 15px;
+	right: 18px;
+}
+
+
+/* Correct -unCorrect Indicator icon */
+.checkIco{
+	background: url(../images/uiIcon.png) no-repeat 0 0;
+	height: 26px;
+	width: 30px;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.errorCheckIco{
+	background-position: 0 -967px;
+}
+
+.correctCheckIco{
+	background-position: 0 -909px;
+}
+
+.changeName{
+	right: 170px;
+	top: 21px;
+}
+/* Correct -unCorrect Indicator icon */
+
+/* Loading Indicator */
+
+.loading{
+	position: absolute;
+	right: 170px;
+	top: 21px;
+	color: #fff;
+	padding: 10px 8px;
+	background: url(../images/loadinfo.gif) no-repeat 0 3px;
+	display: block;
+}
+
+.savePersonalChanges{
+	float: left;
+	width: 630px;
+	margin-top: 15px;	
+}
+
+.savePersonalChanges .blueBtn{
+	float: right;
+}
+
+#personalInfoSetting{
+	width: 630px;
+	margin-right: 10px;
+}
+
+.accSetContentright{
+	margin-top: 35px;
+	width: 210px;
+}
+
+.accSetContentright .pricingBox{
+	margin: 0;
+	float: right;
+}
+
+.accSetContentright .servicesBoxInner{
+	width: auto !important;
+	padding: 10px;
+}
+
+#customizePersonalPic{
+	margin-bottom: 20px;
+	float: right;
+}
+
+.profilePicBig{
+}
+
+span.userPicBig{
+	float: left;
+	background: white;
+	box-shadow: 0 1px 2px #bfbfbf;
+	border: 1px solid #CED6D9;
+	white-space: nowrap;
+	width: 177px;
+	height: 150px;
+	padding: 5px;
+}
+
+img.userPicBigest{
+	width: 177px;
+	height: 150px;
+}
+
+#customizePersonalPic #changePicButton{
+	margin: 20px 0 10px 35px;
+	float: left;
+}
+
+#customizePersonalPic #changePicButton .blueBtn{
+	width: 130px;
+}
+
+#customizePersonalPic #changePicButton .blueBtn a{
+	 padding: 6px 20px !important;
+}
+
+#deleteAccount, #personalNotification{
+	background: #eef1f2;
+	border: 1px solid #CED6D9;
+	padding: 10px;
+	float: left;
+	width: 187px;
+}
+
+#deleteAccount .redBtn{
+	margin-left: 30px;
+}
+
+#deleteCompany, #deletePersonal{
+	padding: 10px 15px;
+}
+
+#deleteCompany p, #deletePersonal p{
+	float: left;
+	line-height: 64px;
+	padding: 0 15px;
+}
+
+#deleteCompany .modalConfirmAct .redBtn, #deletePersonal .modalConfirmAct .redBtn{
+	float: left;
+	margin-right: 10px;
+}
+ 
+
+#personalNotification{
+	width: 840px;
+	/*
+	margin: 10px 0;*/
+}
+
+#personalNotification li{
+	display: block;
+	padding: 6px 0;
+	line-height: 11px;
+}
+
+#personalNotification li label{
+	margin-left: 10px;
+}
+
+#personalNotification li input.notif{
+	float: left;
+}
+
+.paymentHistory{
+	float: left;
+	border: 1px solid #d4d8d9;
+}
+
+.paymentHistory ul.paymentGroup{}
+
+.paymentHistory li, #affiliatesBrandList li{
+	display: block;
+	width: 840px;
+	padding: 0 10px;
+	float: left;	
+}
+
+.paymentHistory li.paymentHead, .paymentHistory li.paymentFoot{
+	background: #f1f3f3 url(../images/gradSprites.png) repeat-x 0 -513px;
+	box-shadow: 0 1px 0 #fdfdfd inset, 0 0 0 1px #f0f0f0 inset;
+	float: left;
+}
+
+.paymentHistory li.paymentHead{
+	border-bottom: 1px solid #e8e8e8;
+}
+
+.paymentHistory li.paymentEven, #affiliatesBrandList li.affiliatesEven{
+	background: #f7f8f8;
+}
+
+.paymentHistory li.paymentOdd, #affiliatesBrandList li.affiliatesOdd{
+	background: #fff;
+}
+
+.paymentHistory li.paymentFoot{
+	border-top: 1px solid #e8e8e8;
+	height: 25px;
+	padding: 4px 10px 0;
+	float: left;
+	width: 840px;
+} 
+
+.paymentHistory li ul.paymentRow li, #affiliatesBrandList li ul.affiliatesBrandRow li{
+	border: none;
+	float: left;
+	display: inline !important;
+	padding: 7px 10px;
+	text-align: left;
+	border-right: 1px solid #fff;
+	font-weight: bold;
+}
+
+.paymentHistory li ul.paymentRow li:last-child, #affiliatesBrandList li ul.affiliatesBrandRow li:last-child{
+	border-right: none;
+}
+
+.paymentHistory li ul.paymentRow li.firstCol{
+	width: 160px;
+}
+.paymentHistory li ul.paymentRow li.secondCol{
+	width: 135px;
+}
+.paymentHistory li ul.paymentRow li.thirdCol{
+	width: 130px;
+}
+.paymentHistory li ul.paymentRow li.fourthCol{
+	width: 80px;
+}
+.paymentHistory li ul.paymentRow li.fifthCol{
+	width: 120px;
+}
+.paymentHistory li ul.paymentRow li.sixCol{
+	width: 90px;
+}
+
+#brandListing li ul.paymentRow li.fourthCol{
+	width: 100px;
+}
+
+#brandListing li ul.paymentRow li.fifthCol{
+	width: 100px;
+}
+
+#brandListing li:last-child, #brandListing li.paymentOdd:last-child,
+#brandListing li.paymentEven:last-child{
+	border-radius: 0 0 4px 4px;
+}
+
+#brandListing li ul.paymentRow li.sixCol span.brandAction a{
+	background: url(../images/uiIcon.png) no-repeat 0 0;
+	height: 3px;
+	width: 13px;
+	float: left;
+	text-indent: -1999px;
+	padding: 5px;
+}
+
+#brandListing li ul.paymentRow li.sixCol span.editBrand a{
+	background-position: 0 -1092px;
+	margin-right: 10px;
+}
+
+#brandListing li ul.paymentRow li.sixCol span.editBrand a:hover{
+	background-position: 0 -1182px;
+}
+
+#brandListing li ul.paymentRow li.sixCol span.addSubBrand a{
+	background-position: 0 -1123px;
+	margin-right: 10px;
+}
+
+#brandListing li ul.paymentRow li.sixCol span.addSubBrand a:hover{
+	background-position: 0 -1213px;
+}
+
+#brandListing li ul.paymentRow li.sixCol span.delSubBrand a{
+	background-position: 0 -1062px;
+}
+
+#brandListing li ul.paymentRow li.sixCol span.delSubBrand a:hover{
+	background-position: 0 -1152px;
+}
+
+#affiliatesBrandList li{
+	padding: 0;
+	width: 100%;
+}
+
+#affiliatesBrandList li:first-child{
+	border-radius: 4px 4px 0 0;
+}
+
+#affiliatesBrandList li:last-child{
+	border-radius: 0 0 4px 4px;
+}
+
+#affiliatesBrandList li ul.affiliatesBrandRow{
+	padding: 0 10px;
+	float: left;
+	width: 840px;
+}
+
+#affiliatesBrandList li ul.affiliatesBrandRow li{
+	border-right: none;
+	padding: 5px 0;
+	line-height: 28px;
+}
+
+#affiliatesBrandList li ul.affiliatesBrandRow li.firstCol{
+	width: 202px;
+}
+
+#affiliatesBrandList li ul.affiliatesBrandRow li.secondCol{
+	width: 270px;
+}
+
+#affiliatesBrandList li ul.affiliatesBrandRow li.thirdCol{
+	width: 190px;
+}
+
+#affiliatesBrandList li ul.affiliatesBrandRow li.fourthCol{
+	width: 178px;
+	padding: 7px 0;
+}
+
+#affiliatesBrandList li ul.affiliatesBrandRow li.fourthCol .greyBtn{
+	float: right;
+}
+
+#affiliatesBrandList li ul.affiliatesBrandRow li.fourthCol .redBtn{
+	float: right;
+	margin-left: 10px;
+}
+
+#affiliatesBrandList li ul.affiliatesBrandRow li.fourthCol .greyBtn a,
+#affiliatesBrandList li ul.affiliatesBrandRow li.fourthCol .redBtn a{
+	line-height: 14px;
+}
+
+.showListingPayment{
+	font-size: 11px;
+	float: left;
+	margin-top: 2px;
+}
+
+.showListingPayment label{
+	float: left;
+	margin-right: 10px;
+	line-height: 20px;
+}
+
+.showListingPayment input.listPaymentSetting{
+	padding: 1px 2px;
+	width: 30px;
+	margin-right: 10px;
+	font-size: 11px;
+}
+
+.showListingPayment span{
+	line-height: 20px;
+}
+
+.showTotalPayment{
+	margin-top: 2px;
+	font-weight: bold;
+	line-height: 20px;
+	float: left;
+	margin-left: 170px;
+	font-size: 11px;
+}
+
+.paymentPagination{
+	margin-top: 3px;
+}
+
+#brandsSetting h5{
+	float: left;
+}
+
+#brandsSetting .blueBtn{
+	margin-bottom: 10px;
+}
+
+#brandsSetting .blueBtn a{
+	padding: 4px 20px !important;
+}
+
+#brandsSetting #addNewBrand a{
+	padding: 4px 10px 4px 0 !important;
+}
+
+.addPlusIcon{
+	background: url(../images/uiIcon.png) no-repeat 0 -1242px;
+	padding: 0 5px 0 30px;
+	float: left;
+}
+
+.brandForm{
+	padding: 10px;
+	float: left;
+	background: #F3F5F5;
+	width: 820px;
+}
+
+.brandForm li{
+	float: left;
+	padding: 10px 0;
+}
+
+.brandForm li label, .brandForm li input, .brandForm li textarea{
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.brandForm li label{
+	float: left;
+	text-align: right;
+	width: 80px;
+	margin-right: 10px;
+	line-height: 24px;
+}
+
+.brandForm li input{
+	width: 400px;
+	padding: 5px 7px;
+}
+
+.brandForm li textarea{
+	width: 395px;
+	height: 80px;
+	padding: 10px;
+}
+
+.brandForm li.addBrandConfirmAct{
+	float: left;
+	padding-left: 365px;
+	width: 464px;
+}
+
+#addBrandForm li.addBrandConfirmAct{
+	padding-left: 330px;	
+}
+
+#addBrandForm li.addBrandConfirmAct .blueBtn a{
+	padding: 4px 10px 4px 0 !important;
+}
+
+.brandForm li.addBrandConfirmAct .blueBtn{
+	float: left;
+	margin: 0 10px 0 0 !important;
+}
+.brandForm li.addBrandConfirmAct .yellowBtn{
+	margin: 0;
+}
+
+#addBrandForm{
+	background: white;
+	margin-bottom: 20px;
+	width: 840px;
+	border: 1px solid #d4d8d9;
+}
+
+#affiliatesBrand .titles h5{
+	float: left;
+}
+
+.editRole{
+	width: 840px;
+	padding: 10px;
+	border-bottom: 1px solid #DADCDC;
+}
+
+.roleUserAs{
+	margin-left: 197px;
+	margin-right: 10px;
+}
+
+.roleForBrands{
+	margin-right: 10px;
+}
+
+#inviteAffiliatesForm{
+	margin-top: 25px;
+}
+
+#affiliatesSearchContent{
+	background: #fff;
+}
+
+.affiliatesTopContent{
+	padding: 10px;
+	float: left;
+}
+
+.affiliatesTopContent .titles h6, .affiliatesInfo{
+	margin-bottom: 10px;
+	color: #5b6773;
+	text-shadow: none;
+}
+
+.affiliatesInfo{
+	margin-bottom: 15px;
+	float: left;
+}
+
+#inviteWarning{
+	padding: 10px;
+	color: #3B4753;
+	line-height: 20px;
+	float: left;
+}
+
+.affiliatesBottomContent{
+	width: 100%;
+	margin-top: 15px;
+	float: left;
+}
+
+.affiliatesSearchBmail, .searchOnEdnty{
+	float: left;
+	width: 430px;
+}
+.affiliatesSearchBmail h6.head, .searchOnEdnty h6.head{
+	float: left;
+	background: #F2F2F2;
+	border-top: 1px solid #D4D8D9;
+	border-bottom: 1px solid #D4D8D9;
+	width: 410px;
+	padding: 10px;
+	color: #4b6973;
+	text-shadow: 0 1px 0 #fff;
+}
+
+.SBE-Affiliates, .SOE-affiliates{
+	float: left;
+	padding: 10px;
+}
+
+.SBE-Affiliates li{
+	display: block;
+	float: left;
+	padding: 10px 0;
+}
+
+.SBE-Affiliates li label{
+	float: left;
+	text-align: right;
+	width: 90px;
+	line-height: 26px;
+}
+
+ .SOE-affiliates input{
+	padding: 4px 5px !important;
+	margin: 0 0 0 10px !important;
+	float: left !important;
+	width: 142px;
+}
+
+.SBE-Affiliates li input{
+	width: 230px;
+}
+
+.SBE-Affiliates li input.email, .SBE-Affiliates li input.ePassword{
+	background-image: url(../images/uiIcon.png) !important; 
+	background-color: #fff !important;
+	background-repeat: no-repeat !important;
+}
+
+.SBE-Affiliates li input.email{
+	background-position: 0 5px !important;
+	padding: 4px 5px 4px 30px;
+}
+
+.SBE-Affiliates li input.ePassword{
+	background-position: 0 -28px !important;
+	padding: 4px 5px 4px 28px;
+}
+
+.SBE-Affiliates li .selectEmailType{
+	float: left;
+	width: 140px
+}
+
+.SBE-Affiliates li .selectEmailType label{
+	float: right;
+	width: auto;
+}
+
+.SBE-Affiliates li .selectEmailType select{
+	float: left;
+	margin-left: 10px;
+	width: 100px;
+}
+
+.SBE-Affiliates li .blueBtn{
+	float: left;
+	margin-left: 10px;
+	margin-top: 2px;
+}
+
+.SBE-Affiliates li .blueBtn a, .SOE-affiliates .blueBtn a.smlrBtn{
+	padding: 4px 30px !important;
+	width: 40px;
+	text-align: center;
+}
+
+.SOE-affiliates h6{
+	margin: 10px 0 34px;
+	float: left;
+	width: 100%;
+	color: #4b6973;
+}
+
+.SOE-affiliates input{
+	margin: 0 !important;
+	width: 265px;
+}
+
+.SOE-affiliates .blueBtn{
+	margin-top: 1px;
+	float: left;
+	margin-left: 10px;
+	margin-top: 2px;
+}
+
+.SOE-affiliates p.smallExmaple{
+	float: left;
+	width: 100%;
+	margin-top: 5px;
+	font-size: 11px;
+	font-style: italic;
+	color: #828282;
+}
+
+#currentPlan, #planFeatures{
+	background: #dde3e4;
+	width: 860px;
+}
+
+#currentPlan{
+	width: 840px;
+}
+
+.infoDesc{
+	color: #63808a;
+	font-size: 14px;
+	font-weight: bold;
+	text-shadow: 0 1px 0 #fff;
+	padding: 7px 10px;
+	float: left;
+}
+
+.blueBar{
+	background: url(../images/gradSprites.png) repeat-x 0 -102px;
+	color: #fff;
+	border: 1px solid #175C73;
+	text-shadow: 0 1px 0 #0E4E68;
+	box-shadow: 0 1px 0 #26bad6 inset, 0 0 1px #146b9d inset;
+	border-radius: 0 4px 4px 0;
+	padding: 7px 30px;
+	font-weight: bold;
+}
+
+#othersPlanOption{
+	width: 666px;
+	margin: 0 auto;
+}
+
+#othersPlanOption .choosePlanButton .blueBtn a{
+	width: 130px;
+}
+
+.windows #othersPlanOption .choosePlanButton .blueBtn a{
+	width: 133px;
+	padding: 4px 20px 5px !important;
+}
+
+

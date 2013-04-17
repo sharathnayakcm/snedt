@@ -1,0 +1,57 @@
+.admin_dashboard
+  .columns
+    .width_28
+      .resource_panel
+        - rounded_box_for( |
+            nil, |
+            :header => {:text => "DashBoard", :level => 4, :color => "green"}, |
+            :footer => { :color => "chrome"}, |
+            :group_name => "admin_dashboard_main" |
+          ) do |rounded_box| |
+          #stats_div
+            .float_left
+              .dashboard_left_panel
+                .db_header
+                  .db_header_left.float_left== User
+                  .db_header_right.float_right= link_to image_tag("/images_1/arrow-down.png"), "javascript:void(0)", :onclick => "toggle_dashboard_panel('user_report')"
+                  .clear
+                  #user_report.db_content
+                    %div= link_to_remote_with_loader "Signup by Individual", :url => load_data_admin_dashboard_path(current_user, :type => "individual_user_signup")
+                    %div= link_to_remote_with_loader "Signup by Company", :url => load_data_admin_dashboard_path(current_user, :type => "company_user_signup")
+                    %div= link_to_remote_with_loader "Signup by Country", :url => load_data_admin_dashboard_path(current_user, :type => "country_user_signup")
+                .db_header
+                  .db_header_left.float_left== Usage
+                  .db_header_right.float_right= link_to image_tag("/images_1/arrow-down.png"), "javascript:void(0)", :onclick => "toggle_dashboard_panel('usage_report')"
+                  .clear
+                  #usage_report.db_content{:style => "display:none;"}
+                    %div= link_to_remote_with_loader "By Posting Method", :url => load_data_admin_dashboard_path(current_user, :type => "post_method_usage")
+                    %div= link_to_remote_with_loader "By Individual", :url => load_data_admin_dashboard_path(current_user, :type => "individual_user_usage")
+                    %div= link_to_remote_with_loader "By Company", :url => load_data_admin_dashboard_path(current_user, :type => "company_user_usage")
+                .db_header
+                  .db_header_left.float_left== Service
+                  .db_header_right.float_right= link_to image_tag("/images_1/arrow-down.png"), "javascript:void(0)", :onclick => "toggle_dashboard_panel('service_report')"
+                  .clear
+                  #service_report.db_content{:style => "display:none;"}
+                    %div= link_to_remote_with_loader "By Individual", :url => load_data_admin_dashboard_path(current_user, :type => "individual_user_service")
+                    %div= link_to_remote_with_loader "By Company", :url => load_data_admin_dashboard_path(current_user, :type => "company_user_service")
+                .db_header
+                  .db_header_left.float_left== Conversion
+                  .db_header_right.float_right= link_to image_tag("/images_1/arrow-down.png"), "javascript:void(0)", :onclick => "toggle_dashboard_panel('conversion_report')"
+                  .clear
+                  #conversion_report.db_content{:style => "display:none;"}
+                    %div= link_to_remote_with_loader "Individual", :url => load_data_admin_dashboard_path(current_user, :type => "individual_upgrade")
+                    %div= link_to_remote_with_loader "Company", :url => load_data_admin_dashboard_path(current_user, :type => "company_upgrade")
+                    %div= link_to_remote_with_loader "Revenue Report", :url => load_data_admin_dashboard_path(current_user, :type => "revenue_report")
+            .float_right
+              #chart_div
+                /= render :partial => "individual_signup_stats"
+                = render :partial => "table_view"
+          .clear
+
+
+= update_rounded_box_actions( |
+    [ |
+      link_to("Home", admin_dashboard_index_path(current_user), :class => "button") |
+    ], |
+    :group_name => 'admin_dashboard_main' |
+  ) |

@@ -1,0 +1,29 @@
+-form_for(:user_session, {:url => { :controller => "user_sessions", :action => "create"}, :method => :post})  do |f|
+  .login_fileds
+    .email_entry_div
+      .email_text
+        =t :email
+      .email_field
+        =f.text_field :email, :size => "15", :value => params[:email] || "#{t :email}", :tabindex => "1", :class => "email_input",:onfocus => "if(!this._haschanged){this.value=''};this._haschanged=true;", :style => "padding-right:#{session[:locale] == 'arabic' ? '5px;' : '0px;'}"
+      .clear
+    .password_entry_div
+      .password_text
+        =t :password
+      .password_field
+        =f.password_field :password, :size => "14", :tabindex => "2", :value => "#{t :password}",:onfocus => "if(!this._haschanged){this.value=''};this._haschanged=true;", :class => "password_input signout_password", :style => "padding-right:#{session[:locale] == 'arabic' ? '5px;' : '0px;'}"
+      .clear
+  .forgot_pwd_div
+    .check_box_button.remember_div.float_left
+      .float_left
+        = check_box_tag "remember_me", :class=> "check_box_button"
+      .remember_me
+        =t :remember
+    .forgot_password.float_right
+      = link_to "#{t :forgot}", forgot_password_path
+    .clear
+  .clear
+  .sign_in.float_right
+    =submit_tag "#{t :sign_in}", :class => "button"
+
+    .clear
+.clear

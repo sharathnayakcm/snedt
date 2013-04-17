@@ -1,0 +1,29 @@
+- if stream.assets.length > 0
+  - unless stream.assets[0].asset.url == "/assets/original/missing.png"
+    %a.attacmentImg{:href => "#{stream.assets[0].asset.url.gsub('/s3.','/s3-eu-west-1.')}", :rel => "example_group", :title => "", :target => "_blank"}
+      %img{:alt => "", :src => "#{stream.assets[0].asset.url.gsub('/s3.','/s3-eu-west-1.')}", :style => "width: 166px !important; height:120px !important;"}
+    .attactmentDesc
+      = stream.flickr_photo_title
+    .attachmentSourceDesc
+      = stream.text
+  - unless stream.assets[0].video.content_type.blank?
+    .attactmentDesc.attactmentDescFull
+      = stream.flickr_photo_title
+      &nbsp;
+    .attacmentImg.attchmntFull{:href => "javascript:void(0);"}
+      %embed{:id => "video_stream_#{stream.id}", :onmousedown => "if($j(this).attr('class') != 'played'){$j(this).addClass('played');#{remote_function(:url => {:controller => 'streams', :action => :add_view_count, :id => stream.id})}}", :autoplay => "false", :wmode => "opaque", :flashvars => "file=https://s3-eu-west-1.amazonaws.com/edintity/uploads/videos/#{stream.assets[0].id}/originals.flv",:height => "305",:name => "movie_player",:quality => "high",:src => "/player.swf?file=https://s3-eu-west-1.amazonaws.com/edintity/uploads/videos/#{stream.assets[0].id}/originals.flv",:type => "application/x-shockwave-flash",:width => "400", :height => "325", :allowscriptaccess=>"always", :allowfullscreen=>"true", :skin => "/stormtrooper.zip"}
+    .attactmentDesc.attactmentDescFull
+      = stream.text
+- elsif stream.service_id == 7
+  %a.attacmentImg{:href => "#{stream.stream_media_url}", :rel => "example_group", :title => "", :target => "_blank"}
+    %img{:alt => "", :src => "#{stream.stream_media_url}", :style => "width: 166px; height:120px;"}
+    .attactmentDesc
+    .attachmentSourceDesc
+      = stream.text
+- elsif stream.stream_media_url && stream.stream_media_url != "" && (stream.service_id != 2 && stream.service_id != 10)
+  %a.attacmentImg{:href => "#{stream.stream_media_url}", :rel => "example_group", :title => "", :target => "_blank"}
+    %img{:alt => "", :src => "#{stream.stream_media_url}", :style => "width: 166px; height:120px;"}
+    .attactmentDesc
+    .attachmentSourceDesc
+      = stream.text
+

@@ -1,0 +1,18 @@
+#addBrandForm1.brandForm.brandFormPopup.cornerAll{:style => "display:block;width:425px"}
+  - form_remote_for(@brand, :url => company_brands_path(:company_id => @company.id, :scope => "home", :from => "add"), :method => :post) do |f|
+    = hidden_field_tag :brand_id, @parent_brand.id
+    %ul
+      %li
+        = f.label "#{t :brand_name}"
+        = f.text_field :name
+      %li
+        = f.label "#{t :brand_url}"
+        = f.text_field :url
+      %li
+        = f.label "#{t :about}"
+        = f.text_area :description
+      %li.addBrandConfirmAct.addBrandBtns{:style => "padding-left: 270px;"}
+        .blueBtn
+          = f.submit "#{t :add_brand}",:class => "smlrBtn"
+        .yellowBtn
+          = link_to_close_redbox("#{t :cancel}", :class => "smlrBtn")

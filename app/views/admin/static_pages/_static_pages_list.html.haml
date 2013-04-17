@@ -1,0 +1,9 @@
+- static_pages ||= @static_pages
+- @static_pages_table.render static_pages do |table|
+  - static_pages.each do |static_page|
+    - table.tr :id => "static_page_#{static_page.id}" do
+      -table.td {static_page.title}
+      -table.td(:action, :id => "action_#{static_page.id}") do
+        = link_to("Preview", admin_static_page_path(current_user, :id => static_page.id), {:class => "icon", :title => "Preview static page"} )
+        = link_to("Edit", edit_admin_static_page_path(current_user, static_page), {:class => "icon", :title => "Edit static page"} )
+        = link_to_remote("Delete", :url => admin_static_page_path(current_user, :id => static_page.id), :method => :delete, :confirm => "Are you sure want to delete this static page?", :html => {:class => "icon", :title => "Delete static page"} )

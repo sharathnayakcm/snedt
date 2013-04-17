@@ -1,0 +1,110 @@
+!!! 1.1
+%html{html_attrs}
+  %head
+    %meta{:charset => 'UTF-8', :content => 'text/html', :http_equiv => 'content-type'}
+    %title= "edintity"
+    = render :partial => 'layouts/site_javascripts'
+    = FastPass.script(GETSATISFACTION_CONSUMER_KEY, GETSATISFACTION_CONSUMER_SECRET, current_user.email, current_user.user_name, current_user.id) unless current_user.blank?
+    = render :partial => 'layouts/site_stylesheets'
+    - if session[:locale] == "arabic"
+      /[if IE 7]
+        <link href="/stylesheets/arabic/ar_ie7.css" rel="stylesheet" type="text/css" />
+        <link href="/stylesheets/arabic/ie7_rtl.css" rel="stylesheet" type="text/css" />
+      /[if IE 8]
+        <link href="/stylesheets/arabic/ar_ie8.css" rel="stylesheet" type="text/css" />
+        <link href="/stylesheets/arabic/ie8_rtl.css" rel="stylesheet" type="text/css" />
+    - else
+      /[if IE 7]
+        <link href="/stylesheets/ie7.css" rel="stylesheet" type="text/css" />
+        <link href="/stylesheets/ie7_ltr.css" rel="stylesheet" type="text/css" />
+      /[if IE 8]
+        <link href="/stylesheets/ie8.css" rel="stylesheet" type="text/css" />
+    - if RAILS_ENV == "production"
+      / start Mixpanel
+      :javascript
+        var mpq=[];mpq.push(["init","e0982de1ce2bea864282b86f1a268ee4"]);(function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+"//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push([f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links","track_forms","register","register_once","identify","name_tag","set_config"];for(c=0;c<d.length;c++){mpq[d[c]]=e(d[c])}})();
+      / end Mixpanel
+      %meta{:content => "lvR_ahJIF-o_TZIFTYwqKptXR6Lk-AvocCh1ORgu4i4", :name => "google-site-verification"}
+      %meta{:content => "te2fm00837hjd-l4hcmy1169qyrfi81jydit1r98cmwq57iurg50xr4p2fnmbxrdab9jhrc3s1o3a6rr9ovltrupxzwncyy-ppf7m5yybp51xzf46qcxbvq8cjmc7jqg", :name => "norton-safeweb-site-verification"}
+
+  %body
+    #baseContainer
+      #generalNotif{:style => flash[:notice].blank? ? 'display: none;' :nil}
+        .allNotif.cornerBottom
+          %p#notice_text
+            = flash[:notice]
+      = javascript_tag 'Effect.SlideDown("generalNotif");setTimeout("Effect.SlideUp(\'generalNotif\')", 10000)' unless flash[:notice].blank?
+      = render :partial => 'layouts/site_header'
+      - if (request.path.index("admin"))
+        #container
+          = render :partial => 'layouts/site_content', :locals => {:inner_content => inner_content}
+          = render :partial => 'layouts/site_footer'
+      - else
+        #mainContent
+          = render :partial => 'layouts/site_content', :locals => {:inner_content => inner_content}
+          = render :partial => 'layouts/site_footer'
+    #nav_up.nav_up{:style => "display:none;"}
+    /#nav_down.nav_down{:style => "display:none;"}
+    /%script{:src => "//asset0.zendesk.com/external/zenbox/v2.4/zenbox.js", :type => "text/javascript"}
+    /%style{:media => "screen, projection", :type => "text/css"}
+    /  @import url(//asset0.zendesk.com/external/zenbox/v2.4/zenbox.css);
+    :javascript
+      if (typeof(Zenbox) !== "undefined") {
+        Zenbox.init({
+          dropboxID:   "20037453",
+          url:         "https://edintity.zendesk.com",
+          tabID:       "ask_us",
+          tabColor:    "#126480",
+          tabPosition: "Left"
+        });
+      }
+    %script{:charset => "utf-8", :type => "text/javascript"}
+      var is_ssl = ("https:" == document.location.protocol);
+      var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
+      document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
+    %script{:charset => "utf-8", :type => "text/javascript"}
+      var feedback_widget_options = {};
+      feedback_widget_options.display = "overlay";
+      feedback_widget_options.company = "edintity";
+      feedback_widget_options.placement = "left";
+      feedback_widget_options.color = "#126480";
+      feedback_widget_options.style = "idea";
+:javascript
+  scrollPage();
+  $j(document).ready(function(){
+    var $jthat = $j(this);
+    $j('form').submit(function(r){
+      $j.ajax({
+        cache: false,
+        loading: $j('#ajaxLoaderDiv').removeClass("hide"),
+        complete:function(){
+          $j('#ajaxLoaderDiv').addClass("hide");
+        }
+      });
+    });
+
+    $j('a').click(function(r){
+      var onClickText = $j(this).attr('onclick');
+      if(onClickText.indexOf('Ajax') >= 0){
+        if(onClickText.indexOf('RedBox') < 0){
+          $j.ajax({
+            cache: false,
+            loading: $j('#ajaxLoaderDiv').removeClass("hide"),
+            complete:function(){
+              $j('#ajaxLoaderDiv').addClass("hide");
+            }
+          });
+        }
+      }
+    });
+
+  });
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21042583-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();

@@ -1,0 +1,34 @@
+#ednt-featuresComparison.ednt-Wrapper
+  .titles
+    %h4= t :browse_features_by_plans
+  .featuresNavWrapper
+    #featNavigation.flLeft
+      %ul.featuresBoxes
+        %li.featNavOn
+          = link_to_remote "#{t :starter_plan}", :url => {:action => "features", :plan => "starter"}
+        %li
+          = link_to_remote "#{t :premium_plan}", :url => {:action => "features", :plan => "premium"}
+        %li{:class => "#{request.request_uri == '/features_business' ? 'featNavOn' : ''}"}
+          = link_to_remote "#{t :business_plans}", :url => {:action => "features", :plan => "business"}
+    #comparisonPlan.flRight
+      %ul.featuresBoxes
+        %li
+          = link_to_remote "#{t :compare_all_plans}", :url => {:action => "features", :plan => "compare"}
+  #features_content
+    - if (request.request_uri == "/features_starter" || request.request_uri == "/features")
+      = render :partial => "features_starter"
+    - elsif request.request_uri == "/features_premium"
+      = render :partial => "features_premium"
+    - elsif request.request_uri == "/features_business"
+      = render :partial => "features_business"
+    - elsif request.request_uri == "/features_comparison"
+      = render :partial => "features_comparison"
+:javascript
+  jQuery(document).ready(function(){
+    jQuery('.featuresBoxes li a').click(function(){
+      jQuery('.featuresBoxes li').removeClass('featNavOn');
+      jQuery(this).closest('li').addClass('featNavOn');
+    })
+  })
+
+

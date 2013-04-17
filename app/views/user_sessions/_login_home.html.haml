@@ -1,0 +1,18 @@
+-form_for(:user_session, {:url => { :controller => "user_sessions", :action => "create"}, :method => :post})  do |f|
+  %ul{:id => "Loginbox"}
+    %li{:class=>"idInput"}
+      %span{:id=>"mail", :class=>"smallIcon"}
+      =f.text_field :email,  :value => params[:email] || "#{t(:sign_up_email)}", :id=>"loginEmail",:onfocus => "if(!this._haschanged){this.value=''};this._haschanged=true;"
+    %li{:class=>"idInput"}
+      %span{:id=>"key", :class=>"smallIcon"}
+      =f.password_field :password, :id=>"loginPassword"
+    #loginHit.blueBtn
+      =submit_tag "#{t :login}", :class => "signInBtn"
+    .tableLoginBottom
+      .uiRemember
+        = f.check_box  :remember_me
+        %label= t :remember
+      .passRecovery.flRight
+        = link_to "#{t :forgot}", forgot_password_path
+
+

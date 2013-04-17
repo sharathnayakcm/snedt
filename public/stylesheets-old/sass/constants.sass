@@ -1,0 +1,144 @@
+$light_red: #e5d7d4
+$dark_red: $light_red - 16
+
+$medium_red_text: #ff3333
+
+$very_light_green: #f6faf5
+$light_green: #ebf2e9
+$medium_green: $light_green - 8
+$olive_green: #5eac2a
+$dark_green: #93b38c
+
+$light_blue: #edf4f6
+$pale_blue: #c3d6e5
+$medium_blue: #a0bbc5
+$navy_blue: #146fa4
+$dark_blue: #a2b8c0
+$very_dark_blue: $dark_blue - 64
+$site_light_blue: #bcc0c0
+$site_blue: #1B4A4E
+
+$light_blue_text: #146fa4
+
+$light_yellow: #fdf8e8
+$dark_yellow: #d5c284
+
+$light_chrome: #e1e1e1
+$dark_chrome: $light_chrome - 16
+
+$light_orange_text: #ff7400
+
+$white: white
+$very_light_gray: $white * 0.875 + 1
+$light_gray: $white * 0.75 + 1
+$medium_gray: $white * 0.5 + 1
+$dark_gray: $white * 0.25 + 1
+$very_dark_gray: $white * 0.125 + 1
+$black: black
+
+$negative: #c04040
+$neutral: $medium_gray
+$positive: #40c040
+
+$row_container_width: 950px
+
+$horizontal_grid_unit: 10px
+$vertical_grid_unit: 10px
+
+$column_count: 24
+$column_margin_right: $horizontal_grid_unit
+$column_width: ($row_container_width - ($column_count - 1) * $column_margin_right) / $column_count
+
+$font_size: 12px
+
+$border_color: $medium_gray
+$border_width: 1px
+
+$red_box_z_index: 500
+$waitbox_z_index: $red_box_z_index - 1
+$flash_z_index: $red_box_z_index + 1
+$qm_parent_z_index: 11
+$qm_child_z_index: $qm_parent_z_index + 10
+
+$datum_name_width: 120px
+$datum_name_margin_right: 20px
+
+=border_reset
+  border:
+    color: $border_color
+    style: solid
+    width: 0
+
+=container
+  zoom: 1
+
+=container_after
+  clear: both
+  content: "."
+  display: block
+  height: 0
+  overflow: hidden
+  visibility: hidden
+
+=grid
+  background-image: url("/images/grid.png")
+
+=margin_top
+  margin-top: $vertical_grid_unit * 2
+
+=half_margin_top
+  margin-top: $vertical_grid_unit
+
+=quarter_margin_top
+  margin-top: $vertical_grid_unit / 2
+
+=margin_bottom
+  margin-bottom: $vertical_grid_unit * 2
+
+=half_margin_bottom
+  margin-bottom: $vertical_grid_unit
+
+=quarter_margin_bottom
+  margin-bottom: $vertical_grid_unit / 2
+
+=margin_left
+  margin-left: $horizontal_grid_unit * 2
+
+=half_margin_left
+  margin-left: $horizontal_grid_unit
+
+=quarter_margin_left
+  margin-left: $horizontal_grid_unit / 2
+
+=margin_right
+  margin-right: $horizontal_grid_unit * 2
+
+=half_margin_right
+  margin-right: $horizontal_grid_unit
+
+=quarter_margin_right
+  margin-right: $horizontal_grid_unit / 2
+
+=very_weak
+  background-color: #cccccc
+  color: #cccccc
+
+=weak
+  background: red
+  color: red
+
+=better
+  background: #ff5f5f
+  color: #ff5f5f
+
+=medium
+  background: #56e500
+  color: #56e500
+
+=strong
+  background: #4dcd00
+  color: #4dcd00
+
+=strongest
+  background: #399800
+  color: #399800

@@ -1,0 +1,16 @@
+.columns
+  .width_23
+    -if !request.xhr? || @new_record == true
+      .resource_panel
+        - rounded_box_for( |
+            nil, |
+            :header => {:text => "New Site Configuration", :level => 4, :color => "green"}, |
+            :footer => { :color => "chrome"}, |
+            :group_name => "site_configurations" |
+          ) do |rounded_box| |
+          .rounded_box_content_padding
+            - form_for(@site_configuration, :url => admin_site_configurations_path(current_user), :method => :post) do |f|
+              = render :partial => "form", :locals => {:f => f}
+
+:javascript
+  dashBoardMenuHiglightion('site');

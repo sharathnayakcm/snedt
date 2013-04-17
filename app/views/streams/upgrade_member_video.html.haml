@@ -1,0 +1,14 @@
+:css
+  #premiumWrap {
+    margin-left: 150px;
+  }
+  .modalContent {
+    float: none !important;
+  }
+%p.redboxLabel
+  = "You have to  upgrade your account to post video"
+.modalConfirmAct.flRight
+  #new_post_video_upgrade
+    - pricing_plan, button_label = [Membership.find_by_id(2), "Upgrade to Premium"]
+    .new_post_video_upgrade_text
+      = render :partial => "shared/pricing_plan", :locals => {:button_label => button_label}, :collection =>  [pricing_plan]

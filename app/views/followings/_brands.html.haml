@@ -1,0 +1,28 @@
+.left_content_mid_align
+  #stream_content.brand_followers
+    .follower_heading
+      %span= t :you_are_following
+      %span{:id => "brand_followers_count"}= current_user.company_followers.count
+      %span=t :brands
+      %span== !
+    .username_heading
+      %p
+        =t :brand_name
+    .follower_list
+      .follower_request
+        - current_user.company_followers.each do |following|
+          - unless following.brand.blank?
+            .follwer_request_div{:class => cycle('odd','even'), :id => "following_list_#{following.id}"}
+              .thumbline_pic
+                - unless following.brand.profile_image.blank?
+                  = image_tag following.brand.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1.")
+                - else
+                  = image_tag "/images_1/profile_pic_imgpng.png"
+              .user_name
+                = following.brand.name
+              .button_div.followings{:style => "width:310px;"}
+                .button{:id => "brand_follow_unfollow_#{following.brand.id}"}
+                  = link_to_remote_with_loader("#{t :unfollow}", :url => unfollow_company_followers_path(:company_id => following.company_id, :id => following.brand.id, :user_id => current_user.id, :scope => "user_followings"), :method => :get)
+                .clear
+            .clear
+      .clear

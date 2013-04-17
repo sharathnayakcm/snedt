@@ -1,0 +1,20 @@
+%p
+  = t :activation_reminder_text
+  %br/
+  %br/
+%p
+  = t :activation_reminder_resend
+  = link_to "#{t :click_here}", {:action => :resend, :controller => :activations}
+  %br/
+  %br/
+%p
+  = t :activation_reminder_change_email
+  = link_to "#{t :click_here}", edit_user_path(current_user, :tab => "settings")
+  = t :change_email_address
+  %br/
+%p
+  %br/
+  = t :activation_reminder_note
+.modalConfirmAct.flRight
+  .yellowBtn
+    = link_to_close_redbox("#{t :close}", :class => "smlrBtn")

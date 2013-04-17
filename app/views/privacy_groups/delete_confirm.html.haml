@@ -1,0 +1,14 @@
+:javascript
+  $j('.button').corner("4px");
+  $('RB_window').style.width = "300px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 300)/2) + "px";
+.dialogs{:style => "width: 450px;"}
+  .dialog_details
+    %p
+      =t :are_you_sure
+    .reportAction.flRight
+      .redBtn
+        = link_to_remote "#{t :remove}", {:url => {:controller => :privacy_groups, :action => :delete, :id => @group_id}}, :class => "smlrBtn"
+      .blueBtn
+        = link_to_close_redbox("#{t :cancel}", :class => "smlrBtn")
+  

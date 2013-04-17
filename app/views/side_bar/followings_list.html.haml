@@ -1,0 +1,43 @@
+:javascript
+  $j(document).ready(function(){
+   $j(".followings select").multiSelect();
+  });
+.content
+  .left_content.followings
+    #stream_content
+    %div.no_users{:style => "padding:10px;font-weight:bold;font-size:14px;"}
+      - unless @followings.blank?
+        =t :you_have
+        %span.followings_list_count
+          = @followings.count
+        =t :followings
+    - form_remote_tag(:url => {:controller => :side_bar, :action => :followings_list }) do
+      %table.users_list
+        - unless @followings.blank?
+          - @followings.each do |following|
+            %tr
+              %td
+                - unless following.avatar.blank?
+                  = image_tag following.avatar.url.gsub("/s3.","/s3-eu-west-1."), :style => "width:50px;height:50px;"
+                - else
+                  = image_tag :src => "/images/person.png"
+              %td.bold
+                = following.display_full_name(current_user)
+              %td.select
+                - @privacy_groups =  current_user.privacy_groups
+                = collection_select("task", "groups_#{following.id}" , @privacy_groups, "id", "name", {:selected => lambda{|pg| pg.has_this_user(following.id)}},{:multiple => true})
+              %td{:id=>"unfollow_#{following.id}"}
+                = link_to_remote "#{t :unfollow}", :url => toggle_follow_side_bar_path(current_user, :follower => following.id, :id => "unfollow", :type => "following"), :method => :get, :html => {:class => "button"}
+              - @following = User.find(following)
+              %td{ :id => "block_#{following.id}"}
+                = link_to_remote(@following.is_blocked ? '#{t :unblock}' : "#{t :block}", :url => toggle_block_side_bar_path(current_user, :follower => following.id), :method => :get, :html => {:class => "button"})
+
+        - else
+          %div.no_users
+            %div
+              =t :no_followings
+            %div.find_friends
+              =t :click_to_invite_friends
+              = link_to "#{t :invite_friends}", new_user_friend_path(current_user)
+      = submit_tag ("#{t :save}"), :class => "button_submit", :style => " background-color: #94B080; border: medium none #94B080;margin-left: 13px;  color: #17404E;    font-family: arial;    font-size: 12px;    font-weight: bold;    margin-left: 13px;    padding: 4px;" unless @followings.blank?
+

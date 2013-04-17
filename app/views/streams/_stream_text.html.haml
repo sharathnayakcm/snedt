@@ -1,0 +1,21 @@
+- unless stream.rss_original_site_content.blank? && stream.message_type_id != 5 && stream.message_type_id != 6
+  .attactmentDesc.attactmentDescFull
+    = link_to "#{stream.text}", stream.rss_original_site_content, :target => "_blank"
+- else
+  - if !stream.facebook_feed_type && stream.assets.length == 0
+    .attactmentDesc.attactmentDescFull{:class => "stream_thumb"}
+      - if stream.service_id == 1 && stream.stream_detail
+        /%a{:href => "https://twitter.com/#!/#{stream.stream_detail.user_name}/status/#{stream.stream_id}", :target => "_blank"}
+        = CGI.unescapeHTML(wordwrap(stream.text,false,40,nil,true))
+      - else
+        = wordwrap(stream.text)
+- if stream.message_type_id == 9
+  = render :partial => "streams/show_tumblr_feeds", :locals => {:stream => stream}
+  .attactmentDesc.attactmentDescFull
+    = CGI.unescapeHTML(wordwrap(stream.facebook_feed_description))
+- if stream.rss_link_id || stream.message_type_id == 5 || stream.message_type_id == 6
+  .attactmentDesc.attactmentDescFull
+    = CGI.unescapeHTML(stream.rss_feed_description) unless stream.rss_feed_description.blank?
+- unless stream.description.blank?
+  .attactmentDesc.attactmentDescFull
+    = CGI.unescapeHTML(wordwrap(stream.description))

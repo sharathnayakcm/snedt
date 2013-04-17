@@ -1,0 +1,18 @@
+:javascript
+  $j('.button').corner("4px");
+  $('RB_window').style.width = "500px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 500)/2) + "px";
+.dialogs
+  .dialog_details
+    - form_remote_for :stream, :url => save_stream_settings_streams_path(:id => @stream.id, :setting_for => @setting_for), :method => :get do |f|
+      - if @setting_for == "comment"
+        = check_box_tag "disallow_comments", "true", @stream.disallow_comments
+        =t :do_not_allow_comments
+      - else
+        = check_box_tag "disallow_retweet", "true", @stream.disallow_retweet
+        =t :do_not_allow_retweets
+      %br
+      .p{:style => "float:right"}
+        = f.submit "#{t :save}", :class => "button float_left"
+        = button_to_close_redbox("#{t :cancel}", :class => "button float_left", :onclick => "$j('embed').show();")
+        .clear

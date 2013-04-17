@@ -1,0 +1,15 @@
+#personalMainProfile.streamMain.streamWrapper.flLeft.Usr-Brandprofile
+  .streamContentSection
+    - if @user.marked_as_spammer
+      %div{:style => "margin-left:10px; color:#000000; font-size:12px; margin-top: 20px;"}
+        = image_tag "lock.png"
+        = t(:marked_as_spammer)
+    - elsif @user.allowed_to_view?(current_user, "profile")
+      = render :partial => "streams/index"
+    - else
+      %div{:id => "stream_content", :style => "margin-left:10px; color:#000000; font-size:12px; margin-top: 20px;"}
+        = image_tag "lock.png"
+        == <strong>#{@user.user_name}</strong> only shares some profile information with everyone.
+    
+  /.backToTop.streamWrapper.cornerAll
+  /  %a{:href => "#"}

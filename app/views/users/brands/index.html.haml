@@ -1,0 +1,18 @@
+:javascript
+  $j(document).ready(function(){
+    $j(".lock_bg").corner("5px");
+    $j('.visited_mid').corner();
+  })
+.registration_mid
+  .main_all
+    .mid_top
+      %img{:src => "/images_1/mid_top.png"}
+    .mid_inner
+      .mid_inner_content
+        .step1_signup_process
+          - if params[:signup]
+            .signup_process_text1 Sign Up process
+
+          .clear
+    .mid_bottom
+      %img{:src => "/images_1/mid_bottom.png"}

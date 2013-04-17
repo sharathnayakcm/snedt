@@ -1,0 +1,26 @@
+- stream ||= @stream
+- form_remote_for :comment, :url => stream_comments_path(stream) , :method => :get, :before => "if($j('#comment_#{stream.id}').val()==''){notice('#{t :comment_blank}');return false;}else{$j('#add_comment_spinner_#{stream.id}').removeClass('hide')}" do |f|
+  %span.writeCommentArrow
+  .commentInformation
+    %ul
+      %li
+        %a
+        %span{:class => "comment_count_#{stream.id}"} #{stream.comments.count} comment(s)
+        %span.hide{:id => "add_comment_spinner_#{stream.id}"}
+          %img{:src => "/images_old/spinner-blue.gif", :height => "13px;"}
+  .commentText
+    = f.text_field :description, :id => "comment_#{stream.id}", :onfocus => "if(!this._haschanged){this.value=''};this._haschanged=true;", :type => "text", :value => "write your comment here", :class => "cmmntInput"
+  - if stream.user == current_user && (stream.service_id == 2 || stream.service_id == 10)
+    .commentInformation
+    %ul{:style => "margin-top: 5px;"}
+      %li
+        = check_box_tag :post_to_facebook
+        %span
+          = t :share_on_facebook
+  - if stream.user == current_user && stream.service_id == 1
+    .commentInformation
+    %ul{:style => "margin-top: 5px;"}
+      %li
+        = check_box_tag :post_to_twitter
+        %span
+          = t :share_on_twitter

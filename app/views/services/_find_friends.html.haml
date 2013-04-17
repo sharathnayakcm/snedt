@@ -1,0 +1,143 @@
+#accSetupContent2.accSetupContent
+  #searchFriend.servicesPanel
+    .searchInstuction Search your friend who already in edintity by name or email address
+    .searchBox.cornerAll
+      %input#searchOnEdintity.textInput{:onblur => "if(this.value=='')this.value=this.defaultValue; ", :onfocus => "if(this.value==this.defaultValue)this.value='';", :type => "text", :value => "Search by Name or email"}/
+      .blueBtn
+        %a.smlrBtn{:href => "javascript:void(0);"} Find friends
+  #searchFriendByMail.servicesPanel
+    .searchInstuction Alternativey, you can check if your friends are already in edintity. You only need to enter your email account credentials, we will find them for you. Worry not, we will never store your password, we use them  only to retrieve your contacts. The request is also done through secured connection.
+    .searchBox.cornerAll
+      %input#searchByMail.textInput{:type => "text"}/
+      %input#searchByMailPswrd.textInput{:type => "password"}/
+      .blueBtn
+        %a.smlrBtn{:href => "javascript:void(0);"} Find friends
+    .searchInstuction Note : currently we only support Gmail, Yahoo Mail and Hotmail
+    #contactFound
+      .titles
+        %h6
+          %span.addressBook Contact found
+      #contactTable.cornerAll
+        %ul
+          %li.contactHead.cornerTop
+            %span.checkBox
+              %input.myContact{:type => "checkbox"}/
+            %p email
+          %li.contactContent
+            .contactLeft.flLeft
+              %span.checkBox
+                %input.myContact{:type => "checkbox"}/
+              %p john.doe@domain.com
+            .addContact.flRight
+              %span.addContactHover Add as connection
+              %span.mailIcon
+              %span.addContactIcon
+          %li.contactContent
+            .contactLeft.flLeft
+              %span.checkBox
+                %input.myContact{:type => "checkbox"}/
+              %p jane.doe@domain.com
+            .addContact.flRight
+              %span.addContactHover Add as connection
+              %span.mailIcon
+              %span.addContactIcon
+          %li.contactContent
+            .contactLeft.flLeft
+              %span.checkBox
+                %input.myContact{:type => "checkbox"}/
+              %p adrian@internet.com
+            .addContact.flRight
+              %span.addContactHover Add as connection
+              %span.mailIcon
+              %span.addContactIcon
+          %li.contactContent
+            .contactLeft.flLeft
+              %span.checkBox
+                %input.myContact{:type => "checkbox"}/
+              %p steve@me.com
+            .addContact.flRight
+              %span.addContactHover Add as connection
+              %span.mailIcon
+              %span.addContactIcon
+          %li.contactContent
+            .contactLeft.flLeft
+              %span.checkBox
+                %input.myContact{:type => "checkbox"}/
+              %p phil@name.com
+            .addContact.flRight
+              %span.addContactHover Add as connection
+              %span.mailIcon
+              %span.addContactIcon
+          %li.contactContent
+            .contactLeft.flLeft
+              %span.checkBox
+                %input.myContact{:type => "checkbox"}/
+              %p graham@gmail.com
+            .addContact.flRight
+              %span.addContactHover Add as connection
+              %span.mailIcon
+              %span.addContactIcon
+          %li.contactContent
+            .contactLeft.flLeft
+              %span.checkBox
+                %input.myContact{:type => "checkbox"}/
+              %p markus@yahoo.com
+            .addContact.flRight
+              %span.addContactHover Add as connection
+              %span.mailIcon
+              %span.addContactIcon
+          %li.contactContent
+            .contactLeft.flLeft
+              %span.checkBox
+                %input.myContact{:type => "checkbox"}/
+              %p stefan.v@hotmail.com
+            .addContact.flRight
+              %span.addContactHover Add as connection
+              %span.mailIcon
+              %span.addContactIcon
+          %li.contactContent
+            .contactLeft.flLeft
+              %span.checkBox
+                %input.myContact{:type => "checkbox"}/
+              %p damian.p@internet.com
+            .addContact.flRight
+              %span.addContactHover Add as connection
+              %span.mailIcon
+              %span.addContactIcon
+          %li.contactContent
+            .contactLeft.flLeft
+              %span.checkBox
+                %input.myContact{:type => "checkbox"}/
+              %p roger@gmail.com
+            .addContact.flRight
+              %span.addContactHover Add as connection
+              %span.mailIcon
+              %span.addContactIcon
+          %li.contactFoot.cornerBottom
+            .showContactInfo showing 10 of 87 contacts
+            .contactPagination
+              %ul#notifPages
+                %li.pages.selectedPg
+                  %a 1
+                %li.pages
+                  %a 2
+                %li.pages
+                  %a 3
+                %li.dotted ...
+                %li.pages
+                  %a 7
+                %li.pages
+                  %a 8
+                %li.pages
+                  %a 9
+                %li.pText.flRight
+                  %a next
+                %li.mark.flRight |
+                %li.pText.flRight
+                  %a last
+                %li.mark.flRight |
+                %li.pText.flRight
+                  %a first
+                %li.mark.flRight |
+                %li.pText.flRight.off
+                  %a prev

@@ -1,0 +1,426 @@
+.tableLoginTop, #borderTop, #contentHeadingSection1{
+	border-radius: 4px 4px 0 0;
+}
+
+.tableLoginBottom{
+	border-radius: 0 0 4px 4px;
+}
+
+.tableLoginTop, .tableLoginBottom, #borderTop{
+	z-index: 0;
+}
+
+.uiLoginForm{
+	z-index: 2;
+}
+
+#loginArea{
+	width: 250px;
+	z-index: 1;
+}
+
+.loginButton a{
+	background: #1f5770;
+	border: 1px solid #0d4456;
+	padding: 2px 10px;
+}
+
+.loginButton a:hover{
+	background: #204961;
+}
+
+#borderTop{
+	top: 0;
+	left: 0;
+}
+
+#loginEmail, #loginPassword{
+	border: none;
+	outline: none;
+	background: none;
+	z-index: 101;
+	float: left;
+	display: block;
+}
+
+.ourTeam li{
+	padding: 0 5px 35px 0;
+}
+
+.teamInfo{
+	width: 240px;
+}
+
+.servicesOption{
+	width: 175px;
+}
+
+.searchInstuction{
+	width: 100%;
+}
+
+.privacySetup li.accntSetup{
+	border-top: none;
+	border-bottom: none;
+}
+
+.privacySetup li.accntSetup:last-child .privacyHead{	
+	border-bottom: none;
+}
+
+.privacyHead{
+	box-shadow: none;
+}
+
+.privacySetup, .servicesBoxInner, .streamWrapper{
+	z-index: 0;
+	border-radius: 4px;
+}
+
+#searchInstructLast{
+	border-bottom: 1px solid #DBDFE0;
+	margin-bottom: 0;
+	padding-bottom: 15px;
+}
+
+#contactFound h6{
+	border-top: 1px solid #F3F5F6;
+}
+
+#ednt-Activation .titles h4{
+	padding-bottom: 20px;
+}
+
+#navigation li#logout a{
+	background:  url(../img/uiIconInside.png) no-repeat -4px -59px;
+	z-index: 0;
+}
+
+#dropNav .dropContent{
+	background: #fafafa;
+}
+
+#dropNav .dropContent li:last-child{
+	border: none !important;
+}
+
+.navDropDown, .dropContent{
+	z-index:100;
+}
+
+.customSkins .redBtn a{
+	height: 23px;
+	background-position: 0 -433px;
+}
+
+#mainLogo{
+	margin-right: 100px;
+}
+
+#headerSearchWrapper{
+	margin-left: 0;
+}
+
+.actSelector li a, .actSelector li{
+	padding: 0 !important;
+	height: 20px;
+	width: 22px;
+	overflow: hidden;
+}
+
+.deletingCompany, .goToProfile{
+	height: 10px;
+	width: 10px;
+	overflow: hidden;
+}
+
+.writeCommentPopup{
+	left: 140px;
+}
+
+.writeCommentArrow{
+	height: 10px;
+	width: 12px;
+	overflow: hidden;
+}
+
+.commentedWrapper ul li div.commented .userDesc a, .commentedWrapper ul li div.commented .msgBody{
+	clear: both;
+}
+
+.modalWindow{
+	z-index: 999;
+	background: #fafafa;
+}
+
+.brandSideListWrapper{
+	z-index: 0;
+	position: relative;
+}
+
+.editingSkinsContent li{
+	height: 35px;
+}
+
+p.affiliatesInfo{
+	width: 840px;
+}
+
+.warningBox{
+	z-index: 0;
+}
+
+.affiliatesResult li.SARE-lastLi, .affiliatesResult li.SARN-lastLi{
+	border-bottom: none;
+}
+
+.modalContent li{
+	width: 400px;
+}
+
+.modalConfirmAct{
+	width: 130px;
+}
+
+.streamController li.streamControl1 {
+	width: 135px;
+}
+
+.streamController li.streamControl6{
+	width: 164px;
+}
+
+span.updateArrowTop{
+	padding-bottom: 5px;
+}
+
+.notifDropdown{
+	z-index: 1;
+}
+
+#personalNotif{
+	background: #fafafa;
+	z-index: 2;
+	position: relative;
+}
+
+.notifIconWrap li span{
+	padding-left: 1px;
+	padding-right: 1px;
+	position: relative;
+	display: block;
+}
+
+.loveIco{
+	width: 12px;
+}
+
+.formStatusControl li.caracterCount{
+	padding-right: 0;
+}
+
+.transBg, .shareToBrandHead, .shortUrlContent, .shareToBrandContent, .shortUrlHead{
+	background: #fafafa;
+}
+
+.shareToBrandDropDown{
+	top: 161px;
+}
+
+.shareToBrandContent{
+	top: 29px;
+}
+
+.shareServiceControlBrand, .addShortUrlBrand{
+	top: 161px !important;
+}
+
+.vidPhotoCtrlBrand{
+	top: 195px !important;
+}
+
+#navigation li.navSelected a, #navigation li:hover a{
+	background: #0e4a61;
+}
+
+#navigation li a span.arrowDown{
+	padding-left: 15px;
+	padding-right: 7px;
+}
+
+#headerSearchWrapper{
+	width: 270px;
+	margin-right: 50px;
+}
+
+input#mainSearch{
+	width: 220px;
+	margin-right: -50px;	
+}
+
+.usernameId h3{
+	float: left;
+}
+
+a.editUsrProfile{
+	margin-right: 45px;
+	float: right !important;
+}
+
+span.editProfileLink{
+	background-position: 60px -382px !important;
+}
+
+.socialNetworkWrapper{
+	width: 200px;
+}
+
+.socialNetworkWrapper li{
+	float: none;
+}
+
+.socialNetworkWrapper li span{
+	margin-left: 5px;
+}
+
+.activityWrapper li{
+	width: 200px;
+}
+
+.activityWrapper li span{
+	min-width: 18px;
+	margin-top: -15px;
+	float: left !important;
+}
+
+.msgBody{
+	width: 530px;
+}
+
+.actSelector{
+	width: 95px;
+	float: left !important;
+}
+
+.actSelector li a.removePost{
+	background-position: 12px -1058px !important;
+}
+
+.metaCommentTable ul, .userCommentedInfo ul{
+	float: none !important;
+}
+
+.metaCommentTable li.comment a.commentIco{
+	background-position: 50px -1027px !important;
+	float: left;
+	padding-right: 15px;
+	line-height: 15px;
+}
+
+.headStreamSection{
+	width: 590px;
+}
+
+.streamContent li.SharedPostStream{
+	width: 590px;
+}
+
+.streamContent li.SharedPostStream a.reportPost{
+	right: 25px;
+}
+
+.brandNameList .brandUrl{
+	float: none;
+}
+
+.customSkins .redBtn a{
+	height: 22px;
+	background-position: 0 -434px;
+}
+
+.customSkins .redBtn a .setSkinIcon{
+	width: 96px;
+	margin-right: 7px;
+}
+
+.breadcrumb li{
+	float: none;
+margin-right: 10px;
+display:inline;
+}
+
+.breadcrumb li a{
+	float:none;
+}
+
+.loadContentIndicator{
+	width: auto;
+}
+
+
+#footer{
+	width: 900px;
+}
+
+#copyright{
+	float: right !important;
+}
+
+#copyright li {
+	float: left;
+	padding-left: 5px;
+	width: auto;
+}
+
+#copyright li a{
+	text-align: left;
+	direction: ltr;
+	padding: 0;
+	width: auto;
+	float: none;
+}
+
+#footNavigation{
+	float: left !important;
+}
+
+#footNavigation ul{
+	list-style: disc inside none !important;
+}
+
+#footNavigation li{
+	float: left;
+	padding-right: 5px;
+}
+
+#footNavigation li a{
+	padding: 0;
+	text-align: left;
+	direction: ltr;
+	width: auto;
+	float: none;
+}
+
+.personalSettingPrivacyOpt, .personalURL{
+  width: 400px;
+}
+
+.personalURL{
+  text-align: right !important;
+}
+
+#headerSearchWrapper{
+  margin-right: 0px;
+}
+
+.privacySetup  li{
+  float:none !important;
+}
+
+.ajaxLoader{
+  right: 0px !important;
+}
+
+.tableLoginTop li#loginHit a.signInBtn{
+  padding-left: 3px !important;
+}

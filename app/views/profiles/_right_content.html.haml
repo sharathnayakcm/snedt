@@ -1,0 +1,52 @@
+- friends_count = @user.friends.count
+.profile_pic_tab
+  .profile_pic_tab_mid
+    .profile_pic
+      .profile_pic_img.profile_img
+        - unless @user.profile_image.blank?
+          = image_tag @user.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1.")
+        - else
+          = image_tag "/images_1/profile_pic_imgpng.png"
+    .name
+      .profile_name
+        = @user.display_full_name(current_user) if @user
+      .edit_my_profile
+        %h6
+          = link_to "#{t :edit_profile}", edit_user_path(@user) if @user == current_user
+
+    .sn_pics.services
+      - @user.active_services.each do |user_service|
+        - if @user == current_user
+          = link_to image_tag("services/#{user_service.service.name.downcase}.png", :title => "#{user_service.display_name}"), user_services_path(current_user)
+        - else
+          = image_tag("services/#{user_service.service.name.downcase}.png", :title => "#{user_service.display_name}")
+
+    - unless @user.marked_as_spammer
+      .groups
+        .text_followers{:onclick => "#{@user.allowed_to_view?(current_user, "profile") ? remote_function(:url => {:controller => :profiles, :action => :followers, :id => "#{@user.id}"}) : ""}", :style => "cursor:pointer"}
+          .followers
+            = "#{t :followers}"
+          .value1
+            = (@user.followers.count.to_i - friends_count.to_i)
+
+        .text_following{:onclick => "#{@user.allowed_to_view?(current_user, "profile") ? remote_function(:url => {:controller => :profiles, :action => :followings, :id => "#{@user.id}"}) : ""}", :style => "cursor:pointer"}
+          .following
+            = t :following
+          .value1
+            = @user.followings.count.to_i - friends_count.to_i
+
+        .text_friends{:onclick => "#{ @user.allowed_to_view?(current_user, "profile") ? remote_function(:url => {:controller => :profiles, :action => :friends, :id => "#{@user.id}"}) : ""}", :style => "cursor:pointer"}
+          .friends
+            = t :friends
+          .value1
+            = @user.friends.count.to_i
+
+
+    - if @user != current_user && !@user.marked_as_spammer
+      - if current_user.reported_as_spammer(@user) 
+        #spammer_link
+          = render :partial => "/profiles/undo_spammer"
+      - else
+        #spammer_link
+          = render :partial => "/profiles/report_spammer"
+    .clear    

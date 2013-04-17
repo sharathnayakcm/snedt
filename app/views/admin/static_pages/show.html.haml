@@ -1,0 +1,18 @@
+.columns
+  .width_23
+    -if !request.xhr? || @new_record == true
+      .resource_panel
+        - rounded_box_for( |
+            nil, |
+            :header => {:text => "Priview #{@static_page.title}", :level => 4, :color => "green"}, |
+            :footer => { :color => "chrome"}, |
+            :group_name => "static_pages" |
+          ) do |rounded_box| |
+          %br
+          #static_content= @static_page.text_content
+          %br
+          %br
+          #links.align_right= link_to "Back to Manage Static Pages", admin_static_pages_path(current_user)
+
+:javascript
+  dashBoardMenuHiglightion('manage');

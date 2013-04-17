@@ -1,0 +1,109 @@
+:javascript
+  $j(document).ready(function(){
+     $j('.chk_box').attr('checked', false);
+  });
+
+.left_content_mid_align
+  .edit_service_group_div
+    .esg_heading
+      %h4.normal_font
+        =t :create_privacy_group
+    .box.box_psg{:style =>"border-top-left-radius: 10px 10px; border-top-right-radius: 10px 10px; border-bottom-left-radius: 10px 10px; border-bottom-right-radius: 10px 10px;"}
+      .box_mid_psg
+        - form_remote_tag(:url => {:controller => :privacy_groups, :action => :create }, :html => {:id => "pgForm"}) do
+          .pg_div
+            .group_name_div
+              .group_name
+                %h5.normal_font
+                  =t :privacy_group_name
+              .group_name_field#pg_name
+                = text_field_tag "pg_name", ""
+
+            .services#service_list
+              .services_text
+                %p
+                  =t :pick_members
+                  = link_to "#{image_tag '/images_1/bullet_arrow.png', :width => 11}", "javascript:void(0)", :onclick => "toggle_arrow(this);$('pick_members').toggle();", :id => "s_link_1"
+                  #pick_members.service_div
+                    = check_box_tag "members[]", User::PRIVACY_TYPES[:every_one], false, {:class => "chk_box", :id => "members_everyone",:onclick => "if($j(this).is(':checked')){$j('#members_me, #members_followers, #members_followings, #members_friends').attr('checked', false);}"}
+                    =t :everyone
+                    = check_box_tag "members[]", User::PRIVACY_TYPES[:followers], false, {:class => "chk_box", :id => "members_followers", :onclick => "if($j(this).is(':checked')){$j('#members_everyone, #members_me').attr('checked', false);}"}
+                    =t :followers
+                    (
+                    = link_to "#{t :show}", "javascript:void(0)", :onclick => "$('follower_list').toggle();$('friends_list').hide();$('following_list').hide();", :style=>"color:#0C3646;"
+                    )
+                    = check_box_tag "members[]", User::PRIVACY_TYPES[:followings], false, {:class => "chk_box", :id => "members_followings", :onclick => "if($j(this).is(':checked')){$j('#members_everyone, #members_me').attr('checked', false);}"}
+                    =t :followings
+                    (
+                    = link_to "#{t :show}", "javascript:void(0)", :onclick => "$('following_list').toggle();$('follower_list').hide();$('friends_list').hide();", :style=>"color:#0C3646;"
+                    )
+                    = check_box_tag "members[]", User::PRIVACY_TYPES[:friends], false, {:class => "chk_box", :id => "members_friends", :onclick => "if($j(this).is(':checked')){$j('#members_everyone, #members_me').attr('checked', false);}"}
+                    =t :friends
+                    (
+                    = link_to "#{t :show}", "javascript:void(0)", :onclick => "$('friends_list').toggle();$('following_list').hide();$('follower_list').hide();", :style=>"color:#0C3646;"
+                    )
+                    = check_box_tag "members[]", User::PRIVACY_TYPES[:just_me], false, {:class => "chk_box", :id => "members_me", :onclick => "if($j(this).is(':checked')){$j('#members_everyone, #members_followers, #members_followings, #members_friends').attr('checked', false);}"}
+                    =t :just_me
+                    #follower_list{:style => "padding:10px;margin-top:10px;border:solid 1px;display:none;width:200px;max-height:200px;overflow:auto;"}
+                      -unless @followers.empty?
+                        =t :followers
+                        .list
+                          - @followers.each do |user|
+                            %div
+                              = check_box_tag "followersid[]", "#{user.id}", false, {:class => "chk_box", :onclick => "if($j(this).is(':checked')){$j('#members_everyone, #members_me, #members_followers').attr('checked', false);}"}
+                              = user.display_full_name(current_user)
+                      -else
+                        =t :no_followers
+                    #following_list{:style => "padding:10px;margin-top:10px;border:solid 1px;display:none;width:200px;max-height:200px;overflow:auto;"}
+                      -unless @followings.empty?
+                        =t :followings
+                        .list
+                          - @followings.each do |user|
+                            %div
+                              = check_box_tag "followingsid[]", "#{user.id}", false, {:class => "chk_box", :onclick => "if($j(this).is(':checked')){$j('#members_everyone, #members_me, #members_followings').attr('checked', false);}"}
+                              = user.display_full_name(current_user)
+                      -else
+                        =t :no_followings
+                    #friends_list{:style => "padding:10px;margin-top:10px;border:solid 1px;display:none;width:200px;max-height:200px;overflow:auto;"}
+                      -unless @friends.empty?
+                        =t :friends
+                        .list
+                          - @friends.each do |user|
+                            %div
+                              = check_box_tag "friendsid[]", "#{user.id}", false, {:class => "chk_box", :onclick => "if($j(this).is(':checked')){$j('#members_everyone, #members_me, #members_friends').attr('checked', false);}"}
+                              = user.display_full_name(current_user)
+                      -else
+                        =t :no_friends
+            .clear
+            .services#service_list.group_name_field.group_user_name_field
+              .services_text
+                %p
+                  =t :select_by_username
+                  = text_field_tag "user_name"
+                  = observe_field("user_name", :update => 'name_observed',:frequency => 0.5, :url => {:controller => "privacy_groups",:action => "get_names", :method => :get},:with => "input_first_name", :loading => "{$j('#spinner_tag1').show();}", :success => "{$j('#spinner_tag1').hide();}")
+                  %div.align_center.display_none{:id => "spinner_tag1"}
+                    = image_tag("spinner.gif")
+                #name_observed
+              .clear
+            .services#service_list
+              .services_text
+                %p
+                  =t :services_they_can_see
+                  = link_to "#{image_tag '/images_1/bullet_arrow.png', :width => 11}", "javascript:void(0)", :onclick => "toggle_arrow(this);$('pick_services').toggle();", :id => "s_link_2"
+                  #pick_services.service_div
+                    - if current_user.active_services.length > 0
+                      - current_user.active_services.each do |user_service|
+                        = check_box_tag "serviceid[]", "#{user_service.id}"
+                        = image_tag("services/#{user_service.service.name.downcase}.png", :title => "#{user_service.display_name}", :width => "20px")
+                    - else
+                      = t :service_list_text
+                      = link_to "#{t :click_here}", user_services_path(current_user)
+            .clear
+            .psg_buttons
+              .button.button_anchor{:style=> "margin-top: 3px;"}
+                = link_to "#{t :cancel}", root_url
+              = submit_tag "#{t :save}", :class => "button", :onclick => "if(jQuery.trim($j('#pg_name input').val()).length == 0){notice('Privacy group name can not be blank');return false;}else{$j('#spinner_tag').show();}"
+              %div.display_none.float_right{:id => "spinner_tag"}
+                = image_tag("spinner.gif")
+              .clear
+      .clear

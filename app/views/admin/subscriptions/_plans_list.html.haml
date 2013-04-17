@@ -1,0 +1,16 @@
+- subscriptions ||= @subscriptions
+- @subscriptions_table.render subscriptions do |table|
+  - subscriptions.each do |subscription|
+    - table.tr :id => "subscription_#{subscription.id}" do
+      -table.td {subscription.id}
+      -table.td {subscription.name}
+      -table.td {subscription.description}
+      -table.td {subscription.membership_type}
+      -table.td {subscription.amount}
+      -table.td {subscription.upload_limit}
+      -table.td {subscription.is_trial_period_allowed? ? "YES" : "NO"}
+      -table.td {subscription.trial_period}
+      -table.td {subscription.active? ? "YES" : "NO"}
+      -table.td(:action) do
+        = link_to(image_tag("/images_old/icon-edit.png"), {:controller => "admin/subscriptions", :action => "edit", :id => subscription.id}, :class => "icon", :title => "Edit Plan")
+        /= link_to_remote_with_loader(image_tag("/images_old/icon-delete.png"), :url => {:controller => "admin/subscriptions", :action => "destroy", :id => subscription.id}, :method => :delete, :confirm => "Are you sure want to delete this Plan?", :html => {:class => "icon", :title => "Delete Plan"})

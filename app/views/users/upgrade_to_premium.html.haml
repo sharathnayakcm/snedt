@@ -1,0 +1,12 @@
+:javascript
+  $j('.button').corner("4px");
+  $('RB_window').style.width = "400px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 400)/2) + "px";
+.dialogs
+  .dialog_details{:style => "width:400px"}
+    = render :partial => "shared/vendor_premium"
+    .modalConfirmAct.flRight
+      .yellowBtn
+        = link_to_close_redbox("#{t :cancel}", :class => "smlrBtn")
+    
+    

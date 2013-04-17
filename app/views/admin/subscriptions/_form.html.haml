@@ -1,0 +1,32 @@
+.columns
+  .column.width_12.leftmost
+    .form_field
+      .label_name= "Name"
+      .tag= f.text_field :name
+    .form_field
+      .label_name= "Description"
+      .tag= f.text_area :description, :rows => 5, :cols => 40
+    .form_field
+      .label_name= "Plan"
+      .tag= select_tag "membership[membership_type]", options_for_select(['individual', 'business'], @subscription.membership_type)
+    .form_field
+      .label_name= "Amount"
+      .tag= f.text_field :amount
+    .form_field
+      .label_name= "Upload Limit"
+      .tag= f.text_field :upload_limit
+    .form_field
+      .tag
+        = f.check_box :is_trial_period_allowed
+        %font{:style => "color:grey"}= "Is trial period allowed?"
+    .form_field
+      .label_name= "Trial Period(in days)"
+      .tag= f.text_field :trial_period
+    .form_field
+      .tag
+        = f.check_box :active
+        %font{:style => "color:grey"}= "Active"
+      
+.columns
+  .column.width_10.leftmost
+    .align_right= submit_tag "Save", :class => "button"

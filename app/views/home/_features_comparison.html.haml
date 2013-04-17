@@ -1,0 +1,36 @@
+#comparisonTable
+  #comparisonFeaturesTable
+    %ul
+      %li.even
+        %span.featuresIcon.accountSize
+          = t :account_size
+          %small= t :storage
+      %li.odd
+        %span.featuresIcon.servicesAdd= t :service_to_add
+      %li.even
+        %span.featuresIcon.uploadLimit= t :upload_limit
+      %li.odd.special
+        %span.featuresIcon.postType= t :post_type_allowed
+      %li.even
+        %span.featuresIcon.customProfile= t :custom_profile_skins
+      %li.odd
+        %span.featuresIcon.users
+          = t :users
+          %small= "(#{t :including_yourself})"
+      %li.even
+        %span.featuresIcon.brands= t :brands
+      %li.odd
+        %span.featuresIcon.sslIcon= t :ssl
+      %li.odd
+        %p#infoCurrencies= t :all_price
+  #featurePlan
+    - Membership.active.each do |member|
+      = render :partial => "home/features_content",:locals => {:member => member}
+:javascript
+  function toggle_visibility(id) {
+         var e = document.getElementById(id);
+         if(e.style.display == 'block')
+            e.style.display = 'none';
+         else
+            e.style.display = 'block';
+      }

@@ -1,0 +1,48 @@
+#new_post_update
+  = link_to(content_tag(:span, 'You have new post(s)'), my_streams_path)
+#follow_topic_text
+  = link_to(content_tag(:span, 'click here to get more update about interested topic(s)'), topics_path) if current_user.topics.blank?
+- streams ||= @streams
+.streamContent#stream_content
+  - if params[:topic_id]
+    - topic = Topic.find_by_id(params[:topic_id])
+    .stream_topic_follow
+      - if topic.user_follow?(current_user)
+        #unfollower_block{:id=>topic.id}
+          .yellowBtn
+            = link_to_remote "#{t :unfollow}", :url => topic_topic_follower_path(topic.id, current_user), :method => :delete, :class => "smlrBtn"
+      - else
+        #follower_block{:id=>topic.id}
+          .redBtn
+            = link_to_remote "#{t :follow}", :url => topic_topic_followers_path(topic), :method => :post , :class => "smlrBtn"
+  - streams.each do |stream|
+    - stream_brand= stream.brand
+    -unless stream_brand.blank?
+      -@brand = stream_brand
+      -brand_type = @brand.is_default? ? "company" : "brand"
+    %ul
+      - unless stream.report_abuse == 2
+        = render :partial => "streams/show", :locals => {:stream => stream,:brand=>(@brand if @brand),:brand_type=> (brand_type if brand_type)}
+    .clear
+  - if streams.length >= 10 && controller_name != "dashboard"
+    %div{:id => "more_link_2", :class => "more_btn", :style => "text-align: center !important;"}
+      .streamContent{:style => "float: none !important; "}
+        %span#span_link_2.moreLink{:style => "text-align: center !important;"}
+          - if controller.controller_name == "profiles"
+            = link_to_remote "#{t(:more_streams)}",:url => {:controller => :profiles, :action => :more_streams, :stream_type => request.path.gsub('/', ''), :current_page => (params[:page].to_i == 0 ? 1 : params[:page].to_i) + 1, :user => @user.id }, :method => :get , :before => "$('span_link_2').hide();$('stream_more_1').show();", :complete => "$('stream_more_1').hide();$('more_link_2').hide();",:html => { :class => 'moreLink'}
+          - else
+            = link_to_remote "#{t(:more_streams)}",:url => {:controller => :home, :action => :more_streams, :stream_type => request.path.gsub('/', ''), :current_page => (params[:page].to_i == 0 ? 1 : params[:page].to_i) + 1, :tab_name => @stream_header, :by => @by, :service_id => @service_id, :filter => @filter, :search_filter => @search_filter, :search_for => params[:search_for], :search_by => params[:search_by] }, :method => :get , :before => "$('span_link_2').hide();$('stream_more_1').show();", :complete => "$('stream_more_1').hide();$('more_link_2').hide();",:html => { :class => 'moreLink'}
+      #stream_more_1{:style => "padding-left:50px;display:none;"}
+        .loadContentIndocator
+          .ui-progress-bar.ui-container#photoProgressBar{:style => "margin-bottom:50px"}
+            .ui-progress#photoProgress{:style=>"width: 100%;"}
+
+:javascript
+  jQuery("a[rel=example_group]").fancybox({
+    'transitionIn'		: 'none',
+    'transitionOut'		: 'none',
+    'titlePosition' 	: 'over',
+    'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {
+      return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
+    }
+  });

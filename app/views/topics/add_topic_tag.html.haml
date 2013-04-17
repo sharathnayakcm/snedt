@@ -1,0 +1,56 @@
+-form_remote_for(:topic ,:url => { :id => current_user.id, :controller => "topics", :action => "add_stream_topic_and_tag"})  do |f|
+  %ul{:id => "stream_add_topic"}
+    - if @stream.topic.blank?
+      %li{:id => "stream_topic_text"}
+        %label{:for => "topicNames"}= t :add_topic
+        %br/
+        = f.select(:id , Topic.all.collect {|p| [ p.title, p.id ] }, {:prompt => 'Select Topic'})
+        = hidden_field_tag :stream_id , @stream.id
+        #topic_name_check.signupFormError
+        #searchtopicDropdown
+    %li{:id => "stream_selected_topic",:style => "display:none"}
+      .flLeft
+        %label{:for => "topicNamesSelected"}= t :selected_topics
+        =  ": "
+      #selected_topics
+      .clear
+      %br/
+    %li
+      = render :partial => "add_tag_to_stream", :locals => {:stream => @stream,:user_tags => @user_tags,:tags=>@tags}
+      = hidden_field_tag :tags,'',:name => "tags"
+  .modalConfirmAct.flRight
+    .blueBtn
+      =  submit_tag "#{t :add_topic}", :class => "smlrBtn", :onclick => "return check_tags();"
+    .yellowBtn
+      = link_to_close_redbox("#{t :cancel}", :class => "smlrBtn")
+
+
+:javascript
+     
+   // adding  the topics while creating user
+  jQuery(document).ready(function(){
+    jQuery(".searched_topic_name").live('click', function(){
+     jQuery('#selected_topics').html('');
+     var topic_name = jQuery(this).text();
+     var topic_id = jQuery(this).attr("topic_id");
+         jQuery("#selected_topics").append("<span id= topic_"+ topic_id +" class='topic_name_selected'>"+topic_name+"<a href='javascript:void(0);' class='delete_code' id="+topic_id+">X</a> </span>");
+         jQuery("#selected_topics").append(jQuery('<input/>').attr('type', 'hidden').attr('name', 'topic_id').attr('id', 'topic_input_'+topic_id).val(topic_id));
+         $j("#stream_topic_text").hide();
+         $j("#stream_selected_topic").show();
+     });
+      });
+
+     jQuery(".delete_code").live('click', function(){
+      elem= $j(this).attr("id")
+      jQuery("#topic_"+elem+",#topic_input_"+elem).remove();
+      $j("#stream_topic_text").show();
+      $j("#stream_selected_topic").hide();
+    });
+
+    function check_topic(){
+      if (jQuery(".topic_name_selected").length == 0) {
+        alert("please add the topic");
+      jQuery('#topics_name').css('border','2px solid red');
+        return false;
+      }
+    }

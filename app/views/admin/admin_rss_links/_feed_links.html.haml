@@ -1,0 +1,27 @@
+:javascript
+  $j('.button').corner("4px");
+%h4{:style =>"font-size:13px;"}
+  = links.length
+  = t :subscriptions
+  .delete_rss{:style => "float:right"}
+    = link_to_remote_redbox image_tag("//images_old/icon-delete.png", :size => "20x20", :title => "#{t :delete}", :alt => "#{t :delete}"), :url => manage_rss_admin_admin_rss_links_path, :with => "'confirm_delete=true&id='+val", :before => "var val = '';var t=$j('input[name=admin_rss_link_ids[]]');jQuery.each(t, function(k, v){if(v.checked){val = val + v.value + ','}});if(val == ''){notice('Please select at least one link to delete');return false;}"
+  .rss_links{:style => "overflow:auto;height:210px;margin-bottom:10px;"}
+    %ul
+    - unless links.blank?
+      - links.each do |link|
+        %li
+          %div{:id => "rss_status_#{link.id}" ,:onmouseover => "$('rss_actions_#{link.id}').show();",:onmouseout => "$('rss_actions_#{link.id}').hide();"}
+            = check_box_tag "admin_rss_link_ids[]", "#{link.id}"
+            %strong= link.title
+            %span{:id => "rss_actions_#{link.id}",:style => "display:none"}
+              = link_to_remote ((link.status) ? "Inactivate" : "Activate"), :url => change_status_admin_admin_rss_links_path(:id => link.id)
+            
+          %a{:href => "#{link.url}", :target => "_blank", :style => "text-decoration:none"}
+            .quiet= link.url
+  .align_right.close_manage_rss
+    .button_1
+      = button_to_close_redbox("#{t :close}", :class => "button", :id => "btn_to_close")
+      .clear
+       
+
+    

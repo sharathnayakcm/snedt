@@ -1,0 +1,26 @@
+.profile_follower_list
+  .follower_request
+
+    - unless @friends.blank?
+      - @friends.each do |friend|
+        .follwer_request_div{:class => cycle('odd','even')}
+          .thumbline_pic
+            - unless friend.avatar.blank?
+              = image_tag friend.avatar.url.gsub("/s3.","/s3-eu-west-1.")
+            - else
+              = image_tag :src => "images_1/thumbline_pic.png"
+          .user_name
+            = friend.display_full_name(current_user)
+          - unless current_user.id == friend.id
+            .button_div.followers{:style => "width:310px;"}
+              .button{:id => "action_1_#{friend.id}"}
+                - if current_user.already_following_user(friend.id)
+                  = link_to_remote "#{t :unfollow}", :url => unfollow_followings_path(:following => friend.id), :method => :get, :html => {:class => "button"}
+                - else
+                  = link_to_remote "#{t :follow}", :url => follow_followings_path(:following => friend.id), :method => :get, :html => {:class => "button"}
+              .clear
+        .clear
+    - else
+      %div.no_users_profile
+        %div
+          =t :no_friends_profile

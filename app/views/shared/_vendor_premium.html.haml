@@ -1,0 +1,47 @@
+#ednt-PaymentOpt.ednt-Wrapper{:style => "padding-bottom: 5px !important;padding-top: 5px !important;"}
+  .titles
+    %h4 Choose a Payment method from below
+  #paymentOptWrapper
+    #cashUOpt.MP-boxes
+      %form{:action => "https://www.cashu.com/cgi-bin/pcashu.cgi", :method => "post"}
+        %input{:name => "merchant_id", :type => "hidden", :value => "edintity"}
+        %input{:name => "token", :type => "hidden", :value => "e3d088e1ebf655131f4da95503be83f6"}
+        %input{:name => "display_text", :type => "hidden", :value => "Premium"}
+        %input{:name => "currency", :type => "hidden", :value => "USD"}
+        %input{:name => "amount", :type => "hidden", :value => "#{@membership.amount}"}
+        %input{:name => "language", :type => "hidden", :value => "en"}
+        %input{:name => "session_id", :type => "hidden", :value => session.session_id}
+        %input{:name => "txt1", :type => "hidden", :value => "Membership-#{@user.id}-#{@membership.id}-#{@signup ? true : false}-#{@activation ? true : false}-en"}
+        %input{:name => "txt2", :type => "hidden", :value => ""}
+        %input{:name => "txt3", :type => "hidden", :value => ""}
+        %input{:name => "txt4", :type => "hidden", :value => ""}
+        %input{:name => "txt5", :type => "hidden", :value => ""}
+        %h6 cashU
+        = submit_tag "", :class => "cashIcon flRight"
+    #paypalOpt.MP-boxes
+      %form{:action => "https://www.paypal.com/cgi-bin/webscr", :method => "post"}
+        %input{:name => "cmd", :type => "hidden", :value => "_s-xclick"}
+        %input{:name => "hosted_button_id", :type => "hidden", :value => "NMRUWY4JZ84MC"}
+        %input{:name => "CUSTID", :type => "hidden", :value => "#{@user.id}-#{@membership.id}-#{@signup ? true : false}-#{@activation ? true : false}-en"}
+        %h6 Paypal
+        = submit_tag "",:class => "paypalIco flRight"
+    #cCardOpt.MP-boxes
+      %form{:action => "https://payflowlink.paypal.com", :method => "POST"}
+        %input{:name => "LOGIN", :type => "hidden", :value => "edintity"}
+        %input{:name => "PARTNER", :type => "hidden", :value => "PayPal"}
+        %input{:name => "AMOUNT", :type => "hidden", :value => @membership.amount}
+        %input{:name => "TYPE", :type => "hidden", :value => "A"}
+        %input{:name => "CUSTID", :type => "hidden", :value => "#{@user.id}-#{@membership.id}-#{@signup ? true : false}-#{@activation ? true : false}-en"}
+        %h6 Creditcards
+        %ul#ccOption.flRight
+          %li{:style => "float:none !important"}
+            = submit_tag "", :class => "masterCardIcon"
+          %li{:style => "float:none !important"}
+            = submit_tag "", :class => "visaIcon"
+          %li{:style => "float:none !important"}
+            = submit_tag "", :class => "amexIcon"
+          %li{:style => "float:none !important"}
+            = submit_tag "", :class => "discoverIcon"
+          %li{:style => "float:none !important"}
+            = submit_tag "", :class => "bankIcon"
+    

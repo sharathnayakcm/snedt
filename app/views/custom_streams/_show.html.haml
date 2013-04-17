@@ -1,0 +1,7 @@
+%ul
+  - current_user.custom_stream_filters.each do |filter|
+    %li
+      = link_to_remote "#{filter.name}",:before => "$j('#stream_notify').show();", :url => {:controller => :custom_streams, :action => :apply_filter, :custom_id => filter.id}
+      = link_to_remote_redbox image_tag("icon-edit.png", :width => 15, :title => "#{t :edit}", :alt => "#{t :edit}"), :url => {:controller => :custom_streams, :action => :edit, :custom_id => filter.id}, :before => "$j('embed').hide();"
+      = link_to_remote_redbox image_tag("icon-delete.png", :width => 15, :title => "#{t :delete}", :alt => "#{t :delete}"), :url => {:controller => :custom_streams, :action => :delete_confirm, :custom_id => filter.id}, :before => "$j('embed').hide();"
+      = link_to image_tag("services/rss feed.png", :width => 15, :title => "rss", :alt => "rss"), "/rss/#{current_user.user_name}/#{filter.id}", :target => "_blank"

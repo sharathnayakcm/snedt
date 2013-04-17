@@ -1,0 +1,4 @@
+%ul
+  - current_user.saved_searches.each do |saved|
+    %li
+      = link_to_remote "#{saved.search_for}",:before => "$j('#stream_notify').show();", :url => {:controller => :home, :action => :search_streams, :search_for => saved.search_for, :search_type => saved.search_type, :saved_id => saved.id}

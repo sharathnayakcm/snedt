@@ -1,0 +1,22 @@
+#contentHeadPersonal4.contentHeading
+  %h4
+    %a{:href => "javascript:void(0);"}
+      =t :privacy
+#accSettingPersonalContent4.accSetupContent
+  #servicePrivacies
+    = render :partial => "users/service_privacies"
+  #personalblockedUser.redBtn.flRight
+    %a.smlrBtn{:href => "javascript:void(0);", :onclick => "$('personalEditPG').hide();$('personalPrivacySetting').hide();toggle_visibility('personalBlocked');"}
+      =t :blocked_user_list
+  /#personaEditPrivacyUser.yellowBtn.flRight
+  /  %a.smlrBtn{:href => "javascript:void(0);", :onclick => "$('personalPrivacySetting').hide();$('personalBlocked').hide();toggle_visibility('personalEditPG');"}
+  /    =t :edit_privacy_group
+  /#personalPrivacyBtn.blueBtn.flRight
+  /  %a.smlrBtn{:href => "javascript:void(0);", :onclick => "$('personalEditPG').hide();$('personalBlocked').hide();toggle_visibility('personalPrivacySetting');"}
+  /    =t :create_privacy_group
+  #personalPrivacySetting.personalPrivacyGroup.privacySetup.cornerAll{:style => "display:none;"}
+    = render :partial => "users/custom_privacy_group"
+  #personalBlocked.personalPrivacyGroup.privacySetup.cornerAll{:style => "display:none;"}
+    = render :partial => "users/blocked_users"
+  #personalEditPG.personalPrivacyGroup.privacySetup.cornerAll{:style => "display:none;"}
+    = render :partial => "users/edit_privacy_groups"

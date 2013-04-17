@@ -1,0 +1,13 @@
+.affiliatesTopContent
+  .titles
+    %h6= t :find_friends_and_invite
+  %p.affiliatesInfo= t :check_if_friends_on_edintity
+  #inviteWarning.warningBox
+    %p
+      = t :email_policy_header
+      %br
+      = t :email_policy_text
+.affiliatesBottomContent.cornerBottom
+  = render :partial => "users/friends/search_by_email"
+  = render :partial => "users/friends/search_on_edintity"
+  #contact_list

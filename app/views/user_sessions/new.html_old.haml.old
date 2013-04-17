@@ -1,0 +1,18 @@
+.full_mid
+  .main_signup
+    .sign_up_mid_content{:style => "width:100%;"}
+      #content_header_for_logout_page
+        = t :sign_in_text
+      .columns
+        #logout_page_login.left
+          = render :partial => "login"
+        .left#logout_page{:style => "margin-top: -34px;"}
+          %span.new_to_edintity
+            = t :sign_in_text2
+          %div.signout
+            = link_to "#{t :sign_in_text3}", new_user_path, :id => "signup_button"
+        #logout_spacing
+:css
+  .sign_up_mid_content{   color: #17404E;    height: 320px; }
+:javascript
+  $j('#signup_button').corner();

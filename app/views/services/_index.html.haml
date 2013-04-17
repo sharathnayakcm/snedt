@@ -1,0 +1,15 @@
+.step1_signup_process
+  - if params[:signup]
+    .signup_process_text1 Sign Up process
+.step1_services_list
+  .service_list_heading
+    == #{t 'add_services'}
+  - @service_categories.each do |service_category|
+    .services_list_div
+      - unless service_category.services.blank?
+        .services_heading_1
+          = service_category.name.humanize
+        .services_icons_1
+          - service_category.services.each do |service|
+            %div.services_icon_1= link_to_remote_redbox image_tag("services/#{service.name.downcase}.png", :title => service.name), {:url => new_user_service_path(current_user, :service_id => service.id), :method => :get}, :html => {:class => "fb_idfb_check", :service_id => service.id, :service_path => service.url}
+  .clear

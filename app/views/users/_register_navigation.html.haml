@@ -1,0 +1,6 @@
+%register_navigation
+  %ul.horizontal.piped{:style=> "margin:0px;"}
+    %li.first-child.services= link_to "#{t :services}",{:controller => "users/services", :action => "new"}
+    %li.friends= link_to "#{t :find_friends} ",{:controller => "users/friends", :action => "new"}
+    %li.privacy= link_to "#{t :privacy}",{:controller => "users/privacies", :action => "new"}
+    %li.last-child.done= link_to "#{t :done}",{:controller => "user_sessions", :action => "sign_in"}

@@ -1,0 +1,17 @@
+- privacy_groups ||= @privacy_groups
+- @privacy_groups_table.render privacy_groups do |table|
+  - privacy_groups.each do |privacy_group|
+    - table.tr :id => "privacy_group_#{privacy_group.id}" do
+      -table.td {privacy_group.name}
+      - user_groups = privacy_group.service_ids.split(",")
+      - user_services = UserService.find_all_by_id(user_groups)
+      -table.td {privacy_group.group_ids}
+      -table.td 
+        - unless user_services.blank?
+          - user_services.each do |user_service|
+            = image_tag("services/#{user_service.service.name.downcase}.png" , :style => "width:20px;", :title => "#{user_service.display_name}")
+      
+      -table.td(:action) do
+        = link_to image_tag("/images_1/edit.png"), edit_privacy_group_path(privacy_group)
+        = "|"
+        = link_to_remote_redbox(image_tag("/images_1/delete.png"), :url => {:controller => :privacy_groups, :action => :delete_confirm, :id => privacy_group.id}) unless privacy_group.blank?

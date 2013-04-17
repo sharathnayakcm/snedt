@@ -1,0 +1,79 @@
+xml.instruct! :xml, :version => "1.0"
+xml.rss("version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/") do
+  xml.channel do
+    xml.title       "edinitity"
+    if @custom_stream
+      xml.description "#{@current_user.user_name}'s custom stream (#{@custom_stream.name})"
+    else
+      xml.description "Page not found"
+    end
+    @streams.each do |stream|
+      if stream.service_id == 7
+        xml.item do
+          xml.title       "#{stream.sender.name} #{Stream::PROFILE_STATUS[stream.service_id]}"
+          xml.description do
+            xml << h(CGI.unescapeHTML(wordwrap(stream.stream_media_url)))
+            xml << h("<br/>") unless stream.stream_media_url.blank?
+            xml << h(stream.flickr_photo_title)
+          end
+          xml.guid        url_for :only_path => false, :controller => 'home', :action => 'index'
+        end
+      elsif stream.service_id == 3 || stream.service_id == 4
+        xml.item do
+          xml.title       "#{stream.sender.name} #{Stream::PROFILE_STATUS[stream.service_id]}"
+          xml.description do
+            xml << h(CGI.unescapeHTML(wordwrap(stream.video_url, true)))
+            xml << h("<br/>") unless stream.video_url.blank?
+            xml << h(stream.text)
+          end
+          xml.guid        url_for :only_path => false, :controller => 'home', :action => 'index'
+        end
+      elsif stream.service_id == 2
+        xml.item do
+          xml.title       "#{stream.sender.name} #{Stream::PROFILE_STATUS[stream.service_id]}"
+          xml.description do
+            xml << h(CGI.unescapeHTML(wordwrap(stream.text)))
+            xml << h("<br/>") unless stream.text.blank?
+            xml << h(CGI.unescapeHTML(wordwrap(stream.facebook_feed_description)))
+            xml << h("<br/>") unless stream.facebook_feed_description.blank?
+            xml << h(CGI.unescapeHTML(wordwrap(stream.facebook_link_url)))
+          end
+          xml.guid        url_for :only_path => false, :controller => 'home', :action => 'index'
+        end
+      elsif stream.service_id == 9
+        xml.item do
+          xml.title       "#{stream.sender.name} #{Stream::PROFILE_STATUS[stream.service_id]}"
+          xml.description do
+            content = stream.tumblr_feed_type == "video" ? stream.video_url : stream.tumblr_data_one
+            xml << h(CGI.unescapeHTML(wordwrap(content)))
+            xml << h("<br/>") unless content.blank?
+            xml << h(CGI.unescapeHTML(wordwrap(stream.tumblr_data_two)))
+            xml << h("<br/>") unless stream.tumblr_data_two.blank?
+            xml << h(CGI.unescapeHTML(wordwrap(stream.description)))
+          end
+          xml.guid        url_for :only_path => false, :controller => 'home', :action => 'index'
+        end
+      elsif stream.service_id == 5 || stream.service_id == 6
+        xml.item do
+          xml.title       "#{stream.sender.name} #{Stream::PROFILE_STATUS[stream.service_id]}"
+          xml.description do
+            xml << h(CGI.unescapeHTML(wordwrap(stream.rss_original_site_content)))
+            xml << h("<br/>") unless stream.rss_original_site_content.blank?
+            xml << h(stream.rss_feed_description)
+            xml << h("<br/>") unless stream.rss_feed_description.blank?
+            xml << h(CGI.unescapeHTML(wordwrap(stream.text)))
+          end
+          xml.guid        url_for :only_path => false, :controller => 'home', :action => 'index'
+        end
+      else
+        xml.item do
+          xml.title       "#{stream.sender.name} #{Stream::PROFILE_STATUS[stream.service_id]}"
+          xml.description do
+            xml << h(stream.text)
+          end
+          xml.guid        url_for :only_path => false, :controller => 'home', :action => 'index'
+        end
+      end
+    end
+  end
+end

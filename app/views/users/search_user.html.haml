@@ -1,0 +1,14 @@
+:javascript
+  jQuery(function() {
+    href = jQuery('.pagination a').attr('href');
+    jQuery('.pagination a').attr('href', href + "&pagination=true&searchword=" + "#{params[:searchword]}");
+  })
+  jQuery('.pagination a').live('click',function (){
+      jQuery.getScript(this.href);
+      return false;
+    });
+- if(@ajax == false)
+  #pagination
+    = render :partial => 'search_results'
+- else
+  = render :partial => 'searched_users'

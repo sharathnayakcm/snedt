@@ -1,0 +1,13 @@
+#mainContent
+  #ednt-Activation.ednt-Wrapper
+    .titles
+      %h4=t :account_activation_success
+    #activitionWrapper.MP-boxes
+      .activationInfo
+        %span.infoIcon
+        %p=t :account_activation_confirming_message
+      #toAccSetup.blueBtn
+        =link_to "#{t :continue_account_setup}", root_path
+
+:javascript
+  setTimeout("window.location='#{url_for(root_path)}'", 5000)

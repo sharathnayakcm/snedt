@@ -1,0 +1,33 @@
+.titles
+  %h4.flLeft You have #{@followers.count} followers
+- unless @followers.blank?
+  - form_remote_tag(:url => update_privacy_group_followers_path, :method => :get) do
+    .modalConfirmAct.flRight#followerSave
+      .blueBtn.save
+        = submit_tag ("#{t :save}", :class => "smlrBtn")
+    %ul#yourFollowers
+      - @followers.each do |follower|
+        - unless follower.blank?
+          %li
+            .userSummary.flLeft
+              %span.profilePic
+                - unless follower.profile_image.blank?
+                  = image_tag follower.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :class => "profilePicMed"
+                - else
+                  = image_tag "/images/userPicMed.png", :class => "profilePicMed"
+              .userInformation
+                %a.userName{:href => "/profiles/#{follower.user_name}"}
+                  = follower.display_full_name_for_privacy(current_user)
+                %a.followLink Followers : #{follower.get_followers.count}
+            .userActionForThisUser.flRight
+              .privacyMultiselect{:class => "#{session[:locale] == 'arabic' ? 'flRight' : 'flLeft'}", :style => "padding-left: 10px;"}
+                = collection_select("task", "groups_#{follower.id}" , @privacy_groups, "id", "name", {:selected => lambda{|pg| pg.has_this_user(follower.id)}},{:multiple => true})
+              .redBtn.flLeft{:id => "follower_block_#{follower.id}"}
+                - if follower.is_blocked(current_user.id)
+                  = link_to_remote("#{t :unblock}", :url => blocked_user_path(:id => follower.id), :method => :delete, :html => {:class => "smlrBtn"})
+                - else
+                  = link_to_remote("#{t :block}", :url => blocked_users_path(:id => follower.id), :method => :create, :html => {:class => "smlrBtn"})
+              .blueBtn.flRight
+                = link_to "#{t :follow}", follow_followers_path(:following => follower.id, :next_url => 'followers'), :class => "smlrBtn"
+.loadContentIndocator.hide
+  %span.progressStream

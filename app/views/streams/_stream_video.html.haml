@@ -1,0 +1,30 @@
+- if stream.video_url && stream.video_url != ""
+  -video = stream.video
+  - if video.class != String
+    .attchmntFull{:href => "javascript:void(0);"}
+      =video.embed_html(400, 325)
+  - else
+    .attactmentDesc.attactmentDescFull
+      =CGI.unescapeHTML(wordwrap(stream.video_url))
+- if stream.facebook_feed_type == "video"
+  -fb_video = stream.fb_video
+  - if fb_video.class != String
+    .attactmentDesc.attactmentDescFull
+      = stream.facebook_feed_description
+      &nbsp;
+    .attchmntFull{:href => "javascript:void(0);"}
+      =fb_video.embed_html(400, 325)
+    .attachmentDesc.attactmentDescFull
+      = CGI.unescapeHTML(wordwrap(stream.text))
+  - else
+    - unless stream.facebook_link_url.blank?
+      .attactmentDesc.attactmentDescFull
+        = CGI.unescapeHTML(wordwrap(stream.facebook_link_url))
+    .attachmentSourceDesc.attactmentDescFull
+      = CGI.unescapeHTML(wordwrap(stream.text))
+- elsif stream.facebook_feed_type
+  - unless stream.facebook_link_url.blank?
+    .attactmentDesc.attactmentDescFull
+      = CGI.unescapeHTML(wordwrap(stream.facebook_link_url))
+  .attachmentSourceDesc.attactmentDescFull
+    = CGI.unescapeHTML(wordwrap(stream.text))

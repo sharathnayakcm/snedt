@@ -1,0 +1,66 @@
+/* ie9 ltr */
+.shadeCenter {
+	width:650px;
+} /*styleAddons.css*/
+
+.shadeCenter {
+	top:44px;
+} /*main.css*/
+
+/* ie9 home page */
+	.windows .shareServiceControl {
+		top:127px;
+	} /*stream.css*/
+
+	.addShortUrl {
+		left:225px;
+		top:127px;
+	} /*stream.css*/
+
+	.windows .formStatusControl li.addToStream {
+		padding:7px 20px;
+	}/*stream.css.*/
+
+	.windows #sharingOptCheck4.shareServiceControl {
+		top:142px;
+	} /* ar_stream.css (add new) */
+
+	.windows #sharingOptCheck5.shareServiceControl {
+		top:142px;
+	} /* ar_stream.css (add new) */
+
+		/* searchSideBar */
+
+			.saveSearch li a {
+				padding:5px 10px;
+				width:208px;
+				word-wrap:break-word;
+			} /*stream.css*/
+
+		/* end of searchSideBar */
+/*end of ie9 home*/
+
+/* ie9 Profile page */
+	.addNewSkin .BlueArrowDown {
+		padding:0 10px 4px;
+		background-position-x: -8px;
+	} /* add new style */
+/*end of ie9 profile page*/
+
+/* setting/edit page */
+	#roundIcon {
+		position:absolute;
+		right:10px;
+	} /* pricing.css */
+	.pricingInner {
+		width:72px;
+	} /* pricing.css*/
+
+	.jslider .jslider-scale ins{
+		right:0;/*change left:0*/
+	} /*jslider.css*/
+/*end of ie9 setting/edit page*/
+
+/* end of ie9 fix*/
+
+

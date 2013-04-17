@@ -1,0 +1,25 @@
+.profile_follower_list
+  .follower_request
+    - unless @followers.blank?
+      - @followers.each do |follower|
+        .follwer_request_div{:class => cycle('odd','even')}
+          .thumbline_pic
+            - unless follower.avatar.blank?
+              = image_tag follower.avatar.url.gsub("/s3.","/s3-eu-west-1.")
+            - else
+              = image_tag :src => "images_1/thumbline_pic.png"
+          .user_name
+            = follower.display_full_name(current_user)
+          - unless current_user.id == follower.id
+            .button_div.followers{:style => "width:310px;"}
+              .button{:id => "action_1_#{follower.id}"}
+                - if current_user.already_following_user(follower.id) || current_user.id == follower.id
+                  = link_to_remote "#{t :unfollow}", :url => unfollow_followings_path(:following => follower.id), :method => :get, :html => {:class => "button"}
+                - else
+                  = link_to_remote "#{t :follow}", :url => follow_followings_path(:following => follower.id), :method => :get, :html => {:class => "button"}
+              .clear
+        .clear
+    - else
+      %div.no_users_profile
+        %div
+          =t :no_followers_profile

@@ -1,0 +1,42 @@
+#ednt-PrivacyPolicy, #ednt-TermOfService{}
+
+#ednt-PrivacyPolicy .titles{}
+
+#ednt-PrivacyPolicy .titles h4{
+	text-shadow: 0 1px 0 #fff;
+}
+
+#privacyWrapper, #TOS-Wrapper{
+	background: #eef1f2;
+	padding: 35px 25px;
+	float: left;
+	width: auto;
+	line-height: 20px;
+}
+
+
+.firstRow, #information, #security, #disclosure, #accountTerm{
+	margin-bottom: 30px;
+	text-shadow: 0 1px 0 #fff;
+}
+
+,firstRow p{
+	margin: bottom: 20px;
+}
+
+ol.listNumber{
+	list-style: decimal outside none;
+	margin: 20px 15px;
+}
+
+ol.listNumber li{
+	padding: 2px 0;
+}
+
+#clientDataStorage{
+	text-shadow: 0 1px 0 #fff;
+}
+
+#generalCondition, #generalCondition .titles h4, #accountTerm, #accountTerm .titles h4{
+	text-shadow: 0 1px 0 #fff;
+}

@@ -1,0 +1,7 @@
+#ednt-linksPage.mainStreamWrapper
+  .ajaxLoader.cornerAll#ajaxLoaderDiv.hide
+    %span.ajaxSpinner
+      %img{:src=>"/images/ajax-loader.gif", :alt=>"#"}
+  .friendFinder.fullPage.streamWrapper.cornerAll
+    #friendSearchContent.servicesBoxInner.cornerAll
+      = render :partial => "users/friends/find_friends"

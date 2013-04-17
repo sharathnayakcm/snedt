@@ -1,0 +1,94 @@
+:css
+  .label{
+    text-align: left !important;
+  }
+
+.full_mid
+  .main_signup
+    .signup_top
+    .signup_mid
+      .sign_up_mid_content
+        .new_user_sign_up_lable
+          == New User
+        .columns
+          %div
+            .sign_up_page
+              %p
+                %div.full_name.left
+                  .label.full_name_text
+                    =t :full_name
+                    %span.mandatory *
+                  .tag.field_image_input= f.text_field :full_name, :id => "full_name", :tabindex => "1", :class => "sign_up_text", :value => @user.full_name || "Your first and last name (John Smith)", :onfocus => "if(this.value=='Your first and last name (John Smith)'){this.value=''}", :onblur =>"if(this.value==''){this.value='Your first and last name (John Smith)'}"
+                %div.left.full_name_success
+                  %span#full_name_success
+                  %span#full_name_warning
+                .clear
+              %p
+                %div.full_name.left
+                  .label.full_name_text
+                    =t :user_name
+                    %span.mandatory *
+                  .tag.field_image_input= f.text_field :user_name, :id => "user_name", :tabindex => "2", :autocomplete => "off", :class => "sign_up_text",:value => @user.user_name || "Make it Unique", :onfocus => "if(this.value=='Make it Unique'){this.value=''}", :onblur =>"if(this.value==''){this.value='Make it Unique'}", :onkeyup => "$j('#user_name_check').html('<br />Checking Availability...'); $j('#user_url').html('Your profile URL:http://<b>'+ this.value.toLowerCase() +'</b>.edintity.com'); #{remote_function(:url => user_validation_users_path, :method => :get, :with => "'user_name='+this.value")}"
+                  %span#user_name_check
+                  .lable_name.clear
+                  %span#user_url
+                    = "#{t :your_profile_url}: http://<b>UserName</b>.edintity.com"
+              .clear
+              %p
+                %div.full_name.left
+                  .label.full_name_text
+                    =t :sign_up_email
+                    %span.mandatory *
+                  .tag.field_image_input= f.text_field :email, :id => "email", :tabindex => "3", :class => "sign_up_text", :value => @user.email || "Activation link will be sent to this email", :onfocus => "if(this.value=='Activation link will be sent to this email'){this.value=''}", :onblur =>"if(this.value==''){this.value='Activation link will be sent to this email'}"
+                  %span#email_warning
+                  %span#email_success
+
+              %p.clear
+                %div.full_name.left
+                  = check_box :user , :friends_find
+                  =t :email_text
+              .clear
+              %p
+                %div.full_name.left
+                  .label.clear.full_name_text
+                    =t :country
+                  .tag
+                    = f.country_select :country, [["#{t :select_country}", ""]], {}, {:onchange => remote_function(:url => show_time_zone_users_path, :with => "'country_code=' + this.value")}
+                  .span
+                  .span
+                  .lable_name.clear
+              .clear
+              %p
+                %div.full_name.left
+                  .label.clear.full_name_text
+                    =t :time_zone
+                  .tag
+                    #time_zone= time_zone_select :user, :time_zone, get_time_zones("#{@user.country || 'US'}")
+                  .span
+                  .span
+                  .lable_name.clear
+              .clear
+              %p
+                %div.full_name.left
+                  .label.clear.full_name_text
+                    =t :sign_up_password
+                    %span.mandatory *
+                    %span.quiet.small== (t :atleast_seven_chars)
+                  .tag.field_image_input= f.password_field :password, :id => "password", :tabindex => "5", :class => "sign_up_text", :value => ""
+                  %span#password_warning
+                  %span#password_success
+                  .lable_name.clear
+              .clear
+              %p
+                %div.full_name.left
+                  .label.clear.full_name_text
+                    =t :confirm_password
+                    %span.mandatory *
+                  .tag.field_image_input= f.password_field :password_confirmation, :id => "password_confirm", :tabindex => "6", :class => "sign_up_text", :value => ""
+                  %span#confirm_password_warning
+                  %span#confirm_password_success
+                .lable_name.clear
+              = hidden_field_tag :page, @page
+              = hidden_field_tag :per_page, @per_page
+              .create_my_account_button_info.align_center
+                = submit_tag "#{t :save}", :id => "submit", :tabindex => "7", :class => "button create_button", :style => ""

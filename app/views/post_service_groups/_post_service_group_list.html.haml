@@ -1,0 +1,15 @@
+- post_service_groups ||= @post_service_groups
+- @post_service_groups_table.render post_service_groups do |table|
+  - post_service_groups.each do |post_service_group|
+    - table.tr :id => "post_service_group_#{post_service_group.id}" do
+      -table.td {post_service_group.name}
+      -table.td {post_service_group.post_type.name}
+      -table.td do
+        - user_groups = post_service_group.user_service_ids.to_s.split(",")
+        - user_services = UserService.find_all_by_id(user_groups)
+        - unless user_services.blank?
+          - user_services.each do |user_service|
+            = image_tag("services/#{user_service.service.name.downcase}.png" , :style => "width:20px;" , :title => "#{user_service.display_name}")
+      -table.td(:action) do
+        = link_to_remote_with_loader image_tag("/images_1/edit.png"), :url => edit_post_service_group_path(post_service_group), :method => :get, :update => "form_content"
+        = link_to_remote_redbox(image_tag("/images_1/delete.png"), :url => {:controller => :post_service_groups, :action => :delete_confirm, :id => post_service_group.id}) unless post_service_group.blank?

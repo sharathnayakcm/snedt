@@ -1,0 +1,202 @@
+.tableLoginTop, .tableLoginBottom, #borderTop{
+	z-index: 0;
+}
+
+#borderTop{
+	background: none;
+	z-index: 99;
+}
+
+.uiLoginForm{
+	z-index: 1;
+	background: none;
+}
+
+.loginButton a{
+	background: #1f5770;
+	border: 1px solid #0d4456;
+	padding: 2px 10px;
+}
+
+.loginButton a:hover{
+	background: #204961;
+}
+
+.privacySetup li.accntSetup .privacyRestrict, .privacyHead, .privacySetup{
+	z-index: 0;
+}
+
+.privacySetup li.accntSetup{
+	border-top: none;
+	border-bottom: none;
+}
+
+.privacySetup li.accntSetup:last-child .privacyHead{	
+	border: none;
+}
+
+.privacyHead{
+	box-shadow: none;
+}
+
+#navigation li#adminConsol:hover a{
+	z-index: 0;
+	background: #0e4a61;
+}
+
+#searchInstructLast{
+	border-bottom: 1px solid #DBDFE0;
+	margin-bottom: 0;
+	padding-bottom: 15px;
+}
+
+#contactFound h6{
+	border-top: 1px solid #F3F5F6;
+}
+
+#navigation li#logout{
+
+}
+
+#navigation li#logout a{
+	background-image:  url(../img/uiIconInside.png);
+	background-repeat: no-repeat;
+	background-position: -4px -59px;
+	background-color: #0e4a61;
+	z-index: 0;
+}
+
+#dropNav .dropContent{
+	background: #fafafa;
+}
+
+#dropNav .dropContent li:last-child{
+	border: none !important;
+}
+
+.brandListHead  li:last-child{
+	position: relative;
+}
+
+#mainLogo{
+	margin-right: 100px;
+}
+
+#headerSearchWrapper{
+	margin-left: 0;
+}
+
+.writeCommentPopup{
+	left: 167px;
+}
+
+.modalWindow{
+	z-index: 999;
+	background: #fafafa;
+}
+
+.brandSideListWrapper{
+	z-index: 0;
+	position: relative;
+}
+
+#brandsSideStream, .contentHeading {
+	z-index: 0;
+}
+
+.editingSkinsContent li{
+	height: 25px;
+}
+
+.streamController li.streamControl1 {
+	width: 135px;
+}
+
+.streamController li.streamControl6{
+	width: 217px;
+}
+
+span.updateArrowTop{
+	padding-bottom: 5px;
+}
+
+.notifDropdown{
+	z-index: 99;
+}
+
+.breadcrumb{
+	border-radius: 3px;
+}
+
+.transBg, .shareToBrandHead, .shortUrlContent, .shareToBrandContent, .shortUrlHead, #personalNotif{
+	background: #fafafa;
+}
+
+.shareToBrandDropDown{
+	top: 161px;
+}
+
+.shareToBrandContent{
+	top: 29px;
+}
+
+.shareServiceControlBrand, .addShortUrlBrand{
+	top: 161px !important;
+}
+
+.vidPhotoCtrlBrand{
+	top: 195px !important;
+}
+
+.formStatusControl li.caracterCount{
+	padding-right: 105px; 
+	padding-left: 10px
+	
+}
+
+#headerSearchWrapper{
+	width: 220px;
+}
+
+#mainSearch{
+	width: 220px;
+}
+
+#navigation li.navSelected a, #navigation li:hover a{
+	background: #0e4a61;
+}
+
+.starterFeatures div{
+	width: 250px;
+}
+
+.fullwidthCtrl li.streamControl6{
+	width: 192px !important;
+}
+
+#brandStreamTab ul{
+	top: 22px;
+}
+
+input#mainSearch{
+	width: 175px;
+}
+
+.brandsListing li.filled{
+	width: 99%;
+	float: right;
+}
+.customSkins .redBtn a{
+	height: 22px;
+	background-position: 0 -434px;
+}
+
+.uploadAttachment a{
+	height: 13px;
+	background-position: 0px -613px;
+}
+
+
+#headerSearchWrapper{
+  margin-right: 0px !important;
+}

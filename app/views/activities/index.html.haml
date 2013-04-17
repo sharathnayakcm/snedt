@@ -1,0 +1,37 @@
+:javascript
+  var topNavLinkId = 'activityIco';
+#ednt-linksPage.mainStreamWrapper
+  #tabFriend-1-1.fullPage.streamWrapper.cornerAll
+    .total_points
+      %span
+        You have 
+      %span.highlight
+        = "#{@total_points} Points"
+      %span
+        and you have unlocked
+      %span.highlight
+        0 Badges
+    - unless @activities.blank?
+      %ul#sortTabFollowing-1-1.fr-tabContent.total_points{:style => "margin-top: 25px;"}
+        %li
+          %div
+            .userInformation{:class => "#{session[:locale] == 'arabic' ? 'flRight' : 'flLeft'}", :style => "padding:0 100px 0 10px;"}
+              %b= t(:activity)
+          %div
+            .privacyMultiselect{:class => "#{session[:locale] == 'arabic' ? 'flRight' : 'fLeft'}", :style => "padding:0 240px 0 10px;"}
+              %b= t(:points)
+
+      %ul#sortTabFollowing-1-1.fr-tabContent.total_points{:style => "font-weight: normal;"}
+        - @activities.each do |activity|
+          %li
+            %div
+              .userInformation.topic_points{:class => "#{session[:locale] == 'arabic' ? 'flRight' : 'flLeft'}", :style => "padding:0 100px 0 10px; width: 350px;"}
+                = render :partial => "activities/description", :locals => {:activity => activity}
+                - unless activity.created_at < Date.today - 1.day
+                  %span.grayedText= '- ' + time_ago_in_words(activity.created_at).to_s + '  ago'  unless  activity.created_at.blank?
+                - else
+                  %span.grayedText= '- ' + to_local(activity.created_at).strftime("%d %b %Y") unless  activity.created_at.blank?
+            %div
+              .privacyMultiselect{:class => "#{session[:locale] == 'arabic' ? 'flRight' : 'flLeft'}", :style => "padding:0 100px 0 10px;"}
+                = activity.points
+

@@ -1,0 +1,49 @@
+#contentHeadPersonal6.contentHeading.cornerBottom
+  %h4
+    %a{:href => "javascript:void(0);"}= t :payment_history
+#accSettingPersonalContent6.accSetupContent
+  .paymentHistory.cornerAll
+    %ul.paymentGroup
+      %li.paymentHead.cornerTop
+        %ul.paymentRow
+          %li.firstCol= t :payment
+          %li.secondCol= t :plan
+          %li.thirdCol= t :vendor
+          %li.fourthCol= t :amount
+          %li.fifthCol= t :date
+          %li.sixCol= t :status
+      - payments ||= @payments
+      - payments.each do |payment|
+        = render :partial => "users/payments_list",:locals => {:payment => payment}
+      /%li.paymentFoot.cornerBottom
+      /  .showListingPayment
+      /    %label{:for => "listPaymentSetting"}= t :listing
+      /    %input.listPaymentSetting.textInput{:name => "listPaymentSetting", :type => "text"}
+      /    %span payment per page
+      /  .showTotalPayment Total 35 payment
+      /  .paymentPagination.flRight
+      /    %ul
+      /      %li.pages.selectedPg
+      /        %a 1
+      /      %li.pages
+      /        %a 2
+      /      %li.pages
+      /        %a 3
+      /      %li.dotted
+      /      %li.pages
+      /        %a 7
+      /      %li.pages
+      /        %a 8
+      /      %li.pages
+      /        %a 9
+      /      %li.pText.flRight
+      /        %a next
+      /      %li.mark.flRight |
+      /      %li.pText.flRight
+      /        %a last
+      /      %li.mark.flRight |
+      /      %li.pText.flRight
+      /        %a first
+      /      %li.mark.flRight |
+      /      %li.pText.flRight.off
+      /        %a prev

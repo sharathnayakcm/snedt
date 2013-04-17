@@ -1,0 +1,5 @@
+- brand = @brand || brand
+- unless brand.profile_image.blank?
+  = image_tag brand.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1.")
+- else
+  = image_tag "/images_1/profile_pic_imgpng.png"

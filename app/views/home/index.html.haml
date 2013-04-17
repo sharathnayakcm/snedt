@@ -1,0 +1,24 @@
+- if request.path.inspect.index("social_inbox")
+  :javascript
+    var topNavLinkId = 'socialInboxIco';
+#periodic_call
+  - if @no_post_panel.blank? && controller_name == "home" && action_name == "index" 
+    = periodically_call_remote(:url => get_streams_home_path(:stream_type => request.path.gsub('/', '')), :method => :get, :frequency => 40, :loading => "$('stream_notify').show();", :success => "$('stream_notify').hide();", :with => "'is_in_play_mode=false'")
+    - if current_user.refresh_period
+      = render :partial => "home/periodic_call", :locals => {:refresh_period => current_user.refresh_period}
+= render :partial => "shared/content"
+- if current_user
+  #activationReminder{:style => 'display: none;'}
+    = link_to_remote_redbox "", {:url => activation_reminder_home_path, :method => :get}, :class => "smlrBtn", :id => "activationReminderBtn"
+
+#topic_stream_call
+  - if @no_post_panel.blank? && controller_name == "home" && action_name == "index"
+    = periodically_call_remote(:url => get_topic_count_home_path(), :method => :get, :frequency => 40, :loading => "$('stream_notify').show();", :success => "$('stream_notify').hide();", :with => "'is_in_play_mode=false'")
+
+
+:javascript
+  $j(document).ready(function(){
+    if(#{!session[:activation_reminder].blank?}){
+      #{session[:activation_reminder] = nil}
+      $j('#activationReminderBtn').click();}
+    });

@@ -1,0 +1,23 @@
+:javascript
+  $('RB_window').style.width = "540px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 540)/2) + "px";
+  $j('.button').corner("4px");
+.dialogs
+  .dialog_details{:style => "padding-left:35px;;padding:0px;width: 490px;"}
+    %div{:style=> "background-color:#CCCCCC;"}
+      #comment_div{:style => "border:1px solid #17404E;padding:40px;"}
+        - remote_form_for @abuse_content , :url => admin_abuse_content_path(@abuse_content.id), :method => :put do |f|
+          %span{:style => "color:black;font-weight:bold;"}
+            == Description
+          %br/
+          = f.text_area :user_comments, :rows => 10, :cols => 40, :disabled => true, :id => 'abuse_content_description'
+          %br/
+          = radio_button_tag :stream_action, 'publish'
+          == Show the stream
+          %br/
+          = radio_button_tag :stream_action , 'block'
+          == Block the stream
+          %br/
+          = f.submit "Submit", :class => "button", :id => "submit",:onclick => "$j('#submit').hide(),$j('#spinner_tag').show();"
+          %div.display_none{:id => "spinner_tag"}
+            = image_tag("/images_old/spinner.gif")

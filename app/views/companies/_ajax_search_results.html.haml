@@ -1,0 +1,19 @@
+.registration_mid
+  .main_all
+    .mid_top
+      %img{:src => "/images_1/mid_top.png"}/
+    .mid_inner
+      .mid_inner_content.search_page
+        %h4== Search results for "#{params[:searchword]}"
+        %br
+        - unless @brands.blank?
+          - @brands.each do |brand|
+            %div{:style => "margin-bottom:5px;"}
+              .float_left
+                = brand.name
+            .clear
+            %div{:style => "border: 1px solid #CCCCCC; margin-left:-10px; width:775px; margin-bottom:20px;"}
+
+
+    .mid_bottom
+      %img{:src => "/images_1/mid_bottom.png"}

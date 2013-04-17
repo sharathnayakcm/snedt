@@ -1,0 +1,12 @@
+#ednt-PersonalSetting.ednt-Wrapper
+  .ajaxLoader.cornerAll#ajaxLoaderDiv.hide
+    %span.ajaxSpinner
+      %img{:src=>"/images/ajax-loader.gif", :alt=>"#"}
+  #accordionPersonalSettings.accSetupWrapper.MP-boxes
+    #accountPersonalSetting.accSetupGroup
+      = render :partial => "users/summary"
+      = render :partial => "users/accounts"
+      = render :partial => "users/services"
+      = render :partial => "users/privacy"
+      = render :partial => "users/notifications"
+      = render :partial => "users/payment_history"

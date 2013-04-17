@@ -1,0 +1,4 @@
+- fields_for :asset do |f|
+  - f.hidden_field :panel_type_id, :value => panel_type.id
+  = hidden_field_tag :form_id, file_id
+  = f.file_field :file, :size => 1, :onchange => "$j('#image_upload_spinner').show();upload_file('#{file_id}');"

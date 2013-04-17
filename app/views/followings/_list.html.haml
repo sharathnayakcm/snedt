@@ -1,0 +1,61 @@
+.titles
+  #peopleCount
+    %h4.flLeft You follow #{@followings.length} people
+  #brandCount{:style => "display:none"}
+    %h4.flLeft You follow #{@company_followings.length} brands
+  .sortBy.flRight
+    %ul
+      %li#sortTabFollowing-1.sortTab.sortTabActive
+        %a{:href => "javascript:void(0);", :onclick => "$('sortTabFollowing-1-2').hide();$('followingSave').show();$('peopleCount').show();$('brandCount').hide();"} Individual
+      %li#sortTabFollowing-2.sortTab.last-child
+        %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('sortTabFollowing-1-2');$('followingSave').hide();$('peopleCount').hide();$('brandCount').show();"} Brands
+- unless @followings.blank?
+  - form_remote_tag(:url => update_privacy_group_followings_path, :method => :get) do
+    .modalConfirmAct.flRight#followingSave
+      .blueBtn.save
+        = submit_tag ("#{t :save}", :class => "smlrBtn")
+    %ul#sortTabFollowing-1-1.fr-tabContent
+      - @followings.each do |follower|
+        %li
+          .userSummary.flLeft
+            %span.profilePic
+              - unless follower.profile_image.blank?
+                = image_tag follower.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :class => "profilePicMed"
+              - else
+                = image_tag "/images/userPicMed.png", :class => "profilePicMed"
+            .userInformation
+              %a.userName{:href => "/profiles/#{follower.user_name}"}
+                = follower.display_full_name_for_privacy(current_user)
+              %a.followLink Followers : #{follower.get_followers.count}
+          .userActionForThisUser.flRight
+            .privacyMultiselect{:class => "#{session[:locale] == 'arabic' ? 'flRight' : 'flLeft'}", :style => "padding-left: 10px;"}
+              = collection_select("task", "groups_#{follower.id}" , @privacy_groups, "id", "name", {:selected => lambda{|pg| pg.has_this_user(follower.id)}},{:multiple => true})
+            .redBtn.flLeft{:id => "follower_block_#{follower.id}"}
+              - if follower.is_blocked(current_user.id)
+                = link_to_remote("#{t :unblock}", :url => blocked_user_path(:id => follower.id), :method => :delete, :html => {:class => "smlrBtn"})
+              - else
+                = link_to_remote("#{t :block}", :url => blocked_users_path(:id => follower.id), :method => :create, :html => {:class => "smlrBtn"})
+            .yellowBtn.flRight
+              = link_to "#{t :unfollow}", unfollow_followers_path(:following => follower.id, :next_url => 'followings'), :class => "smlrBtn"
+%ul#sortTabFollowing-1-2.fr-tabContent.hidden
+  - @company_followings.each do |follower|
+    - unless follower.brand.blank?
+      %li{:id => "following_brand_#{follower.brand.id}"}
+        .userSummary.flLeft
+          %span.profilePic
+            - unless follower.brand.profile_image.blank?
+              = image_tag follower.brand.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :class => "profilePicMed"
+            - else
+              = image_tag "/images/brandPicMed.jpg", :class => "profilePicMed"
+          .userInformation
+            %a.userName{:href => "/profiles/#{follower.brand.name}"}
+              = follower.brand.name
+            %a.followLink Followers : #{follower.brand.followers.count}
+        .userActionForThisUser.flRight
+          .yellowBtn.flRight
+            = link_to_remote "#{t :unfollow}", :url => unfollow_company_followers_path(follower.brand.company, :brand_id => follower.brand.id, :user_id => current_user.id, :listing_page => true), :method => :get, :html => {:class => "smlrBtn"}
+
+:javascript
+  $j(document).ready(function(){
+   $j(".userActionForThisUser select").multiSelect();
+  });

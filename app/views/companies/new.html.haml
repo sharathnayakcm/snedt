@@ -1,0 +1,48 @@
+#ednt-SignupForBrand.ednt-Wrapper
+  .titles
+    %h4= t :sing_up_brand
+  .signupWrapper
+    #signUpForBrand.MP-boxes.signupBoxWrap
+      - form_for(@company, :url => companies_path, :method => :post, :html => {:id => "company_form"}) do |f|
+        = hidden_field_tag :membership_id, @membership.id
+        %ul
+          %li.signUpHead
+            .titles
+              %span.companyIcon
+              %h4= t :brand_info
+          %li
+            %label{:for => "brandName"}= t :brand_name
+            %input.textInput{:name => "company[name]", :type => "text", :onkeyup => "$j('#company_name_check').html(''); $j('#brand_url').html('#{t :brand_url_text} <strong>http://' + this.value.toLowerCase() + '.edintity.com</strong>');  #{remote_function(:url => company_name_validation_companies_path, :method => :get, :with => "'company_name='+this.value")}"}
+            %br
+            #company_name_check
+              %span#company_name_icon
+            %span.profileURL#brand_url
+              = t :brand_url_text
+              %strong http://BrandName.edintity.com
+          %li
+            %label{:for => "brandURL"}= t :brand_website
+            %input.textInput{:name => "company[url]", :type => "text"}
+            /%span.checkIco.errorCheckIco
+            %span.profileURL
+              = t :brand_url_example
+              == http://yourbrand.com
+            %br
+            %br
+            /.formError{:style => "display:block;"}
+            /  %p You must use "http://" for identification
+          %li
+            %label{:for => "aboutBrand"}= t :about
+            %textarea.textInput{:name => "company[description]"}
+          %li.signUpFoot
+        #confirmSignupBusiness.MP-boxes.signupBoxWrap
+          .blueBtn
+            - if @membership && @membership.amount.to_i > 0
+              = hidden_field_tag :payment, true
+              =  submit_tag "#{t :create_my_account}", :onclick => "if($j('#company_name').val()==''){notice('name should not be blank');return false;}else{if($j('#company_url').val()==''){notice('URL can not be blank');return false;}}"
+            - else
+              =  submit_tag "#{t :create_my_account}"
+          .bronzeBtn
+            = link_to t(:cancel), companies_path
+
+
+

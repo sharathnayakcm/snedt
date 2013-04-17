@@ -1,0 +1,24 @@
+.columns
+  .column.width_12.leftmost
+    .form_field
+      .label_name= "Title<font color='red'>*</font>"
+      .tag= f.text_field :title
+    .form_field
+      .label_name= "Image"
+      - fields_for :asset do |f|
+        = f.hidden_field :attachable_type, :value => 'topic'
+        = f.hidden_field :attachable_id, :value => @topic.id
+        = f.file_field :file, :size => 1
+        - if @topic.asset
+          = image_tag(@topic.asset.asset.url.gsub('/s3.','/s3-eu-west-1.'), :width => "70", :height => "50", :border => "1" )
+    
+    = hidden_field_tag :page, @page
+    = hidden_field_tag :per_page, @per_page
+
+.columns
+  .column.width_10.leftmost
+    .align_right= submit_tag "Save", :class => "button"
+
+.columns
+  .column.width_12.leftmost
+    = "Note: Fields marked as <font color='red'>*</font> are mandatory."

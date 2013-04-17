@@ -1,0 +1,20 @@
+:javascript
+  $j('.button').corner("4px");
+  $('RB_window').style.width = "500px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 500)/2) + "px";
+.dialogs
+  .dialog_details
+    - if @days_left > 0
+      %p
+        = t :downgrade_later, :days => @days_left, :date => @payment_date.blank? ? "-" : @payment_date.strftime("%d %b %Y")
+    - else
+      %p
+        =t :downgrade_confirm
+      %b
+        = (current_user.cycle_start_date + 2592000).strftime("%d %b %Y")
+    .modalConfirmAct.flRight{:style => "width:240px"}
+      .blueBtn
+        = link_to "#{t :downgrade}", {:controller => :users, :action => :downgrade_to_free}, :class => "smlrBtn"
+      .yellowBtn
+        = link_to_close_redbox("#{t :no_changed_mind}", :class => "smlrBtn")
+        

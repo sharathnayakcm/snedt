@@ -1,0 +1,44 @@
+#personalMainStream.streamMain.streamWrapper.cornerAll.flLeft
+  .headStreamSection
+    .streamUpdater
+      .updateStreamType
+        %ul
+          %li
+            %a#cont-1.tabLink{:href => "javascript:;", :onclick => "$j('.shareServiceControl').hide();"}
+              %span#updateStatIco
+                =t :update_status
+          %li
+            %a#cont-2.tabLink{:href => "javascript:;", :onclick => "$j('.shareServiceControl').hide();"}
+              %span#updateBlogIco
+                =t :blog
+          %li
+            %a#cont-3.tabLink{:href => "javascript:;", :onclick => "$j ('.shareServiceControl').hide();"}
+              %span#linkIco
+                =t :share_link
+          %li
+            %a#cont-4.tabLink{:href => "javascript:;", :onclick => "$j('.shareServiceControl').hide();"}
+              %span#photoIco
+                =t :add_photo
+          - unless current_user.membership.id == 1
+            %li
+              %a#cont-5.tabLink{:href => "javascript:;", :onclick => "$j('.shareServiceControl').hide();"}
+                %span#videoIco
+                  =t :add_video
+      .updateStreamAction
+        = render :partial => "posts/status_update"
+        = render :partial => "posts/post_blog"
+        = render :partial => "posts/post_photo"
+        = render :partial => "posts/post_video"
+        = render :partial => "posts/post_link"
+      = render :partial => "home/share_to_services"
+      = render :partial => "home/shorten_link"      
+    .streamController.cornerAll
+      = render :partial => "streams/status_panel"
+  .streamContentSection
+    - if current_user.user_services.blank?
+      %div{ :style => "margin-top:20px; margin-left:130px; font-size: 15px; "}
+        = link_to t(:click_here), user_services_path(current_user,:signup =>"false"), :style => "  color: #77898C; font-weight: bold; text-decoration: underline;"
+        = t(:stay_connected_message)
+    = render :partial => "streams/index"
+  /.backToTop.streamWrapper.cornerAll
+  /  %a{:href => "#"}

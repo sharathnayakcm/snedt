@@ -1,0 +1,23 @@
+- unless @names.blank?
+  - i = 1
+  - for n in @names
+    .searched_user_name{:id => "searched_user_#{n.id}"}
+      %li.addUserPick{:style => "width: 650px !important"}
+        .addUserResult
+          %ul.addUserResultShow
+            %li{:style => "width: 250px !important"}
+              - if @is_edit
+                = check_box_tag 'search_user_ids[]', n.id, false, :class => "checkUser flLeft", :onclick => remote_function(:url => list_added_users_privacy_groups_path(:user_id => n.id), :with => "'edit=#{!@is_edit.blank?}&user_ids='+$('edit_privacy_user_ids').value")
+              - else
+                = check_box_tag 'search_user_ids[]', n.id, false, :class => "checkUser flLeft", :onclick => remote_function(:url => list_added_users_privacy_groups_path(:user_id => n.id), :with => "'user_ids='+$('privacy_user_ids').value")
+              %span.userSmlPic.flLeft
+                %img{:src => "/images/userPicSmall.jpg"}
+              %a.userBlocked{:href => "/profiles/#{n.user_name}"}
+                = n.display_full_name_for_privacy(current_user)
+    - i +=1
+- else
+  %li.addUserPick
+    .addUserResult
+      %ul.addUserResultShow
+        %li
+          =t :no_user_found

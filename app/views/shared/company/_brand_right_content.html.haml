@@ -1,0 +1,43 @@
+#sideWrapper.flRight
+  #ProfileWrapper.streamSide.streamWrapper.cornerAll
+    .userBigPictId
+      - unless @brand.profile_image.blank?
+        = image_tag @brand.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :class => "mainPic"
+      - else
+        %img.mainPic{:src => "/images/brandPicBig.jpg"}
+    .usernameId
+      %h3
+        %a{:href => brand_profile_path(@brand.url)}
+          = @brand.name
+      /- if @company.is_brand_admin?(current_user)
+      /  %a.editCompany{:href => edit_company_path(@brand.company.id)}
+      /    %span.editProfileLink edit company
+      %a.brandUrl{:href => @brand.brand_url}
+        = @brand.brand_url
+    .socialNetworkWrapper
+      %ul
+        - if @brand
+          - @brand.active_services.each do |user_service|
+            %li
+              %a{:href => company_services_path(current_user.company,:scope=>controller_name,:signup =>"false",:brand_id => @brand.id)}
+                %span{:id => "#{user_service.service.name.downcase.gsub(' ','')}Service",:title => "#{user_service.display_name}"}
+    .invitationButton.profile
+      .blueBtn
+        %a{:href => brand_profile_path(@brand.url)} Brand Profile
+
+    - if @company.is_brand_admin?(current_user)
+      .invitationButton
+        .blueBtn
+          %a{:href => new_user_friend_path(current_user, :scope => "company", :company_id => @company.id)} Find / Invite Affiliates
+  #brandsSideStream.brandSideListWrapper.streamWrapper.cornerAll
+    .brandsListSide
+      .brandListHead.cornerTop
+        %h6 Brands
+        %span#addBrandLink.addBrandLink.flRight
+          - if @company.is_brand_admin?(current_user)
+            - if @brand.company.is_allowed_to_create_brand?
+              = link_to_remote_redbox "+", {:url => add_company_brand_path(@brand.company, :brand_id => @brand.id )}
+            - else
+              = link_to "+", "javascript:void(0)", :onclick => "notice('You have reached brand creation limit, please upgrade your company account to create more brands');"
+      .brandsListing#brand_list_div
+        = render :partial => "companies/brand_list"

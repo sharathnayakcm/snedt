@@ -1,0 +1,57 @@
+- unless @users.blank?
+  - @users.each do |user|
+    - if(user.class == User)
+      %ul
+        %li
+          .userSummary.flLeft
+            %span.profilePic
+              - unless user.profile_image.blank?
+                = image_tag (user.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :class => "profilePicMed")
+              - else
+                = image_tag ("/images/userPicMed.png",:alt => "#{user.user_name}", :class => "profilePicMed")
+            .userInformation
+              = link_to(user.user_name, profiles_path(:id => user.user_name), :class => "userName")
+              %p.userType= t :individual_profile
+              %a.followLink
+                - friends_count = user.friends.count
+                = "Followers : #{user.followers.count.to_i - friends_count.to_i}"
+          .userActionForThisUser.flRight
+            - if current_user.id == user.id
+              = t :this_is_you
+            - elsif current_user.already_following_user(user.id)
+              .yellowBtn{:id => "user_follow_unfollow_#{user.id}"}
+                = link_to_remote_with_loader "#{t :unfollow}", {:url => unfollow_user_friends_path(current_user, :follower => user.id, :scope => "search"), :method => :get}, :class => "smlrBtn"
+            - else
+              .blueBtn{:id => "user_follow_unfollow_#{user.id}"}
+                = link_to_remote_with_loader "#{t :follow}", {:url => "/profiles/follow/#{user.id}?scope=search", :method => :get}, :class => "smlrBtn"
+    - else
+      - following = user.followers.find_by_user_id(current_user.id)
+      %ul
+        %li
+          .userSummary.flLeft
+            %span.profilePic
+              - unless user.profile_image.blank?
+                = image_tag (user.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :class => "profilePicMed")
+              - else
+                = image_tag ("/images/brandPicMed.jpg",:alt => "#{user.name}", :class => "profilePicMed")
+            .userInformation
+              = link_to(user.name, brand_profile_path(user.url), :class => "userName")
+              %p.userType= t :brand_profile
+              %a.followLink
+                = "Followers : #{user.followers.count.to_i}"
+          .userActionForThisUser.flRight
+            - if current_user.id == user.company.user_id
+              = t :your_brand
+            - elsif following
+              .yellowBtn{:id => "brand_follow_unfollow_#{user.company.user_id}"}
+                = link_to_remote_with_loader "#{t :unfollow}", {:url => unfollow_company_followers_path(:company_id => user.company_id, :id => user.id, :user_id => current_user.id), :method => :get}, :class => "smlrBtn"
+            - else
+              .blueBtn{:id => "brand_follow_unfollow_#{user.company.user_id}"}
+                = link_to_remote_with_loader "#{t :follow}", {:url => follow_company_followers_path(:company_id => user.company_id, :id => user.id, :user_id => current_user.id), :method => :get}, :class => "smlrBtn"
+  %div{:id => "more_link_#{current_page +1}", :class => "more_btn"}
+    .streamContent
+      %span.moreLink{:id => "span_link_#{current_page +1}"}
+        = link_to_remote "Click for more",:url => {:controller => :users, :action => :more_users, :current_page => current_page+1, :searchword => params[:searchword]}, :method => :get , :before => "$('span_link_#{current_page+1}').hide();$('stream_more_#{current_page}').show();", :complete => "$('stream_more_#{current_page}').hide();$('more_link_#{current_page+1}').hide();",:html => { :class => 'moreLink'}
+    %div{:id => "stream_more_#{current_page}",:style => "padding-left:20px;display:none;"}
+      .loadContentIndocator
+        %span.progressStream

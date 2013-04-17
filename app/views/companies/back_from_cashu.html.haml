@@ -1,0 +1,16 @@
+%div{:style => "width:  650px; margin: 0 auto; height: 100%; overflow: hidden; text-align:left;"}
+  .cntnt{:style => " border:solid 1px #CECECE; background:#fafafa"}
+    %div
+      %div{:style => "border-bottom:3px solid #000000; padding-bottom:8px;"}
+        .fl.marcashu
+          %img{:alt => "", :src => "https://www.cashu.com/images/new/images/cashu.gif"}/
+        %br{:clear => "all"}
+      %div
+        .marcashu.fl{:style => "width:320px;_margin-left:10px;direction:ltr;padding:50px;"}
+          %div
+            %b{:style => "font-size:14px; color:#ffac00"}
+              = @message
+          %div
+            = button_to('Back to edintity', @to_url)
+  %br{:clear => "all"}
+.cls

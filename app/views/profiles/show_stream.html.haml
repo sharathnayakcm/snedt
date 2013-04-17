@@ -1,0 +1,16 @@
+#ednt-PersonalStream.mainStreamWrapper
+  .ajaxLoader.cornerAll#ajaxLoaderDiv.hide
+    %span.ajaxSpinner
+      %img{:src=>"/images/ajax-loader.gif", :alt=>"#"}
+  #personalMainProfile.streamMain.streamWrapper.cornerAll.flLeft.Usr-Brandprofile
+    .streamContentSection
+      - unless @stream.blank?
+        = render :partial => "streams/index", :locals => {:streams => [@stream]}
+      - else
+        #stream_content
+          .blocked_content= t(:stream_not_found)
+  .clear
+  = render :partial => '/profiles/profile_right_content'
+
+
+  

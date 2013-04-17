@@ -1,0 +1,32 @@
+.privacy_text
+  %div.settings{:style => "font-size:14px; margin-left:-72px;"}
+  %span.avatar{:id => "brand_avatar_#{brand.id}"}
+    = render :partial => "companies/brand_avatar", :locals => {:brand => brand}
+  .avatar_upload{:style => "margin-left:3px;"}
+    .user_avatar{:id => "user_avatar_link_#{brand.id}"}
+      = file_field :avatar, :style => "vertical-align:top;"
+
+
+:javascript
+  $j(document).ready(function(){
+    $j("#user_avatar_link_#{brand.id}").makeAsyncUploader({
+      upload_url: "/users/upload?_SNFA_session=#{@sessionid || session.session_id}&authenticity_token=#{form_authenticity_token}&user_id=#{current_user.id}&brand_id=#{brand.id}&scope=#{controller_name}&company_id=#{current_user.company.id}",
+      flash_url: '/images/swfupload.swf',
+      file_size_limit : "10240", // 10MB
+      file_types : "*.jpg; *.jpeg; *.png; *.gif",
+      file_types_description : "Image Files",
+      file_upload_limit : "1",
+      file_queue_limit : "0",
+      button_image_url: "/images/upload_new.png",
+
+      button_text: "<font color='#ffffff' face='Arial,sans-serif' size='11pt' background='#17404e;' ><b>&nbsp;&nbsp;" + "#{t :change_photo}" + "</b></font>",
+      button_text_left_padding: 2,
+      button_text_top_padding: 1
+    });
+    $j(".upload_cancel_btn").corner();
+  });
+  function start_upload(){
+  }
+
+  function set_values(){
+  }

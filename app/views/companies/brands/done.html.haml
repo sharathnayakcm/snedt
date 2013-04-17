@@ -1,0 +1,38 @@
+- if @user_unused_tabs
+  - unused_tabs = []
+  - @user_unused_tabs.each do |tab|
+    - if tab.name == "Custom"
+      - unused_tabs <<  link_to_remote_redbox("#{t :custom}", :url => new_custom_tab_path, :method => :get)
+    - else
+      - unused_tabs <<  link_to_remote(tab.name,:url => user_tabs_path(:tab => tab), :method => :post)
+
+:javascript
+  $j(document).ready(function(){
+    $j('#share_to_services').corner();
+    $j('#tag_extras').corner();
+    $j('.tab_link').click(function(){
+    alert("clicked");
+    $j('.tab_link').parent().removeClass('current');
+    $j(this).parent().addClass('current');
+    $j(this).parent().removeClass('normal_link');
+    });
+    $j("#tabs_user").jSlide({elemByPages:1,pagination:false});
+    });
+- if session[:locale] == "arabic"
+  %div{:style => "direction:ltr !important; margin-left:-4px;"}
+    #tabs_user.boxSlide.boxSlideHorizontal
+      .slide
+        %ul.horizontal{:id => "user_tabs_new"}
+          = render :partial => "shared/company/company_tabs", :locals => {:unused_tabs => unused_tabs ? unused_tabs : []}
+- else
+  %div
+    #tabs_user.boxSlide.boxSlideHorizontal
+      .slide
+        %ul.horizontal{:id => "user_tabs_new"}
+          = render :partial => "shared/company/company_tabs", :locals => {:unused_tabs => unused_tabs ? unused_tabs : []}
+%div{:style => "float:left;padding-left:52px;padding-top:15px;font-size:14px;"}
+  Add Brand| Services| Privacy
+  %a{:href => done_company_brands_path} Done
+
+.brand_form
+  .brand_dialog_details

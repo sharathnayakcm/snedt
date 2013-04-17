@@ -1,0 +1,75 @@
+- form_remote_tag(:url => {:controller => :privacy_groups, :action => :update, :grp_id => @group.id }) do
+  .name{:style=>"padding-bottom:10px;padding-top:10px;"}
+    =t :privacy_group_name
+    = text_field_tag "pg_name", @group.name
+  .members{:style=>"padding-bottom:10px;"}
+    =t :pick_members
+    = link_to "#{image_tag '/images/arrow_up.png', :width => 11}", "javascript:void(0)", :onclick => "toggle_arrow(this);$('pick_members').toggle();", :id => "s_link_1"
+    #pick_members{:style => "padding:10px;border:solid 1px;display:none;width:450px;"}
+      = check_box_tag "members[]", User::PRIVACY_TYPES[:every_one], @group.group_ids.include?(User::PRIVACY_TYPES[:every_one].to_s) ? true : false, {:class => "chk_box", :id => "members_everyone",:onclick => "if($j(this).is(':checked')){$j('#members_me, #members_followers, #members_followings, #members_friends').attr('checked', false);}"}
+      =t :everyone
+      = check_box_tag "members[]", User::PRIVACY_TYPES[:followers], @group.group_ids.include?(User::PRIVACY_TYPES[:followers].to_s) ? true : false, {:class => "chk_box", :id => "members_followers", :onclick => "if($j(this).is(':checked')){$j('#members_everyone, #members_me').attr('checked', false);}"}
+      =t :followers
+      (
+      = link_to "#{t :show}", "javascript:void(0)", :onclick => "$('follower_list').toggle();$('friends_list').hide();$('following_list').hide();", :style=>"color:#0C3646;"
+      )
+      = check_box_tag "members[]", User::PRIVACY_TYPES[:followings], @group.group_ids.include?(User::PRIVACY_TYPES[:followings].to_s) ? true : false, {:class => "chk_box", :id => "members_followings", :onclick => "if($j(this).is(':checked')){$j('#members_everyone, #members_me').attr('checked', false);}"}
+      =t :followings
+      (
+      = link_to "#{t :show}", "javascript:void(0)", :onclick => "$('following_list').toggle();$('follower_list').hide();$('friends_list').hide();", :style=>"color:#0C3646;"
+      )
+      = check_box_tag "members[]", User::PRIVACY_TYPES[:friends], @group.group_ids.include?(User::PRIVACY_TYPES[:friends].to_s) ? true : false, {:class => "chk_box", :id => "members_friends", :onclick => "if($j(this).is(':checked')){$j('#members_everyone, #members_me').attr('checked', false);}"}
+      =t :friends
+      (
+      = link_to "#{t :show}", "javascript:void(0)", :onclick => "$('friends_list').toggle();$('following_list').hide();$('follower_list').hide();", :style=>"color:#0C3646;"
+      )
+      = check_box_tag "members[]", User::PRIVACY_TYPES[:just_me], @group.group_ids.include?(User::PRIVACY_TYPES[:just_me].to_s) ? true : false, {:class => "chk_box", :id => "members_me", :onclick => "if($j(this).is(':checked')){$j('#members_everyone, #members_followers, #members_followings, #members_friends').attr('checked', false);}"}
+      =t :just_me
+    #follower_list{:style => "padding:10px;margin-top:10px;border:solid 1px;display:none;width:200px;"}
+      -unless @followers.empty?
+        =t :followers
+        .list
+          - @followers.each do |user|
+            = check_box_tag "followersid[]", "#{user.id}", @group.group_user_ids.split(",").include?("#{user.id}") ? true : false, {:class => "chk_box", :onclick => "if($j(this).is(':checked')){$j('#members_everyone, #members_me, #members_followers').attr('checked', false);}"}
+            = user.display_full_name(current_user)
+      -else
+        =t :no_followers
+    #following_list{:style => "padding:10px;margin-top:10px;border:solid 1px;display:none;width:200px;"}
+      -unless @followings.empty?
+        =t :followings
+        .list
+          - @followings.each do |user|
+            = check_box_tag "followingsid[]", "#{user.id}", @group.group_user_ids.split(",").include?("#{user.id}") ? true : false, {:class => "chk_box", :onclick => "if($j(this).is(':checked')){$j('#members_everyone, #members_me, #members_followings').attr('checked', false);}"}
+            = user.display_full_name(current_user)
+      -else
+        =t :no_followings
+    #friends_list{:style => "padding:10px;margin-top:10px;border:solid 1px;display:none;width:200px;"}
+      -unless @friends.empty?
+        =t :friends
+        .list
+          - @friends.each do |user|
+            = check_box_tag "friendsid[]", "#{user.id}", @group.group_user_ids.split(",").include?("#{user.id}") ? true : false, {:class => "chk_box", :onclick => "if($j(this).is(':checked')){$j('#members_everyone, #members_me, #members_friends').attr('checked', false);}"}
+            = user.display_full_name(current_user)
+      -else
+        =t :no_friends
+  .services{:style=>"padding-bottom:10px;"}
+    =t :services_they_cane_see
+    = link_to "#{image_tag '/images/arrow_up.png', :width => 11}", "javascript:void(0)", :onclick => "toggle_arrow(this);$('pick_services').toggle();", :id => "s_link_2"
+    #pick_services{:style => "padding:10px;border:solid 1px;display:none;width:450px;"}
+      - if current_user.active_services.length > 0
+        - current_user.active_services.each do |user_service|
+          = check_box_tag "serviceid[]", "#{user_service.id}", @group.service_ids.split(",").index(user_service.id.to_s) ? true : false
+          = image_tag("services/#{user_service.service.name.downcase}.png", :title => "#{user_service.display_name}", :width => "20px")
+      - else
+        = t :service_list_text
+        = link_to "#{t :click_here}", user_services_path(current_user)
+  .dialog_details
+    = submit_tag "#{t :save}", :class => "add_service", :onclick => "if(jQuery.trim($j('#pg_name').val()).length == 0){notice('Privacy group name can not be blank');return false;}else{$j('#spinner_tag').show();}"
+    %span.cancel
+      = link_to "#{t :cancel}", root_url
+    %span{:id => "spinner_tag", :style => "padding-left:20px;display:none;"}
+      = image_tag("spinner.gif")
+    %span.cancel{:style => "margin-left:15px;padding:0px;float:right;"}
+      - if @group
+        = link_to_remote_redbox "#{t :delete}", :url => {:controller => :privacy_groups, :action => :delete_confirm, :id => @group.id}
+   

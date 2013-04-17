@@ -1,0 +1,20 @@
+.flLeft
+  - current_user.reload
+  - following = user.followers.find_by_user_id(current_user.id)
+  %span.nameResult.flLeft
+    = user.name
+  %span.userType Brand
+- if current_user.id == user.company.user_id
+  .greenBtn.flRight
+    %a.smlrBtn
+      = t :this_is_you
+- else
+  - if following
+    .greenBtn.flRight
+      %a.smlrBtn
+        = t :following
+    .yellowBtn.flRight{:style => "padding-right:10px;"}
+      = link_to_remote "#{t :unfollow}", {:url => unfollow_company_followers_path(:company_id => user.company_id, :id => user.id, :user_id => current_user.id, :find_friends_page => true), :method => :get}, :class => "smlrBtn"
+  - else
+    .blueBtn.flRight
+      = link_to_remote "#{t :follow}", {:url => follow_company_followers_path(:company_id => user.company_id, :id => user.id, :user_id => current_user.id, :find_friends_page => true), :method => :get}, :class => "smlrBtn"

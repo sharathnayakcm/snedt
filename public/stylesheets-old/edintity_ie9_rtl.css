@@ -1,0 +1,134 @@
+
+/* ie9 rtl */
+
+.tableLoginTop li input.signInBtn {
+	width:72px;
+} /*ar_local.css*/
+
+.shadeCenter {
+	width:650px;
+} /*styleAddons.css*/
+
+.shadeCenter {
+	top:44px;
+	padding:-20px auto 0;
+} /*ar_main.css*/
+.MP-description {
+	width:102%;
+} /*ar_main*/
+
+#watchScreenCast span.uiIconPlay {
+	float:right;
+} /*ar_main.css*/
+
+#watchScreenCast .blueBtn a {
+	width:23%;
+	padding:0 10px !important;
+} /*ar_main.css*/
+
+
+
+/*ie9 rtl home page*/
+	.updateStreamType li{
+		float:none;
+	} /*ar_stream.css*/
+
+	.windows .shareServiceControl {
+		top:128px;
+	} /* ar_stream.css */
+	.addShortUrl {
+		top:128px;
+		right:139px;
+	}
+
+	.windows #sharingOptCheck4.shareServiceControl {
+		top:142px;
+	} /* ar_stream.css (add new) */
+
+	.windows #sharingOptCheck5.shareServiceControl {
+		top:142px;
+	} /* ar_stream.css (add new) */
+
+		/* searchSideBar */
+			.saveSearch li a {
+				padding:5px 10px;
+				width:208px;
+				word-wrap:break-word;
+			} /*ar_stream.css*/
+
+			.usernameId .editProfileLink {
+				background-position:26px -378px;
+			} /*ar_stream.css*/
+
+			.usernameId a.editUsrProfile:hover span{
+				background-position:26px -728px;
+			} /*ar_stream.css*/
+
+		/* end of searchSideBar */
+/*end of ie9 rtl home page*/
+
+
+/*profiles page*/
+	.addNewSkin .blueArrowDown, .yourSkinHeader a .blueArrowDown {
+		background-position:-8px -120px;
+	} /* ar_modal.css */
+
+	.addNewSkin a, .skinName, .addSkinForm .newSkinText {
+		padding-right:0;
+	} /* ar_modal.css */
+
+	.skinAct li {
+		padding: 2px 5px 2px 0;
+	} /*ar_modal.css*/
+
+	.yourSkinsHeader a .blueArrowDown, .activeSkinHeader a.blueArrowDown {
+		background-position:76px -123px;
+		padding:0 20px;
+	} /* ar_modal.css */
+
+	.activeSkinsHeader a .blueArrow {
+		background-position: 89px -1521px;
+	} /* ar-local.css */
+/*end of ie9 rtl profiles page*/
+
+
+
+/*setting/edit page*/
+	.uploadIcon {
+		background-position:167px -66px;
+	} /*ar_pricing.css*/
+
+	.feature02 span.statusIcon {
+		padding:0 35px 10px 0!important;
+	} /*common.css*/
+
+	#deleteAccount .redBtn a.smlrBtn {
+		padding:4px 40px;
+	} /* add new */
+/*end of ie9 rtl setting/edit page*/
+
+
+
+/* ie9 rtl companies/sign up page */
+	.uploadIcon {
+		background-position: 167px -66px;
+	} /*ar_pricing.css*/
+
+	.userIcon {
+		background-position: 167px -195px;
+	} /* ar_pricing.css */
+
+	.brandIcon {
+		background-position: 167px -234px;
+	} /* ar_pricing.css */
+
+	.feature04 span.statusIcon {
+		padding: 0 35px 10px 0 !important;
+	} /* common.css */
+
+	.windows .choosePlanButton .yellowBtn a, .windows .choosePlanButton .blueBtn a {
+   		padding: 4px 50px 5px !important;
+	} /* ar_pricing.css (line 120) */
+/*end of ie9 rtl companies page*/
+
+/*end of ie9 rtl page*/

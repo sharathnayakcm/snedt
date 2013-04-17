@@ -1,0 +1,897 @@
+.modalWindow{
+	background: rgb(250,250,250);
+	background: rgba(250,250,250,0.95);
+	border: 4px solid #e9edee;
+	box-shadow: 0 0 0 1px #98acb3, 0 0 6px #666;
+	position: absolute;
+
+}
+
+.modalWrapper{
+	top: 100px;
+	left: 200px;
+	max-width: 500px;
+	z-index: 2;
+	display: none;
+}
+
+.modalHeader{
+	padding: 10px 24px 10px;
+	float: right;
+}
+
+.modalHeader .smlServicesIco{
+	float: left;
+	padding: 0 0 0 10px;
+}
+
+.modalHeader .titles{
+	float: right;
+}
+
+.modalHeader .titles h6{
+	line-height: 28px;
+	padding: 0;
+	margin: 0;
+}
+
+.modalContent{
+	border-top: 1px solid #DBE2E4;
+	padding: 25px 25px 20px;
+	float: left;
+}
+
+.modalContent ul{}
+
+.modalContent li{
+	float: left;
+	display: block;
+	padding: 10px 0;
+	width: 100%;
+}
+
+.modalContent li label{
+	line-height: 0px;
+	padding: 10px 0;
+	margin-left: 190px;
+}
+
+
+.modalContent li input{
+	float: right;
+	margin: 0 10px;
+}
+
+.modalConfirmAct{
+	margin-top: 20px;
+}
+
+.modalConfirmAct .blueBtn{
+	float: right;
+}
+
+.modalConfirmAct .yellowBtn{
+	float: right;
+	margin-right: 10px;
+}
+
+#mask {
+  	position:absolute;
+  	left:0;
+  	top:0;
+  	z-index:9000;
+  	background-color:rgb(255,255,255);
+  	background-color:rgba(255,255,255,0.80);
+  	display:none;
+}
+  
+#boxes .window {
+  	position:absolute;
+  	left:0;
+  	top:0;
+	width:440px;
+  	height:200px;
+  	display:none;
+  	z-index:9999;
+  	padding:20px;
+}
+
+#boxes #dialog {
+  	width:auto; 
+  	height:auto;
+  	padding:10px;
+	background-color:#ffffff;
+	float: left;
+	border: 1px solid #ced6d9;
+	box-shadow: 0 0 3px #bfbfbf;
+}
+.close{
+	background-position: 2px -1452px;
+	background-color: #fff;
+	box-shadow: 0 0 3px #bfbfbf;
+	position: absolute;
+	top: -9px;
+	right: -7px;
+	clear: both;
+	font-weight: bold;
+	font-size: 12px;
+	color: #4B6973;
+	text-indent: -19999px;
+	padding: 5px;
+	border-radius: 20px;
+	width: 11px;
+	height: 11px;
+	text-align: center;
+}
+
+.close:hover{
+	background-position: 2px -1483px;
+}
+
+
+.labelForInput{
+	float: right;
+	text-align: left;
+	width: 65px;
+	margin-right: 10px;
+	margin-left: 0 !important;
+	line-height: 9px !important;
+}
+
+/*--- Modal Windows for Affiliates drop menu header ---*/
+#affiliationModal, #reporAbuseModal{
+	display: none;
+}
+
+.affiliationHead{
+	border-bottom: 1px solid #E9EDEE;
+	padding: 10px;
+	float: left;
+	width: 480px;
+}
+
+.affiliationHead h6{
+	float: right;
+	color: #4B6973;
+}
+
+.affiliationHead a.closeCustom{
+	background-position: 5px -1454px;
+	float: left;
+}
+
+.affiliationHead a.closeCustom:hover{
+	background-position: 5px -1485px;
+}
+
+.brandsListModal{
+	height: 270px;
+	overflow-y: auto;
+	width: 500px;
+	overflow-x: hidden;
+	float: left;
+}
+
+.brandsListModal li.brandsListAffiliates{
+	display: block;
+	padding: 10px;
+	width: 465px;
+	float: left;
+	border-bottom: 1px solid #E9EDEE;
+}
+
+.brandsListModal li.brandsListAffiliates:last-child{
+	border: none;
+}
+
+.brandsListModal li.brandsListAffiliates .brandNameList{
+	width: 50%;
+	float: right;
+}
+
+.brandsListModal li.brandsListAffiliates .switchBtn{
+	padding-top: 4px;
+	float: left;
+}
+
+.brandsListModal li.brandsListAffiliates .switchBtn .blueBtn{
+	float: right;
+	margin-left: 10px;
+}
+
+/*--- Modal windows Report Abuse ---*/
+.reportAbuseContent{
+	float: left;
+	padding: 15px 20px;
+	width: 460px;
+}
+
+.reportAbuseContent li{
+	padding: 10px 0;
+}
+
+.reportAbuseContent li label{
+	width: 65px;
+	float: right;
+	text-align: left;
+	margin-left: 10px;
+	line-height: 22px;
+}
+
+.reportAbuseContent li select.reportSelection{
+	width: 384px;
+}
+
+.reportAbuseContent li .textWrite{
+	height: 100px;
+	width: 373px;
+	padding: 5px;
+	font-size: 12px;
+}
+
+.reportAction{
+	margin-top: 10px;
+	float: left !important;
+}
+
+.reportAction .redBtn{
+	float: right;
+}
+
+.reportAction .blueBtn{
+	float: left;
+	margin-right: 10px;
+}
+
+.reportAction .redBtn a, .reportAction .blueBtn a{
+	width: 55px;
+	text-align: center;
+}
+
+
+/*--- Customize Skin ---*/
+.customSkinPopup{
+	position: absolute;
+	top: 1px !important;
+	left: 0;
+	z-index: 1;
+	width: 500px;
+}
+
+.customizeHeader{
+	padding: 10px;
+	float: left;
+	width: 480px;
+	border-bottom: 1px solid #dbe2e4;
+}
+
+.customizeHeader span{
+	float: left;
+}
+
+.customizeHeader h6{
+	float: right;
+	padding: 4px 10px 0 0;
+}
+
+.setSkinIconBlue{
+	background-position: 0 -1410px;
+	padding: 10px;
+	float: right !important;
+}
+
+.closeCustom{
+	
+}
+
+a.closeCustom{
+	background-position: 0 -1443px;
+	padding: 10px;
+}
+
+a.closeCustom:hover{
+	background-position: 0 -1474px;
+}
+
+.customSkinContent{
+	float: left;
+}
+
+.yourSkins, .activeSkin, .editorStyleHeader{
+	background: url(/images/gradSprites.png) repeat-x 0 -338px;
+	border-bottom: 1px solid #C8CBCC;
+	float: left;
+	padding: 9px;
+	width: 482px;
+}
+
+.yourSkins:hover, .activeSkin:hover {background: #E8ECED;}
+
+.activeSkinsHeader a .blueArrow{
+	background-position: 99px -1523px;
+	padding: 0 30px 0 20px;
+	float: right;
+}
+
+.yourSkins a, .activeSkin a, .yourSkinsHeader a{
+	color: #4b6973;
+	font-weight: bold;
+	text-shadow: 0 1px 0 #fff;
+	float: left;
+	width: 100%;
+	padding: 5px 0 0;;
+}
+
+.editingSkinsContent{
+	display: none;
+}
+
+.active{display: block;}
+
+.editingSkinsContent li{
+	border-bottom: 1px solid #e9edee;
+	display: block;
+	padding: 7px 10px 5px;
+	float: left;
+	width: 480px;
+}
+
+.addNewSkin{
+	float: right;
+	width: 100%;
+}
+
+.addNewSkin a, .skinName, .addSkinForm .newSkinText{
+	width: 410px;
+	color: #4B6973;
+	font-weight: bold;
+	text-shadow: 0 1px 0 white;
+	line-height: 23px;
+	float: right;
+	text-align: right;
+	padding-right: 20px;
+}
+
+.addNewSkin a span.layoutIco{
+	background-position: 80px -1559px;
+	padding: 2px 22px 4px 0;
+	float: right;
+}
+
+.addNewSkin .blueArrowDown, .yourSkinsHeader a .blueArrowDown{
+	background-position: 0px -120px;
+	padding: 10px;
+	float: left;
+}
+
+.yourSkinsHeader a .blueArrowDown, .activeSkinsHeader a .blueArrowDown{
+	background-position: right -123px;
+	padding: 0 30px 0 0;
+	float: right;
+	text-align: left
+}
+
+.skinAct{
+	text-align: right;
+	float: left !important;
+}
+
+.skinAct li{
+	border-bottom: none !important;
+	display: inline;
+	float: left;
+	width: auto;
+	padding: 2px 0 2px 5px;
+}
+
+.skinAct li a{
+	padding: 10px;
+	float: left;
+}
+
+.skinAct li.play a{
+	float: right;
+}
+
+.playBtn{
+	background-position: 0 -1604px;
+}
+
+.delBtn{
+	background-position: 0 -1484px;
+}
+
+.playedBtn{
+	background-position: 0 -1637px;
+}
+
+.addSkinForm{
+	float: left;
+	padding: 10px 10px 15px 10px;
+	width: 470px;
+}
+
+.addSkinForm .newSkinText{
+	width: 100%;
+	text-indent: 0;
+	padding-bottom: 7px;
+	padding-right: 20px;
+}
+
+.addSkinForm .newSkinName{
+	font-size: 12px;
+	float: right;
+	width: 250px;
+	margin: 0 20px 0 10px;
+	padding: 3px 5px;
+	text-align: right;
+}
+
+.windows .addSkinForm .newSkinName{
+	padding: 4px 5px;
+}
+
+.addSkinForm .newSkinName:focus{
+	color: #4B6973;
+
+}
+
+.addSkinForm .blueBtn{
+	margin-left: 10px;
+	float: right;
+}
+
+.addSkinForm .yellowBtn{float: right;}
+
+.addSkinForm .blueBtn a, .addSkinForm .yellowBtn a{
+	width: 40px;
+	text-align: center;
+}
+
+.editLayout{
+	background: url(/images/layoutRight.png) no-repeat 0 0;
+	position: relative;
+	height: 291px;
+	width: 470px;
+	float: left;
+	margin: 15px;
+}
+
+a.styleHeading, a.styleLeftContent, a.styleRightContent{
+	color: #4b6973;
+	font-size: 11px;
+	font-weight: bold;
+	position: absolute;
+	padding: 3px;
+}
+
+a.styleHeading:hover{
+	color: #f2f2f2;
+}
+
+a.styleLeftContent:hover, a.styleRightContent:hover{
+	color: #5b808c;
+}
+
+a.styleHeading{
+	color: #fff;
+	text-shadow: 0 1px 0 #000;
+	top: 5px;
+	left: 10px;
+}
+
+a.styleLeftContent{
+	top: 64px;
+	right: 87px;
+}
+
+a.styleRightContent{
+	top: 64px;
+	left: 45px;
+	width: 96px;
+}
+
+.styleEditor{
+	float: left;
+}
+
+.segementedNav{
+	float: left;
+	margin: 10px 0;
+	width: 100%;
+}
+
+.segementedNav ul{
+	margin: 0 auto;
+	width: 450px;
+}
+
+.segementedNav li{
+	float: left;
+	display: inline;
+	width: 225px;
+	padding: 0;
+}
+
+.segementedNav li a{
+	background: url(/images/gradSprites.png) repeat-x 0 -742px;
+	border: 1px solid #a6b5bb;
+	color: #4B6973;
+	text-align: center;
+	padding: 1px 0;
+	font-size: 12px;
+	font-weight: bold;
+	float: left;
+	width: 165px;
+	padding: 6px 30px;
+}
+/*
+.segementedNav li.bgTab{
+	border-left: 1px solid #a6b5bb;
+	border-bottom: 1px solid #a6b5bb;
+	border-top: 1px solid #a6b5bb;
+	border-right: 1px solid transparent;
+}
+
+.segementedNav li.textTab{
+	border-right: 1px solid #a6b5bb;
+	border-bottom: 1px solid #a6b5bb;
+	border-top: 1px solid #a6b5bb;
+	border-left: 1px solid transparent;
+}*/
+
+.segementedNav li a.styleActiveTab, .segementedNav li:hover a{
+	background: url(/images/gradSprites.png) repeat-x 0 -712px;
+	border: 1px solid #a6b5bb;
+}
+
+.styleEditorContent{
+	float: left;
+	padding: 10px;
+	width: 480px;
+	position: relative;
+}
+
+.styleWrapper{
+	position: relative;
+}
+
+.styleWrapper li.backgroundEdit{
+	border-bottom: none !important;
+	padding: 10px 30px 10px 0;
+	width: 460px;
+}
+
+.styleWrapper li.backgroundEdit label{
+	float: right;
+	margin-left: 10px;
+	text-align: left;
+	width: 60px;
+	color: #4b6973;
+	font-weight: bold;
+	line-height: 20px;
+}
+
+.styleWrapper li.backgroundEdit div{
+	box-shadow: inset 0 1px 2px #ccc;
+	border: 1px solid #A6B5BB;
+	float: right;
+	padding: 2px 5px;
+	text-align: left;
+}
+.styleWrapper li.backgroundEdit div.browseImg{
+	border: none;
+	box-shadow: none;
+	padding: 0;
+}
+
+.firefox .styleWrapper li.backgroundEdit div.browseImg{
+	width: 300px;
+}
+
+.styleWrapper li.backgroundEdit div.browseImg input{
+	width: 170px;
+}
+
+.firefox .styleWrapper li.backgroundEdit div.browseImg input{
+	width: 223px;
+}
+
+.styleWrapper li.backgroundEdit div.browseImg .blueBtn{
+	border: none;
+	box-shadow: none;
+	float: left;
+}
+
+.firefox .styleWrapper li.backgroundEdit div.browseImg .blueBtn{
+	float: left;
+	padding: 0;
+}
+
+.styleWrapper li.backgroundEdit div.bgStyle, .styleWrapper li.backgroundEdit div.borderStyle{
+	width: 109px;
+}
+
+.styleWrapper li.backgroundEdit div #color1, .styleWrapper li.backgroundEdit div #color3{
+	background-color: #7e959d;
+	margin-top: 1px;
+}
+.styleWrapper li.backgroundEdit div #color2{
+	
+}
+
+.styleWrapper li.backgroundEdit div input{
+	float: right;
+	background: transparent;
+	border: none;
+	outline: none;
+	padding: 4px 2px 0;
+	font-weight: bold;
+	color: #7e959d;
+	position: relative;
+}
+
+.styleWrapper li.backgroundEdit div .blueArrowDown{
+	background-position: -11px -123px;
+	padding: 8px 5px;
+}
+
+.styleWrapper li.backgroundEdit div a{
+	padding: 3px 0 0;
+	float: left;
+}
+
+.styleWrapper li.backgroundEdit select{
+	width: 120px;
+}
+
+.saveStyle{
+	margin: 5px 0;
+	width: 100%;
+	float: left !important;
+}
+
+.saveStyle .blueBtn{
+	float: left;
+	margin-left: 10px;
+}
+
+.saveStyle .blueBtn a, .saveStyle .yellowBtn a{
+	width: 60px;
+	text-align: center;
+}
+
+.saveStyle .yellowBtn{
+	float: left;
+	margin-left: 15px;
+}
+
+.saveStyle .uploadProgress{
+	float: right !important;
+	margin-right: 29px
+}
+
+/*--- COLOR PALETTE ---*/
+
+.colorPalette{
+	position: absolute;
+	top: 9px;
+	left: 200px;
+	z-index: 1;
+}
+
+.colorPaletteInner{
+	position: relative;
+	background: #e9edee;
+	border: 1px solid #98acb3;
+	box-shadow: 0 0 5px #999;
+	padding: 5px;
+	float: left;
+}
+
+.paletteArrow{
+	position: absolute;
+	top: -1px;
+	left: -12px;
+	background-position: 0 -2165px;
+	padding: 10px;
+}
+
+.colorPaletteImg{
+	height: 127px;
+	width: 191px;
+	float: left;
+	margin-bottom: 2px;
+}
+
+.colorPaletteGrey{
+	height: 15px;
+	width: 191px;
+	clear: both;
+	white-space: pre;
+	margin-bottom: 2px;
+}
+
+.colorPickerSwatch{
+	
+	margin-bottom: 5px;
+	float: left;
+}
+
+.colorPickerSwatch li{
+	height: 20px;
+	width: 15px;
+	background: red;
+	float: left;
+	display: inline;
+	padding: 0 2px;
+}
+
+#cell01, #cell04, #cell07{
+	background: blue;
+}
+
+#cell02, #cell05, #cell08{
+	background: white;
+}
+
+#cell03, #cell06, #cell09{
+	background: orange;
+}
+
+.colorPaletteFoot{
+	height: 30px;
+	width: 191px;
+}
+
+.colorPaletteFoot a, #colorPaletteInput{
+	border: 1px solid #A6B5BB;
+	padding: 2px 13px;
+	background: white;
+	font-size: 11px;
+	font-weight: bold;
+	color: #7E959D;
+	line-height: 14px;
+}
+
+.firefox.win .colorPaletteFoot a, #colorPaletteInput{
+	float: left;
+	padding: 2px 9px;
+}
+
+.colorPaletteFoot a{
+	padding: 3px 13px 1px;
+}
+
+
+.pastCellCol{
+	height: 20px;
+	width: 20px;
+	float: left;
+}
+
+/*--- Delete and Reconnect Services ---*/
+#delServices, #reConnectService, #remove-PG{
+	padding: 10px 15px;
+}
+
+#delServices p, #reConnectService p, #remove-PG p{
+	float: right;
+	line-height: 64px;
+	padding: 0 15px;
+}
+
+#delServices .modalConfirmAct .redBtn, #reConnectService .modalConfirmAct .redBtn, #remove-PG .modalConfirmAct .redBtn{
+	float: right;
+	margin-right: 10px;
+}
+
+#reConnectService .modalConfirmAct .blueBtn{
+	float: right;
+	margin: 0 10px;
+}
+
+#reConnectService .modalConfirmAct .redBtn{
+	float: right;
+}
+
+#reConnectService p{
+}
+
+#reConnectService .modalConfirmAct{
+	float: right;
+}
+
+/*--- Setting Privacy Group ---*/
+
+#addPrivacyGroupUsers{}
+
+#addPrivacyGroupUsers .modalHeader{
+	border-bottom: 1px solid #E9EDEE;
+	padding: 10px;
+	float: left;
+	width: 480px;
+}
+
+#addPrivacyGroupUsers .modalHeader h6{
+	float: left;
+	color: #4B6973;
+}
+
+#addPrivacyGroupUsers .modalHeader a.closeCustom{
+	background-position: 0 -1455px;
+	
+}
+
+.privacyGroupEditContent{
+	width: 450px;
+	float: left;
+	border-top: none;
+	padding: 15px 20px;
+}
+
+.privacyGroupSelection{}
+
+.privacyGroupSelection ul{
+	margin-bottom: 10px;
+	float: left;
+}
+
+.privacyGroupSelection li{
+	float: left;
+	width: 90px;
+	
+}
+
+.privacyGroupSelection li a{
+	color: #4B6973;
+}
+
+.privacyGroupSelection li a input{
+	margin-right: 10px;
+	margin-top: 2px;
+}
+
+.privacyGroupSelection .titles{}
+
+.privacyGroupSelection .titles h6{
+	margin-bottom: 5px;
+	text-shadow: none;
+}
+
+.makeNewPG{
+	float: left;
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+.newPrivacyGroup{
+	float: left;
+	width: 100%;
+}
+
+.newPrivacyGroup label{
+	float: left;
+	margin-right: 20px;
+	font-weight: bold;
+	line-height: 22px;
+}
+
+.newPrivacyGroup input{
+	width: 303px;
+	padding: 4px 5px !important;
+}
+
+.privacyGroupUserAction{
+	margin-top: 20px;
+}
+
+.privacyGroupUserAction .blueBtn{
+	margin-right: 10px;
+}
+
+.privacyGroupUserAction div a{
+	width: 50px;
+	text-align: center;
+}
+

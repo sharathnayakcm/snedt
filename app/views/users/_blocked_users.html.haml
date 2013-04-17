@@ -1,0 +1,18 @@
+%ul
+  - unless @blocked_users.blank?
+    - @blocked_users.each do |user|
+      %li.blocked{:id => "blocked_user_#{user.blocked.id}"}
+        .flLeft
+          .userSmlPic.flLeft
+            - unless user.blocked.profile_image.blank?
+              = image_tag user.blocked.profile_image.url.gsub("/s3.","/s3-eu-west-1."), :width => "26px"
+            - else
+              %img{:alt => "", :src => "/images/userPicSmall.jpg"}
+          .flLeft
+            = link_to "#{user.blocked.display_full_name_for_privacy(current_user)}" , profiles_path(:id => user.blocked.user_name), :class => "userName"
+          /%a.userBlocked{:href => "#{profiles_path(:id => user.blocked.user_name)}"}#{user.blocked.display_full_name(current_user)}
+        .unblock.flRight
+          .yellowBtn
+            = link_to_remote("#{t :unblock}", :url => blocked_user_path(:id => user.blocked.id, :tab => "privacy"), :method => :delete, :html => {:class => "smlrBtn"})
+  - else
+    %li.blocked You have no blocked user

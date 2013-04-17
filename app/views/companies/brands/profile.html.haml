@@ -1,0 +1,11 @@
+:javascript
+  #{remote_function(:url => apply_active_skin_brand_skins_path(:brand_id => @brand.id), :method => :get)}
+#ednt-PersonalStream.mainStreamWrapper
+  .ajaxLoader.cornerAll#ajaxLoaderDiv.hide
+    %span.ajaxSpinner
+      %img{:src=>"/images/ajax-loader.gif", :alt=>"#"}
+  = render :partial => 'profile_left_content'
+  - if controller_name == "brands" && action_name == "profile"
+    = render :partial => "brand_profile_right_content"
+  - else
+    = render :partial => "profile_right_content"

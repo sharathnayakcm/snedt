@@ -1,0 +1,8 @@
+- unless @names.blank?
+  - i = 1
+  - for n in @names
+    %tr
+      = check_box_tag "filter_user_ids[]", n.id
+      = n.display_full_name(current_user)
+      - i +=1
+   

@@ -1,0 +1,63 @@
+- following = @brand.followers.find_by_user_id(current_user.id)
+#sideWrapper.flRight
+  #ProfileWrapper.streamSide.streamWrapper.cornerAll
+    - if @brand.company.is_brand_admin?(current_user)
+      .customSkins
+        .redBtn
+          %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('personalCustomSkin');"}
+            %span.setSkinIcon.uiIconInside
+              =t :customize_skins
+            %span.customArrowDown.uiIconInside.flRight
+        #personalCustomSkin.customSkinPopup.modalWindow.cornerAll{:style => "display:none;"}
+          .customizeHeader
+            %span.setSkinIconBlue.uiIconInside.flLeft
+            %h6
+              =t :customize_my_skin
+            %span.flRight
+              %a.closeCustom.uiIconInside{:href => "javascript:void(0);", :onclick => "toggle_visibility('personalCustomSkin');"}
+          #customStyle.customSkinContent
+            = render :partial => "/profiles/skin_editor"
+    .userBigPictId
+      - unless @brand.profile_image.blank?
+        = image_tag @brand.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :class => "mainPic"
+      - else
+        = image_tag "/images/brandPicBig.jpg", :class => "mainPic"
+    .usernameId
+      %h3
+        %a
+          = @brand.name
+        %a.editUsrProfile
+    %div{:style => "clear:both"}
+    .socialNetworkWrapper
+      %ul
+        - @brand.active_services.each do |user_service|
+          %li
+            %a
+              %span{:id => "#{user_service.service.name.downcase}Service",:title => "#{user_service.display_name}"}
+    .activityWrapper
+      %ul
+        %li
+          %a
+            =t :followers
+            %span.counter.flRight#brand_followers_count
+              = (@brand.followers.count.to_i)
+    - unless @brand.company.is_brand_admin?(current_user)
+      .invitationButton
+        .blueBtn#follow_unfollow_btn
+          - if following
+            = link_to_remote("#{t :unfollow}", :url => unfollow_company_followers_path(:company_id => @brand.company_id, :id => @brand.id, :user_id => current_user.id), :method => :get, :html => {:id=>"unFollowBtn"})
+          - else
+            = link_to_remote("#{t :follow}", :url => follow_company_followers_path(:company_id => @brand.company_id, :id => @brand.id, :user_id => current_user.id), :method => :get, :html => {:id=>"unFollowBtn"})
+  #brandsSideStream.brandSideListWrapper.streamWrapper.cornerAll
+    .brandsListSide
+      .brandListHead.cornerTop
+        %h6
+          =t :brands
+        %span.addBrandLink.flRight
+          - if @brand.company.is_brand_admin?(current_user)
+            - if @brand.company.is_allowed_to_create_brand?
+              = link_to_remote_redbox "+", {:url => add_company_brand_path(@brand.company, :brand_id => @brand.is_default? ? @brand.id : @brand.parent.id )}
+            - else
+              = link_to "+", "javascript:void(0)", :onclick => "notice('#{t :reached_brand_limit}');"
+      .brandsListing#brand_list_div
+        = render :partial => "companies/brand_list"

@@ -1,0 +1,12 @@
+- abuse_contents ||= @abuse_contents
+- @abuse_contents_table.render abuse_contents do |table|
+  - abuse_contents.each do |abuse_content|
+    - table.tr :id => "abuse_content_#{abuse_content.id}" do
+      -table.td {link_to abuse_content.stream_id, stream_path(abuse_content.stream_id)}
+      -table.td {abuse_content.reason}
+      -table.td {abuse_content.user.user_name unless abuse_content.user.blank?}
+      -table.td {abuse_content.user_comments}
+      -table.td {abuse_content.stream.user.user_name}
+      -table.td(:action, :id => "action_#{abuse_content.id}") do
+        = link_to_remote_with_loader(image_tag("/images_old/icon-delete.png"), :url => {:controller => "admin/abuse_contents", :action => "destroy", :id => abuse_content.id}, :method => :delete, :confirm => "Are you sure want to delete the content?", :html => {:class => "icon", :title => "Delete Abuse content"})
+        = link_to_remote_redbox(image_tag("/images_old/icon-edit.png"), :url => {:controller => "admin/abuse_contents", :action => "edit", :id => abuse_content.id, :method => :put, :page => @abuse_contents.current_page, :per_page => params[:per_page]}, :class => "icon", :title => "Edit Abuse content" )

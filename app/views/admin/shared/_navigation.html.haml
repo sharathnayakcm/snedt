@@ -1,0 +1,81 @@
+:javascript
+  $j(document).ready(function(){
+    //$j('dd a').click(function(){ menuItemName= this.innerHTML; });
+  });
+
+.menu_list{:style => "margin-top:50px;"}
+  .float_left.find_friend_menu.site{:style => "height: 50px; margin-right:85px; margin-left:30px;", :onmouseover => "$j('#site_Dashboard').show();$j('#site_configuration').show();$j('#find_by_services').show();return false;", :onmouseout => "$j('#site_Dashboard').hide();$j('#site_configuration').hide();$j('#find_by_services').hide();return false;"}
+    %ul#menu1
+      %li
+        %dl.dashboard
+          %dt.active{:style => "width: 124px;font-size:12px;", :id => "site_dt"}
+            %a{:href => "javascript:void(0);"}
+              Site
+              %img{:src => "/images_1/arrow_small.png", :style => "background: #F0F0F0; margin-right:0px; margin-top:-3px; padding:8px 5px 9px;", :class => "float_right"}
+          %dd{:id => "site_Dashboard", :style => "width: 126px;display:none;font-size:12px;"}
+            = link_to("Admin Dashboard", admin_dashboard_index_path(current_user))
+          %dd{:id => "site_configuration", :style => "width: 126px;display:none;font-size:12px;"}
+            = link_to("Configuration", admin_site_configurations_path(current_user))
+
+  .float_left.find_friend_menu.manage{:style => "height: 50px;  margin-right: 85px;", :onmouseover => "showOrHideMenu('manage', 12, true);", :onmouseout => "showOrHideMenu('manage', 11, false);"}
+    %ul#menu1
+      %li
+        %dl.dashboard
+          %dt{:style => "width: 124px;font-size:12px;", :id => "manage_dt"}
+            %a{:href => "javascript:void(0);"}
+              Manage
+              %img{:src => "/images_1/arrow_small.png", :style => "background: #F0F0F0; margin-right:0px; margin-top:-3px; padding:8px 5px 9px;", :class => "float_right"}
+          %dd{:id => "manage_0", :style => "width: 126px; display:none;font-size:12px;"}
+            = link_to("Users", admin_users_path(current_user))
+          %dd{:id => "manage_1", :style => "width: 126px; display:none;font-size:12px;"}
+            = link_to("Companies", admin_companies_path(current_user))
+          %dd{:id => "manage_2", :style => "width: 126px;display:none;font-size:12px;"}
+            = link_to("Static Pages", admin_static_pages_path(current_user))
+          %dd{:id => "manage_3", :style => "width: 126px; display:none;font-size:12px;"}
+            = link_to("Services", admin_services_path(current_user))
+          %dd{:id => "manage_4", :style => "width: 126px; display:none;font-size:12px;"}
+            = link_to("Uploads", admin_uploads_path(current_user))
+          %dd{:id => "manage_5", :style => "width: 126px; display:none;font-size:12px;"}
+            = link_to("Notifications", admin_notifications_path(current_user))
+          %dd{:id => "manage_6", :style => "width: 126px; display:none;font-size:12px;"}
+            = link_to("Subscriptions", admin_subscriptions_path(current_user))
+          %dd{:id => "manage_7", :style => "width: 126px; display:none;font-size:12px;"}
+            = link_to("RSS", admin_admin_rss_links_path(current_user))
+          %dd{:id => "manage_8", :style => "width: 126px; display:none;font-size:12px;"}
+            = link_to("Engagements", admin_user_engagements_path(current_user))
+          %dd{:id => "manage_9", :style => "width: 126px; display:none;font-size:12px;"}
+            = link_to("Topics", admin_topics_path(current_user))
+          %dd{:id => "manage_10", :style => "width: 126px; display:none;font-size:12px;"}
+            = link_to("Badges", admin_badges_path(current_user))
+          %dd{:id => "manage_11", :style => "width: 126px; display:none;font-size:12px;"}
+            = link_to("Points", admin_points_path(current_user))
+
+  .float_left.find_friend_menu.manage{:style => "height: 50px;", :onmouseover => "showOrHideMenu('review', 3, true);", :onmouseout => "showOrHideMenu('review', 3, false);"}
+    %ul#menu1
+      %li
+        %dl.dashboard
+          %dt{:style => "width: 124px;font-size:12px;", :id => "review_dt"}
+            %a{:href => "javascript:void(0);"}
+              Admin Reviews
+              %img{:src => "/images_1/arrow_small.png", :style => "background: #F0F0F0; margin-right:0px; margin-top:-3px; padding:8px 5px 9px;", :class => "float_right"}
+          %dd{:id => "review_0", :style => "width: 126px; display:none;font-size:12px;"}
+            = link_to("Spammed Users", admin_spammed_users_path(current_user))
+          %dd{:id => "review_1", :style => "width: 126px; display:none;font-size:12px;"}
+            = link_to("Reported Videos", admin_reported_videos_path(current_user))
+          %dd{:id => "review_2", :style => "width: 126px;display:none;font-size:12px;"}
+            = link_to("Abused Content", admin_abuse_contents_path(current_user))
+  .clear
+  .line2{:style => "margin-top: 25px; margin-left:30px;"}
+    %img{:src => "/images_1/line1.png"}
+
+:javascript
+  function showOrHideMenu(menuName, menuCount, show){
+    for(i=0;i<menuCount;i++){
+      var menuElement = $j('#' + menuName + '_' + i);
+      if (show == true){
+        menuElement.show();
+      }else{
+        menuElement.hide();
+      }
+    }
+  }

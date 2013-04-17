@@ -1,0 +1,41 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: 
+  id: 1
+  title: "what is it"
+  text_content: "From one location stream in your social content and RSS, stream out your updated and retweets back to your social services with full privacy control on who sees what with the greatest of flexibility and ease. <a href='/features'>read our full features list</a> "
+  video_url: "http://www.youtube.com/watch?v=5nt3gE9dGHQ&feature=rec-LGOUT-real_rev-rn-1r-13-HM"
+two:
+  id: 2
+  title: "how it works"
+  text_content: "It works just great !!!"
+  video_url: "http://www.youtube.com/watch?v=cOAZaIaeIrI&feature=channel"
+three:
+  id: 3
+  title: "is it for me"
+  text_content: "Ofcourse !!!"
+  video_url: "http://www.youtube.com/watch?v=cq--MOPCBaQ&feature=channel"
+four:
+  id: 4
+  title: "about"
+  text_content: "Duis sollicitudin posuere leo et aliquam. Vestibulum nec est vitae erat bibendum pulvinar. Pellentesque ornare porta dui ac eleifend. Vivamus convallis facilisis sem et luctus. "
+  video_url: ""
+five:
+  id: 5
+  title: "features"
+  text_content: "Duis iaculis, mi ac viverra adipiscing, lectus diam luctus sem, quis porta tellus urna sed dui. Vivamus vel dolor lorem, quis accumsan velit. Maecenas id nibh dolor, quis suscipit nunc. Pellentesque semper risus tristique dui tristique nec mattis ipsum consectetur. "
+  video_url: ""
+six:
+  id: 6
+  title: "terms of use"
+  text_content: "Duis mi velit, malesuada nec blandit vitae, pellentesque feugiat tellus. Donec placerat sem in felis pellentesque nec elementum elit dapibus. "
+  video_url: ""
+seven:
+  id: 7
+  title: "privacy policy"
+  text_content: "Nullam varius convallis pellentesque. Proin consectetur, ipsum sed elementum imperdiet, augue sem pharetra nibh, sed fermentum nunc leo non nibh. "
+  video_url: ""

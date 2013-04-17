@@ -1,0 +1,74 @@
+.registration_mid
+  .main_all
+    .mid_top
+      %img{:src => "/images_1/mid_top.png"}
+    .mid_inner
+      .mid_inner_content.search_page
+        %h4== Search results for "#{params[:searchword]}"
+        %br
+        - unless @users.blank?
+          - @users.each do |user|
+            %div{:style => "margin-bottom:5px;"}
+              - if(user.class == User)
+                .float_left
+                  - unless user.profile_image.blank?
+                    = image_tag (user.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :width => "50", :height => "50")
+                  - else
+                    = image_tag ("/images_1/profile_pic_imgpng.png", :width => "50", :height => "50")
+                .float_left{:style => "margin-left:10px; width:575px;"}
+                  .float_left= link_to user.user_name, profiles_path(:id => user.user_name)
+                  .float_left.full_name= user.get_full_name(current_user)
+                  .float_right
+                    %div
+                      %div{ :id => "user_follow_unfollow_#{user.id}" ,:style=>"color:green"}
+                        - if current_user.id == user.id
+                          = t :this_is_you
+                        - elsif current_user.already_following_user(user.id)
+                          .button.button_anchor{:style=> "margin-top: 3px;"}
+                            = link_to_remote_with_loader "#{t :unfollow}", :url => unfollow_user_friends_path(current_user, :follower => user.id, :scope => "search"), :method => :get
+                        - else
+                          .button.button_anchor{:style=> "margin-top: 3px;"}
+                            = link_to_remote_with_loader "#{t :follow}", :url => "/profiles/follow/#{user.id}?scope=search", :method => :get
+                  %br
+                  .quiet.small== Individual Profile
+                  - friends_count = user.friends.count
+                  .quiet.small== Followers: #{user.followers.count.to_i - friends_count.to_i}
+
+              - else
+                - following = user.followers.find_by_user_id(current_user.id)
+                .float_left
+                  - unless user.profile_image.blank?
+                    = image_tag (user.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :width => "50", :height => "50")
+                  - else
+                    = image_tag ("/images_1/profile_pic_imgpng.png", :width => "50", :height => "50")
+                .float_left{:style => "margin-left:10px; width:575px;"}
+                  .float_left= link_to user.name, brand_profile_path(user.url)
+                  .float_left.full_name= user.company.name
+                  .float_right
+                    %div
+                      %div{ :id => "brand_follow_unfollow_#{user.id}",:style=>"color:green" }
+                        - if current_user.id == user.company.user_id
+                          = t :your_brand
+                        - elsif following
+                          .button.button_anchor{:style=> "margin-top: 3px;"}
+                            = link_to_remote_with_loader("#{t :unfollow}", :url => unfollow_company_followers_path(:company_id => user.company_id, :id => user.id, :user_id => current_user.id), :method => :get)
+                        - else
+                          .button.button_anchor{:style=> "margin-top: 3px;"}
+                            = link_to_remote_with_loader("#{t :follow}", :url => follow_company_followers_path(:company_id => user.company_id, :id => user.id, :user_id => current_user.id), :method => :get)
+                  %br
+                  .quiet.small== Brand Profile
+                  .quiet.small
+                    %span== Followers:
+                    %span#brand_followers_count= user.followers.count.to_i
+            .clear
+            %div{:style => "border: 1px solid #CCCCCC; margin-left:-10px; width:775px; margin-bottom:20px;"}
+          = will_paginate(@users, :class => 'pagination ajax')
+        -else
+          .quiet== Please modify you search criteria and try again
+        %br
+    .mid_bottom
+      %img{:src => "/images_1/mid_bottom.png"}
+        
+
+
+

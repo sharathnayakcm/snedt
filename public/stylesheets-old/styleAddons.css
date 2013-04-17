@@ -1,0 +1,17 @@
+/* Style for Modern Browser */
+
+/* On Main Page */
+.shadeCenter{
+	width: 415px;
+}
+
+/*--- on Personal Stream CSS ---*/
+.notifArrow{
+	top: -6px;
+}
+
+
+.streamContent li.SharedPostStream{
+	/* please remove position: relative;*/
+}
+

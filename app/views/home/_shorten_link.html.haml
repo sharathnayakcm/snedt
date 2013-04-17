@@ -1,0 +1,17 @@
+#shortURL.addShortUrl{:style => "display:none;"}
+  .shortUrlHead
+    %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('shortURL');"}= t :add_url
+  .shortUrlContent.cornerBottom
+    .shortUrlBox
+      %input{:onfocus => "if(!this._haschanged){this.value=''};this._haschanged=true;", :type => "text", :value => "http://", :id => "long_url", :name => "long_url"}
+    .blueBtn.flRight
+      = link_to_remote "#{t :add}", :url => shorten_link_streams_path, :method => :get, :with => "'long_url='+getLongURL()", :html => {:class => "smlrBtn"}, :onclick => "toggle_visibility('shortURL');"
+
+:javascript
+  function getLongURL() {
+    var url = $('long_url').value;
+    url = url.replace(/\=/g,"^equal_to^");
+    url = url.replace(/\?/g,"^question_mark^");
+    url = url.replace(/\&/g,"^and^");
+    return url;
+  }

@@ -1,0 +1,57 @@
+-form_remote_for(:user_privacy_setting, {:url => { :id => current_user.id, :user_id => @privacy_setting.id, :controller => "Users::Privacies", :action => "update"}})  do |f|
+  - pgs = @privacy_groups.blank? ? [] : [["#{t :custom_groups}", '0']] + @privacy_groups.collect {|x| x.grp_array}
+  %table{:style => "text-align:center;width:600px;"}
+    %tr
+      %td
+        &nbsp;
+      %td
+        %b Who can see it
+      %td
+        %b Allow Comments
+      %td
+        %b Retweet
+      %td
+        %b Mark as Favourite
+      %td
+        %b Review
+    %tr
+      %td
+        Your profile will be seen by
+      %td
+        = select(:user_privacy_setting, :profile, [["#{t 'everyone'}",'1'], ["#{t 'followers'}",'2'], ["#{t 'following'}",'3'],["#{t 'friends'}",'4'], ["#{t 'just_me'}",'5']] + pgs,{:selected => @privacy_setting.profile, :disabled => "0"}, :class => "select_type")
+    %tr
+      %td
+        =image_tag("services/edintity.gif", :title => "edintity", :width => "20px")
+      %td
+        = select(:user_privacy_setting, :edintity, [["#{t 'everyone'}",'1'], ["#{t 'followers'}",'2'], ["#{t 'following'}",'3'],["#{t 'friends'}",'4'], ["#{t 'just_me'}",'5']] + pgs,{:selected => @privacy_setting.stream, :disabled => "0"}, :class => "select_type")
+      %td
+        = check_box 'allow_comments', :edintity, :checked => current_user.default_stream_action.allow_comments ? 'checked' : ''
+      %td
+        = check_box 'retweet', :edintity,  :disabled => true
+      %td
+        = check_box 'favourite', :edintity, :checked => current_user.default_stream_action.favourite ? 'checked' : ''
+      %td
+        = check_box 'review', :edintity, :checked => current_user.default_stream_action.review ? 'checked' : ''
+    -current_user.active_services.all.each do |user_service|
+      %tr
+        %td
+          =image_tag("services/#{user_service.service.name.downcase}.png", :title => "#{user_service.display_name}", :width => "20px")
+        %td
+          = select(:user_privacy_setting, user_service.id, [["#{t 'everyone'}",'1'], ["#{t 'followers'}",'2'], ["#{t 'following'}",'3'],["#{t 'friends'}",'4'], ["#{t 'just_me'}",'5']] + pgs,{:selected => user_service.privacy_type_id, :disabled => "0"}, :class => "select_type")
+        %td
+          = check_box 'allow_comments', user_service.id, :checked => user_service.default_stream_action.allow_comments ? 'checked' : ''
+        %td
+          = check_box 'retweet', user_service.id, :checked => user_service.service_id == 1 && user_service.default_stream_action.retweet ? 'checked' : '', :disabled => user_service.service_id == 1 ? false : true
+        %td
+          = check_box 'favourite', user_service.id, :checked => user_service.default_stream_action.favourite ? 'checked' : ''
+        %td
+          = check_box 'review', user_service.id, :checked => user_service.default_stream_action.review ? 'checked' : ''
+    %tr
+      %td
+        Your profile is searchable
+      %td
+        = select(:user_privacy_setting, :is_searchable, [["Yes",1], ["No",0]],{:selected => @privacy_setting.is_searchable ? 1 : 0, :disabled => "0"}, :class => "select_type")
+  = f.submit "#{t :save}", :class => "button", :onclick => "$j('#privacy_spinner_tag').show();"
+  %div.display_none.float_right{:id => "privacy_spinner_tag"}
+    = image_tag("spinner.gif")
+.clear

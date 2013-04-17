@@ -1,0 +1,34 @@
+%div{:id => "twitter_comments_#{stream.id}"}
+  - if comments.length > 0
+    %span.commentArrowTop
+    %ul
+      - twitter_reply_ids = Comment.twitter_reply_ids(stream.id)
+      - comments.reverse.each do |comment|
+        - unless twitter_reply_ids.include?(comment["id"])
+          %li
+            %span.userSmlPic
+              = image_tag(comment['profile_image_url'], :height => "26px", :width => "26px", :alt => "#{comment['from_user_name']}")
+            .commented
+              .userDesc
+                %a{:href => "javascript:void(0);"}
+                  = comment['from_user_name']
+              .userCommentedInfo
+                %ul
+                  %li.userDesc
+                    %h6
+                      %a{:href => "javascript:void(0);"}
+                  %li.timing
+                    %a{:href => "javascript:void(0);"}
+                      = to_local(DateTime.parse(comment['created_at'])).strftime("%H:%M %p")
+                  %li.date
+                    %a{:href => "javascript:void(0);"}
+                      - if session[:locale] == "arabic"
+                        %span{:style => "direction:ltr;"}= to_local(DateTime.parse(comment['created_at'])).strftime("%Y %b %d")
+                      - else
+                        = to_local(DateTime.parse(comment['created_at'])).strftime("%d %b %Y") unless  comment['created_at'].blank?
+                  - if stream.user_service
+                    %li
+                      %span.networkIco{:id => "#{stream.user_service.service.name.downcase.gsub(' ','')}Service"}
+              %div{:style => "clear:both"}
+              .msgBody
+                = comment['text'].gsub("@#{comment['to_user']} ",'')

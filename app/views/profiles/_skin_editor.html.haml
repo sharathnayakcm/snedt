@@ -1,0 +1,43 @@
+.yourSkins.yourSkinHead.active
+  .yourSkinsHeader
+    %a{:href => "javascript:void(0);"}
+      %span.blueArrowDown.uiIconInside
+        =t :your_skins
+#yourSkin01.editingSkinsContent.active#your_skins
+  = render :partial => "skins/your_skins"
+.activeSkin.yourSkinHead
+  .activeSkinsHeader
+    %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('yourSkin02')"}
+      %span.blueArrow.uiIconInside
+        = "#{@skin.name} - #{t :skin_active}"
+#yourSkin02.hide
+  - if @default_skin == @skin
+    .editLayout{:style => "background-color:#CDD6D8;"}
+      #previewHeader{:style => "background-color:#126480;"}
+        %a.styleHeading
+          =t :skin_header
+      #previewBody
+        #previewLeft{:style => "background-color:#FFFFFF;"}
+          %a.styleLeftContent
+            =t :stream
+        #previewRight{:style => "background-color:#FFFFFF;"}
+          %a.styleRightContent
+            =t :right_content
+  - else
+    .editLayout{:style => "background-color:#CDD6D8;"}
+      %a.styleBody{:style => "color:#{@skin_styles['body_color'] || '#4B6973'};", :href => "javascript:void(0);", :onclick => "$j('.styleEditor').hide();toggle_visibility('body_style');$j('#body_style-2-1').hide();$j('#body_style-1-1').show();$j('.bgdTab').addClass('styleActiveTab');$j('.txtTab').removeClass('styleActiveTab')"} click here to change Body style
+      #previewHeader{:style => "background-color:#126480;"}
+        %a.styleHeading{:style => "color:#{@skin_styles['header_color'] || '#4B6973'};", :href => "javascript:void(0);", :onclick => "$j('.styleEditor').hide();toggle_visibility('header_style');$j('#header_style-2-1').hide();$j('#header_style-1-1').show();$j('.bgdTab').addClass('styleActiveTab');$j('.txtTab').removeClass('styleActiveTab')"} click here to change Header style
+      #previewBody
+        #previewLeft{:style => "background-color:#FFFFFF;"}
+          %a.styleLeftContent{:style => "color:#{@skin_styles['stream_color'] || '#4B6973'};", :href => "javascript:void(0);", :onclick => "$j('.styleEditor').hide();toggle_visibility('stream_style');$j('#stream_style-2-1').hide();$j('#stream_style-1-1').show();$j('.bgdTab').addClass('styleActiveTab');$j('.txtTab').removeClass('styleActiveTab')"} click here to change Stream style
+        #previewRight{:style => "background-color:#FFFFFF;"}
+          %a.styleRightContent{:style => "color:#{@skin_styles['right_content_color'] || '#4B6973'};", :href => "javascript:void(0);", :onclick => "$j('.styleEditor').hide();toggle_visibility('right_content_style');$j('#right_content_style-2-1').hide();$j('#right_content_style-1-1').show();$j('.bgdTab').addClass('styleActiveTab');$j('.txtTab').removeClass('styleActiveTab')"} click here to change style
+  = render :partial => "skins/stream_style"
+
+:javascript
+  $j(document).ready(function(){
+    $j("#personalCustomSkin").click(function() {
+      $j('#mColorPicker').hide();
+    });
+  });

@@ -1,0 +1,180 @@
+= javascript_include_tag 'water_mark.js'
+= stylesheet_link_tag 'user_search'
+:javascript
+  var ajax_result = null ;
+
+  $j(function($){
+    $("#searchbox").Watermark(" Search");
+  });
+  jQuery(document).ready(function(){
+    $j('span #loading_div').hide();
+    $j(".search").keyup(function(){
+      if(ajax_result != null)
+        {
+         ajax_result.abort();
+        }
+        var searchbox = jQuery(this).val();
+        var dataString = 'searchword='+ searchbox;
+          if(searchbox=='')
+          {
+            jQuery("#display").html("");
+            jQuery("#display").hide();
+          }
+          else{
+          $j('span #loading_div').show();
+          ajax_result = jQuery.ajax({
+          type: "POST",
+          url: "/users/search_user",
+          data: dataString,
+          cache: false,
+          success: function(html)
+          {
+          $j("#display").html(html).show();
+          $j('span #loading_div').hide();
+          }
+        });
+    }return false;
+    });
+
+  });
+  $j("body").click(function(evt){
+    var target = evt.target;
+    if(jQuery(target).attr("id") !== 'searchbox')
+      {
+       jQuery("#display").hide();
+      }
+    else if($j(target).attr("id") == 'searchbox' && $j("#display").html() != "")
+      {
+       jQuery("#display").show();
+      }
+  });
+  $j(document).ready(function(){
+    $j('ul.sf-menu').superfish();
+  });
+
+-if params[:controller] == "users" and params[:action] == "new"
+-elsif params[:signup] == 'true'
+  .sign_up_header
+  .sign_up_process
+    .registration_menu
+      - if params[:tab] == "services"
+        .step_1_selected
+          %p#step1 Step - 1
+          %p#text1 Services
+        .step_2_not_selected
+          %p#step2 Step - 2
+          %p#text2 Find / Invite friends
+        .step_3_not_selected
+          %p#step3 Step - 3
+          %p#text3 Privacy
+        .done
+          %p#done Done
+          %img{:src => "/images_1/done_smily.png"}
+      - elsif params[:tab] == "friends"
+        .step_1
+          %p#step1 Step - 1
+          %p#text1 Services
+        .step_2_selected
+          %p#step2 Step - 2
+          %p#text2 Find / Invite friends
+        .step_3_not_selected
+          %p#step3 Step - 3
+          %p#text3 Privacy
+        .done
+          %p#done Done
+          %img{:src => "/images_1/done_smily.png"}
+      - elsif params[:tab] == "privacy"
+        .step_1
+          %p#step1 Step - 1
+          %p#text1 Services
+        .step_2_not_selected
+          %p#step2 Step - 2
+          %p#text2 Find / Invite friends
+        .step_3_selected
+          %p#step3 Step - 3
+          %p#text3 Privacy
+        .done
+          %p#done Done
+          %img{:src => "/images_1/done_smily.png"}
+      - elsif params[:tab] == "done"
+        .step_1
+          %p#step1 Step - 1
+          %p#text1 Services
+        .step_2_not_selected
+          %p#step2 Step - 2
+          %p#text2 Find / Invite friends
+        .step_3_not_selected
+          %p#step3 Step - 3
+          %p#text3 Privacy
+        .done_selected
+          %p#done Done
+          %img{:src => "/images_1/smily_colored.png"}
+-else
+- if current_user && params[:signup] != 'true'
+  %ul.sf-menu
+    %li{:class => "#{controller_name == "home" ||params[:controller] == "Users::Services"||controller_name == "users"||controller_name == "profiles"? 'active' : ''}"}
+      = link_to "#{t :personal}",  root_url
+      %ul
+        %li
+          = link_to "#{t :home}",  root_url
+        %li
+          = link_to "#{t :profile}", profiles_path(:id => current_user.user_name)
+        -if !request.path.index("admin")
+          %li
+            = link_to "#{t :services}", user_services_path(current_user,:signup =>"false")
+          %li
+            = link_to "#{t :settings}", edit_user_path(current_user)
+
+    %li{:class => "#{controller_name == "companies" || controller_name == "brands" || params[:controller] == "Companies::Services" ? 'active' : ''}"}
+      = link_to "#{t :brand}", current_user.has_company? ? "/brands/#{current_user.company.name}" : "javascript:void(0)"
+      %ul
+        - if current_user.has_company?
+          %li
+            = link_to "#{t :home}", "/brands/#{current_user.company.name}"
+          %li
+            = link_to "#{t :profile}", brand_profile_path(current_user.company.default_brand.url)
+          %li
+            = link_to "#{t :services}", company_services_path(current_user.company,:scope=>controller_name,:signup =>"false",:navigation =>true,:brand_id =>(params[:id] if params[:id]) )
+          %li
+            = link_to "#{t :settings}",  edit_company_path(current_user.company)
+        - else
+          %li
+            = link_to "#{t :sign_up_short}", companies_path
+        %li
+          = link_to "#{t :affiliation}",  "javascript:void(0)"
+          %ul
+            - current_user.affiliations.each do |affiliation|
+              %li
+                - brand = affiliation.affiliation_brand
+                -#unless affiliation.brand.blank?
+                %a{:href => "#{brand.is_default? ? company_path(:id => affiliation.company.name, :scope => 'affiliation') : company_brand_path(affiliation.company, brand.id)}",:style => "color:#17404E;white-space: nowrap;border-bottom:1px solid #17404E;"}
+                  #pic_div{:style => "float:left;width:35px;height:30px;"}
+                    - unless brand.profile_image.blank?
+                      = image_tag (brand.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :width => "30", :height => "30")
+                    - else
+                      = image_tag ("/images_1/profile_pic_imgpng.png", :width => "30", :height => "30")
+                  #name_div{:style => "folat:right;width:auto;height:30px;"}
+                    %div= brand.name
+                    .small.quiet.no_italic= affiliation.show_access_type
+
+    %li
+      = link_to "#{t :sign_out}", "/logout"
+    %li{:style => "width:auto;",:class => "#{request.path.index("admin") ? 'active' : ''}"}
+      - if current_user.is_admin == true
+        - if (request.path.index("admin"))
+          = link_to "#{t :admin_console}", admin_dashboard_index_path(current_user)
+        -else
+          = link_to "#{t :admin_console}", admin_users_path(current_user)
+    %li
+      #search_box_div{:style=> "width:220px;background-color:#17404E;"}
+        - form_tag('/users/search_user') do |f|
+          %span
+            =text_field_tag :searchword, '', :maxlength => 15, :size => 15, :class => "search", :id => 'searchbox',:autocomplete => "off"
+            =image_submit_tag("/images/magnifier.png", :width => "20", :height => "20")
+            =image_tag("/images/ajax-loader.gif" , :id => 'loading_div')
+      #display{:style => "*margin-left:0px;"}
+
+:javascript
+  $j('##{params[:tab] || "services"} img').attr('src', '/images/#{params[:tab] || "services"}_active.png');
+  $j('.visited_mid').corner();
+

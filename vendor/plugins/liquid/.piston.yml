@@ -1,0 +1,8 @@
+--- 
+format: 1
+handler: 
+  piston:remote-revision: "1138"
+  piston:uuid: 39f6f6d8-98fb-0310-a711-8c9c7b82d14f
+lock: false
+repository_class: Piston::Svn::Repository
+repository_url: http://tools.assembla.com/svn/breakout/breakout/vendor/plugins/liquid

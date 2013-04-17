@@ -1,0 +1,98 @@
+.profile_img
+  - unless @current_user.profile_image.blank?
+    = image_tag @current_user.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :style => "width:50px;height:50px;"
+  - else
+    = image_tag "/images/person.png"
+.profile_details
+  .profile_name
+    = @current_user.full_name if @current_user
+  .profile_user_name{:style => "text-transform:lowercase;color:#000;"}
+    == (
+    = link_to @current_user.user_name if @current_user
+    == )
+  %div.profile_status
+
+.clear
+.services
+  - current_user.active_services.each do |user_service|
+    = link_to image_tag("services/#{user_service.service.name.downcase}.png", :title => "#{user_service.display_name}"), user_services_path(current_user)
+.statuses
+  - @follower_count  = Follower.followings(current_user).count
+  - @following_count = Follower.followers(current_user).count
+  - @friends_count = Follower.friends(current_user).count
+  - @post_service_group_count = current_user.post_service_groups.count
+  %table
+    %tr
+      %td
+        = t :followers
+      %td
+        = link_to "#{@follower_count}", {:controller => "side_bar", :action => "followers_list"}, :class => "followers_list_count"
+    %tr
+      %td
+        = t :following
+      %td
+        = link_to "#{@following_count}", {:controller => "side_bar", :action => "followings_list"}, :class => "followings_list_count"
+    %tr
+      %td
+        = t :friends
+      %td
+        = link_to "#{@friends_count}", {:controller => "side_bar", :action => "friends_list"}, :class => "friends_list_count"
+    %tr
+      %td
+        = t :privacy_groups
+      %td
+        = link_to "#{@privacy_group_count}", new_privacy_group_path
+    %tr
+      %td
+        = t :post_service_groups
+      %td
+        = link_to @post_service_group_count, new_post_service_group_path, :id => "psg_count"
+    %tr
+      %td
+        = link_to "#{t :invite_friends}", new_user_friend_path(current_user)
+.show_all_stream
+  = t :stream
+  = "(#{t :show_all})"
+.favorites
+  .favorites_text
+    = t :favorites
+  .favorites_images
+    %img{:src => "/images/rails.png"}
+    %img{:src => "/images/rails.png"}
+    %img{:src => "/images/rails.png"}
+    %img{:src => "/images/rails.png"}
+  .custom_streams
+    = t :custom_streams
+    = "(#{t :create})"
+    %span.custom_filter_text
+      = "Custom Filter1"
+    %span.custom_filter_actions
+      = "edit"
+      = "delete"
+      = "RSS"
+.clear
+.stream_search
+  - form_remote_tag(:before => "$j('#stream_notify').show();",:url => {:controller => :home, :action => :search_streams }) do
+    %div{:style =>"float:left;"}
+      = text_field_tag "search_for", "", {:style => "margin-left:21px;width:120px;background:#FFFFFF;"}
+      %div{:style =>"float:left;"}
+        = select_tag "search_type", "<option value='select' selected = true>Search Options</option><option value='user'>Your streams</option><option value='edintity'>Edintity</option>",:style => "margin-left:21px;"
+      %div{:style =>"float:left;background:#93AF7F;height:16px;padding:2px;margin-left:5px"}
+        = image_submit_tag ("/images/find.png"), :class => "button_submit"
+    .clear
+.clear
+.saved_searches_or_notify
+  = "#{t :saved_searches} (#{current_user.saved_searches.count})"
+  =link_to "#{image_tag '/images_1/arrow.png', :width => 11}", "javascript:void(0)", :onclick => "$('saved_serach_phrases').toggle(); toggle_arrow(this);", :id => "s_link"
+  .results#saved_serach_phrases{:style=>"display:none"}
+    %ul
+      - current_user.saved_searches.each do |saved|
+        %li
+          = link_to_remote "#{saved.search_for}",:before => "$j('#stream_notify').show();", :url => {:controller => :home, :action => :search_streams, :search_for => saved.search_for, :search_type => saved.search_type, :saved_id => saved.id}
+.clear
+.saved_searches_or_notify
+  = "#{t :notifications} (1)"
+  %img{:src => "/images/arrow_down.png", :style => "width:13px;"}
+  .results
+    == Notification One
+    == remove

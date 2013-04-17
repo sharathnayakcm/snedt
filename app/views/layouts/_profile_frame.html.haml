@@ -1,0 +1,33 @@
+!!! 1.1
+%html{html_attrs}
+  %head
+    %meta{:charset => 'UTF-8', :content => 'text/html', :http_equiv => 'content-type'}
+    %title= "#{h(page_title) || controller.action_name.humanize} - edintity"
+    = render :partial => 'layouts/site_javascripts'
+    = render :partial => 'layouts/site_stylesheets'
+    - if session[:locale] == "arabic"
+      /[if IE 7]
+        <link href="/stylesheets/arabic/ar_ie7.css" rel="stylesheet" type="text/css" />
+        <link href="/stylesheets/arabic/ie7_rtl.css" rel="stylesheet" type="text/css" />
+      /[if IE 8]
+        <link href="/stylesheets/arabic/ar_ie8.css" rel="stylesheet" type="text/css" />
+        <link href="/stylesheets/arabic/ie8_rtl.css" rel="stylesheet" type="text/css" />
+    - else
+      /[if IE 7]
+        <link href="/stylesheets/ie7.css" rel="stylesheet" type="text/css" />
+        <link href="/stylesheets/ie7_ltr.css" rel="stylesheet" type="text/css" />
+      /[if IE 8]
+        <link href="/stylesheets/ie8.css" rel="stylesheet" type="text/css" />
+  %body
+    #notice_content{:style => flash[:notice].blank? ? 'display: none;' : nil}
+      #notice_container
+        #notice_text
+          = flash[:notice]
+      = javascript_tag 'Effect.SlideDown("notice_content");setTimeout("Effect.SlideUp(\'notice_content\')", 10000)' unless flash[:notice].blank?
+
+    #waitbox.hidden
+      = image_tag 'spinner.gif'
+    #container
+      = render :partial => 'layouts/site_header'
+      = render :partial => 'layouts/site_content', :locals => {:inner_content => inner_content}
+      = render :partial => 'layouts/site_footer'

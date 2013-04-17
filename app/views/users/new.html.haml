@@ -1,0 +1,148 @@
+:css
+  .streamWrapper{
+    background: none !important;
+  }
+#ednt-SignupPersonal.ednt-Wrapper
+  .titles
+    - if @membership.membership_type == "business"
+      %h4= t :new_user_company_signup
+    - else
+      %h4= t :new_user_signup
+  - form_for @user do |f|
+    = hidden_field_tag :membership_id, @membership.id
+    .signupWrapper
+      #signUpPersonal.MP-boxes.signupBoxWrap
+        %ul
+          %li.signUpHead.signupBoxWrap_0px
+            .titles
+              %span.singleUserIcon
+              %h4= t :account_info
+          %li
+            %label{:for => "personalName"}= t :name
+            = f.text_field :full_name, :tabindex => "1", :class => "textInput",:value => @user.full_name
+            .signupFormError
+              %span#user_full_name_icon
+            %br/
+          %li
+            %label{:for => "personalEmail"}= t :email
+            = f.text_field :email, :tabindex => "2", :autocomplete => "off", :class => "textInput", :value => @user.email, :onkeyup => "$j('#email_check').html(''); #{remote_function(:url => user_validation_users_path, :method => :get, :with => "'email='+this.value")}"
+            .email_help_text= "<text style='font-weight:bold !important;'>#{t:note}:</text> #{t :email_help_text}"
+            #email_check.signupFormError
+              %span#user_email_icon
+            %span.singup_padding_54
+              %label.mailChecker{:for => "frFindMe"}= t :email_text
+              %input.frFindMe{:name => "user[friends_find]", :type => "checkbox"}
+            %br/
+          %li
+            %label{:for => "personalUsername"}= t :user_name
+            = f.text_field :user_name, :tabindex => "3", :autocomplete => "off", :class => "textInput",:value => @user.user_name, :onkeyup => "$j('#user_name_check').html(''); $j('#user_url').html('#{t :profile_url_text} <strong>http://' + this.value.toLowerCase() + '.edintity.com</strong>'); #{remote_function(:url => user_validation_users_path, :method => :get, :with => "'user_name='+this.value+'&company_name='+$('company_name').value")}"
+            #user_name_check.signupFormError
+              %span#user_user_name_icon
+            %span.profileURL#user_url
+              = t :profile_url_text
+              %strong http://UserName.edintity.com
+            %br/
+          %li
+            %label{:for => "personalPsswrd"}= t :password
+            = f.password_field :password, :tabindex => "5", :class => "textInput",:value => @user.password, :onkeyup => "#{remote_function(:url => user_validation_users_path, :method => :get, :with => "'password='+this.value")}"
+            #password_check.signupFormError
+              %span#user_password_icon
+            %br/
+          %li
+            %label{:for => "personalPsswrd"}= t :password_confirm
+            = f.password_field :password_confirmation, :tabindex => "6", :class => "textInput",:value => @user.password_confirmation, :onkeyup => "#{remote_function(:url => user_validation_users_path, :method => :get, :with => "'password_confirmation='+this.value")}"
+            #password_confirmation_check.signupFormError
+              %span#user_password_confirmation_icon
+            %br/
+          %li.signUpFoot
+      - if @membership.membership_type == "business"
+        - fields_for :company, @company do |company_field|
+          #signUpBrand.MP-boxes.signupBoxWrap
+            %ul
+              %li.signUpHead.signupBoxWrap_0px
+                .titles
+                  %span.companyIcon
+                  %h4= t :brand_info
+              %li
+                %label{:for => "brandName"}= t :brand_name
+                = company_field.text_field :name, :tabindex => "1", :class => "textInput", :onkeyup => "$j('#company_name_check').html(''); $j('#brand_url').html('#{t :brand_url_text} <strong>http://' + this.value.toLowerCase() + '.edintity.com</strong>');  #{remote_function(:url => company_name_validation_companies_path, :method => :get, :with => "'company_name='+this.value+'&user_name='+$('user_user_name').value")}"
+                %br/
+                #company_name_check.signupFormError
+                  %span#company_name_icon
+                %span.profileURL#brand_url
+                  = t :brand_url_text
+                  %strong http://BrandName.edintity.com
+              %li
+                %label{:for => "brandURL"}= t :brand_website
+                = company_field.text_field :url, :tabindex => "1", :class => "textInput"
+                %span.profileURL
+                  = t :brand_url_example
+                  == http://yourbrand.com
+                %br/
+                %br/
+                .formError{:style => "display:none;"}
+                  %p
+              %li.signUpFoot
+
+
+      #yourPlan.MP-boxes.signupBoxWrap
+        %p
+          = t :your_plan
+          %span
+            = @membership.name
+
+      #confirmSignupPersonal.MP-boxes.signupBoxWrap
+        - if @membership.membership_type == "business"
+          %p= t :signup_text
+          .blueBtn
+            = submit_tag "#{t :create_my_account}"
+        - else
+          %p= t :signup_text
+          .blueBtn
+            = submit_tag "#{t :create_my_account}"
+      .signupInfo
+        = t :create_account_text_1
+        = link_to "#{t :terms_of_use}",{:controller => "home", :action => "terms_of_use"}
+        = t :and
+        = link_to "#{t :private_policy}",{:controller => "home", :action => "privacy_policy"}
+        %p
+          = t :create_account_text_5
+
+:javascript
+  jQuery(document).ready(function(){
+    jQuery('#user_password, #user_password_confirmation').keyup(function(){
+     if(jQuery('#user_password').val().length > 0) {
+          if(jQuery('#user_password').val().length < 7) {
+              jQuery('#password_check').html('#{'<span class="checkIco errorCheckIco"></span>'}#{'<div class="formError" style="display: block;"><p>Password should have minimum 7 charecters in length.</p></div>'}')
+              jQuery('#user_password').addClass('validate_failure');
+           }
+          else{
+             if(jQuery('#user_password').val().length >= 7) {
+               jQuery('#password_check').html('#{'<span class="checkIco correctCheckIco"></span>'}');
+                jQuery('#user_password').removeClass('validate_failure');
+                jQuery('#user_password').addClass('validate_success');
+              }
+              if (jQuery('#user_password_confirmation').val().length > 0) {
+                     if(jQuery('#user_password_confirmation').val() != jQuery('#user_password').val())
+                      {
+                         jQuery('#password_confirmation_check').html('#{'<span class="checkIco errorCheckIco"></span>'}#{'<div class="formError" style="display: block;"><p>Password does not match.</p></div>'}')
+                         jQuery('#user_password_confirmation').addClass('validate_failure');
+                      }
+                     else{ 
+                              jQuery('#password_confirmation_check').html('#{'<span class="checkIco correctCheckIco"></span>'}');
+                              jQuery('#user_password_confirmation').removeClass('validate_failure');
+                              jQuery('#user_password_confirmation').addClass('validate_success');
+                      }
+               }
+              else{
+                    jQuery('#password_confirmation_check').html('#{'<span class="correctCheckIco"></span>'}');
+               }
+             }
+          }
+       else {
+          jQuery('#password_check').html('#{'<span class="correctCheckIco"></span>'}');
+          jQuery('#password_confirmation_check').html('#{'<span class="correctCheckIco"></span>'}');
+        }
+   });
+
+ 

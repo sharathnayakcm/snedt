@@ -1,0 +1,17 @@
+- spammed_users ||= @spammed_users
+- @spammed_users_table.render spammed_users do |table|
+  - spammed_users.each do |spammed_user|
+    - table.tr :id => "spammed_user_#{spammed_user.id}" do
+      -table.td {spammed_user.user.full_name}
+      -table.td {spammed_user.user.user_name}
+      -table.td {spammed_user.user.email}
+      -table.td {spammed_user.user.last_login}
+      -table.td {spammed_user.user.user_services.count}
+      -table.td(:check_box) {spammed_user.user.active ? "Active" : "Inactive" }
+      -table.td { "#{spammed_user.spammed_by.full_name}(#{spammed_user.spammed_by.user_name})" }
+      -table.td(:action, :id => "action_#{spammed_user.id}") do
+        - if spammed_user.is_spammer
+          = link_to_remote("Reveal", :url => process_spam_admin_spammed_users_path(current_user, :id => spammed_user.id, :scope => "reveal"), :method => :get, :confirm => "Are you sure want to reject this spam request?", :html => {:class => "icon", :title => "Reject spammer request"} )
+        - else
+          = link_to_remote("Spammer", :url => process_spam_admin_spammed_users_path(current_user, :id => spammed_user.id), :method => :get, :confirm => "Are you sure want to mark this user as spammer?", :html => {:class => "icon", :title => "Mark this user as spammer"} )
+          = link_to_remote("Reject", :url => process_spam_admin_spammed_users_path(current_user, :id => spammed_user.id, :scope => "reject"), :method => :get, :confirm => "Are you sure want to reject this spam request?", :html => {:class => "icon", :title => "Reject spammer request"} )

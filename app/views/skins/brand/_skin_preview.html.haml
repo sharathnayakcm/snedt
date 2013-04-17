@@ -1,0 +1,80 @@
+#preview_palette{:style => "color: #17404E; font-size:10px; text-align:center; vertical-align: middle;background-color: #{@skin_styles['body_background-color'] || 'white'};"}
+  #preview_header{:style => "color:white;height:30px; background-color: #{@skin_styles['header_background-color'] || '#17404E'}; ", :onclick => "$j('.style_attribute').hide(); $('style_attribute_header').toggle();"}
+    .small
+      =t :change_header_style
+  #preview_body.float_left{:style => "background-color: transparent; height:100px; width: 12%; font-size:15px;", :onclick => "$j('.style_attribute').hide(); $('style_attribute_body').toggle();"}
+  #preview_left_content.float_left{:style => "margin-top:5px;  background-color:#{@skin_styles['left_content_background-color'] || 'white'}; height:80px; width:48%;font-size:10px;border:solid 1px #17404E;", :onclick => "$j('.style_attribute').slideUp(); $j('#style_attribute_left_content').toggle();"}
+    =t :left_content
+    #preview_stream{:style => "color:#17404E;margin:5px 0px 0px 15px; text-align:center; width:70%; height: 25px; background-color:#{@skin_styles['stream_background-color'] || '#ECECEC'}; font-size:7px; ", :onmouseover => "removeLeftContentEvent()", :onmouseout => "setLeftContentEvent()"}= t :change_stream_style
+    #preview_stream{:style => "color:#17404E;margin:5px 0px 0px 15px; text-align:center; width:70%; height: 25px; background-color:#{@skin_styles['stream_background-color'] || '#ECECEC'}; ", :onmouseover => "removeLeftContentEvent()", :onmouseout => "setLeftContentEvent()"}= t :stream
+  #preview_body.float_left{:style => "background-color: transparent; height:100px; width:10%; font-size:15px;", :onclick => "$j('.style_attribute').hide(); $('style_attribute_body').toggle();"}
+  #preview_right_content.float_left{:style => "margin-top:5px; background-color:#{@skin_styles['right_content_background-color'] || 'white'}; height:80px; width:15%; font-size:10px;border:solid 1px #17404E;", :onclick => "$j('.style_attribute').slideUp(); $j('#style_attribute_right_content').toggle();"}=t :right_content
+  #preview_body.float_left{:style => "color:white;background-color: transparent; height:100px; width: 12%; font-size:15px;", :onclick => "$j('.style_attribute').hide(); $('style_attribute_body').toggle();"}
+  .clear
+
+  #preview_footer{:style => "height:20px;", :onclick => "$j('.style_attribute').hide(); $('style_attribute_footer').toggle();"}=t :footer
+
+
+.color_select_div{:style => "padding:5px; font-size:10px;"}
+  .column.width_6
+    - @panel_types.each do |panel_type|
+      .style_attribute{:id => "style_attribute_#{panel_type.name}", :style => "display:none;"}
+        .attributes
+          .popup_details
+            .popup_heading{:style=> "background:none;background-color: #616B75;"}
+              .popup_heading_text{:style => "color:#17404E !important;font-weight:bold;"}
+                = panel_type.name.humanize.upcase
+              .popup_button{:style => "display:none"}
+                = link_to_remote_with_loader("#{t :save}",  :url => update_active_skin_brand_skins_path(:brand_id => @brand.id), :method => :get, :with => "$('skin_form_#{panel_type.id}').serialize()", :success => "$j('.style_attribute').hide(); $j('.panel_types').show();")
+            - form_tag "/brand_skins/upload_image", {:id => "skin_form_#{panel_type.id}", :multipart => true} do
+              = hidden_field_tag "panel_type_id", panel_type.id
+              = hidden_field_tag "panel_type", panel_type.name
+              = hidden_field_tag "skin_id", @skin.id
+              = hidden_field_tag "brand_id", @brand.id
+              = hidden_field_tag "#{panel_type.name}[background-image]", "#{@skin_styles["#{panel_type.name}_background-image"]}"
+              .skin_tabs
+                .skin_background.active_tab.float_left{ :onclick => "$('background_style_#{panel_type.id}').show(); $('font_style_#{panel_type.id}').hide();$j('.skin_text').removeClass('active_tab').addClass('passive_tab');$j('.skin_background').removeClass('passive_tab').addClass('active_tab');"}
+                  =t :background
+                .skin_text.passive_tab{ :onclick => "$('background_style_#{panel_type.id}').hide(); $('font_style_#{panel_type.id}').show();$j('.skin_text').removeClass('passive_tab').addClass('active_tab');$j('.skin_background').removeClass('active_tab').addClass('passive_tab');"}
+                  =t :text
+                #clear{:style => "clear:both;"}
+              .popup_body
+                %div{:id => "background_style_#{panel_type.id}"}
+                  .float_left
+                    - @background_attributres.each do |style_attribute|
+                      .row{:id => "style_attribute_#{style_attribute.id}_#{panel_type.id}"}
+                        .style_column_background= style_attribute.display_name.humanize
+                        .column_right
+                          = style_attribute_field(panel_type, style_attribute, @skin_styles)
+
+                    .popup_button{:style => "margin:60px 7px 13px 13px;"}
+                      = link_to_remote_with_loader("#{t :save}",  :url => update_active_skin_brand_skins_path(:brand_id => @brand.id), :method => :get, :with => "$('skin_form_#{panel_type.id}').serialize()", :success => "$j('.style_attribute').hide(); $j('.panel_types').show();")
+
+                  - unless @user_background_imges.blank?
+                    .float_left
+                      .image_panel{:id => "background_image_#{panel_type.id}"}
+                        .no_image{:style => "width:70px;height:50px;background-color:white;cursor:pointer;border:solid 1px #17404E;color:#17404E !important;", :onclick => "changeStyle('background-image', '#{panel_type.element_name}', ''); $('#{panel_type.name}_background-image').value = ''"}
+                          = t :no_false
+                          %br
+                            = t :image
+                          =# link_to "#{t :none}", "javascript:void(0)", :onclick => "changeStyle('background-image', '#{panel_type.element_name}', ''); $('#{panel_type.name}_background-image').value = ''"
+                        - @user_background_imges.each do |background_image|
+                          .bg_image{:class => "bg_image_#{background_image.id}"}
+                            = link_to_remote_with_loader image_tag("close.gif", :alt => "#{t :delete}", :title => "#{t :delete}", :style => "float:right"), :url => delete_image_brand_skins_path(:id => background_image.id, :brand_id => @brand.id)
+                            = link_to image_tag(background_image.asset.url.gsub('/s3.','/s3-eu-west-1.'), :width => "70", :height => "50", :border => "1" ), "javascript:void(0)", :onclick => "changeStyle('background-image', '#{panel_type.element_name}', 'url(#{background_image.asset.url.gsub('/s3.','/s3-eu-west-1.')})'); $('#{panel_type.name}_background-image').value = 'url(#{background_image.asset.url.gsub('/s3.','/s3-eu-west-1.')})'"
+                  - else
+                    .float_left
+                      %div{:id => "background_image_#{panel_type.id}"}
+                .clear
+                %div{:style => "display:none"}
+                  = submit_tag "#{t :upload}", :id => "image_upload_btn_#{panel_type.id}"
+                %div{:id => "font_style_#{panel_type.id}", :style => "display:none;" }
+                  - @font_attributres.each do |style_attribute|
+                    .row{:id => "style_attribute_#{style_attribute.id}_#{panel_type.id}"}
+                      .style_column_text= style_attribute.display_name.humanize
+                      .column_right
+                        = style_attribute_field(panel_type, style_attribute, @skin_styles)
+                  .clear
+                  .popup_button{:style => "margin:7px 7px 13px 13px;"}
+                    = link_to_remote_with_loader("#{t :save}",  :url => update_active_skin_brand_skins_path(:brand_id => @brand.id), :method => :get, :with => "$('skin_form_#{panel_type.id}').serialize()", :success => "$j('.style_attribute').hide(); $j('.panel_types').show();")
+                %iframe#upload_frame{:name => "upload_frame", :style => "display: none"}

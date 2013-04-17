@@ -1,0 +1,32 @@
+#footer
+  #copyright.flLeft
+    %ul
+      %li= t :copyright
+      %li
+        = link_to "English", params.merge({:locale => 'en'})
+      %li
+        = link_to("عربي", params.merge({:locale => 'arabic'}))
+  #footNavigation.flRight
+    %ul
+      /%li
+      /  %a{:href => "javascript:void(0);"} Blog
+      %li
+        = link_to "#{t 'about_us'}",{:controller => "home", :action => "about"}
+      %li
+        = link_to "#{t 'privacy'}",{:controller => "home", :action => "privacy_policy"}
+      %li
+        = link_to "#{t :terms_of_use}",{:controller => "home", :action => "terms_of_use"}
+      /%li
+      /  %a{:href => "javascript:void(0);"} Advertise
+      /%li
+      /  %a{:href => "javascript:void(0);"} Developer
+      /%li
+      /  %a{:href => "javascript:void(0);"} API
+      %li
+        - unless current_user.blank?
+          = link_to   "#{t :tribe}", "http://getsatisfaction.com/edintity?fastpass=#{CGI.escape(FastPass.url(GETSATISFACTION_CONSUMER_KEY, GETSATISFACTION_CONSUMER_SECRET, current_user.email, current_user.user_name, current_user.id))}", :target => "_blank"
+        - else
+          %a{:href => "http://getsatisfaction.com/edintity", :target => "_blank"}= t :tribe
+          /=# link_to "#{t :privacy}",{:controller => "home", :action => "privacy_policy"}
+      %li
+        %a{:href => "http://edintity.com/zendesk", :target => "_blank"}= t :help

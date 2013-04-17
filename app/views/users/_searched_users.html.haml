@@ -1,0 +1,49 @@
+.searchDropWrap.transBg.cornerAll
+  - if @users.blank? && @companies.blank?
+    .personSearchResult
+      %h6{:style => "padding:10px"}
+        = t :modify_search_criteria
+  - else
+    .personSearchResult
+      %span.personSearchBar.cornerTop
+        = t :personal
+      .personResult
+        %ul
+          - unless @users.blank?
+            - @users.each do |user|
+              %li
+                %a{:href => "#{profiles_path(:id => user.user_name)}"}
+                  - unless user.profile_image.blank?
+                    %span= image_tag (user.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :class => "userSmlPic")
+                  - else
+                    %span= image_tag ("/images/userPicMed.png",:alt => "#{user.user_name}", :class => "userSmlPic")
+                  = user.user_name
+  .brandSearchResult
+    %span.brandSearchBar
+      = t :topic
+    .brandResult
+      %ul
+        - unless @topics.blank?
+          - @topics.each do |topic|
+            %li
+              %a{:href => "#{my_streams_path(:topic_id => topic.id)}"}
+                - if topic.asset
+                  = image_tag topic.asset.asset.url.gsub('/s3.','/s3-eu-west-1.'), :class => "userSmlPic"
+                - else
+                  = image_tag "/images/userPicMed.png", :class => "userSmlPic"
+                = topic.title
+    /.brandSearchResult
+    /  /%span.brandSearchBar
+    /    /= t :brands
+    /  /.brandResult
+    /    /%ul
+    /      /- unless @companies.blank?
+    /        /- @companies.each do |company|
+    /          /%li
+    /            /%a{:href => "#{brand_profile_path(company.name)}"}
+    /              /- unless company.profile_image.blank?
+    /                /%span= image_tag (company.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :class => "userSmlPic")
+    /              /- else
+    /                /%span= image_tag ("/images/userPicMed.png",:alt => "#{company.name}", :class => "userSmlPic")
+    /              /= company.name
+

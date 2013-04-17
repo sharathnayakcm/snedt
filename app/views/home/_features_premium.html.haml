@@ -1,0 +1,47 @@
+.features
+  .starterFeatures
+    %ul
+      %li
+        .featuresPlanWrap
+          %h5
+            %span.starterFeature1.uiBigIcon= t :stream_content_in
+          %p.featDescription= t :stream_content_in_description
+        .featuresPlanWrap
+          %h5
+            %span.starterFeature2.uiBigIcon= t :stream_content_out
+          %p.featDescription= t :stream_content_out_description_premium
+        .featuresPlanWrap
+          %h5
+            %span.starterFeature3.uiBigIcon= t :privacy
+          %p.featDescription= t :privacy_description
+      %li
+        .featuresPlanWrap
+          %h5
+            %span.starterFeature4.uiBigIcon= t :anonymity
+          %p.featDescription= t :anonymity_description
+        .featuresPlanWrap
+          %h5
+            %span.starterFeature5.uiBigIcon= t :security
+          %p.featDescription= t :security_description
+        .featuresPlanWrap
+          %h5
+            %span.starterFeature6.uiBigIcon= t :profile
+          %p.featDescription= t :features_page_profile_description
+      %li
+        .featuresPlanWrap
+          %h5
+            %span.starterFeature7.uiBigIcon= t :filter
+          %p.featDescription= t :features_page_filter_description
+        .featuresPlanWrap
+          %h5
+            %span.starterFeature8.uiBigIcon= t :upload_limit
+          %p.featDescription= t :features_page_upload_limit_description_premium
+/ END FEATURES SECTION
+:javascript
+  function toggle_visibility(id) {
+         var e = document.getElementById(id);
+         if(e.style.display == 'block')
+            e.style.display = 'none';
+         else
+            e.style.display = 'block';
+      }

@@ -1,0 +1,63 @@
+- if current_user
+  - friends_count = current_user.friends.count
+  #sideWrapper.flRight
+    #ProfileWrapper.streamSide.streamWrapper.cornerAll
+      .userBigPictId
+        /%img.mainPic{:alt => "User Picture", :src => "/images/bigProfilePic.jpg"}
+        - unless @current_user.profile_image.blank?
+          = image_tag @current_user.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :class => "mainPic"
+        - else
+          = image_tag "/images/bigProfilePic.jpg", :class => "mainPic"
+      .usernameId
+        %h1
+          %a{:href => profiles_path(:id => current_user.user_name)}
+            = @current_user.full_name if @current_user
+        - if @current_user
+          %a.editUsrProfile{:href => edit_user_path(@current_user)}
+            %span.editProfileLink
+              = t :edit
+      .socialNetworkWrapper
+        %ul
+          - current_user.active_services.each do |user_service|
+            %li
+              %a{:href => user_services_path(current_user)}
+                %span{:id => "#{user_service.service.name.downcase.gsub(' ','')}Service",:title => "#{user_service.display_name}"}
+      .activityWrapper
+        %ul
+          %li
+            %a{:href => "/followers"}
+              = t :followers
+              %span.counter.flRight
+                = (current_user.followers.count.to_i - friends_count.to_i)
+          %li
+            %a{:href => "/followings"}
+              = t :following
+              %span.counter.flRight
+                = (current_user.followings.count.to_i - friends_count.to_i) + current_user.company_followers.count.to_i
+          %li
+            %a{:href => "/friends"}
+              = t :friends
+              %span.counter.flRight
+                = current_user.friends.count.to_i
+      .invitationButton
+        .blueBtn
+          = link_to "#{t :find_invite_friend}", new_user_friend_path(current_user)
+    #searchSidebar.streamWrapper.cornerAll
+      .searchSideTop
+        -#- form_remote_tag(:before => "$j('#stream_notify').show();",:url => {:controller => :home, :action => :search_streams }) do
+        - form_tag(url_for_options = {:controller => :home, :action => :search_streams }, options = {:on_submit => "$j('#stream_notify').show();"}) do
+          = text_field_tag( "search_for", "", :class => "sideSearch")
+          .searchOption
+            %label
+              = t :search_option
+              == :
+            = select_tag "search_type", "<option value='user'>#{t :your_streams}</option><option value='edintity'>#{t :site_name}</option>"
+      .searchSideBottom
+        %p.flLeft= t :save_search
+        %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('savedSearch');"}
+          %span.blueArrow.flRight
+        %span.counter.flRight= current_user.saved_searches.count
+      #savedSearch.saveSearch.cornerBottom{:style => "display:none"}
+        %ul
+          %li
+            = render :partial => "home/saved_search_list"

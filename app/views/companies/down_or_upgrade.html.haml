@@ -1,0 +1,26 @@
+:javascript
+  $j('.button').corner("4px");
+  $('RB_window').style.width = "400px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 400)/2) + "px";
+.dialogs
+  .dialog_details{:style => "width:400px"}
+    #membership_down_upgrade
+      - if @company.brand_user_groups.size > @membership.user_count.to_i && @membership.user_count.to_i != 0
+        %p
+          == In order to downgrade to #{@membership.name}, you have to maintain the users group count #{@membership.user_count}
+        %p
+          == Please remove #{@company.brand_user_groups.size - @membership.user_count.to_i} to continue downgrade your membership
+        = render :partial => "companies/brands/user_roles_upgrade"
+        .modalConfirmAct.flRight{:style => "width:240px"}
+          .blueBtn.hide
+            = link_to_remote(@membership_scope, :url => down_or_upgrade_membership_companies_path(:id => @company.id, :membership_id => @membership.id), :method => :get, :html => {:class => "smlrBtn"})
+          .yellowBtn
+            = link_to_close_redbox("#{t :no_changed_mind}", :class => "smlrBtn")
+      - else
+        %p
+          == Are you sure want to #{@membership_scope} to #{@membership.name}?
+        .modalConfirmAct.flRight{:style => "width:240px"}
+          .blueBtn
+            = link_to_remote( @membership_scope, :url => down_or_upgrade_membership_companies_path(:id => @company.id, :membership_id => @membership.id), :method => :get, :html => {:class => "smlrBtn"})
+          .yellowBtn
+            = link_to_close_redbox("#{t :no_changed_mind}", :class => "smlrBtn")

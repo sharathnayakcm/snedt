@@ -1,0 +1,78 @@
+- @panel_types.each do |panel_type|
+  - form_tag "/brand_skins/upload_image", {:id => "skin_form_#{panel_type.id}", :multipart => true} do
+    = hidden_field_tag "panel_type_id", panel_type.id
+    = hidden_field_tag "panel_type", panel_type.name
+    = hidden_field_tag "skin_id", @skin.id
+    = hidden_field_tag "#{panel_type.name}[background-image]", "#{@skin_styles["#{panel_type.name}_background-image"]}"
+    %iframe#upload_frame{:name => "upload_frame", :style => "display: none"}
+    .styleEditor.hide{:id => "#{panel_type.name}_style"}
+      .editorStyleHeader
+        .yourSkinsHeader
+          %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('streamStyle')"}
+            %span.blueArrowDown.uiIconInside
+              =t :"#{panel_type.name}"
+              /= panel_type.name.humanize.upcase
+      .segementedNav
+        %ul
+          %li.bgTab
+            %a#style-1.cornerLeft.styleCustom.styleActiveTab.bgdTab{:href => "javascript:void(0);", :onclick => "$j('#mColorPicker').hide();$j('.styleEditorContent').hide();$j('##{panel_type.name}_style-1-1').show();"} Background
+          %li.textTab
+            %a#style-2.cornerRight.styleCustom.txtTab{:href => "javascript:void(0);", :onclick => "$j('#mColorPicker').hide();$j('.styleEditorContent').hide();$j('##{panel_type.name}_style-2-1').show();"} Text
+      .styleEditorContent{:id => "#{panel_type.name}_style-1-1"}
+        .styleWrapper
+          .styleOptions.flLeft
+            %ul
+              - @background_attributres.each do |style_attribute|
+                %li.backgroundEdit{:id => "style_attribute_#{style_attribute.id}_#{panel_type.id}"}
+                  %label
+                    = style_attribute.display_name.humanize
+                    == :
+                  = style_attribute_field(panel_type, style_attribute, @skin_styles)
+          .skinUploadedImages.flRight{:style => "height: 170px;overflow-y: auto;width: 100px;"}
+            - unless @user_background_imges.blank?
+              .flLeft
+                .image_panel{:id => "background_image_#{panel_type.id}"}
+                  .no_image#noImage{:style => "width:70px;height:50px;background-color:white;cursor:pointer;border:solid 1px #17404E;color:#17404E !important;", :onclick => "changeStyle('background-image', '#{panel_type.element_name}', '');changeStyle('background-color', '#ednt-Header, #previewHeader', '#{@skin_styles["header_background-color"]}');  $('#{panel_type.name}_background-image').value = ''"}
+                    NO
+                    %br
+                    = t :image
+                    =# link_to "#{t :none}", "javascript:void(0)", :onclick => "changeStyle('background-image', '#{panel_type.element_name}', ''); $('#{panel_type.name}_background-image').value = ''"
+                  - @user_background_imges.each do |background_image|
+                    .bg_image{:class => "bg_image_#{background_image.id}"}
+                      = link_to_remote_with_loader image_tag("/images_old/close.gif", :alt => "#{t :delete}", :title => "#{t :delete}", :style => "float:right"), :url => delete_image_skins_path(:id => background_image.id)
+                      = link_to image_tag(background_image.asset.url.gsub('/s3.','/s3-eu-west-1.'), :width => "70", :height => "50", :border => "1" ), "javascript:void(0)", :onclick => "changeStyle('background-image', '#{panel_type.element_name}', 'url(#{background_image.asset.url.gsub('/s3.','/s3-eu-west-1.')})'); $('#{panel_type.name}_background-image').value = 'url(#{background_image.asset.url.gsub('/s3.','/s3-eu-west-1.')})'"
+            - else
+              .flLeft
+                .image_panel{:id => "background_image_#{panel_type.id}"}
+                  .no_image#noImage{:style => "display:none;width:70px;height:50px;background-color:white;cursor:pointer;border:solid 1px #17404E;color:#17404E !important;", :onclick => "changeStyle('background-image', '#{panel_type.element_name}', '');changeStyle('background-color', '#ednt-Header, #previewHeader', '#{@skin_styles["header_background-color"]}');  $('#{panel_type.name}_background-image').value = ''"}
+                    NO
+                    %br
+                    = t :image
+
+        .saveStyle.flRight
+          %span.streamLoad#image_upload_spinner.hide
+            %img{:alt => "", :src => "/images/loadinfo.gif"}
+          .yellowBtn.flRight
+            %a.smlrBtn{:href => "javascript:void(0);", :onclick => "window.location.reload()"} Cancel
+          .blueBtn
+            - if @brand.blank?
+              %a.smlrBtn{:href => "javascript:void(0);", :onclick => remote_function(:url => update_active_skin_skins_path, :method => :get, :with => "$('skin_form_#{panel_type.id}').serialize()")} Save
+            - else
+              %a.smlrBtn{:href => "javascript:void(0);", :onclick => remote_function(:url => update_active_skin_brand_skins_path(:brand_id => @brand.id), :method => :get, :with => "$('skin_form_#{panel_type.id}').serialize()")} Save
+      .styleEditorContent.hide{:id => "#{panel_type.name}_style-2-1"}
+        .styleWrapper
+          %ul
+            - @font_attributres.each do |style_attribute|
+              %li.backgroundEdit{:id => "style_attribute_#{style_attribute.id}_#{panel_type.id}"}
+                %label
+                  = style_attribute.display_name.humanize
+                  == :
+                = style_attribute_field(panel_type, style_attribute, @skin_styles)
+        .saveStyle.flRight
+          .yellowBtn.flRight
+            %a.smlrBtn{:href => "javascript:void(0);", :onclick => "window.location.reload()"} Cancel
+          .blueBtn
+            - if @brand.blank?
+              %a.smlrBtn{:href => "javascript:void(0);", :onclick => remote_function(:url => update_active_skin_skins_path, :method => :get, :with => "$('skin_form_#{panel_type.id}').serialize()")} Save
+            - else
+              %a.smlrBtn{:href => "javascript:void(0);", :onclick => remote_function(:url => update_active_skin_brand_skins_path(:brand_id => @brand.id), :method => :get, :with => "$('skin_form_#{panel_type.id}').serialize()")} Save

@@ -1,0 +1,606 @@
+.tableLoginTop, #borderTop, #contentHeadingSection1{
+	border-radius: 4px 4px 0 0;
+}
+
+.tableLoginBottom{
+	border-radius: 0 0 4px 4px;
+}
+
+.tableLoginTop, .tableLoginBottom, #borderTop{
+	z-index: 0;
+}
+
+.uiLoginForm{
+	z-index: 2;
+}
+
+#loginArea{
+	width: 250px;
+	z-index: 1;
+}
+
+.loginButton a{
+	background: #1f5770;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #0d4456 #0d4456 #0d4456 #0d4456;
+	padding: 2px 10px;
+	display: block;
+}
+
+.loginButton a:hover{
+	background: #204961;
+}
+
+#borderTop{
+	top: 0;
+	left: 0;
+}
+
+#loginEmail, #loginPassword{
+	border: none;
+	outline: none;
+	background: none;
+	z-index: 101;
+	float: left;
+	display: block;
+}
+
+.ourTeam li{
+	padding: 0 5px 35px 0;
+}
+
+.teamInfo{
+	width: 240px;
+}
+
+.servicesOption{
+	width: 175px;
+}
+
+.searchInstuction{
+	width: 100%;
+}
+
+.privacySetup li.accntSetup{
+	border-top: none;
+	border-bottom: none;
+}
+
+.privacySetup li.accntSetup:last-child .privacyHead{	
+	border-bottom: none;
+}
+
+.privacyHead{
+	box-shadow: none;
+}
+
+#searchInstructLast{
+	border-bottom: 1px solid #DBDFE0;
+	margin-bottom: 0;
+	padding-bottom: 15px;
+}
+
+#contactFound h6{
+	border-top: 1px solid #F3F5F6;
+}
+
+#ednt-Activation .titles h4{
+	padding-bottom: 20px;
+}
+
+#navigation li#logout a{
+	background:  url(/images/uiIconInside.png) no-repeat -4px -59px;
+	z-index: 0;
+}
+
+#dropNav .dropContent{
+	background: #fafafa;
+}
+
+#dropNav .dropContent li:last-child{
+	border: none !important;
+}
+
+#dropNav .dropHead a, .brandListHead {
+	position: relative;
+	z-index:100;
+}
+
+.navDropDown, .dropContent{
+	z-index:100;
+}
+
+.customSkins .redBtn a{
+	height: 23px;
+	background-position: 0 -433px;
+}
+
+#mainLogo{
+	margin-right: 100px;
+}
+
+#headerSearchWrapper{
+	margin-left: 0;
+}
+
+.actSelector li:last-child{
+	border-right: none;
+}
+
+.actSelector li a, .actSelector li{
+	padding: 0 !important;
+	height: 20px;
+	width: 22px;
+	overflow: hidden;
+}
+
+.deletingCompany, .goToProfile{
+	height: 10px;
+	width: 10px;
+	overflow: hidden;
+}
+
+.writeCommentPopup{
+	left: 140px;
+}
+
+.writeCommentArrow{
+	height: 10px;
+	width: 12px;
+	overflow: hidden;
+}
+
+.commentedWrapper ul li div.commented .userDesc a, .commentedWrapper ul li div.commented .msgBody{
+	clear: both;
+}
+
+.modalWindow{
+	z-index: 999;
+	background: #fafafa;
+}
+
+.brandSideListWrapper{
+	z-index: 0;
+	position: relative;
+}
+
+p.affiliatesInfo{
+	width: 840px;
+}
+
+.modalContent li{
+	width: 400px;
+}
+
+.modalConfirmAct{
+	width: 150px !important;
+}
+
+.streamController li.streamControl1 {
+	width: 135px;
+}
+
+.streamController li.streamControl6{
+	width: 164px;
+}
+
+span.updateArrowTop{
+	padding-bottom: 5px;
+}
+
+.notifDropdown{
+	z-index: 1;
+}
+
+#personalNotif{
+	background: #fafafa;
+	z-index: 2;
+	position: relative;
+}
+
+.notifIconWrap li span{
+	padding-left: 1px;
+	padding-right: 1px;
+	position: relative;
+	display: block;
+}
+
+.loveIco{
+	width: 12px;
+}
+
+.transBg, .shareToBrandHead, .shortUrlContent, .shareToBrandContent, .shortUrlHead{
+	background: #fafafa;
+}
+
+.shareToBrandDropDown{
+	top: 161px;
+}
+
+.shareToBrandContent{
+	top: 29px;
+}
+
+.shareServiceControlBrand, .addShortUrlBrand{
+	top: 161px !important;
+}
+
+.vidPhotoCtrlBrand{
+	top: 195px !important;
+}
+.cmmntInput{
+	width: 310px;
+}
+
+.labelForInput{
+	float: left !important;
+}
+
+.modalContent li label{
+	position: relative;
+	display: block;
+}
+
+.starterFeatures div{
+	width: 250px;
+}
+
+#footNavigation li{
+	list-style: disc none inside !important;
+	position: relative;
+}
+
+.friendTabNav{
+	margin-top: 18px;
+}
+
+.brandTab{
+	margin-top: -1px !important;
+}
+
+.shadeCenter{
+	top: -32px;
+}
+
+#MP-brandTop, #MP-individualTop{
+	width: 430px;
+}
+
+.recoveryAction{
+	width: 280px;
+}
+
+#ProfileWrapper{
+	width: 200px;
+}
+
+.customSkinPopup{
+	right: 310px;
+	top: -10px !important;
+}
+
+a.closeCustom{
+	background-position: 0 -1450px;
+	width: 15px;
+	height: 15px;
+	z-index: 99;
+	display: block;
+}
+
+a.closeCustom:hover {
+background-position: 0 -1480px;
+}
+
+div.img{
+	padding-bottom: 5px;
+}
+
+.writeCommentArrow{
+	top: -7px;
+	height: 10px;
+}
+
+a.toggleCommentExpand{
+	width: 510px;
+	padding-right: 5px !important;
+}
+
+#navigation li.navSelected a, #navigation li:hover a{
+	background: #0e4a61;
+}
+
+.updateStreamType li, .updateStreamType li:first-child, .updateStreamType li:last-child{
+	padding-top: 3px;
+}
+
+span.updateArrowTop{
+	padding-bottom: 0;
+}
+
+.loadContentIndicator{
+	width: auto;
+}
+
+.notification li div{
+	z-index: 2;
+}
+
+.streamController li.streamControl6{
+	width: 190px;
+}
+
+.streamController li.streamControl8{
+	border-right: none	;
+}
+
+.graphInfo li span.circle{
+	height: 3px;
+}
+
+.graphInfo li span.line{
+	height: 2px;
+	border-top: 1px solid !important;
+}
+
+.customSkins .redBtn a{
+	background-position: 0 -434px;
+	height: 20px;
+	padding-bottom: 12px !important;
+}
+
+.customSkins .redBtn a .setSkinIcon{
+	padding-top: 6px !important;
+}
+
+.breadcrumb ul, .breadcrumb ul li{
+	list-style-image: url(../images/breadcrum.png);
+	list-style-position: inside;
+	list-style-type: none;
+}
+
+.loadContentIndicator{
+	margin: 10px;
+}
+.ui-progress-bar{
+	margin: 0;
+}
+
+.streamContent li.SharedPostStream a.reportPost{
+	left: 10px;
+}
+
+.greyArrow{
+	padding-bottom: 0;
+}
+
+.invitationButton .blueBtn a{
+	height: 18px;
+	background-position: 0 -73px !important;
+}
+
+.markRead, .markUnread{
+	padding-bottom: 0;
+	height: 10px;
+}
+
+a.toggleCommentExpand{
+	width: 510px;
+	padding-right: 5px !important;
+}
+
+#navigation li.navSelected a, #navigation li:hover a{
+	background: #0e4a61;
+}
+
+.updateStreamType li, .updateStreamType li:first-child, .updateStreamType li:last-child{
+	padding-top: 3px;
+}
+
+span.updateArrowTop{
+	padding-bottom: 0;
+}
+
+.loadContentIndicator{
+	width: auto;
+}
+
+.notification li div{
+	z-index: 2;
+}
+
+.streamController li.streamControl6{
+	width: 190px;
+}
+
+.streamController li.streamControl8{
+	border-right: none	;
+}
+
+.graphInfo li span.circle{
+	height: 3px;
+}
+
+.graphInfo li span.line{
+	height: 2px;
+	border-top: 1px solid !important;
+}
+
+.customSkins .redBtn a{
+	background-position: 0 -434px;
+	height: 20px;
+	padding-bottom: 12px !important;
+}
+
+.customSkins .redBtn a .setSkinIcon{
+	padding-top: 6px !important;
+}
+
+.breadcrumb ul, .breadcrumb ul li{
+	list-style-image: url(../images/breadcrum.png);
+	list-style-position: inside;
+	list-style-type: none;
+}
+
+.loadContentIndicator{
+	margin: 10px 0;
+}
+
+.ui-progress-bar{
+	margin: 0;
+}
+
+.ui-progress-bar{
+	margin: 0;
+}
+
+.streamContent li.SharedPostStream a.reportPost{
+	left: 10px;
+}
+
+.greyArrow{
+	padding-bottom: 0;
+}
+
+.invitationButton .blue{
+	z-index: 2;
+}
+
+.streamController li.streamControl6{
+	width: 190px;
+}
+
+.streamController li.streamControl8{
+	border-right: none	;
+}
+
+.graphInfo li span.circle{
+	height: 3px;
+}
+
+.graphInfo li span.line{
+	height: 2px;
+	border-top: 1px solid !important;
+}
+
+.customSkins .redBtn a{
+	background-position: 0 -434px;
+	height: 20px;
+	padding-bottom: 12px !important;
+}
+
+.customSkins .redBtn a .setSkinIcon{
+	padding-top: 6px !important;
+}
+
+.breadcrumb ul, .breadcrumb ul li{
+	list-style-image: url(../images/breadcrum.png);
+	list-style-position: inside;
+	list-style-type: none;
+}
+
+.loadContentIndicator{
+	margin: 10px 0;
+}
+
+.ui-progress-bar{
+	margin: 0;
+}Btn a{
+	height: 18px;
+	background-position: 0 -73px !important;
+}
+
+.markRead, .markUnread{
+	padding-bottom: 0;
+	height: 10px;
+}
+
+a.toggleCommentExpand{
+	width: 510px;
+	padding-right: 5px !important;
+}
+
+#navigation li.navSelected a, #navigation li:hover a{
+	background: #0e4a61;
+}
+
+.updateStreamType li, .updateStreamType li:first-child, .updateStreamType li:last-child{
+	padding-top: 3px;
+}
+
+span.updateArrowTop{
+	padding-bottom: 0;
+}
+
+.loadContentIndicator{
+	width: auto;
+}
+
+.notification li div{
+	z-index: 2;
+}
+
+.streamController li.streamControl6{
+	width: 190px;
+}
+
+.streamController li.streamControl8{
+	border-right: none	;
+}
+
+.graphInfo li span.circle{
+	height: 3px;
+}
+
+.graphInfo li span.line{
+	height: 2px;
+	border-top: 1px solid !important;
+}
+
+.customSkins .redBtn a{
+	background-position: 0 -434px;
+	height: 20px;
+	padding-bottom: 12px !important;
+}
+
+.customSkins .redBtn a .setSkinIcon{
+	padding-top: 6px !important;
+}
+
+.breadcrumb ul, .breadcrumb ul li{
+	list-style-image: url(../images/breadcrum.png);
+	list-style-position: inside;
+	list-style-type: none;
+}
+
+.loadContentIndicator{
+	margin: 10px 0;
+}
+
+.ui-progress-bar{
+	margin: 0;
+}
+
+.personalSettingPrivacyOpt, .personalURL{
+  width: 400px;
+}
+
+.personalURL{
+  text-align: left !important;
+}
+
+#headerSearchWrapper{
+  margin-left: 0px;
+}
+
+.privacySetup  li{
+  float:none !important;
+}
+
+.ajaxLoader{
+  left: 0px !important;
+}
+
+.tableLoginTop li#loginHit a.signInBtn{
+  padding-left: 3px !important;
+}

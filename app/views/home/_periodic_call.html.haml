@@ -1,0 +1,2 @@
+- if params[:stream_type] == 'social_inbox' || request.path.inspect.index("social_inbox")
+  = periodically_call_remote(:url => get_stream_from_db_streams_path(:scope => params[:scope], :brand_id => @brand.blank? ? "" : @brand.id), :method => :get, :frequency => refresh_period, :loading => "$('stream_notify').show();", :success => "$('stream_notify').hide();")

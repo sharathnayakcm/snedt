@@ -1,0 +1,27 @@
+/-form_remote_for(:topic ,:url => { :id => current_user.id, :controller => "topics", :action => "add_user_topic"})  do |f|
+/  .sign_up_select_topic
+/    %ul
+/      %li
+/        %label{:for => "topicNames"}= t :add_topic
+/        = text_field_tag :topics_name,"", :tabindex => "1", :id=>"topics_name" ,:class => "textInput", :autocomplete => 'off', :onkeyup => "#{remote_function(:url => search_topic_users_path, :method => :get, :with => "'searchword='+this.value")}"
+/        #topic_name_check.signupFormError
+/        #searchtopicDropdown
+/      %li
+/        %label{:for => "topicNamesSelected"}= t :selected_topics
+/        #selected_topics
+/        %br
+.sign_up_select_topic
+  - Topic.all(:limit => 10).each do |topic|
+    .searched_topic_name{:id => topic.id}= topic.title
+
+:javascript
+  jQuery(document).ready(function(){
+    jQuery(".searched_topic_name").live('click', function(){
+      jQuery(this).toggleClass('searched_topic_name_visited');
+      jQuery.ajax({
+        type: "Post",
+        url: '/topics/add_user_topic/#{current_user.id}',
+        data: 'topic_name_ids=' + jQuery(this).attr('id') + '&signup=true'
+      });
+    });
+  });

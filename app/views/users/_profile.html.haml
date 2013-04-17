@@ -1,0 +1,111 @@
+.accSetContentright.flRight
+  #customizePersonalPic.cornerAll.servicesBoxInner
+    .profilePicBig
+      %span.userPicBig#profilePicture
+        = render :partial => "users/avatar"
+
+    #changePicButton
+      #fileUploader
+        %noscript
+          %p Please enable JavaScript to use file uploader.</p>
+      #uploadProgressbar.hide
+        %span#loadingIndi.loadingPhoto
+  #deleteAccount.cornerAll
+    .redBtn
+      = link_to_remote_redbox "#{t :delete_account}", {:url => {:controller => :user_sessions, :action => :before_destroy}},:class => "smlrBtn"
+#personalInfoSetting.settingInfo.flLeft
+  - form_remote_for @user, :url => user_path(@user), :method => :put, :html => { :multipart => true } do |f|
+    %ul
+      %li
+        .titles
+          %h5= t :personal_information
+        #customizePersonal.servicesBoxInner.narrow.cornerAll
+          %ul
+            %li
+              .settingPersonalInner
+                %span.settingListItemLabel.flLeft
+                  = t :full_name
+                  %strong *
+                %span.settingListItemContent= @user.full_name
+                %a.uiEditIcon{:href => "javascript:void(0)", :onclick => "toggle_visibility('fullnameEdit');"} Edit
+                .personalSettingPrivacyOpt.margin_left_7#whoSeesFullname
+                  = render :partial => "users/who_sees_fullname"
+                #fullnameEdit.formChangeSetting{:style => "display:none;"}
+                  %label= t :change_full_name
+                  = f.text_field :full_name, :id => "full_name", :tabindex => "1", :class => "textInput", :value => @user.full_name
+                  /%span#loadingIndi.loading
+            %li
+              .settingPersonalInner
+                %span.settingListItemLabel.flLeft
+                  = t :user_name
+                  %strong *
+                %span.settingListItemContent= @user.user_name
+                %a.uiEditIcon{:href => "javascript:void(0)", :onclick => "toggle_visibility('usernameEdit');"} Edit
+                %span.personalURL#user_url
+                  = "#{t :your_profile_url}:http://<b>#{@user.user_name.downcase}</b>.edintity.com"
+                #usernameEdit.formChangeSetting{:style => "display:none;"}
+                  %label= t :change_user_name
+                  = f.text_field :user_name, :id => "user_name", :tabindex => "2", :autocomplete => "off", :class => "textInput",:value => @user.user_name, :onkeyup => "$j('#user_url').html('#{t :your_profile_url} http://<b>' + this.value.toLowerCase() + '</b>.edintity.com');$j('#loadingIndiUs').removeClass('hide');$j('#userNameValid').addClass('hide');$j('#userNameInvalid').addClass('hide'); #{remote_function(:url => user_validation_users_path, :method => :get, :with => "'scope=edit&user_name='+this.value")}"
+                  %span#loadingIndiUs.loading.hide
+                  %span#userNameValid.checkIco.correctCheckIco.changeName.hide
+                  %span#userNameInvalid.checkIco.errorCheckIco.changeName.hide
+                  %span#userNameMessage{:style => "padding: 20px 10px 10px;vertical-align: middle;"}
+            %li
+              .settingPersonalInner
+                %span.settingListItemLabel.flLeft
+                  = t :email
+                  %strong *
+                %span.settingListItemContent#userEmail= @user.email
+                %a.uiEditIcon{:href => "javascript:void(0)", :onclick => "toggle_visibility('emailEdit');"} Edit
+                .formChangeSetting{:style => "display:none;"}
+                  %label= t :change_email_address
+                  %input.textInput{:type => "text"}
+                #emailEdit.formChangeSetting{:style => "display:none;"}
+                  %label= t :change_email_address
+                  = f.text_field :email, :id => "email", :tabindex => "3", :class => "textInput"
+            %li
+              .settingPersonalInner
+                %span.settingListItemLabel.flLeft= t :country
+                %span.settingListItemContent
+                  = f.country_select :country, [["#{t :select_country}", ""]], {}, {:onchange => remote_function(:url => show_time_zone_users_path, :with => "'country_code=' + this.value")}
+            %li
+              .settingPersonalInner
+                %span.settingListItemLabel.flLeft= t :time_zone
+                %span.settingListItemContent#user_time_zone_list
+                  = f.select(:time_zone, get_time_zones("#{@user.country || 'US'}"))
+            %li
+              .settingPersonalInner
+                %span.settingListItemLabel.flLeft= t :prefered_language
+                %span.settingListItemContent
+                  = select(:user, :prefered_language, [["English","en"], ["Arabic","arabic"]],{:selected => current_user.prefered_language}, :class => "select_type")
+            .savePersonalChanges
+              .blueBtn
+                = submit_tag "#{t :save_changes}", :id => "submit", :class => "smlrBtn", :onclick => "$j('#create_account_btn').hide();$j('#account_spinner').show();"
+
+
+
+:javascript
+  $j(document).ready(function(){
+    var uploader = new qq.FileUploader({
+      // pass the dom node (ex. $(selector)[0] for jQuery users)
+      element: document.getElementById('fileUploader'),
+      // path to server-side upload script
+      action: '/users/upload',
+      responseType: "text/html",
+      showMessage: function(message){ notice(message); },
+      allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+      onSubmit: function(id, fileName){
+        jQuery('.qq-upload-list').hide();
+        jQuery('.qq-upload-button').hide();
+        jQuery('#uploadProgressbar').show();
+      },
+      onComplete: function(id, fileName, responseJSON){
+        jQuery('#uploadProgressbar').hide();
+        jQuery('.qq-upload-button').show();
+        jQuery('#profilePicture').html(responseJSON.image);
+        notice("Profile image updated successfully")
+      }
+    });
+    jQuery('#uploadBrowse').html("Change photo");
+    jQuery('#uploadBrowse').removeClass("uploadIco");
+  });

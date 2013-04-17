@@ -1,0 +1,14 @@
+:javascript
+  $j('.button').corner("4px");
+  $('RB_window').style.width = "300px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 300)/2) + "px";
+.dialogs
+  .dialog_details
+    %p
+      =t :are_you_sure
+    %br
+    .float_left
+      = button_to_close_redbox("#{t :cancel}", :class => "button")
+      %span.button.button_anchor{:style=> "margin-top: 3px;"}
+        = link_to_remote "#{t :delete}",:update =>"left_content_mid_align", :url => {:controller => :post_service_groups, :action => :delete, :id => @group_id}
+    

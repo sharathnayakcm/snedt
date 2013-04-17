@@ -1,0 +1,57 @@
+- form_for :post,  :html => {:id => "postStatus"} do |f|
+  #cont-1-1.cornerAll
+    %span.updateArrowTop
+    .formInputStatus
+      =t :pick_topic
+      /= select_tag "people", options_from_collection_for_select(@topics, "id", "title"), :include_blank => true
+      = text_field_tag "topic"
+      = text_area_tag "status_update_message", "", :cols => '20', :rows => '3',:onkeyup => 'char_count_up()', :class => 'forStatus', :onfocus => "if(!this._haschanged){this.value=''};this._haschanged=true;"
+      = hidden_field_tag "topic_id", ""
+      = hidden_field_tag "stream_post_type", "status"
+      = hidden_field_tag :brand_type, @brand.id if @brand
+      = hidden_field_tag :company_id, @brand.company_id if @brand
+      = hidden_field_tag :scope, controller_name if @brand
+    .formStatusControl
+      %ul
+        %li.shareRestirict
+          %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('sharingOptCheck');"}
+            %span.blueArrow= t :share_service
+        %li.shortLink
+          %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('shortURL');"}
+            %span.blueArrow= t :shorten_link
+        %li.caracterCount#textareaCounter
+          %a{:href => "javascript:void(0);"} 0
+        %li.addToStream
+          = link_to_remote "#{t 'add_to_stream'}", :url => posts_path, :method => :post, :with => "$('postStatus').serialize()"
+
+  #sharingOptCheck.shareServiceControl{:style => "display:none;"}
+    .shareToServiceDropdown.cornerBottom.transBg
+      %span.closeShareOpt
+        %a.uiIconInside{:href=>"#", :onclick=>"toggle_visibility('sharingOptCheck');"}
+      - if @brand
+        - status_link_services = @brand.active_services.link_sharing_services
+      - else
+        - status_link_services = current_user.active_services.link_sharing_services
+      - if status_link_services.length > 0
+        %ul
+          %li
+            %a{:href => "javascript:void(0);"}
+              %input{:name => "select_all", :type => "checkbox", :value => "", :id => "status_all", :onclick => "if($(this).checked){$j('#sharingOptCheck').find('input:checkbox').attr({checked: true});}else{$j('#sharingOptCheck').find('input:checkbox').attr({checked: false});}"}
+              %span.emptyIco= t :share_on_all
+          %li
+            = text_area_tag "status_optional_message", "#{t(:optional_msg)}", :cols => '25', :rows => '2', :onkeyup => 'char_count_up()'
+          - status_link_services.each do |user_service|
+            %li
+              %a{:href => "javascript:void(0);", :title => user_service.display_name}
+                %input{:name => "serviceid[]", :type => "checkbox", :value => "#{user_service.id}", :onclick => "$j('#status_all').attr({checked: false});"}
+                %span.networkIco{:id =>"#{user_service.service.name.downcase.gsub(' ','')}Service"}
+                  = t :share_on
+                  %strong
+                    = user_service.service.name.downcase
+      - else
+        %ul
+          %li
+            %a &nbsp;
+          %li
+            %a= t :you_dont_have_service
+

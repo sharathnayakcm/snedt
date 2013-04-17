@@ -1,0 +1,23 @@
+.pathBarNew.cornerAll
+  = hidden_field_tag "asset_id", @current_asset.id
+  = hidden_field_tag "file_path", @file_path
+  .imagePreview.flLeft{:style => "width:275px"}
+    %div{:id => "uploaded_video_player"}
+  .redBtn.flRight
+    = link_to_remote "#{t :remove}", :url => cancel_upload_posts_path(:id => @current_asset.id, :type => 'video'), :method => :get, :html => {:class => "smlrBtn"}
+
+
+:javascript
+  $j(document).ready(function(){
+    jwplayer("uploaded_video_player").setup({
+      flashplayer: "/player.swf",
+      file: "https://s3-eu-west-1.amazonaws.com/edintity/uploads/videos/#{@current_asset.id}/#{@current_asset['video_file_name']}",
+      height: 170,
+      width: 260,
+      skin: "/stormtrooper.zip",
+      controlbar: "bottom",
+      "logo.file":"/images_1/video_logo.png",
+      "logo.position":"bottom-right",
+      "logo.hide":"false"
+    });
+  });

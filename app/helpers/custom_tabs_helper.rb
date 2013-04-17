@@ -1,0 +1,2 @@
+module CustomTabsHelper
+end

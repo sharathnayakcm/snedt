@@ -1,0 +1,13 @@
+:javascript
+  $j(document).ready(function(){
+    $j('.button').corner("7px");
+  });
+
+#editRole1.editRole.formChangeSetting{:style => "display:block;"}
+  .roleUserAs.flLeft
+    = select(:brand_privacy_settings, :profile, BrandUserGroup::ACCESS_TYPES, {:disabled => "0"}, :class => "select_type")
+  .roleForBrands.flLeft
+    = select_tag "brands", options_from_collection_for_select(current_user.company.brands,:id,:name)
+  #changeRoles.blueBtn
+    = link_to_remote "#{t :change_role}",{:url=> new_company_brand_user_group_path(current_user.company,:id=>@brand.id),:method => :get,:with => " 'brand_id=' +$('brands').value + '&access_type_id=' +$('brand_privacy_settings_profile').value"},:class => "smlrBtn"
+

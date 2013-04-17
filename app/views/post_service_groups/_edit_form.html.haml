@@ -1,0 +1,19 @@
+- form_remote_tag(:url => {:controller => :post_service_groups, :action => :edit }) do
+  .pg_div{:style => "padding:10px;color:#0C3646;font-weight:bold"}
+    .name{:style=>"padding-bottom:10px;"}
+      Post Group Name
+      = text_field_tag "pg_name", @post_service_group.name
+    .members{:style=>"padding-bottom:10px;"}
+      Post Types
+      = select_tag "type", "<option value=>#{t :pick_type}</option>" + options_from_collection_for_select(@pick_types,:id,:name), :class => "rounded", :onchange => remote_function(:url => {:action => :load_service_list}, :with => "'type=' + $('type').value") if @post_service_group.blank?
+      = select_tag "type", "<option value=>#{t :pick_type}</option>" + options_from_collection_for_select(@pick_types,:id,:name, :selected => @post_service_group.post_type_id), :class => "rounded", :onchange => remote_function(:url => {:action => :load_service_list, :id => @post_service_group.id}, :with => "'type=' + $('type').value") unless @post_service_group.blank?
+      = hidden_field_tag 'chk', @post_service_group.id  unless @post_service_group.blank?
+    .services#service_list{:style=>"padding-bottom:10px;"}
+      = render :partial => "post_service_groups/services_list"
+  = submit_tag ("Update"), :class => "button_submit", :style => "background-color:#94B080;border:medium none #94B080;margin-left:13px;color:#17404E;font-family:arial;font-size:12px;font-weight:bold;margin-left:13px;padding:4px;", :onclick => "return validate();"
+  %span.cancel
+    = link_to "Cancel", root_url
+  %span{:id => "spinner_tag", :style => "padding-left:20px;display:none;"}
+    = image_tag("spinner.gif")
+  %span.delete{:style => "float:right;"}
+    = link_to_remote_redbox "#{t :delete}", :url => {:controller => :post_service_groups, :action => :delete_confirm, :id => @post_service_group.id} unless @post_service_group.blank?

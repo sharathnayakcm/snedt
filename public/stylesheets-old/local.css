@@ -1,0 +1,634 @@
+
+.actSelector li a.favTrue{
+  background: url(../images/uiIconInside.png) no-repeat 0 0;
+  float: left;
+  background-position: -4px -964px;
+}
+
+.actSelector li a.favTrue:hover, .actSelector li a.favTrue:focus{
+  background-position: -4px -1089px;
+}
+
+.formStatusControl li.caracterCount{
+  padding: 8px 105px 7px 10px;
+  width: 6px;
+}
+
+.writeCommentPopup {
+  height: 75px !important;
+}
+
+.medPhotoStream img{
+  max-height: 55px;
+}
+
+a.medPhotoStream img.userPicMed {
+  float: left;
+  height: 51px;
+  overflow: hidden;
+  padding: 1px;
+  width: 53px;
+}
+
+.closeShareOpt a {
+  padding: 5px 10px 10px !important;
+}
+
+/* LOGIN BUTTON */
+
+.tableLoginTop li input.signInBtn{
+  background: url(../images/gradSprites.png) repeat-x 0 -73px;
+  box-shadow: 0 1px 0 #FFFFFF, 0 1px 0 #44c5e1 inset, 0 0 1px #44c5e1 inset;
+  border: 1px solid #13485A;
+  border-radius: 3px 3px 3px 3px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  color: #FFFFFF;
+  float: left;
+  margin-left: 0px;
+  padding: 5px 10px;
+  font-size: inherit;
+  font-weight: normal;
+  width: auto;
+  text-shadow: 0 1px 0 #000000;
+  cursor: pointer;
+}
+
+.firefox .tableLoginTop li input.signInBtn{
+  padding: 5px 5px;
+  font-size: 12px;
+}
+
+.tableLoginTop li input.signInBtn:hover{
+  background-position: 0 -102px;
+}
+
+/* BUTTONS */
+.greenBtn input, .blueBtn input, .bronzeBtn input, .yellowBtn input, .greyBtn input, .redBtn input{
+  background: url(../images/gradSprites.png) repeat-x 0 0;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  float: left;
+  padding: 5px 10px 5px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.firefox .greenBtn input[type=submit], .firefox .blueBtn input[type=submit], .firefox .yellowBtn input[type=submit], .firefox .greyBtn input[type=submit], .firefox .redBtn input[type=submit]{
+  padding: 2px 3px 3px;
+}
+
+.greenBtn a, .greenBtn input[type=submit]{
+  background-position: 0 -151px;
+  border: 1px solid #41633a;
+  text-shadow: 0 1px 0 #2c5525;
+  box-shadow: 0 1px 0 #73c15f inset, 0 0 1px #407b33 inset;
+}
+
+.greenBtn a:hover, .greenBtn input[type=submit]:hover{
+  background-position: 0 -180px;
+  text-shadow: 0 -1px 0 #2c5525;
+}
+
+.blueBtn a, .blueBtn input[type=submit]{
+  background-position: 0 -73px;
+  border: 1px solid #175c73;
+  text-shadow: 0 1px 0 #0e4e68;
+  box-shadow: 0 1px 0 #26bad6 inset, 0 0 1px #146b9d inset;
+}
+
+.blueBtn a:hover, .blueBtn input[type=submit]:hover{
+  background-position: 0 -102px;
+  text-shadow: 0 -1px 0 #0e4e68;
+}
+
+.bronzeBtn a, .bronzeBtn input[type=submit]{
+  background-position: 0 -209px;
+  border: 1px solid #47340e;
+  text-shadow: 0 1px 0 #765b14;
+  box-shadow: 0 1px 0 #d6b026 inset, 0 0 1px #9d6014 inset;
+}
+
+.bronzeBtn a:hover, .bronzeBtn input[type=submit]:hover{
+  background-position: 0 -238px;
+  text-shadow: 0 -1px 0 #765b14;
+}
+
+.yellowBtn a, .yellowBtn input[type=submit]{
+  background-position: 0 -298px;
+  border: 1px solid #47470e;
+  text-shadow: 0 1px 0 #7f7f34;
+  box-shadow: 0 1px 0 #f4d22f inset, 0 0 1px #d49619 inset;
+}
+
+.yellowBtn a:hover, .yellowBtn input[type=submit]:hover{
+  background-position: 0 -327px;
+  text-shadow: 0 -1px 0 #7f7f34;
+}
+
+.greyBtn a, .greyBtn input[type=submit]{
+  background-position: 0 -395px;
+  border: 1px solid #44555a;
+  text-shadow: 0 1px 0 #5e6769;
+  box-shadow: 0 1px 0 #c9d3d6 inset, 0 0 1px #84979d inset;
+}
+
+.greyBtn a:hover, .greyBtn input[type=submit]:hover{
+  background-position: 0 -423px;
+  text-shadow: 0 -1px 0 #5e6769;
+}
+
+.redBtn a, .redBtn input[type=submit]{
+  background-position: 0 -452px;
+  border: 1px solid #631818;
+  text-shadow: 0 1px 0 #833333;
+  box-shadow: 0 1px 0 #ea6666 inset, 0 0 1px #c03636 inset;
+}
+
+.redBtn a:hover, .redBtn input[type=submit]:hover{
+  background-position: 0 -481px;
+  text-shadow: 0 -1px 0 #833333;
+}
+
+.blueBtn input.smlrBtn, .yellowBtn input.smlrBtn, .greyBtn input.smlrBtn, .greenBtn input.smlrBtn, .bronzeBtn input.smlrBtn, .redBtn input.smlrBtn {
+  font-size: 12px;
+  font-weight: bold;
+  padding: 3px 5px !important;
+  font-family: inherit;
+}
+
+.new_user_service .textInput {
+  margin-left: 0px !important;
+}
+
+#modalTwitter{
+  background-position: 0 0;
+}
+
+#modalFacebook{
+  background-position: 0 -23px;
+}
+
+#modalFacebookpage{
+  background-position: 0 -23px;
+}
+
+#modalVimeo{
+  background-position: 0 -46px;
+}
+
+#modalYoutube{
+  background-position: 0 -69px;
+}
+
+#modalDelicious{
+  background-position: 0 -92px;
+}
+
+#modalStumbleupon{
+  background-position: 0 -115px;
+}
+
+#modalTumblr{
+  background-position: 0 -138px;
+}
+
+#modalFlickr{
+  background-position: 0 -161px;
+}
+
+.SOE-affiliates input[type=submit] {
+  width: 100px !important;
+}
+
+.SBE-Affiliates li input[type=submit] {
+  width: 100px !important;
+}
+
+.searchByEmailResult, .searchByNameResult {
+  display: block !important;
+}
+
+.searchByNameResult ul.cornerAll li .yellowBtn{
+  display: none;
+  padding-right: 10px;
+}
+
+.searchByNameResult ul.cornerAll li:hover .yellowBtn{
+  display: block;
+  background-position: 0 -161px;
+}
+
+.searchByEmailResult ul.cornerAll li .yellowBtn{
+  display: none;
+  padding-right: 10px;
+}
+
+.searchByEmailResult ul.cornerAll li:hover .yellowBtn{
+  display: block;
+  background-position: 0 -161px;
+}
+
+#contact_list li {
+  border-bottom: 1px solid #E3E5E5;
+}
+
+
+#facebookService{
+  background-position: 0 -23px;
+}
+
+#stumbleuponService{
+  background-position: 0 -115px;
+}
+
+
+#facebookpageService{
+  background-position: 0 -23px;
+}
+
+.modalContent li {
+  width: 450px !important;
+}
+
+.serviceDelete {
+  margin-right: 80px;
+}
+#paypalOpt input.paypalIco,#cashUOpt input.cashIcon,#ccOption input.masterCardIcon,#ccOption input.visaIcon,#ccOption input.amexIcon,#ccOption input.discoverIcon,#ccOption input.bankIcon {
+  border: none;
+}
+
+.firefox .recoveryAction .blueBtn input[type=submit]{
+  padding: 3px 10px 3px !important;
+}
+
+.firefox #confirmSignupPersonal .blueBtn input[type=submit]{
+  padding: 3px 3px 3px !important;
+  font-size: 15px !important;
+}
+
+.qq-upload-button {
+  background: url("../images/gradSprites.png") repeat-x scroll 0 -612px transparent;
+  border: 1px solid #96B08B;
+  border-radius: 4px;
+  box-shadow: 0 1px 0 #DFEED9 inset, 0 0 0 1px #BAD3B0 inset;
+  color: #4B6973;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 9px 10px 10px 20px;
+  text-shadow: 0 1px 0 #E4F5DC;
+  -moz-border-radius: 4px;
+  text-align:center;
+  width: 100px;
+}
+
+.qq-upload-button .uploadIco {
+  margin-left: -16px;
+}
+
+.formInputStatus .uploadProgress {
+  display: none;
+}
+
+.attacmentImg {
+  width: 170px !important;
+}
+
+.attacmentImg img{
+  height: 120px !important;
+  width: 166px !important;
+}
+.savePersonalChanges {
+  float: right !important;
+  margin: 15px !important;
+  width: auto !important;
+}
+
+#customizePersonalPswrd input[type=submit] {
+  width: auto !important;
+}
+
+#changePicButton .qq-upload-button {
+  background: url("../images/gradSprites.png") repeat-x scroll 0 0 transparent;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  color: #FFFFFF;
+  float: left;
+  background-position: 0 -73px;
+  border: 1px solid #175C73;
+  box-shadow: 0 1px 0 #26BAD6 inset, 0 0 1px #146B9D inset;
+  text-shadow: 0 1px 0 #0E4E68;
+  padding: 6px 10px !important;
+}
+
+.deleteAccount{
+  width: 310px !important;
+}
+
+.brandForm li input[type=submit] {
+  width: auto !important;
+}
+
+.loadingPhoto {
+  background: url("../images/loadinfo.gif") no-repeat scroll 0 3px transparent;
+  color: #FFFFFF;
+  margin-left: 50px;
+  padding: 10px 8px;
+}
+
+.pathBarNew{
+  height: 160px !important;
+  width: auto !important;
+  padding: 20px;
+  background: #e8eded;
+  margin-left: 140px;
+}
+
+.formInputStatus .loadContentIndocator {
+  width: auto !important;
+}
+
+.streamContent li.SharedPostStream {
+  min-height: 100px;
+}
+
+.reportAbuseContentNew li select.reportSelection {
+  width: 300px;
+}
+
+.reportAbuseContentNew li label {
+  float: left;
+  line-height: 22px;
+  margin-right: 10px;
+  text-align: right;
+  width: 65px;
+}
+
+.reportAbuseContentNew li .textWrite {
+  font-size: 12px;
+  height: 100px;
+  padding: 5px;
+  width: 289px;
+}
+
+.reportAbuseContentNew {
+  float: left;
+}
+
+.reportAction .redBtn input[type="submit"] {
+  background-position: 0 -464px;
+}
+
+reportAction .redBtn input[type=submit]:hover{
+  background-position: 0 -492px;
+  text-shadow: 0 -1px 0 #833333;
+}
+
+#navigation li#personal  a span.arrowDown {
+  background-position: 50px -30px !important;
+}
+
+.firefox .greenBtn a, .firefox .blueBtn a, .firefox .yellowBtn a, .firefox .greyBtn a, .firefox .redBtn a, .firefox .bronzeBtn a {
+  padding-bottom: 3px !important;
+  padding-top: 3px !important;
+}
+
+.streamController li .loadedCounter {
+  margin-left: 40px !important;
+}
+
+.notifIconWrap {
+  width: 380px !important;
+}
+
+.redboxLabel{
+  width: 450px;
+}
+
+#navigation {
+  font-size: 12px !important;
+  font-weight: bold !important;
+}
+
+#usageSlider {
+  padding-bottom: 20px;
+  padding-top: 5px;
+}
+
+.personalPrivacyGroup .smlrBtn {
+  width: auto !important;
+}
+
+.personalPrivacyGroup li input[type="submit"] {
+  width: auto !important;
+}
+
+.brandsListModal {
+  height: auto !important
+}
+
+#addBrandForm li.addBrandBtns {
+  padding-left: 270px !important;
+}
+
+.brandFormPopup li label{
+  margin-left: 0px !important;
+  text-align: left !important;
+}
+
+.startDate input, .endDate input {
+  font-weight: normal !important;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  text-align: center !important;
+  width: 20px !important;
+}
+
+.ui-datepicker-trigger{
+  float: left;
+  margin-right: 20px;
+  margin-left: 5px;
+}
+
+.new_item_bar {
+  border: solid 1px #9DA4A6;
+  font-size: 12px;
+  height: 33px;
+  padding-left: 5px;
+  width: 590px;
+}
+
+.topStreamFilterSelect {
+  float: left;
+  margin-right: 75px;
+  margin-top: 4px;
+}
+
+.topStreamFilterIcons {
+  margin-top: 9px;
+  float: left
+}
+
+
+.topStreamFilterServices {
+  padding-left: 5px;
+  margin-top:5px;
+  float: left;
+}
+
+.privacyMultiselect{
+  margin-right: 20px;
+}
+
+.multiSelectOptions LABEL {
+  padding-bottom: 4px !important;
+}
+
+a.multiSelect span {
+  color: #7A888C;
+  width: 80px !important;
+  text-shadow: 0 1px 0 white;
+}
+
+.multiSelectOptions{
+  width: 103px !important;
+}
+
+.fullPage .save {
+  margin-right: 10px !important;
+}
+
+#addBrandForm{
+  max-width: 840px;
+  padding: 0px;
+}
+
+.servicePageIcon{
+  width: auto !important;
+}
+
+.linkBar p {
+    margin-right: -12px;
+    padding-top: 10px !important;
+}
+
+.firefox .linkBar p {
+    margin-right: -12px;
+    padding-top: 10px !important;
+}
+
+.ui-widget-header {
+    background-color: #5C9CCC !important;
+    border-bottom-color: #4297D7 !important;
+    border-left-color: #4297D7 !important;
+    border-right-color: #4297D7 !important;
+    border-top-color: #4297D7 !important;
+}
+.nameObserved{
+  clear: both;
+    height: 180px !important;
+    overflow: auto;
+}
+
+.moreLink{
+    color: #4B6973;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+  border: 1px solid #0E4B5E !important;
+  background: #F2F2F9 !important;
+  color: #0E4B5E !important;
+}
+
+.modalContent li label.textLabel {
+  margin-left: 0px !important;
+}
+
+.editLayout {
+    background-image: none;
+    border: 4px solid #E9EDEE;
+    box-shadow: 0 0 0 1px #98ACB3, 0 0 6px #666666;
+}
+
+#previewHeader {
+  height: 40px;
+}
+
+#previewLeft {
+    float: left;
+    border: 4px solid #E9EDEE !important;
+    box-shadow: 0 0 0 1px #98ACB3, 0 0 6px #666666;
+    height: 200px;
+    margin: 20px 0 20px 75px;
+    width: 200px;
+}
+
+#previewRight {
+  float: right;
+    border: 4px solid #E9EDEE !important;
+    box-shadow: 0 0 0 1px #98ACB3, 0 0 6px #666666;
+    height: 200px;
+    margin: 20px 50px 20px 0;
+    width: 100px;
+}
+
+a.styleBody{
+	color: #4B6973;
+	font-size: 11px;
+	font-weight: bold;
+	position: absolute;
+	padding: 3px;
+}
+
+a.styleBody:hover{
+	color: #f2f2f2;
+}
+
+a.styleBody{
+	color: #fff;
+	text-shadow: 0 1px 0 #000;
+	top: 270px;
+	left: 135px;
+}
+
+.contentHeadingSpan {
+    float: left;
+    padding: 1px;
+    width: 700px;
+}
+
+.contentHeadingSpanFirst {
+    width: 780px !important;
+}
+
+.windows #tablePricingOption a{
+   padding: 4px 15px 5px !important;}
+
+#welcome_page a{
+  margin-left: 100px;
+}
+
+#ednt-Activation .business_titles {
+    float: left;
+    margin-left: 147px;
+}
+
+.activationWrapperBusiness{
+  width: 555px !important;
+}
+
+.clear_both{
+  clear: both;
+}
+
+#welcome_page_business a{
+  margin-left: 1px;
+}
+
+.welcomePageWrapper{
+  height: 90px !important;
+}

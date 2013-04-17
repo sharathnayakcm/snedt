@@ -1,0 +1,48 @@
+:javascript
+  $j(document).ready(function(){
+    $j('.button').corner("7px");
+  });
+.columns
+  .column.width_8.left_most.float_left
+    - rounded_box_for( |
+          nil, |
+          :header => {:text => "#{t :friends_you_can_invite}", :level => 4}, |
+          :group_name => "Signup" |
+        ) do |rounded_box| |
+      - form_remote_tag :url => invite_friends_user_friends_path(current_user), :method => :get do |f|
+        %ul.contact_list{:style => "margin-left:-35px;"}
+          - i = 0
+          - @contact_emails.each do |c|
+            - unless c.blank?
+              %li{:style => "list-style:none outside none;"}
+                .float_left= check_box_tag "invites[#{i}]", c, false, {:id => "invite_#{i}"}
+                %label.float_left{:for => "invites_#{i}"}== #{c}
+                %div.float_right{:id => "invite_status_#{i}", :style => "padding-right:10px;"}
+                .clear
+              - i += 1
+          .clear
+          <br />
+          .align_center= submit_tag "#{t :invite}", :class => "button",  :name => "invite", :new => "true"
+  .column.width_8.right_most.float_contact
+    - rounded_box_for( |
+          nil, |
+          :header => {:text => "#{t :friends_already_in_edintity}", :level => 5}, |
+          :group_name => "Signup" |
+        ) do |rounded_box| |
+      - form_remote_tag :url => add_friends_from_contacts_user_friends_path(current_user), :method => :get do |f|
+        %ul.contact_list
+          - unless @available_users.blank?
+            - i = 0
+            - @available_users.each do |friend|
+              - unless friend.blank?
+                %li{:style => "list-style:none outside none;"}
+                  .float_left= check_box_tag "invites[#{i}]", friend, false, {:id => "friend_#{i}"}
+                  %label.float_left{:for => "invites_#{i}"}== #{friend}
+                  %div.float_right{:id => "followed_status_#{i}", :style => "padding-right:10px;"}
+                  .clear
+                - i += 1
+            .clear
+            <br />
+            .align_center= submit_tag "#{t :follow}", :class => "button",  :name => "invite", :new => "true"
+          - else
+            %li{:style => "list-style:none outside none;"}= "#{t :no_friends_in_site}"

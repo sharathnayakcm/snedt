@@ -1,0 +1,18 @@
+- companies ||= @companies
+- @company_table.render companies do |table|
+  - companies.each do |company|
+    - unless company.user.blank?
+      - table.tr :id => "company_#{company.id}" do
+        -table.td {company.name}
+        -table.td {company.user.user_name}
+        -table.td {company.url}
+        -table.td {company.user.last_login}
+        -table.td {company.user.user_services.count}
+        -table.td {company.user.pending_services.count}
+        -table.td {to_local(company.created_at).strftime("%d %b %Y")}
+        -table.td(:id => "company_deleted_#{company.id}") {(to_local(company.deleted_at).strftime("%d %b %Y")) unless company.deleted_at.blank?}
+        -table.td(:check_box, :id => "company_status_#{company.id}") {check_box_tag("active", company.active, company.active ? true : false, :onchange => toggle_status(company)) }
+        -table.td(:action) do
+          = link_to(image_tag("/images_old/icon-edit.png"), {:controller => "admin/companies", :action => "edit", :id => company.id,:page => @companies.current_page, :per_page => params[:per_page]}, :class => "icon", :title => "Edit Company" )
+          - if company.user.deleted_at.blank?
+            = link_to_remote_with_loader(image_tag("/images_old/icon-delete.png"), :url => {:controller => "admin/companies", :action => "destroy", :id => company.id}, :method => :delete, :confirm => "Are you sure want to delete this company? Deleting the company will delete all its related brands", :html => {:class => "icon", :title => "Delete company"})

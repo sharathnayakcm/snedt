@@ -1,0 +1,17 @@
+#mainContent
+  #ednt-Activation.ednt-Wrapper
+    .titles
+      %h4=t :done_header
+    #activitionWrapper.MP-boxes.welcomePageWrapper.activationWrapperBusiness
+      .activationInfo
+        %span.infoIcon
+        %p
+          = t :welcome_message, :plan_name => current_user.membership.name
+      .clear_both
+      #welcome_page_business.blueBtn.clear_both
+        = link_to "#{t :done_link}", root_url
+      #welcome_page_business.blueBtn.flRight
+        = link_to "#{t :done_company}", company_path(current_user.company.name)
+
+:javascript
+  setTimeout("window.location='#{url_for(root_path)}'", 5000)

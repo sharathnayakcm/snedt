@@ -1,0 +1,20 @@
+.columns
+  .width_24
+    -if !request.xhr? || @new_record == true
+      .resource_panel
+        - rounded_box_for( |
+            nil, |
+            :header => {:text => "Manage Points", :level => 4, :color => "green"}, |
+            :footer => { :color => "chrome"}, |
+            :group_name => "points" |
+          ) do |rounded_box| |
+          = render :partial => "points_list"
+    -else
+      = render :partial => "points_list"
+- total_flag =  (@points.total_entries.to_i % (params[:per_page].blank? ? 10 : params[:per_page]).to_i)
+= update_rounded_box_actions( |
+    [ |
+      link_to("Add", new_admin_point_path(current_user, :per_page => params[:per_page], :page => @points.total_pages + (total_flag > 0 ? 0 : 1) ), :class => "button") |
+    ], |
+    :group_name => 'points' |
+  ) |

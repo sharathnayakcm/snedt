@@ -1,0 +1,11 @@
+- topics ||= @topics
+- @topics_table.render topics do |table|
+  - topics.each do |topic|
+    - table.tr :id => "topic_#{topic.id}" do
+      -table.td {topic.title}
+      -table.td do
+        - if topic.asset
+          = image_tag(topic.asset.asset.url(:thumb).gsub('/s3.','/s3-eu-west-1.'), :width => "70", :height => "50", :border => "1" )
+      -table.td(:action, :id => "action_#{topic.id}") do
+        = link_to("Edit", edit_admin_topic_path(current_user, topic), {:class => "icon", :title => "Edit topic"} )
+        = link_to_remote("Delete", :url => admin_topic_path(current_user, :id => topic.id), :method => :delete, :confirm => "Are you sure want to delete this topic?", :html => {:class => "icon", :title => "Delete topic"} )

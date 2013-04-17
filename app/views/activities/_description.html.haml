@@ -1,0 +1,37 @@
+- case activity.activity_type
+  - when Activity::ACTIVITY_TYPES[:post_to_topic] then
+    - if activity.topic.present?
+      You've posted to a topic
+      = link_to activity.topic.title, my_streams_path(:topic_id => activity.topic_id)
+  - when Activity::ACTIVITY_TYPES[:share] then
+    You've shared a
+    = link_to "stream", stream_path(activity.actionable_id)
+  - when Activity::ACTIVITY_TYPES[:favorite] then
+    You've favorited a
+    = link_to "stream", stream_path(activity.actionable_id)
+  - when Activity::ACTIVITY_TYPES[:comment] then
+    You've commented on a
+    = link_to "stream", stream_path(activity.actionable_id)
+  - when Activity::ACTIVITY_TYPES[:flag] then
+    You've flagged a
+    = link_to "stream", stream_path(activity.actionable_id)
+  - when Activity::ACTIVITY_TYPES[:shared] then
+    = activity.action_user.display_full_name(current_user)
+    shared your
+    = link_to "stream", stream_path(activity.actionable_id)
+  - when Activity::ACTIVITY_TYPES[:favorited] then
+    = activity.action_user.display_full_name(current_user)
+    favorited your
+    = link_to "stream", stream_path(activity.actionable_id)
+  - when Activity::ACTIVITY_TYPES[:commented] then
+    = activity.action_user.display_full_name(current_user)
+    commented on your
+    = link_to "stream", stream_path(activity.actionable_id)
+  - when Activity::ACTIVITY_TYPES[:flagged] then
+    = activity.action_user.display_full_name(current_user)
+    flagged your
+    = link_to "stream", stream_path(activity.actionable_id)
+  - when Activity::ACTIVITY_TYPES[:invite] then
+    You've invited a friend to join edintity
+  - when Activity::ACTIVITY_TYPES[:activate] then
+    You've activated your account

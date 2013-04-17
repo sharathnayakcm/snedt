@@ -1,0 +1,34 @@
+%div{:class => "#{get_feature_wrapper_class(member)}"}
+  %ul
+    %li
+      .featuresPlanPrice
+        %h2.planTitle= member.name
+        .featurePlanWrapper
+          %div{:id => "#{member.name.downcase}Plan",:class => "pricingTable"}
+            - if session[:locale] == "arabic"
+              %h1.pricingHead= "#{member.amount.to_i > 0 ? member.amount.to_s + '$ ' : t(:free)}"
+            - else
+              %h1.pricingHead= "#{member.amount.to_i > 0 ? '$ ' + member.amount.to_s : t(:free)}"
+            
+            %span.pricingSubHead= "#{member.amount.to_i > 0 ? t(:monthly) : t(:forever)}"
+          .signUpBtn.blueBtn
+            = link_to "#{t :sign_up_short}", new_user_path(:membership_id => member.id)
+          .featuresContent
+            %ul
+              %li= "#{member.membership_type == 'business' ? t(:no_limit) : t(:no_limit)}"
+              %li= "#{member.membership_type == 'business' ? t(:no_limit) : t(:no_limit)}"
+              %li= member.upload_limit
+              - if member.id == 1
+                %li.featuresSmall{:style => "padding-bottom: 36px !important;"}= t :post_status_update_link_blog_photos
+              - else
+                %li.featuresSmall= t :post_status_update_link_blog_photos_premium
+              %li= "#{member.skin_count.blank? ? t(:no_limit) : member.skin_count }"
+              %li= "#{member.membership_type == 'business' ? member.user_count : '-' }"
+              %li= "#{member.membership_type == 'business' ? member.brand_count : '-' }"
+              %li
+                %span.check= t :check
+          .signUpBtn.blueBtn
+            - if member.membership_type == "individual"
+              = link_to "#{t :sign_up_short}", new_user_path(:membership_id => member.id)
+            - else
+              = link_to "#{t :free_trial}", new_user_path(:membership_id => member.id)

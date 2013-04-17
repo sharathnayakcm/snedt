@@ -1,0 +1,31 @@
+:javascript
+  $j(document).ready(function(){
+     $j('#share_video_to_services_extras').corner();
+  });
+.clear
+#share_to_services
+  - if current_user.active_services.video_sharing_services.length > 0
+    - current_user.active_services.video_sharing_services.each do |user_service|
+      = check_box_tag "serviceid[]", "#{user_service.id}",false, :onmouseover => "if(this.checked){$j('.credentials').hide();$('cred_div_#{user_service.id}').show();}", :onclick => "if(this.checked){$j('.credentials').hide();$('cred_div_#{user_service.id}').show();}else{$j('.credentials').hide();}"
+      = image_tag("services/#{user_service.service.name.downcase}.png", :title => "#{user_service.display_name}", :width => "20px")
+      .share_services
+
+    .credentials_div
+      - current_user.active_services.video_sharing_services.each do |user_service|
+        - if user_service.service_id == 9
+          %div{:id => "cred_div_#{user_service.id}",:class => "credentials", :style => "border:1px solid grey;color:grey;padding:10px;width:400px;display:none"}
+            %b Enter credentials for #{user_service.token}.tumblr.com
+            .email
+              Email
+              .tumblr_email
+                = text_field_tag "video_tumblr_email_#{user_service.id}", ""
+            .pwd
+              Password
+              .tumblr_password
+                = password_field_tag "video_tumblr_password_#{user_service.id}", ""
+            .disclaimer
+              %i * We will not save your credentials in our site. This is only for authentication purpose.
+  - else
+    You don’t have any services to share with. If you want to configure services
+    = link_to "click here", user_services_path(current_user)
+  .clear

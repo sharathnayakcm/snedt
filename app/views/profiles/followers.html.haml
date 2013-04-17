@@ -1,0 +1,63 @@
+- if session[:locale] == 'arabic'
+  = stylesheet_link_tag 'profile_style_arabic'
+- else
+  = stylesheet_link_tag 'profile_style'
+.header_line
+
+#ednt-linksPage.mainStreamWrapper
+  .ajaxLoader.cornerAll#ajaxLoaderDiv.hide
+    %span.ajaxSpinner
+      %img{:src=>"/images/ajax-loader.gif", :alt=>"#"}
+  .fullPage.streamWrapper.cornerAll#userList
+    .titles
+      %h4
+        = "Followers of '#{@user.user_name}'"
+    - unless @followers.blank?
+      - @followers.each do |user|
+        - if(user.class == User)
+          %ul
+            %li
+              .user_topic_summary
+                .userSummary.flLeft
+                  %span.profilePic
+                    - unless user.profile_image.blank?
+                      = image_tag (user.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :class => "profilePicMed")
+                    - else
+                      = image_tag ("/images/userPicMed.png",:alt => "#{user.user_name}", :class => "profilePicMed")
+                  .userInformation
+                    = link_to(user.user_name, profiles_path(:id => user.user_name), :class => "userName")
+                    %p.userType= t :individual_profile
+                    %a.followLink
+                      - friends_count = user.friends.count
+                      = "Followers : #{user.followers.count.to_i - friends_count.to_i}"
+                #myTopics.flLeft
+                  #myTopicsTitle= t(:topics) unless user == current_user
+                .topicSummary
+                  - topics = user.topics.all(:joins => (:streams), :group => "topics.id", :select => "topics.*, count('streams.topic_id') as tpcount", :limit => 5, :order => "tpcount DESC")
+                  - topics.each do |topic|
+                    .topicInformation
+                      = link_to(topic.title, profiles_path(:id => topic.title), :class => "userName")
+                      %a.followLink
+                        = "posted : #{topic.streams.all(:conditions => ['streams.user_id = ?',user.id]).count}"
+              .userActionForThisUser
+                - if current_user.id == user.id
+                  = t :this_is_you
+                - elsif current_user.already_following_user(user.id)
+                  .yellowBtn{:id => "user_follow_unfollow_#{user.id}"}
+                    = link_to_remote_with_loader "#{t :unfollow}", {:url => unfollow_user_friends_path(current_user, :follower => user.id, :scope => "search"), :method => :get}, :class => "smlrBtn"
+                - else
+                  .blueBtn{:id => "user_follow_unfollow_#{user.id}"}
+                    = link_to_remote_with_loader "#{t :follow}", {:url => "/profiles/follow/#{user.id}?scope=search", :method => :get}, :class => "smlrBtn"
+      %div{:id => "more_link_2", :class => "more_btn"}
+        .streamContent
+          %span#span_link_2.moreLink
+            = link_to_remote "Click for more",:url => {:controller => :users, :action => :more_users, :current_page => (params[:page].to_i == 0 ? 1 : params[:page].to_i) + 1, :searchword => params[:searchword]}, :method => :get , :before => "$('span_link_2').hide();$('stream_more_1').show();", :complete => "$('stream_more_1').hide();$('more_link_2').hide();",:html => { :class => 'moreLink'}
+        #stream_more_1{:style => "padding-left:20px;display:none;"}
+          .loadContentIndocator
+            %span.progressStream
+    - else
+      %div.no_users_profile
+        %div
+          =t :no_followers_profile
+
+

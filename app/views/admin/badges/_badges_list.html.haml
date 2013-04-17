@@ -1,0 +1,11 @@
+- badges ||= @badges
+- @badges_table.render badges do |table|
+  - badges.each do |badge|
+    - table.tr :id => "badge_#{badge.id}" do
+      -table.td {badge.name}
+      -table.td do
+        - if badge.asset
+          = image_tag(badge.asset.asset.url(:thumb).gsub('/s3.','/s3-eu-west-1.'), :width => "70", :height => "50", :border => "1" )
+      -table.td(:action, :id => "action_#{badge.id}") do
+        = link_to("Edit", edit_admin_badge_path(current_user, badge), {:class => "icon", :title => "Edit badge"} )
+        = link_to_remote("Delete", :url => admin_badge_path(current_user, :id => badge.id), :method => :delete, :confirm => "Are you sure want to delete this badge?", :html => {:class => "icon", :title => "Delete badge"} )

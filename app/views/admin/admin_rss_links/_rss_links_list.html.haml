@@ -1,0 +1,8 @@
+- admin_rss_links ||= @admin_rss_links
+- @admin_rss_links_table.render admin_rss_links do |table|
+  - admin_rss_links.each do |admin_rss_link|
+    - table.tr :id => "admin_rss_link_#{admin_rss_link.id}" do
+      -table.td {admin_rss_link.url}
+      -table.td {admin_rss_link.status? ? "Active" : "Disabled"}
+      -table.td(:action, :id => "action_#{admin_rss_link.id}") do
+        = link_to_remote("Delete", :url => admin_admin_rss_link_path(current_user, :id => admin_rss_link.id), :method => :delete, :confirm => "Are you sure want to delete this admin_rss_link?", :html => {:class => "icon", :title => "Delete admin_rss_link"} )

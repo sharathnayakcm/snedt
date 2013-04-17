@@ -1,0 +1,7 @@
+#ednt-PersonalStream.mainStreamWrapper
+  #ajaxLoaderDiv.ajaxLoader.cornerAll.hide
+    %span.ajaxSpinner
+      %img{:alt => "#", :src => "/images/ajax-loader.gif"}/
+  /= render :partial => 'shared/personal_left_content'
+  /= render :partial => 'shared/personal_right_content'
+  = render :partial => 'shared/services_content'

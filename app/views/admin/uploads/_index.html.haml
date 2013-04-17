@@ -1,0 +1,19 @@
+.columns
+  .width_23
+    .resource_panel
+      - rounded_box_for( |
+          nil, |
+          :header => {:text => "Manage Uploads", :level => 4, :color => "green"}, |
+          :footer => { :color => "chrome"}, |
+          :group_name => "admin_manage_uploads" |
+        ) do |rounded_box| |
+        #stats_div
+          - form_tag update_setting_admin_uploads_path(current_user), :method => :put do
+            .label_name= "Video upload limit (0 for no limit):"
+            = text_field_tag :video_size, @upload_setting.video_size
+            #fp_spacing
+            .label_name= "Photo upload limit (0 for no limit):"
+            = text_field_tag :photo_size, @upload_setting.photo_size
+            #fp_spacing
+            = submit_tag "#{t :save}", :class => "button float_left"
+        .clear

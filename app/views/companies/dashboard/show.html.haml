@@ -1,0 +1,20 @@
+- if @user_unused_tabs
+  - unused_tabs = []
+  - @user_unused_tabs.each do |tab|
+    - if tab.name == "Custom"
+      - unused_tabs <<  link_to_remote_redbox("#{t :custom}", :url => new_custom_tab_path, :method => :get)
+    - else
+      - unused_tabs <<  link_to_remote(tab.name,:url => user_tabs_path(:tab => tab), :method => :post)
+#dashboard_main_content{:style => "height: 475px;"}
+  #tabs_user
+    .slide
+      %ul.horizontal.company_submenu{:id => "user_tabs_new"}
+        = render :partial => "shared/company/company_tabs", :locals => {:unused_tabs => unused_tabs ? unused_tabs : []}
+  #dashboard_data
+    .graph{:style => "padding:50px;margin-top: -20px;"}
+      #graph_menu
+        = render :partial => "companies/dashboard/dashboard_menu"
+      #brand_select
+      #graph_data
+        %div= render :partial => "companies/dashboard/brand_locations"
+    

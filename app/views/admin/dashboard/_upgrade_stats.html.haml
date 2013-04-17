@@ -1,0 +1,137 @@
+.posted_date{:style=>"padding-bottom:10px;"}
+  %strong=t :start_date
+  = text_field_tag :start_date, @start_date.blank? ? (Time.now - 2592000).strftime("%d/%m/%Y") : @start_date, {:readonly => true}
+  %strong=t :end_date
+  = text_field_tag :end_date, @end_date.blank? ? (Time.now).strftime("%d/%m/%Y") : @end_date, {:readonly => true}
+  .clear
+  .float_left
+    .button
+      #block_unblock_btn
+        = link_to_remote_with_loader "Get Report", :class => "button", :style => "margin-top:5px;", :action => :load_data, :type => 'individual_upgrade', :with => "'type=individual_upgrade&start_date=' + $('start_date').value + '&end_date=' + $('end_date').value"
+  .float_right
+    .button
+      #block_unblock_btn
+        = link_to "Export As CSV", export_csv_admin_dashboard_path(current_user, :start_date => @start_date, :end_date => @end_date, :type => 'individual_upgrade', :name => "individual_upgrade_stats_#{Time.now.to_i}")
+.clear
+#graph_container{:style=>"width: 850px; height: 400px"}
+:javascript
+  var chart;
+  $j("#start_date,#end_date").datepicker({
+      showOn: "button",
+      buttonImage: "/images_old/calendar.gif",
+      buttonImageOnly: true
+    });
+  $j(document).ready(function() {
+
+      // define the options
+      var options = {
+
+          chart: {
+              renderTo: 'graph_container'
+          },
+
+          credits: {
+              text: 'edintity.com',
+              href: 'http://www.edintity.com'
+          },
+
+          title: {
+              text: 'Conversions - Individual'
+          },
+
+          subtitle: {
+              text: ' '
+          },
+
+          xAxis: {
+              type: 'datetime',
+              tickInterval: 30 * 24 * 3600 * 1000, // one week
+              tickWidth: 0,
+              gridLineWidth: 1,
+              labels: {
+                  align: 'left',
+                  x: 3,
+                  y: -3
+              }
+          },
+
+          yAxis: [{ // left y axis
+                  title: {
+                      text: null
+                  },
+                  labels: {
+                      align: 'left',
+                      x: 3,
+                      y: 16,
+                      formatter: function() {
+                          return Highcharts.numberFormat(this.value, 0);
+                      }
+                  },
+                  showFirstLabel: false
+              }, { // right y axis
+                  linkedTo: 0,
+                  gridLineWidth: 0,
+                  opposite: true,
+                  title: {
+                      text: null
+                  },
+                  labels: {
+                      align: 'right',
+                      x: -3,
+                      y: 16,
+                      formatter: function() {
+                          return Highcharts.numberFormat(this.value, 0);
+                      }
+                  },
+                  showFirstLabel: false
+              }],
+
+          legend: {
+              align: 'left',
+              verticalAlign: 'top',
+              y: 20,
+              floating: true,
+              borderWidth: 0
+          },
+
+          tooltip: {
+              shared: true,
+              crosshairs: true
+          },
+
+          plotOptions: {
+              series: {
+                  cursor: 'pointer',
+                  point: {
+                      events: {
+                          click: function() {
+                              hs.htmlExpand(null, {
+                                  pageOrigin: {
+                                      x: this.pageX,
+                                      y: this.pageY
+                                  },
+                                  headingText: this.series.name,
+                                  maincontentText: Highcharts.dateFormat('%A, %b %e, %Y', this.x) +':<br/> '+
+                                      this.y +' Upgrade(s)',
+                                  width: 200
+                              });
+                          }
+                      }
+                  },
+                  marker: {
+                      lineWidth: 1
+                  }
+              }
+          },
+
+          series: []
+      };
+      data_array = #{@upgrade_data.to_json}
+      for(var i=0; i<data_array[0].length; i++) {
+        var data = data_array[1][i];
+        var name = data_array[0][i];
+        options.series.push({name: name, data: data});
+      }
+      chart = new Highcharts.Chart(options);
+
+  });

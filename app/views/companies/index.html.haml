@@ -1,0 +1,40 @@
+= javascript_include_tag 'triggeronview.js'
+
+:javascript
+
+  jQuery(document).ready(function(){
+    jQuery('.more_links_class').triggerOnView();
+  });
+
+
+  $j(document).ready(function(){
+     $j('.visited_mid').corner();
+     $j('.rounded').corner();
+     $j('.text_area textarea').corner("top 5px");
+     $j('#share_to_services').corner();
+     $j('.button').corner("4px");
+     $j('li.selected a').corner("3px");
+     $j('.add_to_stream').corner("3px");
+     $j('.video_play').corner("top");
+     $j('.video_footer').corner("bottom 5px");
+     $j('.post_photo').corner("top");
+     $j('#shrotern_link').corner();
+     $j('#share_to_services').corner();
+     $j('#upload_photo_link').corner();
+     $('pick_a_type').selectedIndex = 0;
+     $j('#postForm')[0].reset();
+     $j('.star').rating('drain');
+
+     $j('#pick_a_type').click(function() {
+       $j("#pick_a_type option").show();
+
+     });
+  });
+
+  function toggleMenu(){
+    var menu_cont = document.getElementById("menu_wrapper");
+    (menu_cont.style.display!='block')?menu_cont.style.display=='block':menu_cont.style.display=='none';
+  }
+- if @no_post_panel.blank? && controller_name == "companies" && action_name == "index"
+  = periodically_call_remote(:url => get_streams_home_path, :method => :get, :frequency => 150, :loading => "$('stream_notify').show();", :success => "$('stream_notify').hide();")
+= render :partial => "shared/company/company_content"

@@ -1,0 +1,15 @@
+#brandViewProfile2.streamMain.streamWrapper.cornerAll.flLeft.Usr-Brandprofile
+  - @bread_crum = []
+  - bread_crumb(@brand)
+  - unless @bread_crum.blank?
+    .breadcrumb.atProfile
+      %ul
+        - @bread_crum.reverse.each do |bread|
+          %li
+            = link_to bread.name.capitalize ,brand_profile_path(bread.url)
+        %li
+          = link_to @brand.name.capitalize , brand_profile_path(@brand.url)
+  .streamContentSection
+    = render :partial => "streams/index"
+  /.backToTop.streamWrapper.cornerAll
+  /  %a{:href => "#"}

@@ -1,0 +1,16 @@
+%ul
+  - unless @privacy_groups.blank?
+    - @privacy_groups.each do |group|
+      %li.addedUser.first
+        .flLeft
+          %a.userBlocked{:href => "javascript:void(0);"}
+            %span{:id => "editPGName_#{group.id}"}
+              = group.name
+        .unblock.flRight
+          .yellowBtn.flLeft
+            %a.smlrBtn{:href => "javascript:void(0);", :onclick => remote_function(:url => privacy_group_path(group.id), :method => :get)} Edit
+          .redBtn.flRight
+            = link_to_remote_redbox "Remove", {:url => {:controller => :privacy_groups, :action => :delete_confirm, :id => group.id}}, :class => "smlrBtn"
+  - else
+    %li.addedUser.first You have no privacy group
+#personalEditPGDetail.editDetailPG{:style => "display:none"}

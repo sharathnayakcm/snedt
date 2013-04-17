@@ -1,0 +1,32 @@
+:javascript
+  $j(document).ready(function(){
+    $j('.button').corner("7px");
+  });
+.columns
+  .column.width_8.left_most.float_left{:style => "margin-bottom: 10px;"}
+    - rounded_box_for( |
+          nil, |
+          :header => {:text => "#{t :select_to_follow}", :level => 4}, |
+          :group_name => "Signup" |
+        ) do |rounded_box| |
+      - form_remote_tag :url => add_friends_user_friends_path(current_user), :method => :get do |f|
+        %ul.contact_list{:style => "margin-left:-35px;"}
+          - i = 0
+          - @my_friends.each do |friend|
+            %li{:style => "list-style:none outside none;"}
+              - if current_user.already_following_user(friend.id) || current_user.id == friend.id
+                .float_left= check_box_tag "friends[]", friend.id, false, {:id => "friend_#{friend.id}", :disabled => true}
+              - else
+                .float_left= check_box_tag "friends[]", friend.id, false, {:id => "friend_#{friend.id}"}
+              %label.float_left{:for => "friends_#{i}"}== #{friend.display_full_name(current_user)}
+              %div.float_right.appends_1{:id => "followed_status_#{friend.id}", :style=>"color:green"}
+                - if current_user.id == friend.id
+                  = t :this_is_you
+                - if current_user.already_following_user(friend.id)
+                  = t :following
+                  = link_to_remote "#{t :unfollow}", :url => unfollow_user_friends_path(current_user, :follower => friend.id), :method => :get
+              .clear
+            - i += 1
+          .clear
+          <br />
+          .align_center= submit_tag "#{t :follow}", :class => "button",  :name => "invite", :new => "true"

@@ -1,0 +1,33 @@
+#contentHeadBrand5.contentHeading
+  %h4
+    %a{:href => "javascript:void(0);"}= t :affiliates
+#accSettingBrandContent5.accSetupContent
+  #affiliatesBrand
+    .titles
+      %h5= t :company_users_heading
+    #inviteAffiliates.blueBtn.flRight
+      - if @downgrade.blank?
+        /%a.smlrBtn{:href => "javascript:void(0);", :onclick => "#{remote_function(:url => new_user_friend_path(current_user, :scope => "company", :company_id => @company.id), :method => :get, :update => "invites_form")}"}= t :invite_affiliate
+        %a.smlrBtn{:href => "javascript:void(0);", :onclick => "toggle_visibility('inviteAffiliatesForm');"}= t :invite_affiliate
+    #user_roles
+      = render :partial => "companies/brands/user_roles"
+    #invites_form
+    #inviteAffiliatesForm.flLeft{:style => "display:none;"}
+      .titles
+        %h5= t :find_friends_and_affiliates
+      #affiliatesSearchContent.servicesBoxInner.cornerAll
+        .affiliatesTopContent
+          .titles
+            %h6= t :find_friends_and_invite
+          %p.affiliatesInfo= t :check_if_friends_on_edintity
+          #inviteWarning.warningBox
+            %p
+              = t :your_email_and_password
+              = succeed "#{t :we}" do
+                %br/
+              = t :dont_store_email_and_password
+        .affiliatesBottomContent.cornerBottom
+          = render :partial => "users/friends/search_by_email"
+          = render :partial => "users/friends/search_on_edintity"
+      .clear
+      #contact_list{:style => "padding: 0px !important;"}

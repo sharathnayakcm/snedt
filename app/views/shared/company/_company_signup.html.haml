@@ -1,0 +1,25 @@
+- fields_for :company, @company do |company_field|
+  %p
+    .label.full_name_text
+      =t :company_name
+      %span.mandatory *
+    .tag.field_image_input
+      = company_field.text_field :name, :autocomplete => "off", :size => "30", :tabindex => "4", :class => "sign_up_text", :value => "Your Company Name", :onfocus => "if(this.value=='Your Company Name'){this.value=''}", :onblur =>"if(this.value==''){this.value='Your Company Name'}", :onkeyup => "$j('#company_name_check').html('<br />#{t :check_availability}'); #{remote_function(:url => company_name_validation_companies_path, :method => :get, :with => "'company_name='+this.value")}"
+      /%input#company_name.sign_up_text{:name => "company[name]", :autocomplete => "off", :size => "30", :tabindex => "4", :type => "text", :value => "Your Company Name", :onfocus => "if(this.value=='Your Company Name'){this.value=''}", :onblur =>"if(this.value==''){this.value='Your Company Name'}", :onkeyup => "$j('#company_name_check').html('<br />#{t :check_availability}'); #{remote_function(:url => company_name_validation_companies_path, :method => :get, :with => "'company_name='+this.value")}"}
+    %span#company_name_check
+    %span#company_name_warning
+    .lable_name.clear
+
+  %p
+    .label.full_name_text
+      =t :company_url
+      %span.mandatory *
+    .tag.field_image_input
+      = company_field.text_field :url,:autocomplete => "off", :size => "30", :tabindex => "4", :class => "sign_up_text", :value => "Your Company URL", :onfocus => "if(this.value=='Your Company URL'){this.value=''}"
+      /%input#company_url.sign_up_text{:name => "company[url]", :size => "30", :tabindex => "4", :type => "text", :value => "Your Company URL", :onfocus => "if(this.value=='Your Company URL'){this.value=''}"}
+    %span#company_url_check
+    %span#company_url_warning
+    .lable_name.clear
+    %span#company_url_div
+      = "#{t :your_company_url} Example: http://<b>website</b>.com"
+

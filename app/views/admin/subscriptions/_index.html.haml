@@ -1,0 +1,19 @@
+.columns
+  .width_23
+    -if !request.xhr? || @new_record == true
+      .resource_panel
+        - rounded_box_for( |
+            nil, |
+            :header => {:text => "Manage Subscription Plans", :level => 4, :color => "green"}, |
+            :footer => { :color => "chrome"}, |
+            :group_name => "plans" |
+          ) do |rounded_box| |
+          = render :partial => "plans_list"
+    -else
+      = render :partial => "plans_list"
+= update_rounded_box_actions( |
+    [ |
+      link_to("Add", new_admin_subscription_path(current_user), :class => "button") |
+    ], |
+    :group_name => 'plans' |
+  ) |

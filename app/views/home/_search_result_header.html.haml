@@ -1,0 +1,21 @@
+#sideSearchResult.headStreamSection
+  .titles
+    %h5 Search
+  .subSearchResult.flLeft
+    search result for
+    %span.stress= "#{params[:search_for].upcase}"
+    in
+    = "#{params[:search_type] == 'edintity' ? 'all streams' : 'your streams'}"
+  #saveSearchOpt.blueBtn.flRight
+  - if @saved_search
+    #removeSearchOpt.redBtn.flRight
+      %a.smlrBtn{:href => "javascript:void(0);", :onclick => "#{remote_function(:url => remove_search_home_path(:id => @saved_search.id, :search_for => params[:search_for], :search_type => params[:search_type]))}"}
+        %span.minusIconWhite remove your search
+  - else
+    #saveSearchOpt.blueBtn.flRight
+      %a.smlrBtn{:href => "javascript:void(0);", :onclick => "#{remote_function(:url => save_search_home_path(:search_for => params[:search_for], :search_type => params[:search_type]))}"}
+        %span.addIconWhite save your search
+  .clear
+
+
+

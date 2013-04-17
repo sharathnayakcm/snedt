@@ -1,0 +1,55 @@
+-form_for(:user_session, {:url => { :controller => "user_sessions", :action => "create"}, :method => :post})  do |f|
+  .login_fileds
+    .email_entry_div
+      .email_text
+        =t :email
+      .email_field
+        =f.text_field :email, :size => "15", :value => params[:email] || "", :tabindex => "1", :class => "email_input", :style => "padding-right:0px;"
+      .clear
+    .password_entry_div
+      .password_text
+        =t :password
+      .password_field
+        =f.password_field :password, :size => "14", :tabindex => "2", :class => "password_input signout_password", :style => "padding-right:0px;"
+      .clear
+  .forgot_pwd_div
+    - if params["action"] == "logout" && params["controller"] == "user_sessions"
+      .check_box_button.signout_page_check_box_button
+        .remember_me
+          =t :remember
+        = check_box_tag "remember_me", :class=> "check_box_button"
+      .forgot_password.signout_page_forgot_password
+        = link_to "#{t :forgot}", forgot_password_path
+    - else
+      .check_box_button
+        .float_left
+          = check_box_tag "remember_me", :class=> "check_box_button"
+        .remember_me
+          =t :remember
+      .forgot_password
+        = link_to "#{t :forgot}", forgot_password_path
+    .clear
+  .clear
+  .sign_in
+    .button_left
+      %img{:src => "/images_1/button_left_part.png"}
+    .button_mid
+      =submit_tag "#{t :sign_in}", :class => "login_btn"
+      .button_arrow
+        %img{:src => "/images_1/button_arrow.png"}
+    .button_right
+      %img{:src => "/images_1/button_right_part.png"}
+    .clear
+  - unless params["action"] == "new" && params["controller"] == "user_sessions"
+    .new_user_sign_up
+      .button_left_orange
+        %img{:src => "/images_1/left_part_orange_button.png"}
+      .button_mid_orange
+        = link_to "#{t :sign_up}", new_user_path
+      .button_right_orange
+        %img{:src =>"/images_1/right_part_orange_button.png"}
+      .clear
+    .clear
+.clear
+
+

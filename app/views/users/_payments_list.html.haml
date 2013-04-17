@@ -1,0 +1,11 @@
+%li{:class => "#{cycle('paymentEven', 'paymentOdd')}"}
+  %ul.paymentRow
+    %li.firstCol= payment.id
+    - if payment.membership
+      %li.secondCol= payment.membership.name
+    - else
+      %li.secondCol= '-'
+    %li.thirdCol= payment.vendor
+    %li.fourthCol= payment.amount
+    %li.fifthCol= payment.created_at.strftime("%d %b %Y")
+    %li.sixCol= Payment::STATUS_CODE[payment.status].capitalize unless payment.status.blank?

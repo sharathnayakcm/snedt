@@ -1,0 +1,19 @@
+- current_user.reload
+%span.nameResult.flLeft
+  = user.get_full_name(current_user)
+  %i (#{user.user_name})
+%span.userType Individual
+- if current_user.id == user.id
+  .greenBtn.flRight
+    %a.smlrBtn
+      = t :this_is_you
+- else
+  - if current_user.already_following_user(user.id)
+    .greenBtn.flRight
+      %a.smlrBtn
+        = t :following
+    .yellowBtn.flRight
+      = link_to_remote "#{t :unfollow}", {:url => unfollow_user_friends_path(current_user, :follower => user.id), :method => :get}, :class => "smlrBtn"
+  - else
+    .blueBtn.flRight
+      = link_to_remote "#{t :follow}", {:url => follow_user_friends_path(current_user, :follower => user.id), :method => :get}, :class => "smlrBtn"

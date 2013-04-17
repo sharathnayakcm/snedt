@@ -1,0 +1,14 @@
+Error class: <%= @exception.class %>
+<br/>
+Error description: <%= debug @exception %>
+<br/>
+Error trace:
+<%= debug @trace %>
+<br/>
+Session : <%= debug @session %>
+<br/>
+Params : <%= debug @params %>
+<br/>
+URL : <%= debug @request.url %>
+<br/>
+IP : <%= debug @request.remote_ip %>

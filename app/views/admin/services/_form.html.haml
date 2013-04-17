@@ -1,0 +1,50 @@
+.columns
+  .column.width_12.leftmost
+    .form_field
+      .label_name= "Title<font color='red'>*</font>"
+      .tag= f.text_field :name
+    .form_field
+      .label_name= "URL<font color='red'>*</font>"
+      .tag= f.text_field :url
+    .form_field
+      .label_name= "Callback URL"
+      .tag= f.text_field :callback_url
+    .form_field
+      .label_name= "API Token"
+      .tag= f.text_field :api_token
+    .form_field
+      .label_name= "API Key"
+      .tag= f.text_field :api_key
+    .form_field
+      .label_name= "Category<font color='red'>*</font>"
+      .tag= f.select :service_category_id, ServiceCategory.all.collect{|service_category| [service_category.name, service_category.id]}
+    .form_field
+      .label_name== Service Configurations
+      - ServiceConfiguration.all.each do |service_configuration|
+        .tag_chkbox
+          = check_box_tag "service_configurations[]", service_configuration.id, !@service_configuration_ids.blank? && @service_configuration_ids.include?(service_configuration.id.to_s)
+          = @service.name ? service_configuration.description.to_s.gsub('service', @service.name.to_s) : service_configuration.description
+    .form_field
+      .label_name= "Notes-English"
+      .tag= f.text_area :notes, :rows => 5, :cols => 50
+      .clear
+      .tag.quiet.small== This will be displayed to the User while adding the new service.
+    .form_field
+      .label_name= "Notes-Arabic"
+      .tag= f.text_area :notes_arabic, :rows => 5, :cols => 50
+      .clear
+      .tag.quiet.small== This will be displayed to the User while adding the new service.
+    .form_field
+      .label_name= "Description"
+      .tag= f.text_area :description, :rows => 5, :cols => 50
+
+    = hidden_field_tag :page, @page
+    = hidden_field_tag :per_page, @per_page
+
+.columns
+  .column.width_10.leftmost
+    .align_right= submit_tag "Save", :class => "button"
+
+.columns
+  .column.width_12.leftmost
+    = "Note: Fields marked as <font color='red'>*</font> are mandatory."

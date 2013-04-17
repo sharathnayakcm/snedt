@@ -1,0 +1,69 @@
+:javascript
+  $j(document).ready(function(){
+    $j(".lock_bg").corner("5px");
+  })
+.left_content
+  - rounded_box_for( |
+      nil, |
+      :group_name => "Signup" |
+    ) do |rounded_box| |
+    .rounded_box_content_padding
+      #privacy_settings
+
+        .columns
+          .column
+          - form_tag edit_privacy_user_privacy_path, :method => "put" do
+            #content_header_for_privacy_page
+              == #{t :privacy_settings_header}
+            #content_for_privacy_page
+              #privacy_page_spacing
+                %div.privacy_text{:style => "width:200px;"}
+                  %span.label  #{t :profile_setting}
+                %div.lock_bg{:style => "background:#CBD8CE;padding:5px;margin:0 0 10px 100px;float:left;"}
+                  %img{:src => "/images/lock.png", :style=> "vertical-align:text-bottom;"}
+                  = select(:user,:profile_setting, @privacytypes, :privacy_group_id => "1", :class => "service_type")
+              .clear
+              #privacy_page_spacing
+                %div.privacy_text{:style => "width:200px;"}
+                  %span.label #{t :home_stream_setting}
+                %div.lock_bg{:style => "background:#CBD8CE;padding:5px;float:left;margin:0 0 10px 100px;"}
+                  %img{:src => "/images/lock.png", :style=> "vertical-align:text-bottom;"}
+                  = select(:user,:privacy_type_id, @privacytypes, :privacy_group_id => "2", :class => "service_type")
+              .clear
+              #privacy_page_spacing
+                %div.privacy_text{:style => "width:200px;"}
+                  %span.label #{t :rss_stream_setting}
+                %div.lock_bg{:style => "background:#CBD8CE;padding:5px;float:left;margin:0 0 10px 100px;"}
+                  %img{:src => "/images/lock.png", :style=> "vertical-align:text-bottom;"}
+                  = select(:user,:rss_stream_setting, @privacytypes, :privacy_group_id => "3", :class => "service_type")
+              .clear
+              #blocked_users_list
+                %h1#content_header_for_privacy_page
+                  == Blocked Users List
+                - unless @blocked_users.blank?
+                  %table.blocked_users_list
+                    %tr
+                      %th
+                        Name
+                      %th
+                        Actions
+
+                      - @blocked_users.each do  |user|
+                        %tr
+                          %td
+                            = user.display_full_name(current_user)
+                          %td
+                            = link_to "Delete"
+                          %td{ :id => "block_#{user.id}"}
+                            = link_to_remote(user.is_blocked ? 'Unblock' : "Block", :url => toggle_block_side_bar_path(current_user, :user => user.id), :method => :get, :html => {:class => "button"})
+
+                - else
+                  .no_users
+                    == You dont have any blocked users.
+              #Save_settings
+                = submit_tag  "#{t :save_changes}", :class => "button_submit", :style => " background-color: #94B080; border: medium none #94B080;margin-left: 13px;  color: #17404E;    font-family: arial;    font-size: 12px;    font-weight: bold;    margin-left: 13px;    padding: 4px;"
+
+
+
+
+

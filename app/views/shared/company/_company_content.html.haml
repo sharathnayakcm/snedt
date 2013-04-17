@@ -1,0 +1,20 @@
+#ednt-BrandStream.mainStreamWrapper
+  .ajaxLoader.cornerAll#ajaxLoaderDiv.hide
+    %span.ajaxSpinner
+      %img{:src=>"/images/ajax-loader.gif", :alt=>"#"}
+  #brandStreamTab
+    %ul
+      %li#main-1.brandTab.cornerTop.activeTab
+        %a{:href => "javascript:void(0);", :onclick => "$j('#personalMainStream').show();$j('#main-2-1').hide();"} Home
+      %li#main-2.brandTab.cornerTop
+        %a{:href => "javascript:void(0);", :onclick => "$j('#personalMainStream').hide();$j('#main-2-1').show();"} Dashboard
+  = render :partial => 'shared/company/brand_left_content'
+  / START DASHBOARD
+  #main-2-1.dashBoard.streamMain.streamWrapper.cornerAll.flLeft.hide.tabShow
+    = render :partial => "companies/dashboard"
+  / END DASHBOARD
+  / SIDE BAR
+  - if controller_name == "companies" && action_name == "show"
+    = render :partial => "shared/company/company_right_content"
+  - else
+    = render :partial => "shared/company/brand_right_content"

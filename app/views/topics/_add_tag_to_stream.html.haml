@@ -1,0 +1,14 @@
+#add_tag{:id=>"#{stream.id}"}
+  .url{:style => "float:left;"}
+    == Tag
+    %ul{:id => "link_tags_#{stream.id}", :style => "width:440px", :name => "topics_tags[]"}
+  .clear
+
+:javascript
+  $j(document).ready(function(){
+    var strTags = "#{tags}"
+    $j("#link_tags_#{stream.id}").tagit({
+      tagSource: strTags.split(','),
+      initialTags: "#{user_tags}"
+    });
+  });

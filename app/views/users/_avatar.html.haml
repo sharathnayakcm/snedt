@@ -1,0 +1,4 @@
+- unless @user.profile_image.blank?
+  = image_tag @user.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."),:class => "userPicBigest"
+- else
+  %img.userPicBigest{:alt => "#{t :user_photo}", :src => "/images/usersPicBig.jpg"}

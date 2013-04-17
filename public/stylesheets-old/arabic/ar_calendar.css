@@ -1,0 +1,119 @@
+.calDropdown{
+	position: absolute;
+	top: 30px;
+	left: -5px;
+}
+
+.calDropWrapper{
+	background: #ededed;
+	border: 2px solid #1b6b86;
+	float: left;
+	width: 220px;
+	position: relative;
+}
+.arrowTopCal{
+	background-position: 0 -2048px;
+	padding: 10px;
+	position: absolute;
+	top: -7px;
+	left: 5px;
+}
+
+.headCal{
+	background: url(/images/gradSprites.png) repeat-x 0 -73px;
+	width: 210px;
+	float: left;
+	height: 25px;
+	padding: 5px 5px 0;
+}
+
+.headCal a{
+	padding: 0;
+	margin: 0;
+}
+
+.arrowDatePrev{
+	background-position: 0 -1967px;
+	padding: 4px 10px;
+}
+
+.arrowDateNext{
+	background-position: 2px -1999px;
+	padding: 4px 10px;
+}
+
+.dateTitle{
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	color: #fff;
+	text-shadow: 0 1px 0 #333;
+}
+
+.calDropWrapper table{
+	font: bold 12px/21px 'helvetica', sans-serif;
+	width: 219px;
+	border-spacing: 0;
+	padding: 2px;
+	border-collapse: collapse;
+}
+
+
+table, td{
+	padding: 0;
+	text-shadow: 0 1px 0 #fff;
+}
+
+table thead tr{
+	background: #f4f4f4;
+	border-spacing: 0;
+	border-collapse: collapse;
+	text-align: center;
+	color: #666666;
+}
+
+
+table tbody{}
+
+table tbody tr td{
+	padding: 0;
+	border: 1px solid #BBB;
+}
+
+table tbody tr td a{
+	background: #E5E5E5;
+	text-shadow: 0 1px 0 white;
+	padding: 2px 0 2px 0;
+	margin: 0 !important;
+	text-align: center;
+	float: left;
+	width: 100%;
+	box-shadow: 1px 1px 0 #fff inset;
+}
+
+table tbody tr td a.calBox{
+	color: #666;
+}
+
+table tbody tr td a.calPasive{
+	color: #b4b3b3;
+}
+
+table tbody tr.lastCol td.lastFirst a{
+	border-radius: 0 0 0 4px;
+}
+
+table tbody tr.lastCol td.lastLast a{
+	border-radius: 0 0 4px 0;
+}
+
+table tbody tr td a:hover, table tbody tr td a.calToday, table tbody tr td a.calSelect, table tbody tr td a:focus{
+	background: #1696B4;
+	box-shadow: inset 0 1px 0 #037291, inset 0 0 3px #0a8bab;
+	color: white;
+	text-shadow: 0 1px 0 black;
+}
+
+table tbody tr td a.calSelect, table tbody tr td a:focus{
+	background: #a3d4d9 !important;
+}

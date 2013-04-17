@@ -1,0 +1,56 @@
+.loadContentIndocator.uploadProgress#uploadProgressbarIE{:style=>"display: none;"}
+  .ui-progress-bar.ui-container
+    .ui-progress#photoProgressIE{:style=>"width: 100%;"}
+.ui-progress-bar.ui-container#photoProgressBar{:style=>"display: none;"}
+  .ui-progress#photoProgress{:style=>"width: 0%;"}
+    %span.ui-label#photoProgressStatus
+   
+:javascript
+  $j(document).ready(function(){
+    var uploader = new qq.FileUploader({
+      // pass the dom node (ex. $(selector)[0] for jQuery users)
+      element: document.getElementById('fileUploader'),
+      // path to server-side upload script
+      action: '/posts/upload',
+      responseType: "text/html",
+      template: '<div class="qq-uploader"><div class="qq-upload-drop-area"><span>Drop here</span></div><div class="qq-upload-button"><span id="uploadBrowse">Add photo</span></div><ul class="qq-upload-list"></ul></div>',
+      showMessage: function(message){ notice(message); },
+      allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+      onSubmit: function(id, fileName){
+        jQuery('.qq-upload-list').hide();
+        if(navigator.appName != "Microsoft Internet Explorer"){
+          jQuery('#photoProgressBar').show();
+        }
+        else{
+          jQuery('.uploadProgress').show();
+        }
+        jQuery('#photoProgressCancel').show();
+      },
+      onCancel: function(id, fileName){
+        jQuery('.qq-upload-list').hide();
+        if(navigator.appName != "Microsoft Internet Explorer"){
+          jQuery('#photoProgress').attr('style','width:0%');
+          jQuery('#photoProgressBar').hide();
+        }
+        else{
+          jQuery('.uploadProgress').hide();
+        }
+        jQuery('#photoProgressCancel').hide();
+      },
+      onComplete: function(id, fileName, responseJSON){
+        if(navigator.appName == "Microsoft Internet Explorer"){
+          jQuery('.uploadProgress').hide();
+        }
+        else{
+          $j('#photoProgressStatus').html('Done');
+          jQuery('#photoProgressBar').hide();
+        }
+        jQuery('#photoProgressCancel').hide();
+        jQuery('#photoPreview').removeClass('hidden');
+        //jQuery('#uploadedPic').html('<div class="pathBarNew cornerAll"> <div class="imagePreview"> <span class="userPicBig"> <img class="userPicBigest" alt="originals" src='+responseJSON.image+' /></span></div></div>');
+        tinymce.editors[0].execCommand('mceInsertContent', false, '<img class="userPicBigest" alt="originals" src='+responseJSON.image+' />');
+        jQuery('#stream_image_url').val(responseJSON.image);
+        jQuery('#asset_id').val(responseJSON.asset_id);
+      }
+    });
+  });

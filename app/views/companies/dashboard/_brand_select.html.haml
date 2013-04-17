@@ -1,0 +1,39 @@
+.brand_search{:style=>"padding-bottom: 10px;"}
+  .ui-widget
+    %span{:style => "color:#17404E;"}
+      %b Search brand :
+    %input{:id=>"brands"}
+    =image_tag("/images/loadinfo.gif" , :id => 'brand_loading_div', :style => "display:none")
+
+:javascript
+  $j(document).ready(function() {
+    var brands = [];
+    brands_array = #{@company_brands.to_json}
+    for(var i=0; i<brands_array.length; i++) {
+      var id = brands_array[i][0]
+      var name = brands_array[i][1]
+      brands.push({value: name, label: name, id: id});
+    }
+    
+    $j("#brands").autocomplete({
+      minLength: 0,
+      source: brands,
+      focus: function(event, ui) {
+        $j("#brands").val(ui.item.label);
+        return false;
+      },
+      select: function(event, ui) {
+        $j("#brands").val(ui.item.label);
+        $j('#brand_loading_div').show();
+        #{remote_function(:url => {:controller => "companies/dashboard", :action => :load_data}, :with => "'type=brand&category=#{params[:category]}&id=' + ui.item.id")};
+        return false;
+      }
+    })
+    .data("autocomplete")._renderItem = function(ul, item) {
+      return $j("<li></li>")
+      .data("item.autocomplete", item)
+      .append("<a>" + item.label + "</a>")
+      .appendTo(ul);
+    };
+  });
+

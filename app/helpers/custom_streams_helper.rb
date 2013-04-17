@@ -1,0 +1,2 @@
+module CustomStreamsHelper
+end

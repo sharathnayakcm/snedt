@@ -1,0 +1,16 @@
+.reportAbuseContentNew
+  - form_remote_tag :url => report_abuse_admin_streams_path(:id => @stream) do |f|
+    %ul
+      %li
+        %label
+          = t(:reason)
+        = select :abuse, :reason, AbuseContent::REASONS, {}, {:class => "reportSelection"}
+      %li
+        %label Description
+        = text_area_tag :abuse_content_description, nil, :class => 'textWrite'
+    .reportAction.flRight
+      = hidden_field_tag :stream_id, @stream.id
+      .redBtn
+        = submit_tag "Report", :class => "smlrBtn"
+      .blueBtn
+        = link_to_close_redbox("#{t :cancel}", :class => "smlrBtn")

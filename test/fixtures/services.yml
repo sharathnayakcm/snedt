@@ -1,0 +1,67 @@
+twitter:
+  id: 1
+  name: Twitter
+  url: http://www.twitter.com
+  description: twitter
+  service_category_id: 1
+
+facebook:
+  id: 2
+  name: Facebook
+  url: http://www.facebook.com
+  description: facebook
+  service_category_id: 1
+
+youtube:
+  id: 3
+  name: Youtube
+  url: http://www.youtube.com
+  description: youtube
+  service_category_id: 2
+ 
+
+vimeo:
+  id: 4
+  name: Vimeo
+  url: http://www.vimeo.com
+  description: vimeo
+  service_category_id: 2
+
+
+delicious:
+  id: 5
+  name: Delicious
+  url: http://www.delicious.com
+  description: delicious
+  service_category_id: 3
+
+stumbleupon:
+  id: 6
+  name: Stumbleupon
+  url: http://www.stumbleupon.com
+  description: stumbleupon
+  service_category_id: 3
+
+
+flickr:
+  id: 7
+  name: Flickr
+  url: http://www.flickr.com
+  description: flickr
+  service_category_id: 5
+
+tumblr:
+  id: 9
+  name: Tumblr
+  url: http://www.tumblr.com
+  description: tumblr
+  service_category_id: 4
+
+facebook_page:
+  id: 10
+  name: Facebook Page
+  url: http://www.facebook.com
+  description: facebook page
+  service_category_id: 1
+
+  

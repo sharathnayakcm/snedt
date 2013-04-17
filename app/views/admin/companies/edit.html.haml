@@ -1,0 +1,11 @@
+:javascript
+  $j(document).ready(function(){
+    round_corner();
+    hide_all();
+    empty_all();
+    sign_up_validations();
+  });
+
+.left_content
+  - form_for :company, @company, :url => { :controller => "admin/companies", :action => "update", :id => @company.id, :admin_id => current_user.id }, :method => "put" do |f|
+    = render :partial => "admin/companies/form", :locals => { :f => f }

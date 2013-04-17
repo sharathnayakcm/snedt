@@ -1,0 +1,457 @@
+.fullPage .titles{
+	width: 100%;
+	float: left;
+	border-bottom: 1px solid #E3E5E5;
+}
+
+.fullPage .titles h4{
+	float: left;
+	margin: 0;
+	padding: 10px 0 15px;
+	text-shadow: 0 1px 0 white;
+}
+
+.windows .friendTabNav{
+	margin-top: 18px;
+}
+
+.friendTabNav{
+	float: left;
+	width: 100%;
+	margin-top: 20px;
+}
+
+.friendTabNav ul{
+	position: absolute;
+	top: 43px;
+	z-index: 2;
+	left: 10px;
+}
+
+.firefox .friendTabNav ul{
+	top: 44px;
+}
+
+.windows .friendTabNav ul{
+	top: 40px;
+}
+
+.friendTabNav li{
+	background: url(/images/gradSprites.png) repeat-x 0 -73px;
+	border-top: 1px solid #0E495E;
+	border-left: 1px solid #0E495E;
+	border-right: 1px solid #0E495E;
+	border-bottom: none;
+	display: inline;
+	float: left;
+	padding:0;
+	margin-left: 4px;
+}
+
+.friendTabNav li.activeTab, .friendTabNav li:hover{
+	background: #FAFAFA url(/images/gradSprites.png) repeat-x 0 -543px;
+	border-top: 1px solid #9DA4A6;
+	border-left: 1px solid #9DA4A6;
+	border-right: 1px solid #9DA4A6;
+	border-bottom: none;
+}
+
+
+
+.friendTabNav li a{
+	color: #fff;
+	text-shadow: 0 1px 0 #000;
+	padding: 8px 10px 5px;
+	float: left;
+	font-weight: bold;
+}
+
+.friendTabNav li.activeTab a, .friendTabNav li:hover a{
+	color: #4B6973;
+	text-shadow: 0 1px 0 #fff;	
+}
+
+.fullPage{
+	width: 855px !important;
+	margin: 0 auto;
+	padding: 10px 20px;
+}
+
+.fullPage ul{
+	margin: 0;
+	padding: 0;
+}
+
+.fullPage li{
+	display: block;
+	padding: 10px;
+	width: 835px;
+	border-bottom: 1px solid #E3E5E5;
+	float: left;
+}
+
+.userSummary{}
+
+.profilePicMed{
+	background: white;
+	box-shadow: 0 1px 1px #bfbfbf;
+	border: 1px solid white;
+	white-space: nowrap;
+	width: 52px;
+	height: 52px;
+	padding: 1px;
+}
+
+
+
+span.profilePic{
+	float: left;
+}
+
+.userInformation{
+	margin-left: 10px;
+	width: 420px;
+	float: left;
+}
+
+
+
+.userName, .userType, .followLink{
+	color: #4B6973;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 20px;
+	text-shadow: 0 1px 0 #fff;
+	clear: both;
+}
+
+.userName:hover, .followLink:hover{
+	color: #5B808C;
+} 
+
+.userName{
+	font-size: 14px;
+	float: left;
+}
+
+.userType{
+	font-weight: normal;
+	font-style: italic;
+	font-size: 11px;
+	color: #98ACB2;
+}
+
+.followLink{
+	color: #98ACB2;
+	float: left;
+}
+
+.userActionForThisUser{
+	margin: 15px 0;
+	position: relative;
+}
+
+.userActionForThisUser .yellowBtn a, .userActionForThisUser .blueBtn a, .userActionForThisUser .redBtn a{
+	width: 55px;
+	text-align: center;
+}
+
+.userActionForThisUser .redBtn{
+	margin-right: 10px;
+}
+
+.followRules{
+	top: 0;
+	bottom: auto !important;
+	left: 0 !important;
+}
+
+.fullPage .loadContentIndocator{
+	padding: 15px 0 0;
+	margin: 0;
+}
+
+.friendFinder{
+	width: 900px !important;
+	padding: 0;
+}
+
+.friendFinder #friendSearchContent{
+	background: none !important;
+	border: none !important;
+	padding: 0;
+	width: 100%;
+}
+.friendFinder .SBE-Affiliates li, .friendFinder .titles{
+	border: none;
+}
+
+.friendFinder .affiliatesTopContent{
+	padding: 20px;
+	width: 860px;
+}
+
+.friendFinder .affiliatesSearchBmail h6.head, .friendFinder .searchOnEdnty h6.head {
+	width: 410px;
+	padding: 10px 20px;
+}
+
+.friendFinder .affiliatesBottomContent{
+	background: #FFF;
+	border-bottom: 1px solid #D4D8D9;
+	padding-bottom: 0;
+}
+
+.friendFinder .SOE-affiliates{
+	float: left;
+	width: 410px;
+	padding: 10px 20px;
+}
+
+.friendFinder .affiliatesSearchBmail, .friendFinder .searchOnEdnty {
+	float: left;
+	width: 450px;
+	padding: 0 0 15px;
+}
+
+.suggestedUsersGroup{
+	float: left;
+	width: 860px;
+	padding: 20px;
+}
+/*
+.suggestedUsersGroup li{
+	cursor: pointer;
+	float: left;
+	width: 200px;
+	border-bottom: none !important;
+	padding: 0;
+	background: #fff;
+	margin: 0 7px 20px;
+}
+
+.suggestedUsersGroup li div.suggestedUsers{
+	border: 1px solid #E3E5E5;
+	padding: 10px;
+	border-radius: 4px;
+	float: left;
+	width: 178px;
+}
+
+.suggestedUsersGroup li.userSelected, .suggestedUsersGroup li:hover{
+	background: #E8EDED;
+	border-radius: 4px;
+}
+
+.suggestedUsersGroup .titles h6{
+	text-shadow: 0 1px 0 #fff;
+	padding: 0;
+	margin: 0 0 20px;
+	color: #5B6773;
+}
+
+.suggestedUsers .userInformation{
+	margin-left: 70px;
+	width: auto;
+	float: none;
+}
+
+.suggestedUsers .userInformation .userName, .suggestedUsers .userInformation .userType, .suggestedUsers .userInformation .followLink{
+	clear: none;
+}
+
+.suggestedAction{
+	float: right;
+	display: block;
+	width: 220px;
+	padding: 10px;
+	position: relative;
+}
+*/	
+.friendSelectionRule{
+	float: left;
+	margin-right: 10px;
+	position: relative;
+}
+
+.friendSelectionRule a{
+	color: #7A888C;
+	text-shadow: 0 1px 0 white;
+	background: #fff;
+	padding: 5px 0px 4px 10px;
+	border: 1px solid #E3E5E5;
+	float: left;
+}
+
+.friendSelectionRule span{
+	background: url(/images/uiIconInside.png) no-repeat right -118px;
+	padding: 5px 45px 0 0;
+}
+
+.friendSelectionRule a:hover{
+	background: #f2f2f2;
+}
+
+.suggestedRulesDropDown{
+	float: left;
+	width: 150px;
+	position: absolute;
+	bottom: 10px;
+	left: 11px;
+	z-index: 1;
+}
+
+.suggestedRulesDropDown li{
+	display: block;
+	list-style: none outside none;
+	padding: 0;
+	margin: 0;
+	border: none;
+	background: none;
+}
+
+.suggestedRulesDropDown li:hover{
+	background: none;
+}
+
+.suggestedRulesDropDown li a{
+	color: #7A888C;
+	padding: 5px 0 5px 10px;
+	float: left;
+}
+
+.suggestedRulesDropDown li a input{
+	margin-right: 5px;
+}
+
+.suggestedAction .blueBtn{
+	float: right;
+}
+
+.sortBy{
+	width: 178px;
+	margin-top: 11px;
+}
+
+.firefox .sortBy{
+	width: 179px;
+}
+
+.sortBy li{
+	display: inline;
+	float: left;
+	width: auto;
+	padding: 0 20px;
+	border-bottom: none;
+	border-right: 1px solid #E3E5E5;
+}
+
+.sortBy li.last-child{
+	border-right: none;
+}
+
+.sortBy li a{
+	font-weight: bold;
+	color: #5B808C;
+}
+
+.sortBy li:hover a, .sortBy li.sortTabActive a{
+	color: #4B6973;
+}
+
+.hidden{
+	display: none;
+}
+
+.searchByEmailResult, .searchByNameResult{
+	width: 860px;
+	padding: 20px;
+	float: left;
+	border-top: 1px solid #D4D8D9;
+	display: none;
+}
+
+.searchByEmailResult .titles, .searchByNameResult .titles{
+	padding: 0;
+}
+
+.searchByEmailResult .titles h6, .searchByNameResult .titles h6{
+	text-shadow: 0 1px 0 #fff;
+	margin: 0 0 5px 0;
+}
+
+.searchByEmailResult .titles h6{
+	margin-bottom: 10px;
+}
+
+.searchByEmailResult .titles h6 .addressBook, .searchByNameResult .titles h6 .addressBook{
+	background: url(/images/uiIcon.png) no-repeat 0 -549px;
+	padding: 1px 30px;
+}
+
+p.subtitle{
+	padding: 10px 0;
+}
+
+.searchByEmailResult ul, .searchByNameResult ul{
+	float: left;
+	background: #FFF;
+	border: 1px solid #D4D8D9;
+	width: 860px;
+	background: #FAFAFA;
+}
+
+.searchByEmailResult li, .searchByNameResult li{
+	float: left;
+	padding: 10px 20px;
+	width: 820px;
+}
+
+.searchByEmailResult li:last-child, .searchByNameResult li:last-child, .affiliatesResult ul li:last-child{
+	border-bottom: none;
+}
+
+.searchByEmailResult li span, .searchByNameResult li span{
+	line-height: 20px;
+}
+
+.nameResult{
+	font-size: 12px;
+	font-weight: bold;
+	color: ##77898C ;
+}
+
+
+.nameResult i{
+	color: #4B6973;
+	font-style: normal;
+	font-weight: normal;
+}
+
+.userType{
+	float: left;
+}
+
+.searchByNameResult li div{}
+
+.searchByEmailResult li div a, .searchByNameResult li div a{
+	width: 70px;
+	padding: 5px 20px;
+	text-align: center;
+	margin: 0;
+}
+
+.affiliatesResult{
+	width: 820px;
+	background: #fff;
+}
+
+.affiliatesResult ul{
+	width: 815px;
+}
+
+.affiliatesResult ul li{
+	width: 776px;
+	border-bottom: 1px solid #E3E5E5;
+}
+

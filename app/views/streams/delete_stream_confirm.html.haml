@@ -1,0 +1,18 @@
+:javascript
+  $j('.button').corner("4px");
+  $('RB_window').style.width = "400px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 400)/2) + "px";
+.dialogs
+  .dialog_details
+    - form_remote_for :stream, :url => delete_stream_streams_path(:id => @stream_id, :popup => 1), :method => :get do |f|
+      %ul
+        %li
+          =t :delete_stream_text
+        %li
+          = check_box_tag "do_not_show"
+          =t :dont_show_message
+      .reportAction.flRight
+        .redBtn
+          = submit_tag "Ok", :class => "smlrBtn"
+        .blueBtn
+          = link_to_close_redbox("#{t :cancel}", :class => "smlrBtn", :onclick => "$j('object').show();")

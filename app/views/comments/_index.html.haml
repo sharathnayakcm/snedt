@@ -1,0 +1,77 @@
+%div{:id => "recent_comments_#{stream.id}"}
+  - if stream.recent_comments.count > 0
+    %span.commentArrowTop
+    %ul
+      - stream.recent_comments.reverse.each do |comment|
+        %li
+          %span.userSmlPic
+            - unless comment.user.profile_image.blank?
+              = image_tag(comment.user.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :height => "26px", :width => "26px", :alt => "", :title => "")
+            - else
+              = image_tag("userPicSmall.jpg", :alt => "#{comment.user.display_full_name(current_user)}")
+          .commented
+            .userDesc
+              %a{:href => "javascript:void(0);"}
+                = comment.user.display_full_name(current_user)
+            .userCommentedInfo
+              %ul
+                %li.userDesc
+                  %h6
+                    %a{:href => "javascript:void(0);"}
+                %li.timing
+                  %a{:href => "javascript:void(0);"}
+                    = to_local(comment.created_at).strftime("%H:%M %p")
+                %li.date
+                  %a{:href => "javascript:void(0);"}
+                    - if session[:locale] == "arabic"
+                      %span{:style => "direction:ltr;"}= to_local(comment.created_at).strftime("%Y %b %d")
+                    - else
+                      = to_local(comment.created_at).strftime("%d %b %Y") unless  comment.created_at.blank?
+                - if stream.user == current_user || comment.user == current_user
+                  %li.action
+                    = link_to_remote "#{t :delete}", :method => :get, :url => {:controller => 'streams/comments', :action => :delete, :id => comment.id, :stream_id => stream.id}
+                %li
+                  %span#edintityIcon.networkIco
+            %div{:style => "clear:both"}
+            .msgBody
+              = comment.description
+    - if comments.count > 3
+      %a.toggleCommentExpand.flRight{:href => "javascript:void(0);", :onclick => "$j('#recent_comments_#{stream.id}').hide();$j('#all_comments_#{stream.id}').show();"} expand all comments
+%div{:id => "all_comments_#{stream.id}", :style => "display:none"}
+  - if comments.count > 0
+    %span.commentArrowTop
+    %ul
+      - comments.reverse.each do |comment|
+        %li
+          %span.userSmlPic
+            - unless comment.user.profile_image.blank?
+              = image_tag(comment.user.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :height => "26px", :width => "26px", :alt => "", :title => "")
+            - else
+              = image_tag("userPicSmall.jpg", :alt => "#{comment.user.display_full_name(current_user)}")
+          .commented
+            .userDesc
+              %a{:href => "javascript:void(0);"}
+                = comment.user.display_full_name(current_user)
+            .userCommentedInfo
+              %ul
+                %li.userDesc
+                  %h6
+                    %a{:href => "javascript:void(0);"}
+                %li.timing
+                  %a{:href => "javascript:void(0);"}
+                    = to_local(comment.created_at).strftime("%H:%M %p")
+                %li.date
+                  %a{:href => "javascript:void(0);"}
+                    - if session[:locale] == "arabic"
+                      %span{:style => "direction:ltr;"}= to_local(comment.created_at).strftime("%Y %b %d")
+                    - else
+                      = to_local(comment.created_at).strftime("%d %b %Y") unless  comment.created_at.blank?
+                - if stream.user == current_user || comment.user == current_user
+                  %li.action
+                    = link_to_remote "#{t :delete}", :method => :get, :url => {:controller => 'streams/comments', :action => :delete, :id => comment.id, :stream_id => stream.id}
+                %li
+                  %span#edintityIcon.networkIco
+            %div{:style => "clear:both"}
+            .msgBody
+              = comment.description
+    %a.toggleCommentExpand.flRight{:href => "javascript:void(0);", :onclick => "$j('#recent_comments_#{stream.id}').show();$j('#all_comments_#{stream.id}').hide();"} collapse all comments

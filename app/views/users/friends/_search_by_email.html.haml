@@ -1,0 +1,21 @@
+.affiliatesSearchBmail
+  %h6.head
+    =t :search_by_email
+  .SBE-Affiliates#email_form
+    - form_remote_tag :url => find_friends_user_friends_path(current_user), :method => :get do |f|
+      = hidden_field_tag "company_id", @company.id if @company
+      %ul
+        %li
+          %input.email.textInput{:name => "email", :type => "text", :value => "", :id => "email"}
+          %span.selectEmailType
+            %label{:for => "emailType"} .com
+            %select{:name => "email_host", :id => "email_host"}
+              %option gmail
+              %option yahoo
+              %option aol
+              %option hotmail
+              %option plaxo
+        %li
+          %input.ePassword.textInput.flLeft{:name => "password", :type => "password", :value => "", :id => "password"}
+          .blueBtn
+            = submit_tag("#{t :find}", :class => "smlrBtn", :onclick => "$('contact_list').innerHTML='';htmlContent = $('email_form').innerHTML; $('email_form').innerHTML = '<div align=\"center\"><div class=\"contacting_div\" align=\"center\"><h5>#{t :contacting} ' + $('email_host').value + '....</h5></div> <img src=\"/images_old/spinner.gif\" /> <br /> <div  class=\"contacting\">#{t :contacting_text}</div></div>' ;")

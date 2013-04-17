@@ -1,0 +1,2 @@
+module Streams::CommentsHelper
+end

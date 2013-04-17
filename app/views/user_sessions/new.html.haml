@@ -1,0 +1,31 @@
+#mp-content.flLeft
+  .loginContent
+    %h1
+      edintity Universe
+    %ul
+      %li
+        %p
+          = t :explore_content
+      %li
+        %p
+          = t :share_content
+      %li
+        %p
+          = t :get_recognized
+  .join_us
+    .yellowBtn
+      = submit_tag "#{t :join_us}", :class => "signInBtn"
+
+#MP-login.MP-loginboxes.flRight
+  #MP-loginTop
+    .firefox
+      #MP-facebooklogin
+        .blueBtn
+          = submit_tag "#{t :facebook_login}", :class => "signInBtn"
+      #MP-twitterlogin
+        .blueBtn
+          = submit_tag "#{t :twitter_login}", :class => "signInBtn"
+
+  #MP-loginBottom
+    #loginForm
+      = render :partial => "user_sessions/login_home"

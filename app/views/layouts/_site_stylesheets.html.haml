@@ -1,0 +1,4 @@
+- if (request.path.index("admin"))
+  = stylesheet_link_tag *[admin_stylesheet_sources].flatten
+- else
+  = stylesheet_link_tag *[stylesheet_sources].flatten

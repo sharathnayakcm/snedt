@@ -1,0 +1,73 @@
+:javascript
+  $j(document).ready(function(){
+    $j(".cancel").corner("2px");
+    $j(".add_service").corner("2px");
+    $j(".lock_bg").corner("5px");
+
+  })
+.dialogs
+  - form_for @user_service , :user => @user, :url => user_services_url(:user_service_id => params[:user_service_id])  do |f|
+    = hidden_field_tag :service_id, @service.id
+    = hidden_field_tag :edit
+    = hidden_field_tag :user_service_id
+    .dialog_details
+      - unless params[:user_service_id].blank?
+        - user_service = UserService.find_by_id(params["user_service_id"])
+        %p
+          - if user_service.share_status_update == true
+            = check_box_tag  :share_status_update, true, true
+            =t 'share_service', :service_name => @service.name
+          - else
+            = check_box_tag  :share_status_update, false, false
+            =t 'share_service', :service_name => @service.name
+        %p
+          - if user_service.share_favourites == true
+            = check_box_tag  :share_favourites, true, true
+            =t 'share_service', :service_name => @service.name
+          - else
+            = check_box_tag  :share_favourites, false, false
+            =t 'share_favourites', :service_name => @service.name
+        %p
+          - if user_service.share_content == true
+            = check_box_tag  :share_content, true, true
+            =t 'share_content', :service_name => @service.name
+          - else
+            = check_box_tag  :share_content, false, false
+            =t 'share_content', :service_name => @service.name
+      - else
+        %p
+          = check_box_tag  :share_status_update
+          =t 'share_service', :service_name => @service.name
+        %p
+          = check_box_tag  :share_favourites
+          =t 'share_favourites', :service_name => @service.name
+        %p
+          = check_box_tag  :share_content
+          =t 'share_content', :service_name => @service.name
+      %div.service_privacy_text
+        =t 'service_privacy_text'
+      %div.lock_bg
+        %img{:src => "/images/lock.png", :style=> "vertical-align:text-bottom;"}
+        - if user_service.privacy_type_id == "1"
+          = select(:user_service, :privacy_type_id, [["#{t 'everyone'}",'1'], ["#{t 'followers'}",'2'], ["#{t 'following'}",'3'],["#{t 'friends'}",'4'], ["#{t 'just_me'}",'5']] + @privacy_groups.collect {|x| x.grp_array}, :class => "select_type")
+        - else
+          = select(:user_service, :privacy_type_id, [["#{t 'everyone'}",'1'], ["#{t 'followers'}",'2'], ["#{t 'following'}",'3'],["#{t 'friends'}",'4'], ["#{t 'just_me'}",'5']] + @privacy_groups.collect {|x| x.grp_array},:selected => user.service.privacy_type_id, :class => "select_type")
+      .clear
+      .save_text
+        %p{:style => "padding-left:10px;"}
+          =t 'service_redirect_message', :service_name => @service.name
+      .center.float_left{:style => "padding-left: 50px;"}
+        =#  image_submit_tag ("/images/save.png"), :class => "button_submit"
+        - if user_service.blank?
+          =  submit_tag "#{t :add}", :class => "add_service"
+        - if user_service
+          - if user_service.token.blank?
+            =  submit_tag "#{t :add}", :class => "add_service"
+          - else
+            =  submit_tag "#{t :save}", :class => "add_service", :user_service => params[:user_service_id] if user_service.token
+        .float_left
+          .button.button_anchor
+            =  link_to_close_redbox("#{t :cancel}") if user_service.blank?
+        .float_left
+          .button.button_anchor
+            =  link_to "#{t :remove}", :delete => true, :confirm => 'All your streams configured with this service also will get deleted. Are you sure you want to continue?', :action => "delete_user_service",:controller => "Users::Services", :id => user_service.id ,  :method => :delete if user_service

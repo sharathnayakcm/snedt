@@ -1,0 +1,17 @@
+.columns
+  .column.width_12.leftmost
+    .form_field
+      .label_name= "Title<font color='red'>*</font>"
+      .tag= f.text_field :title
+    .form_field
+      .label_name= "Content<font color='red'>*</font>"
+      = f.text_area :text_content
+    = hidden_field_tag :page, @page
+    = hidden_field_tag :per_page, @per_page
+.columns
+  .column.width_10.leftmost
+    .align_right= submit_tag "Save", :class => "button"
+
+.columns
+  .column.width_12.leftmost
+    = "Note: Fields marked as <font color='red'>*</font> are mandatory."

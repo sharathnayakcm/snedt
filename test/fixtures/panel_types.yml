@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: 
+ id: 1
+ name: body
+ element_name: "body, .editLayout"
+
+two:
+ id: 2
+ name: header
+ element_name: "#ednt-Header, #previewHeader"
+
+three:
+ id: 3
+ name: stream
+ element_name: "#personalMainProfile, #previewLeft"
+
+four:
+ id: 4
+ name: right_content
+ element_name: "#ProfileWrapper, #previewRight"

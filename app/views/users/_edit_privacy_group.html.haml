@@ -1,0 +1,24 @@
+- form_remote_tag(:url => {:controller => :privacy_groups, :action => :update_group, :tab => "privacy" }, :html => {:id => "pgForm"}) do
+  = hidden_field_tag :edit_privacy_user_ids, @privacy_group.user_ids
+  = hidden_field_tag :pg_id, @privacy_group.id
+  %ul
+    %li
+      %label{:for => "group"}
+        =t :privacy_group_name
+      %input.textInput{:name => "pg_name_edit", :id => "pg_name_edit", :type => "text", :value => @privacy_group.name}
+    %li
+      %label{:for => "userSelect"}
+        =t :select_by_username
+      %input.textInput{:name => "search_user_name_edit", :type => "text", :value => "",:id => "search_user_name_edit"}
+      = observe_field("search_user_name_edit", :update => 'name_observed_edit',:frequency => 0.5, :url => {:controller => "privacy_groups",:action => "get_names_for_privacy_tab", :method => :get, :is_edit => @is_edit},:with => "input_first_name", :loading => "{$j('#spinner_tag1').show();}", :success => "{$j('#spinner_tag1').hide();}")
+      %span.streamLoad#spinner_tag1.hide
+        %img{:alt => "", :src => "/images/loadinfo.gif"}
+      #name_observed_edit.nameObserved
+    
+    #added_users_edit
+      = render :partial => "privacy_groups/added_users"
+    %li.savePrivacy.last
+      .yellowBtn.flRight
+        %a.smlrBtn{:href => "javascript:void(0)", :onclick => "$j('#personalEditPGDetail').hide();"} Cancel
+      .blueBtn.flRight
+        = submit_tag "#{t :save}", :class => "smlrBtn", :onclick => "if(jQuery.trim($j('#pg_name_edit').val()).length == 0){notice('Privacy group name can not be blank');return false;}else{$j('#spinner_tag').show();}"

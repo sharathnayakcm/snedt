@@ -1,0 +1,46 @@
+%ul
+  %li.addNewSkinHeading
+    .addNewSkin
+      %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('newSkin');"}
+        %span.layoutIco.uiIconInside
+          =t :add_new_skin
+      %span.blueArrowDown.uiIconInside.flRight
+    #newSkin.addSkinForm{:style => "display:none;"}
+      %span.newSkinText
+        =t :enter_new_skin
+      %input.newSkinName.textInput{:type => "text", :id => "new_skin_name", :name => "new_skin_name"}
+      .blueBtn
+        - if @brand.blank?
+          %a.smlrBtn{:href => "javascript:void(0);", :onclick => remote_function(:url => {:controller => :skins, :action => :create}, :with => "'name='+$('new_skin_name').value")} Save
+        - else
+          %a.smlrBtn{:href => "javascript:void(0);", :onclick => remote_function(:url => {:controller => :brand_skins, :action => :create, :brand_id => @brand.id}, :with => "'name='+$('new_skin_name').value")} Save
+      .yellowBtn
+        %a.smlrBtn{:href => "javascript:void(0);", :onclick => "toggle_visibility('newSkin');$j('#new_skin_name').val('');"} Cancel
+  %li.existSkin
+    %a.skinName
+      = @default_skin.name unless @default_skin.blank?
+    .skinAct.flRight
+      %ul
+        %li.play
+          - if @brand.blank?
+            = link_to "", {:controller => :profiles, :action => :apply_skin, :skin_id => @default_skin.id}, :class => "playBtn uiIconInside"
+          - else
+            = link_to "", apply_skin_brand_path(@brand.id, :skin_id => @default_skin.id), :class => "playBtn uiIconInside"
+  - unless @my_skins.blank?
+    - @my_skins.each do |skin|
+      %li.existSkin
+        %a.skinName
+          = skin.name
+        .skinAct.flRight
+          %ul
+            %li.delete
+              - if @brand.blank?
+                = link_to_remote "", :url => {:controller => :skins, :action => :delete_skin, :skin_id => skin.id}, :html => {:class => "delBtn uiIconInside"}
+              - else
+                = link_to_remote "", :url => {:controller => :brand_skins, :action => :delete_skin, :skin_id => skin.id, :brand_id => @brand.id}, :html => {:class => "delBtn uiIconInside"}
+            - if @brand.blank?
+              %li.play
+                = link_to "", {:controller => :profiles, :action => :apply_skin, :skin_id => skin.id}, :class => "playBtn uiIconInside"
+            - else
+              %li.play
+                = link_to "", apply_skin_brand_path(@brand.id, :skin_id => skin.id), :class => "playBtn uiIconInside"

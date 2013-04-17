@@ -1,0 +1,49 @@
+- form_for :post,  :html => {:id => "postLink"} do |f|
+  #cont-3-1.tabContent.shareLinkForm.updateStreamBox.cornerAll.hide
+    = hidden_field_tag "stream_post_type", "Link"
+    = hidden_field_tag :brand_type, @brand.id if @brand
+    = hidden_field_tag :company_id, @brand.company_id if @brand
+    = hidden_field_tag :scope, controller_name if @brand
+    %span.updateArrowTop.sharePhoto
+    .formInputStatus
+      %textarea#linkDescription.forStatus.forOthers{:col => "20", :row => "3", :name => "description", :onfocus => "if(!this._haschanged){this.value=''};this._haschanged=true;"}= t :link_content
+      .pathBar.linkBar.cornerAll
+        %p http://
+        %span
+          %input.blankInput{:type => "text", :value => "", :id => "title", :name => "title"}
+    .formStatusControl
+      %ul
+        %li.shareRestirict
+          %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('sharingOptCheck3');"}
+            %span.blueArrow= t :share_service
+        %li.addToStream
+          = link_to_remote "#{t 'add_to_stream'}", :url => posts_path, :method => :post, :with => "$('postLink').serialize()"
+
+  #sharingOptCheck3.shareServiceControl{:style => "display:none;"}
+    .shareToServiceDropdown.cornerBottom.transBg
+      %span.closeShareOpt
+        %a.uiIconInside{:href=>"#", :onclick=>"toggle_visibility('sharingOptCheck3');"}
+      - if @brand
+        - status_link_services = @brand.active_services.link_sharing_services
+      - else
+        - status_link_services = current_user.active_services.link_sharing_services
+      - if status_link_services.length > 0
+        %ul
+          %li
+            %a{:href => "javascript:void(0);"}
+              %input{:name => "select_all", :type => "checkbox", :value => "", :id => "link_all", :onclick => "if($(this).checked){$j('#sharingOptCheck3').find('input:checkbox').attr({checked: true});}else{$j('#sharingOptCheck3').find('input:checkbox').attr({checked: false});}"}
+              %span.emptyIco= t :share_on_all
+          - status_link_services.each do |user_service|
+            %li
+              %a{:href => "javascript:void(0);", :title => user_service.display_name}
+                %input{:name => "serviceid[]", :type => "checkbox", :value => user_service.id, :onclick => "$j('#link_all').attr({checked: false});"}
+                %span.networkIco{:id =>"#{user_service.service.name.downcase.gsub(' ','')}Service"}
+                  = t :share_on
+                  %strong
+                    = user_service.service.name.downcase
+      - else
+        %ul
+          %li
+            %a &nbsp;
+          %li
+            %a= t :you_dont_have_service

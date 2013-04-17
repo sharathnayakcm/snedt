@@ -1,0 +1,141 @@
+- plan = @company.membership
+#contentHeadBrand1.contentHeading.cornerTop.active
+  %h4
+    %a{:href => "javascript:void(0);"}= t :account_summary
+#accSettingBrandContent1.accSetupContent
+  .accSetContentright.flRight
+    #deleteAccount.cornerAll
+      .redBtn
+        = link_to_remote_redbox "#{t :delete_company}", {:url => {:controller => :companies, :action => :before_destroy}},:class => "smlrBtn"
+  #accntInformation.settingInfo.flLeft
+    %ul
+      %li
+        .titles
+          %h5= t :account_information
+        .servicesBoxInner.narrow.cornerAll
+          %ul
+            %li
+              %p= t :company_name
+              %span.flRight= @company.name
+            %li
+              %p= t :member_since
+              %span.flRight= @company.created_at.strftime("%b %d, %Y")
+            %li
+              %p= t :membership_type
+              %span.flRight= @company.membership.blank? ? "#{t :free}" : @company.membership.name
+            %li
+              %p= t :user_role
+              %span.flRight= current_user.full_name + "  (Brand Admin)"
+      %li
+        .titles
+          %h5= t :usage
+        .servicesBoxInner.narrow.cornerAll
+          %ul
+            %li#slider.cornerTop
+              #usageSlider
+                %input#Slider4{:name => "area", :type => "slider", :value => "#{@current_usage}"}
+            %li
+              %p= t :monthly_upload_limit
+              %span.flRight
+                - if session[:locale] == "arabic"
+                  %div== MB #{plan.upload_limit}
+                - else
+                  %div== #{plan.upload_limit} MB
+            %li
+              %p= t :current_usage
+              %span.flRight
+                - usage = @current_usage*100/plan.upload_limit
+                - if session[:locale] == "arabic"
+                  %div== (%#{(usage * 100).round.to_f / 100}) MB #{@current_usage}
+                - else
+                  %div== #{@current_usage} MB (#{(usage * 100).round.to_f / 100}%)
+            %li
+              %p= t :days_left_in_cycle
+              %span.flRight
+                - if session[:locale] == "arabic"
+                  %div== #{t :day_s} #{(((current_user.cycle_start_date + 2592000) - Time.now)/24/60/60).to_i}
+                - else
+                  %div== #{(((current_user.cycle_start_date + 2592000) - Time.now)/24/60/60).to_i} #{t :day_s}
+      %li
+        .titles
+          %h5
+            = t :current_cycle_user_activites
+            %span
+              (#{to_local(@company.cycle_start_date).strftime("%d %b %Y")} - #{to_local(@company.cycle_start_date + 1.month).strftime("%d %b %Y")})
+              %span/
+        .servicesBoxInner.narrow.cornerAll
+          %ul
+            %li
+              %p= t(:total_streamed_content)
+              %span.flRight= @current_cycle_total_streams
+            %li
+              %p= t(:total_status_updated)
+              %span.flRight=  @current_cycle_status_streams
+            %li
+              %p= t(:total_photo_updated)
+              %span.flRight= @current_cycle_photo_streams
+            %li
+              %p= t(:total_blog_posted)
+              %span.flRight= @current_cycle_blog_streams
+            %li
+              %p= t(:total_link_posted)
+              %span.flRight= @current_cycle_link_streams
+            %li
+              %p= t(:total_video_updated)
+              %span.flRight
+            %li
+              %p= t(:no_of_current_cycle_followers)
+              %span.flRight= @company.current_cycle_followers
+      %li
+        .titles
+          %h5
+            = t(:user_activites)
+            %span/
+        .servicesBoxInner.narrow.cornerAll
+          %ul
+            %li
+              %p= t(:total_streamed_content)
+              %span.flRight= @company.streams.company_edintity_streams.count
+            %li
+              %p= t(:total_status_updated)
+              %span.flRight= @company.streams.company_edintity_status_streams.count
+            %li
+              %p= t(:total_photo_updated)
+              %span.flRight= @company.streams.company_edintity_photo_streams.count
+            %li
+              %p= t(:total_blog_posted)
+              %span.flRight= @company.streams.company_edintity_blog_streams.count
+            %li
+              %p= t(:total_link_posted)
+              %span.flRight= @company.streams.company_edintity_link_streams.count
+            %li
+              %p= t(:total_video_updated)
+              %span.flRight
+            %li
+              %p= t(:no_of_followers)
+              %span.flRight= @company.followers.count
+
+:javascript
+  $j(document).ready(function(){
+
+    if(#{plan.id}==1){
+      var arr = [0, '|', 50, '|', '100', '|', 250]
+    }
+    else if(#{plan.id}==2){
+      var arr = [0, '|', 200, '|', '400', '|', 600, '|', 800, '|', 1024]
+    }
+    else if(#{plan.id}==3){
+      var arr = [0, '|', 400, '|', '800', '|', 1200, '|', 1600, '|', 2048]
+    }
+    else if(#{plan.id}==4){
+      var arr = [0, '|', 600, '|', '1200', '|', 1800, '|', 2400, '|', 3072]
+    }
+    else if(#{plan.id}==5){
+      var arr = [0, '|', 800, '|', '1600', '|', 2400, '|', 3200, '|', 4096]
+    }
+    else if(#{plan.id}==6){
+      var arr = [0, '|', 1200, '|', '2400', '|', 3200, '|', 4800, '|', 6144]
+    }
+    jQuery("#Slider4").slider({ from: 0, to: #{plan.upload_limit}, heterogeneity: [], scale: arr, limits: false, step: 1});
+  });
+

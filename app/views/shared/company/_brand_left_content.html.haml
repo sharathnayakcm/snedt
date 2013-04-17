@@ -1,0 +1,53 @@
+#personalMainStream.streamMain.streamWrapper.cornerAll.flLeft
+  .headStreamSection
+    - @bread_crum = []
+    - bread_crumb(@brand)
+    - unless @bread_crum.blank?
+      .breadcrumb
+        %ul
+          - @bread_crum.reverse.each do |bread|
+            %li
+              -unless bread.is_default?
+                = link_to bread.name.capitalize ,company_brand_path(bread.company, bread.id)
+              -else
+                = link_to bread.name.capitalize ,company_path(bread.company.name)
+          %li
+            = link_to @brand.name.capitalize ,company_brand_path(@company, @brand.id)
+    .streamUpdater
+      .updateStreamType
+        %ul
+          %li
+            %a#cont-1.tabLink{:href => "javascript:;", :onclick => "$j('.shareServiceControl').hide();"}
+              %span#updateStatIco
+                =t :update_status
+          %li
+            %a#cont-2.tabLink{:href => "javascript:;", :onclick => "$j('.shareServiceControl').hide();"}
+              %span#updateBlogIco
+                =t :blog
+          %li
+            %a#cont-3.tabLink{:href => "javascript:;", :onclick => "$j ('.shareServiceControl').hide();"}
+              %span#linkIco
+                =t :share_link
+          %li
+            %a#cont-4.tabLink{:href => "javascript:;", :onclick => "$j('.shareServiceControl').hide();"}
+              %span#photoIco
+                =t :add_photo
+          - unless current_user.membership.id == 1
+            %li
+              %a#cont-5.tabLink{:href => "javascript:;", :onclick => "$j('.shareServiceControl').hide();"}
+                %span#videoIco
+                  =t :add_video
+      .updateStreamAction
+        = render :partial => "posts/status_update"
+        = render :partial => "posts/post_blog"
+        = render :partial => "posts/post_photo"
+        = render :partial => "posts/post_video"
+        = render :partial => "posts/post_link"
+      = render :partial => "home/share_to_services"
+      = render :partial => "home/shorten_link"      
+    .streamController.cornerAll
+      = render :partial => "streams/status_panel"
+  .streamContentSection
+    = render :partial => "streams/index"
+  /.backToTop.streamWrapper.cornerAll
+  /  %a{:href => "#"}

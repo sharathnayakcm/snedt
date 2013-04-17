@@ -1,0 +1,892 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+# navigation:
+  home: "Home"
+  profile: "Profile"
+  services: "Services"
+  settings: "Settings"
+  sign_out: "Sign Out"
+  sign_up_process: "Sign Up Process"
+  sign_up_page: "Sign Up Page"
+  find_friends: "Find/Invite Friends"
+  add_tab: "Add Tab"
+  my_account: "My Account"
+  logout: "Logout"
+  signed_out_text: "You signed out. Do you want to"
+  done: "Done"
+  favorites: "Favorites"
+  saved_searches: "Saved Searches"
+  custom_streams: "Custom Streams"
+
+#  footer:
+  about: "About"
+  stream: "Stream"
+  terms: "Terms"
+  privacy: "Privacy"
+  help: "Help"
+  improve: "Improve edintity"
+  site_name: "edintity"
+
+#  streams:
+  post_type: "Post Type"
+  pick_type: "Pick a type"
+  shorten: "Shorten your link"
+  share_services: "Share to your following services"
+  review: "Review"
+  add_to_stream: "Add to stream"
+  play_stream: "%{count} new items (click on the play button to stream)"
+  enter_url: "Enter URL"
+  add: "Add"
+  comment_action: "comments and actions (SHOW/HIDE)"
+  max_tags: "* Max 5 tags"
+
+#  stream_actions:
+  favourite: "Mark as Favourite"
+  delete: "Delete"
+  delete_stream: "Delete Stream"
+  comments: "Comments"
+  create: "Create"
+
+#  statuses:
+  followers: "Followers"
+  following: "Following"
+  privacy_groups: "Privacy Groups"
+  post_service_groups: "Post Service Groups"
+  invite_friends: "Find or invite friends"
+
+#  reset_password:
+  enter_password: "Please Enter New Password"
+  retype_password: "Re-type Password"
+  update_password: "Update Password"
+  forgot_password: "Forgot Password"
+  reset_password: "Reset My Password"
+  instruction_text: "We’ll send you a link that you can use to securely reset your password"
+
+#  settings:
+  account: "Account"
+  notifications: "Notifications"
+  theme: "Theme"
+  extend: "Extend"
+  avatar: "Avatar"
+  full_name: "Full Name"
+  name: "Name:"
+  user_name: "User Name"
+  email: "Email:"
+  password: "Password:"
+  new_password: "New Password"
+  verify_password: "Verify New Password"
+  confirm_password: "Confirm Password"
+  language: "Language"
+  time_zone: "Time Zone"
+  country: "Country"
+  save_changes: "Save Changes"
+  delete_account: "Delete your account"
+  email_text: "Let my friends find me by my email (this will not be published)."
+  password_text: "You need to enter your password if you need to change it "
+  create_account_text_1: 'By Clicking on "Create my account" you agree to our'
+  create_account_text_2: " and "
+  create_account_text_3: "If you want to change any of the above inputs, you can do so from the setting section of your account."
+  create_account_text_4: After clicking on "Create my account" you will be taken to a 3 step account finalization.
+  private_policy: "Private Policy"
+  terms_of_use: "Terms of Use"
+  profile_url_text: "Your profile URL:"
+  create_my_account: "Create my account"
+
+#  services:
+  add_services: "Add the services you want"
+  my_services: "My Services"
+  pending_services: "Pending Services"
+  share_service: "Share my %{service_name} status update on edintity"
+  share_favourites: "Share my %{service_name} favourites on edintity"
+  share_content: "Share my edintity content on %{service_name}"
+  share_service_message: "If the above selected, you will be redirected to %{service_name} for authorization"
+  service_privacy_text: "Who do you want to see this service?"
+  everyone: "Everyone"
+  friends: "Friends"
+  just_me: "Just Me"
+  service_redirect_message: "You will be redirected now to %{service_name}, to complete adding your service."
+
+#  login:
+  what_is_it: "So what is it?"
+  how_it_works: "How it works ?"
+  is_it_for_me: "Is it for me?"
+  new_to_site: "New to edintity?"
+  sign_up: "New User Sign Up..."
+  feature_text_1: "From one location stream in your social content and RSS, stream out your updated and retweets back to your social services with full privacy control on who sees what with the greatest of flexibility and ease."
+  feature_link: "read our full features list "
+  feature_text_2: "Yes, its free and for now we support English and Arabic."
+  sign_in: "SIGN IN"
+  sign_up_email: "Email"
+  sign_up_password: "Password"
+  remember: "Keep me signed in"
+  forgot: "Forgot Password?"
+  login: "Login"
+
+#  logout:
+  sign_in_text: "edintity member sign in"
+  sign_in_text2: "New to edintity"
+  sign_in_text3: "Sign Up its FREE"
+  sign_in_link: "sign me in"
+  stream_text: "Do you want to check edintity's stream?"
+  stream_link: "Sure,stream me there."
+  close_tab_text: "Hope to catch you soon,if you want we can close this tab for you."
+  close_tab_link: "Yes,close this tab."
+
+#  friends:
+  by_email: "By Email"
+  on_edintity: "On edintity"
+  description_line_1: "Check if your friends are already in edinity, you just need to put your"
+  description_line_2: "email and password"
+  description_line_3: "and will find them for you :)"
+  email_policy_header: "Your email and password"
+  email_policy_text: We don't store your email address and password. We only use them to connect to your email account and never store them at all. Also the request is done securely.
+  find_friends: "Find Friends"
+  your_password: "Your Password"
+  your_email: "Your Email"
+  on_site_description: "You can find people you know that already have an edintity account. "
+  who_r_u_looking_for: "Who are you looking for?"
+  on_site_example: "example: John Doe or Fahad Turki"
+  search: "Search"
+  friends_you_can_invite: "Friends you can invite to edintity"
+  friends_already_in_edintity: "Friends already in edintity"
+  no_friends_in_site: "Your friends are not in edintity, invite your friends and share your edintity"
+  follow: "Follow"
+  invite: "Invite"
+  select_to_follow: "Select your friend(s) and follow"
+
+#  flash_notice:
+  require_login: "You must be logged in to access this page"
+  account_created: "Your account has been created. Please check your e-mail for your account activation instructions!"
+  profile_updated: "Profile updated!"
+  profile_not_updated: "Unable to update profile!"
+  password_invalid: "Current password is invalid"
+  activation_success: "Activation instructions send to your new email. Please activate your account with the new email."
+  service_saved_and_authenticated: "Service saved and authenticated successfully!"
+  service_updated: "Service updated successfully!"
+  service_saved: "Service saved successfully!"
+  pwd_reset_instruction_emailed: "Instructions to reset your password have been emailed to you. Please check your email."
+  account_activation_instruction_emailed: "Instructions to activate your account have been emailed to you. Please check your email."
+  no_user_found: "No user was found with that email address"
+  pwd_updated: "Password successfully updated"
+  could_not_locate_account: "We're sorry, but we could not locate your account. If you are having issues try copying and pasting the URL from your email into your browser or restarting the reset password process."
+  activation_link_invalid: "Your account activation link is no longer valid. <a href='/resend_activation'>Click here</a> to get a new activation link."
+  email_is_reset: "Your email is reset!"
+  account_activated: "Your account has been activated!"
+  login_success: "Sign in successful!"
+  logout_success: "Signed out successfully!"
+  email_or_pwd_invalid: "Email / Password is not valid!"
+  authorization_failed: "Authorization failed, please try again later."
+  tab_deleted: "Tab deleted successfully"
+  unable_to_create_tag: "Unable to create tag, please try again!"
+  tag_posted: "Tag Successfully posted"
+  tag_already_taken: "Tag has already been taken"
+  tag_limit: "Only 5 tags allowed for a stream."
+  comment_posted: "Comment Successfully posted"
+  stream_posted: "Stream Posted Successfully"
+  streamed: "Streamed successfully"
+  stream_marked_favourite: "Stream marked as Favourite"
+  stream_unfavourite_successful: "UnFavourite Successful"
+  stream_deleted: "Stream deleted successfully"
+  enter_long_url: "Please enter a long url"
+  invalid_name_or_pwd: "Invalid Username or Password"
+  select_atleast_a_contact: "Select alteast a contact to invite."
+  select_atleast_a_friend: "Select alteast a friend to follow."
+  no_friends_found: "No friends found, please modify your search criteria and try again!"
+
+#  signup:
+  privacy_settings_header: "Privacy settings and groups"
+  profile_setting: "Your profile will be seen by"
+  home_stream_setting: "Your edintity posted stream will be seen by "
+  rss_stream_setting: "Your RSS feeds will be seen by"
+  done_header: "CONGRATULATIONS YOU'RE DONE "
+  done_text1: "You can go right now to your home page or we really prefer that you watch this"
+  done_text2: video which will help you in how to take advantage of this site to the MAX 
+  done_link: "TAKE me to my NEW home page"
+
+######################## NEW TEXTS ######################
+
+  service_invalid: Service type invalid
+  service_deleted: The user service is deleted!
+  empty_status: Status message can not be empty
+  select_post_type: Select a post type from the list
+  link_posted: Link Posted Successfully
+  link_posted_with_tag: Link Posted Successfully with tag
+  marked_all_as_read: All the items marked as read
+  delete_stream_header: Delete Stream
+  pwd_not_matching: Password doesnt match with your actual password
+  account_deleted: You account and your stored streams are deleted! Please sign up to create new account..
+  incorrect_pwd: Password is not correct
+  correct_pwd: Password is correct
+  show_all: show all
+  save: Save
+  remove: Remove
+  rename: Rename
+  cancel: Cancel
+  unfollow: Unfollow
+  this_is_you: This is you
+  find_your_friends: Find your friends
+  close: Close
+  subscriptions: Subscriptions
+  enter_feed_url: Enter a feed URL
+  enter_search_term: Enter a search term to find feeds.
+  or: OR
+  add_rss: Add RSS link
+  manage_rss: Manage RSS
+  update_feeds: Update feeds
+  feed_url_deleted: rss feed url successfully deleted
+  feed_url_renamed: rss feed url successfully renamed
+  duplicate_url: the feed url is already in your list
+  feed_url_added: rss feed url successfully added
+  feed_url_invalid: the feed url is invalid
+  more: MORE
+  comment_deleted: Comment deleted successfully
+  service_not_updated: "Please update the settings to save the changes!"
+  stream_marked_read: "Marked as read"
+  stream_marked_unread: "Marked as unread"
+  read: "Read"
+  stream_settings_header: "Stream settings"
+  stream_settings_saved: "Stream settings saved"
+  invalid_link: Invalid link url
+  empty_blog: Blog content can not be empty
+  features: Features
+  disallow_comments: Disallow comments on feeds
+  tag_deleted: Tag deleted successfully
+  share_service_posts: "Share my %{service_name} posts on edintity"
+  custom_stream_saved: Custom stream saved successfully
+  custom_stream_saved_and_filtered: Custom stream saved and filtered successfully
+  custom_stream_not_saved: Custom stream not saved
+  custom_stream_updated: Custom stream updated successfully
+  custom_stream_not_updated: Custom stream not updated
+  custom_stream_deleted: Custom stream deleted successfully
+  custom_stream_not_deleted: Custom stream not deleted
+  edit: Edit
+  skin_tool: Skin Tool
+  saved_filters: Saved Filters
+  custom_stream_filters: Custom Stream Filters
+  create_custom_filter: Create Custom Stream Filter
+  edit_custom_filter: Edit Custom Stream Filter
+  tags: Add Tag
+  okay: OK
+  attach_image: Please attach an image file to post
+  tumblr_service_message: You will only be asked about your password when you send content to Tumblr and we will not store it.
+  update: Update
+  terms_and_conditions: Terms & Conditions And Privacy Policy
+  atleast_seven_chars: At least 7 characters and make it strong
+  select_country: Select Country
+  your_profile_url: Your profile URL
+  custom_groups: Custom Groups
+  change_photo: Change photo
+  who_sees_fullname: Who sees your Name?
+  action: Action
+  block: Block
+  block_user: Block this user
+  unblock_user: UnBlock this user
+  unblock: Unblock
+  no_blocked_users: You dont have any blocked users.
+  stream_default_actions: Stream Default Actions
+  blocked_users_list: Blocked Users List
+  notification_settings_header: Notifications
+  allow_comments: Allow Comments
+  retweet: Retweet
+  stumbleupon_user_name: StumbleUpon User Name
+  delicious_user_name: Delicious User Name
+  tumblr_url: Tumblr Blog URL
+  next: Next
+  previous: Previous
+  find_friends_text: Find your friends who are in edintity and give them an invite to join you here.
+  contacting: Contacting
+  contacting_text: We are loading your contacts. (This can take a while if you have got a large address book.)
+  searching_text: Searching for your friends in edintity.
+  searching: Searching
+  member_login: Member Login
+  services_we_support: Services we support...
+  more_to_add: and more will be added...
+  delete_account_confirm1: Delete your account permanently?
+  delete_account_confirm2: Are you sure you want to permanently delete your edintity account and content?
+  delete_account_text: Are you sure you want to permanently delete your edintity account, all of your stored stream items will be deleted also?
+  yes_delete_account: Yes, delete my account
+  no_changed_mind: No,  I changed my mind
+  enter_pwd_to_confirm: Enter your password to confirm
+  enter_skin_name: Enter New Skin Name
+  apply: Apply
+  active: Active
+  new_skin: New Skin
+  upload: Upload
+  none: None
+  image: IMAGE
+  text: Text
+  background: Background
+  footer: Footer
+  header: Header
+  right_content: Right Content
+  left_content: Left Content
+  change_stream_style: Click to change stream style
+  change_header_style: Click to change header style
+  no_friends: You have no friends.
+  no_followings: You have no followings.
+  no_followers: You have no followers.
+  you_have: You have
+  click_to_invite_friends: Click here to find or invite friends.
+  followings: Followings
+  custom: Custom
+  edit_profile: edit profile
+  search_options: Search Options
+  your_streams: Your stream
+  selected_rss_links: You have selected to delete rss links
+  rss_delete_text: Deleting these links will delete all the feeds received from them.
+  want_to_continue: Do you want to continue ?
+  rss_feeds: RSS Feeds
+  customize_profile: Customize Your Profile
+  report_spammer: Report As Spammer
+  description: Description
+  title: Title
+  file_size_text: * You can upload JPEG, GIF or PNG files up to 10MB in size.
+  url: URL
+  content: Content
+  admin_console: Admin Console
+  languages: "Languages:"
+  enter_tab_name: Enter the tab name
+  select_users: Select Users
+  select_by_username: Select by specific User Name
+  select_services: Select Services
+  save_and_filter: Save & Filter
+  tags_text: ( You may enter multiple tags separated by space or comma )
+  tag_s: Tags
+  tag: Tag
+  start_date: Start Date
+  end_date: End Date
+  are_you_sure: Are you sure ?
+  click_here: click here
+  service_list_text1: You don’t have any
+  service_list_text2: services to share with. If you want to configure services
+  service_list_text: You don’t have any services to share with. If you want to configure services
+  showing_streams_of: Showing streams of co
+  comment: Comment
+  add_comments: Add your comments
+  comment_not_allowed: Commenting on this post is not allowed by the owner.
+  do_not_allow_comments: Do not allow comments
+  do_not_allow_retweets: Do not allow retweets
+  dont_show_message: I don't want to see this message again
+  delete_stream_text: Deleting this stream will not delete it from the source it came from
+  mark_as: Make all of my stream 
+  read: Read
+  unread: Unread
+  play: Play
+  retweeted: Retweeted
+  no_search_results: No results found matching your search criteria. Please modify your search and try again.
+  no_custom_streams: No streams to display from the selected custom stream.
+  no_updates: You do not have any updates from your
+  no_streams_to_display: There are no streams to display
+  new: New
+  all: All
+  no_notifications_found: There are no notifications
+  privacy_group_name: Privacy Group Name
+  privacy_members: Privacy Members
+  pick_members: Pick Members
+  create_privacy_group: Create privacy group
+  show: Show
+  services_they_can_see: Services They Can See
+  no_user_found: No user found
+  edit_privacy_group: Edit Privacy Group
+  users: Users
+  your_post_type: Your Post Type
+  no_pg_text: You don't have any group and please click on "New" to create privacy group.
+  your_post_service_groups: Your Post Service Groups
+  username_name: Name \ User Name
+  follower_s: Follower(s)!
+  following_s: Following(s)!
+  friend_s: Friend(s)!
+  favourites: Favourites
+  hide: Hide
+  ok: OK
+  post_group_name: Post group name
+  your_post_type: Your Post Type
+  delete_account_header: Delete Account
+  undo: Undo
+  retweet_select_services: Select services to retweet
+  no_friends_profile: This user has no friends.
+  no_followings_profile: This user has no followings.
+  no_followers_profile: This user has no followers.
+  new_header_text: Stream in your social content, post it back, filter it, set your privacy and display it the way you want all from one place!
+  marked_as_spammer: This user has been marked as spammer
+  user_not_exist_or_not_active: The profile you are looking for is not active or does not exist.
+  sign_up_plans: Plans, Pricing & Signup
+  account_login: Your account has been created. Please login with your credentials
+  
+  #  Phase 2.1
+  account_information: Account Information
+  member_since: Member Since
+  membership_type: Membership Type
+  pay_now: Pay Now
+  monthly_upload_limit: Monthly upload allowed
+  usage: Usage
+  current_usage: Current usage
+  days_left: Days left in cycle
+  downgrade_to_free: Downgrade to Free
+  upgrade_to_premium: Upgrade to Premium
+  downgrade_notice: Your account has been has been downgraded to free
+  downgrade_confirm: If you downgrade to our free plan you will not be refunded, you can enjoy your pro account until the start of the next cycle on
+  downgrade_to_free_account: Downgrade to FREE Account
+  select_payment_type: Select Your Payment Type
+  select_plan: Select a plan from below
+  select_individual_plan: Select from our Individual Plans
+  select_business_plan: Select from our Business Plans
+  all_plans_have: All plans come with ...
+  ssl_protection: SSL Protection
+  unlimited_account_size: Unlimited account size
+  unlimited_services: Unlimited social services
+  unlimited_custom_skins: Unlimited custom skins
+  new_user_signup: New User Sign Up
+  username_prompt: Make it Unique
+  fullname_prompt: Your first and last name (John Smith)
+  email_prompt: Activation link will be sent to this email
+  check_availability: Checking Availability...
+  create_account_text_premium: By Clicking on "Proceed to payment" you agree to our
+  create_account: Create Account
+  proceed_to_payment: Proceed to Payment
+  free_user_account_description: <li>Upload Limit of 250 MB/month (photos)</li><li>Create 1 Custom Skin</li>
+  premium_user_account_description: <li>Upload limit of 1024 MB/month (photos + videos)</li><li>Create unlimited Custom Skins</li>
+  premium_user_account_name: Premium
+  free_user_account_name: Free
+  next_payment_date: Next payment date
+  day_s: day(s)
+  small_business_account_description: <li>Upload limit of 3072 MB/month (photos + videos)</li><li>Add 2 Users(Including yourself)</li><li>Add 2 Brands</li>
+  mid_business_account_description: <li>Upload limit of 5120 MB/month (photos + videos)</li><li>Add 5 Users(Including yourself)</li><li>Add 5 Brands</li>
+  enterprise_business_account_description: <li>Upload limit of 10240 MB/month (photos + videos)</li><li>Add unlimited Users</li><li>Add unlimited Brands</li>
+  small_business_account_name: Small
+  mid_business_account_name: Mid
+  enterprise_business_account_name: Enterprise
+  login: Login
+  sign_up_short: Sign Up
+
+  #  Phase 2.2
+  account_information: Account Information
+  member_since: Member Since
+  membership_type: Membership Type
+  account_email_updated: "Your account email has been updated successfully. Please check your e-mail for your account activation instructions!"
+  default_brand: Make brand name as default brand
+  company_name: Brand Name
+  company_url: Brand URL
+  your_company_url: Your Brand URL
+  add_brand: Add Brand
+  brand_saved: Brand Created Successfully
+  dashboard: Dashboard
+  user_role: "Name of the User and Role"
+  new_brand: Add New Brand
+  brands: Brands
+  brand: Brand
+  brand_profile_setting: Your Brand profile will be seen by
+  upgrade: Upgrade
+  create_company: Sign Up for Brand
+  new_user_company_signup: New User and Brand Sign Up
+  create_account_text_5: Create your personal account to continue with business plan
+  sub_brands: Sub Brands
+  delete_company_account_text: Are you sure you want to permanently delete your brand account, all of your brands,stored stream items will be deleted also?
+  delete_company_account_confirm: Yes, delete brand
+  delete_company: Delete Brand
+  company_deleted: Brand account was deleted successfully
+  brand_deleted: Brand deleted successfully
+  brand_created: Brand Created Successfully
+  company_created: Brand Created Successfully
+  brand_updated: Brand Updated Successfully
+  company_information: Brand Information
+  edit_company: Edit Brand
+  edit_brand: Edit Brand
+  action_failed: Please try again
+  company: Brand
+  personal: Personal
+  customize_company_profile: Customize Brand Profile
+  brand_manager: Brand Manager
+  brand_admin: Brand Admin
+  content_manager: Content Manager
+  brand_stream_setting: "Your Brand posted stream will be seen by "
+  account_type: Account Type
+  downgrade: Downgrade
+  company_brand_list_heading: Listing Brands
+  customize_brand_profile: Customize Brand Profile
+  company_users_heading: Listing Brand Users
+  downgrade_to_small_account: Downgrade to Small account
+  no_brand: No brand
+  user_profile_blocked: You have been blocked by the user
+  selected_plan: Selected plan
+  edit_role: Edit Role
+  delete_role: Delete Role
+  role_changed: Role have been changed successfully
+  change_role: Change Role
+  brand_role_deleted: User role have been deleted
+  current_plan: Current Plan
+  manage_services: Manage Services
+  video_file_size_text: * You can upload MP4,3GP,FLV,AVI,MPEG,WMV,MOV or MPG files up to 100MB in size.
+  attach_video: Please attach a video file to post
+  flag_video_header: Flag Video as Inappropriate
+  stream_flagged: You have flagged this video as inappropriate
+  stream_already_flagged: You have already flagged this video as inappropriate
+  flag_description: Please specify the reasons for Flagging this video
+  photo_upload_text: * You can upload JPEG, GIF or PNG files up to %{size}MB in size.
+  video_upload_text: * You can upload MP4,3GP,FLV,AVI,MPEG,WMV,MOV or MPG files up to %{size}MB in size.
+  no_video_found: No videos have been reported as objectionable.
+  stream_abuse_report: Abuse report sent to admin
+  stream_abuse_report_fail: Please try again
+  no_abuse_contents_found: No abuse contents found
+  blocked_content: Content has been blocked by the admin for  violating the rules
+  current_cycle_user_activites: Your activities of this cycle
+  user_activites: Your Activities since you joined edintitybr
+  total_streamed_content: Total content added to topics
+  total_status_updated : Status updated from edintity
+  total_photo_updated : Photos uploaded from edintity
+  total_blog_posted : Blog posted from edintity
+  total_link_posted : Links posted from edintity
+  total_video_updated : Videos uploaded from edintity
+  no_of_current_cycle_followers : Number of new followers for this cycle
+  no_of_followers : Number of followers
+  no_payments_found: There are no payments to display
+  content_violation_count: Content Violation Count
+  searchable_setting: Your brands profile is searchable
+  no_result: No result found
+  affiliation: Affiliation
+  done_company: "TAKE me to my NEW brand page"
+  abuse_content_title: "Click the link to report stream as abuse"
+  company_updated: Brand update successfully
+  company_not_updated: Brand updation failed
+  your_brand: This is your brand
+  report_sent_to_admin: Abuse report sent to Admin
+  reason: Reason
+  report_as_abuse: Report this
+  reported_as_abuse: You have reported this stream as abuse, waiting for admin review...
+  stream_not_found: Stream content unavailable
+  brand_name: Brand Name
+  brand_url: Brand URL
+  about_brand: About
+  no_access_to_brand: "You do not have access to this brand but you can view this brand's profile"
+  invite_affiliate: Find or Invite Affiliates
+  edit_main_brand: Edit Main Brand
+  free: Free
+  you_are_following: You are following
+  Mid: Mid
+  Enterprise: Enterprise
+  about_us: About Us
+  email_downcase: email
+  request_reset_password: Request password reset
+  reset_password_instruction_text: Enter your new password
+  password_reset: Reset Password
+  individual_plan: Individual plans
+  all_plans: All plans come with
+  brands_and_blog_owners: Brands and Blog Owners plans
+  for: For
+  users_who_have_individual_accounts: users who have an individual account
+  users_who_dont_have_individual_accounts: users who don’t have an individual account
+  add_brand_plan_to_personal_account: you can add a brand plan from your personal account when signing into your account.
+  sign_up_for_personal_account: when clicking on “Choose this plan” you will sign up for a personal account, proceed to 30 days free trial and when done will add your brand(s) from your personal account.
+  choose_this_plan: Choose this plan
+  upload_limit: Upload limit
+  post_status_update_link_blog_photos: Post status update, link, blog post and photos
+  custom_profile_skin: Custom profile skin
+  account_activation_success: Account activation success
+  continue_account_setup: Continue to my home page
+  account_activation_confirming_message: Thank you for confirming your email address. You will be automatically redirected to your home page. If you’re not redirected after 5 seconds,click the button below to manually redirect you.
+  resend_activation_link: Resend Activation Link
+  resend_activation_link_message: Fill out the form below and instructions to activate your account will be emailed to you
+  days_left_in_cycle: Day left in cycle
+  account_settings: Account Settings
+  account_summary: Account Summary
+  browse_features_by_plans: Browse Features by Plans
+  starter_plan: Starter Plan
+  premium_plan: Premium Plan
+  business_plans: Bronze / Silver / Gold / Platinum Plan
+  compare_all_plans: Compare all plans
+  stream_content_in: Stream Content In
+  stream_content_in_description: Stream in your content from Facebook, Twitter, YouTube, Vimeo, Flickr, Tumblr, StumbleUpon and Delicious to your edintity account.
+  stream_content_out: Stream Content Out
+  stream_content_out_description: Send your status updates, links, photos, blog and post from edintity to Facebook, Twitter, YouTube, Vimeo, Flickr and Tumblr.
+  privacy_description: Set your profile or any of your added services to be seen by everyone, only you, your followers, who you’re following, friends or a custom privacy group such as family.
+  anonymity: Anonymity
+  anonymity_description: You have the option to have your full name seen by any of your privacy groups. Also, you can allow or disallow your profile from appearing in search results.
+  security: Security
+  security_description: Securing your access and critical data with our SSL from digicert who has Google, Amazon and Facebook among their users.
+  current_password: Current password
+  did_not_match_password: Did not match with your current password
+  change_password: Change password
+  change_email_address: Change email address
+  change_user_name: Change user name
+  change_full_name: Change full name
+  invalid_user_name_message:  Your user name is invalid. User name can only consists of character and numerals without punctuation and space
+  personal_settings: Personal Settings
+  user_photo: User Photo
+  personal_information: Personal Information
+  notification: Notification
+  payment_history: Payment History
+  i_m_done: I'm done
+  payment: Payment
+  plan: Plan
+  vendor: Vendor
+  amount: Amount
+  date: Date
+  status: Status
+  listing: Listing
+  brand_settings: Brand Settings
+  brand_delete_confirmation: Are you sure you want to delete your brand?
+  downgrade_plan: Downgrade plan
+  upgrade_plan: Upgrade plan
+  added_brands: Added brands
+  add_brand: Add brand
+  active_services: Active services
+  pending_services: Pending services
+  add_sub_brand: Add sub brand
+  edit_brand: Edit brand
+  affiliates: Affiliates
+  search_on_edintity: Search on edintity
+  find_people_who_have_editity_account: You can find people you know that already have a edintity account.
+  email_password: Email password
+  email_address: Email address
+  gmail: gmail
+  yahoo: yahoo
+  aol: aol
+  hotmail: hotmail
+  plaxo: plaxo
+  dot_com: .com
+  search_by_email: Search by email
+  we: We
+  dont_store_email_and_password: don't store your email address and password. We only use them to connect to your email account and never store them at all. Also the request is done securely.
+  your_email_and_password: Your email and password
+  check_if_friends_on_edintity: Check if your friends are already in edinity, you just need to put your email and password and will find them for you :)
+  find_friends_and_invite: Find your friends who are in edintity and give them an invite to join you here.
+  find: Find
+  find_invite_friend: Find / Invite Friends
+  modify_search_criteria: Please modify you search criteria and try again
+  brand_profile: Brand profile
+  individual_profile: Individual profile
+  find_friends_and_affiliates: Find friend and affiliates
+  filter: Filter
+  features_page_profile_description: Change the color scheme, add background images, play with the font size or type as you wish its your profile and save that profile skin to use at any time.
+  features_page_filter_description: Filter your stream with so many options (by a specific service, read/unread, or a custom filter that combines multipule options)
+  features_page_upload_limit_description: Your upload limit is only measured by the photos you upload. So, status updates, blog posts or links without photos will not decrease your upload limit.
+  search_option: Search option
+  save_search: Save search
+  yes_true: Yes
+  no_false: No
+  comment_disabled: Commenting has been disabled by the user
+  company_inactive: Your account has been expired. Please subscribe to a plan to continue using brand account
+  downgrade_later: You have remaining %{days} days of permium subscirption period and your account will be downgraded by %{date}.  Are you sure want to continue?
+  downgraded_by: Your account will be downgraded by %{date}
+  post_status_update_link_blog_photos_video: Post status update, link, blog post photos and videos
+  stream_content_out_description_premium: Send your status updates, links, photos, videos, blog and post from edintity to Facebook, Twitter, YouTube, Vimeo, Flickr and Tumblr.
+  features_page_upload_limit_description_premium: Your upload limit is only measured by the photos and videos you upload. So, status updates, blog posts or links without photos will not decrease your upload limit.
+  post_status_update_link_blog_photos_premium: Post status update, link, blog post, photos and videos
+
+  for_individual: For Individuals
+  for_brand: For Brands & Blog Owners
+  sign_up_free: Sign up for FREE
+  features_list: Features List
+  see_plans: See pricing and plans
+  filter: Filter
+  stream_in_out: Streaming Content from and to their social services
+  filters_privacy: Managing filters and privacy.
+  multiple_brands_users: Managing multiple brands and users of their pages.
+
+  already_registered: Already registered as member ?
+  continue: Continue
+  signup: Signup
+  search_name_brand: Search name or topic
+  social_networks: Social Networks
+  video_publishing: Video Publishing
+  bookmarking: Bookmarking
+  blogging_platform: Blogging Platform
+  photo_sharing: Photo Sharing
+  connect: Connect
+  add_more: Add More
+  configure: Configure
+  added: Added
+  pending: Pending
+  reconnect: Reconnect
+  reconnect_confirm: Are you sure you want to Reconnect this service?
+  add_service_to_brand: Add service to brand
+  enter: Enter
+  delete_service_msg: All your streams configured with this service also will get deleted. Are you sure you want to continue?
+  no_fb_page: There are no facbook pages configured by you. Please create a new page and try again.
+  select_fb_page: Select a page to configure with this service
+  brand_searchable: Your brand profile is searchable
+  updates_will_seen_by: Updates from this account will be seen by
+  no_contact_found: No Contact found
+  contact_found: Contact found
+  edintity_user: edintity user
+  search_result_for: Search results for
+  no_friend_band_found: No friend/brand found , modify your search criteria and try again
+  customize_skins: Customize skins
+  customize_my_skin: Customize my skin
+  reached_brand_limit: You have reached brand creation limit, please upgrade your brand account to create more brands
+  profile_searchable: Your profile is searchable
+  update_status: Update Status
+  blog: Blog
+  add_photo: Add Photo
+  add_video: Add Video
+  share_link: Share link
+  brand_management: Brand Management
+  brand_management_description: Add your brands under one account, their own specific services and users to manage these brands with a dashboard to help you manage your brands.
+  users_management: Users Management
+  users_management_description: You can invite or find users within edintity and assign to them one of our three user level management settings(Brand Admin, Brand Manager and Content Manager)
+  brand_admin_description: When you create the brand you are (Brand Admin) with full authority on everything. Payment options will only appear under this user type. So becareful.
+  brand_manager_description: Only Controls the brand under his/her control. Can't add/delete users or brands evern under his control. However, can add/delete service and skins.
+  content_manager_description: Adding content to stream with no rights to add/delete/edit users, brands and service.
+  privacy_control: Take control of your privacy.
+  filter_your_stream: Filter your stream to find what you want.
+  service_to_add: Service to Add
+  upload_limit: Upload limit (MB)
+  post_type_allowed: Post type allowed
+  custom_profile_skins: Custom profile skins
+  ssl: SSL
+  all_price: All price are in USD
+  monthly: Monthly
+  forever: Forever
+  no_limit: No limit
+  check: Check
+  what_are_you_doing: What are you doing...?
+  share_service: Share to your following services
+  shorten_link: Shorten link
+  share_on_all: Share on all services
+  share_on: Share on
+  you_dont_have_service: "You don’t have any services to share with."
+  enable_javascript: Please enable JavaScript to use file uploader.
+  add_url: Add URL
+  new_items: new items
+  more_streams: Click for more streams
+  report_abuse: Report abuse
+  untitled: Untitled
+  comment_new: "comment(s)"
+  share_new: "share(s)"
+  signup_text: "Please review the data you’ve entered, if everything seems alright, click"
+  password_confirm: "Password (confirm)"
+  your_plan: Your Plan
+  brand_url_example: "Your brand website example : "
+  account_info: Account Info
+  brand_info: Brand Info
+  tribe: Tribe
+  copyright: "edintity © 2011"
+  account_setup: Account Setup
+  and: and
+  user_name_taken: User Name has already been taken
+  unavailable: Unavailable
+  available: Available
+  this_is_you: This is you
+  user_name_validation: Your user name is invalid. User name can only consists of characters, numerals and underscore without punctuation and space
+  email_taken: Email has already been taken
+  invalid_email_format: Invalid Email format
+  sing_up_brand: Sign Up for Brand
+  user_name_not_allowed: User name is restircted or not allowed
+  user_name_not_allowed_1: is restircted or not allowed
+  features_business_header_1: These plans include all of these features mentioned in the Premium Plan.
+  features_business_header_2: The brand plans differ only by how many users, brands and upload limit you are allowed, check the compare all.
+  account_size: Account Size
+  storage: "(storage)"
+  including_yourself: including yourself
+  blog_title: Blog Title
+  blog_content_here: Write Your blog content here...
+  link_content:  Say something about your link...
+  photo_content: Say something about your photo...
+  video_content: Say something about your video...
+
+  welcome_message: "You have selected %{plan_name} plan. We are preparing you HOME page and you will be redirected to your home in 5 seconds, if not please click the below button."
+  main_page_text1: MANAGE YOUR SOCIAL CONTENT FREELY & EASILY
+  main_page_text2: SERVICES WE SUPPORT
+  main_page_text3: FACEBOOK . TWITTER . TUMBLR . YOUTUBE . VIMEO . FLICKR . STUMBLEUPON . DELICIOUS
+  watch_screencast: What is edintity?
+  signup_tutorial: Signing Up for an Account
+  explore_edintity: Explore edintity
+  blocked_user_list: Blocked user list
+  prefered_language: Prefered Language
+  comment_disabled_signup: You need to be registered to make a comment
+  share_on_facebook: Share on Facebook
+  facebook_comments: Show facebook comments
+  comment_blank: Comment cannot be blank
+  share_on_twitter: Reply on Twitter
+  twitter_comments: Show twitter replies
+  free_trial_30_days: FREE 30-day trial
+  free_trial_no_cc: Start my free trial
+  no_credit_card: No Credit Card required
+  free_trial: Free trial
+  note: Note
+  email_help_text: Your edintity account activation information will be sent to this email
+  brand_website: Brand Website
+  brand_url_text: "Your edintity brand URL:"
+  signup_free_trial: Signup - Free trial
+  has_been_taken: has already been taken
+
+  activation_reminder_text: Please verify your account by clicking the verification link sent to your email address
+  activation_reminder: Important Notice
+  activation_reminder_resend: To resend verification email
+  activation_reminder_change_email: If you feel your email address is incorrect
+  change_email_address: to change your email address
+  activation_reminder_note: 'Note: Verify your account to avoid the account deactivation by the system'
+  streams: streams
+
+  set_auto_refresh: Set Refresh Mode
+  manual_refresh: Manual Refresh
+  refresh_2_min: Refresh Every 2 Minutes
+  refresh_5_min: Refresh Every 5 Minutes
+  refresh_10_min: Refresh Every 10 Minutes
+  refresh_15_min: Refresh Every 15 Minutes
+  refresh_30_min: Refresh Every 30 Minutes
+
+  parent_brand_name: Parent Brand Name
+  click_here: Click here
+  stay_connected_message: to add your social services and your social inbox with content.
+
+  share_my_service_status_update_on_edintity: Share my service status update on edintity
+  share_my_service_favourites_on_edintity: Share my service favourites on edintity
+  share_my_service_uploads_on_edintity: Share my service uploads on edintity
+  share_my_service_content_on_edintity: Share my service content on edintity
+  share_my_edintity_content_on_service: Share my edintity content on service
+  disallow_comments_on_feeds: Disallow comments on feeds
+  disallow_comments_on_streams: Disallow comments on streams
+
+  #skin
+  your_skins: Your skins
+  add_new_skin: Add new skin
+  skin_active:  Active
+  skin_header:  HEADER
+  stream: STREAM
+  enter_new_skin: Enter new skin name
+
+
+  #topic
+  added_topic: added to topic
+  topic: Topic
+  points: Points
+  pick_topic: Pick a topic
+  optional_msg: Type your message here
+  activity: Activity
+  add_topic: Add Topic
+  you_are_intreseted: What are you interested in?
+  selected_topics: Selected Topic(s)
+  added_topic_sucessfully: stream added successfully to the topic
+  no_searched_topic : No topics
+  stream_Bookmarked: "Stream Bookmarked Sucessfully"
+  stream_UnBookmarked: "UnBookmarked Successful"
+  mark_favorite: "Stream marked favorite Sucessfully"
+  mark_unfavorite: "Stream marked unfavorite Successful"
+  level: Level
+  add_tag: Add Tag
+  tags : Selected Tags
+  tag_hint : You may enter only 3 tags
+  success_thank_you : Thank you for your appreciation
+
+  topics: Topics
+
+  more_lower: more...
+  activity_time : Created at
+  topics_added: "topics added successfully"
+  level_1 : Level 1
+  level_2 : Level 2
+  level_3 : Level 3
+  level_4 : Level 4
+  level_5 : Level 5
+  no_points: No Points
+  topic_follow_notice : you are following sucessfully topic
+
+  facebook_login: Login with Facebook
+  twitter_login: Login with Twitter
+  explore_content: Explore content about [topic]
+  share_content : Share content from your social accounts to [topic] and
+  get_recognized : Get recognized for your efforts by others in a fun experience
+  join_us : Join us and discover edintity's secret

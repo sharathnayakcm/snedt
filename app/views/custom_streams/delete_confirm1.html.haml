@@ -1,0 +1,11 @@
+:javascript
+  $('RB_window').style.width = "300px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 300)/2) + "px";
+.dialogs
+  .dialog_details
+    %p Are you sure ?
+    .button
+      = link_to_remote "#{t :okay}", :url => {:controller => :custom_streams, :action => :delete, :custom_id => @custom_stream_id}
+    .button
+      = button_to_close_redbox("#{t :cancel}")
+    

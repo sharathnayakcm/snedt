@@ -1,0 +1,57 @@
+:javascript
+  $j(document).ready(function(){
+    $j('.button').corner("7px");
+  });
+.columns
+  .column.width_8.left_most.float_left
+    - rounded_box_for( |
+          nil, |
+          :header => {:text => "#{t :friends_you_can_invite}", :level => 4}, |
+          :group_name => "Signup" |
+        ) do |rounded_box| |
+      - @company = Company.find_by_id(params[:company_id])
+      - form_remote_tag :url => invite_friends_company_invitations_path(@company), :method => :get do |f|
+        %table.contact_list{:style => "margin-left:-35px;"}
+          - i = 0
+          - @contact_emails.each do |c|
+            - unless c.blank?
+              %tr{:style => "list-style:none outside none;"}
+                %td
+                  %label.float_left{:for => "invites_#{i}"}== #{c}
+                %td
+                  %div.float_right.appends_1{:id => "followed_status_#{c.id}", :style=>"color:green"}
+                    = select(:brand_privacy_setting, :profile, BrandUserGroup::ACCESS_TYPES, {:disabled => "0"}, :class => "select_type")
+                %td
+                = select_tag "brand", options_from_collection_for_select(@company.brands,:id,:name)
+                %td
+                  %div{:class => "brand_invite_btn", :id => "brand_invite_#{i}" }
+                    .button.button_anchor{:style=> "margin-top: 3px;"}
+                      = link_to_remote_with_loader "#{t :invite}", :url => invite_friends_company_invitations_path(@company,:invites => c,:id =>i), :method => :get, :with => " 'brand_id=' +$('brand').value + '&access_type_id=' +$('brand_privacy_setting_profile').value"
+                  .clear
+              - i += 1
+          .clear
+          <br />
+          .align_center= submit_tag "#{t :invite}", :class => "button",  :name => "invite", :new => "true"
+  .column.width_8.right_most.float_contact
+    - rounded_box_for( |
+          nil, |
+          :header => {:text => "#{t :friends_already_in_edintity}", :level => 5}, |
+          :group_name => "Signup" |
+        ) do |rounded_box| |
+      - form_remote_tag :url => add_friends_from_contacts_user_friends_path(current_user), :method => :get do |f|
+        %ul.contact_list
+          - unless @available_users.blank?
+            - i = 0
+            - @available_users.each do |friend|
+              - unless friend.blank?
+                %li{:style => "list-style:none outside none;"}
+                  .float_left= check_box_tag "invites[#{i}]", friend, false, {:id => "friend_#{i}"}
+                  %label.float_left{:for => "invites_#{i}"}== #{friend}
+                  %div.float_right{:id => "followed_status_#{i}", :style => "padding-right:10px;"}
+                  .clear
+                - i += 1
+            .clear
+            <br />
+            .align_center= submit_tag "#{t :follow}", :class => "button",  :name => "invite", :new => "true"
+          - else
+            %li{:style => "list-style:none outside none;"}= "#{t :no_friends_in_site}"

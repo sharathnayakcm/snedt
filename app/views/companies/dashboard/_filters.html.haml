@@ -1,0 +1,22 @@
+.new_item_bar_div
+  .new_item_bar
+    .filter_panel_actions
+      .flLeft{:style => "width:200px;margin-top:4px"}
+        %b Listing 
+        = select_tag "filter_limit", options_for_select(['10', '20', '30', '40'], params[:limit]), :class => "rounded", :onchange => remote_function(:loading => "$j('#stream_loading_div').show();", :url => {:controller => "companies/dashboard", :action => :load_data}, :with => "'type=stream&filter=all&start_date=' + $('start_date').value + '&end_date=' + $('end_date').value + '&limit=' + $('filter_limit').value")
+        streams
+        =image_tag("/images/loadinfo.gif" , :id => 'stream_loading_div', :style => "display:none;")
+        &nbsp;&nbsp;
+      .topStreamFilterIcons== Select: &nbsp;&nbsp;
+      .topStreamFilterIcons= link_to_remote " #{t :all} ",:loading => "$j('#stream_loading_div').show();", :url => {:controller => "companies/dashboard", :action => :load_data}, :with => "'type=stream&filter=all&start_date=' + $('start_date').value + '&end_date=' + $('end_date').value + '&limit=' + $('filter_limit').value"
+      .topStreamFilterServices
+        - Service.all.each do |service|
+          - unless service.name.downcase.include?("rss")
+            - service_tag, service_count = service_filter(service)
+            .flLeft
+              %a{:onclick => remote_function(:loading => "$j('#stream_loading_div').show();",:url => {:controller => "companies/dashboard", :action => :load_data}, :with => "'type=stream&filter=#{service.id}&start_date=' + $('start_date').value + '&end_date=' + $('end_date').value + '&limit=' + $('filter_limit').value")}
+                %span.networkIco{:id => "#{service.name.downcase.gsub(' ','')}Service"}
+        %a{:onclick => remote_function(:loading => "$j('#stream_loading_div').show();",:url => {:controller => "companies/dashboard", :action => :load_data}, :with => "'type=stream&filter=all&start_date=' + $('start_date').value + '&end_date=' + $('end_date').value + '&limit=' + $('filter_limit').value")}
+          %span.edintityIco.networkIco
+          
+.clear

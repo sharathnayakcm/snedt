@@ -1,0 +1,33 @@
+:javascript
+  $j('.button').corner("4px");
+  $('RB_window').style.width = "500px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 500)/2) + "px";
+.dialogs
+  - form_tag  "home/create_custom_tab"  do
+    =# hidden_field_tag :service_id, @service.id
+    .dialog_details
+      .center{:style => "padding-left: 50px;"}
+        .header
+          = "Create Custom Tab"
+        .title
+          == Enter the tab name
+          = text_field_tag "tab_name"
+        .users
+          .bold== Select users
+          - User::USER_TYPE_ID.each do |user_type|
+            = check_box_tag user_type.last
+            = user_type.first.humanize
+
+        .with_user
+          == Select by specific User Name
+          = text_field_tag "user_name"
+        .services
+          == Select Services
+          - current_user.active_services.each do |user_service|
+            = check_box_tag "serviceid_#{user_service.id}", "#{user_service.id}"
+            = image_tag("services/#{user_service.service.name.downcase}.png", :title => "#{user_service.display_name}", :width => "20px")
+        =  submit_tag "Create", :class => "add_service"
+        =#  submit_tag "Save", :class => "add_service", :user_service => params[:user_service_id] if user_service
+        %span.cancel
+          =  link_to_close_redbox("Cancel") 
+          =#  link_to 'Remove', :delete => true,:action => "delete_user_service",:controller => "Users::Services", :id => user_service.id, :confirm => 'Are you sure?', :method => :delete

@@ -1,0 +1,38 @@
+#searcFriendEmailResult.searchByEmailResult{:class => "#{session[:signup] ? 'affiliatesResult' : ''}"}
+  - if @users.blank? && @contact_emails.blank?
+    .titles
+      %h6
+        %span.addressBook
+          =t :no_contact_found
+  - else
+    .titles
+      %h6
+        %span.addressBook
+          =t :contact_found
+    %ul.cornerAll
+      - @users.each do |user|
+        %li{:id => "on_edintity_#{user.id}"}
+          - unless @company
+            = render :partial => "users/friends/edintity_users", :locals => {:user => user}
+          - else
+            = render :partial => "users/friends/my_brand_friends", :locals => {:user => user, :company => @company}
+      - i = 0
+      - @contact_emails.each do |email|
+        - email_id = !email.blank? ? email.gsub(/ru=(.)*/,'').gsub('%40','@').gsub('&amp;','').gsub(' ','').gsub('&','') : email
+        %li
+          %span.nameResult.flLeft
+            = email_id
+          .brand_invite_btn{:id => "email_brand_invite_#{i}"}
+            .blueBtn.flRight
+              - unless @company
+                = link_to_remote "#{t :invite}", {:url => invite_friends_user_friends_path(current_user, :email => email_id,:id =>i), :method => :get}, :class => "smlrBtn"
+              - else
+                - if @company.is_allowed_to_add_user_group?
+                  = link_to_remote "#{t :invite}", :html => {:class => "smlrBtn"}, :url => invite_friends_company_invitations_path(@company,:invites => email_id,:id =>i), :method => :get, :with => " 'brand_id=' +$('email_brand_#{i}').value + '&access_type_id=' +$('email_access_type_#{i}').value"
+                - else
+                  = link_to(t(:invite), "javascript:void(0)", :title => "You have exceed your invite limit, please upgrade your account to inivite unlimited users", :onclick => "alert('You have exceed your invite limit, please upgrade your account to inivite unlimited users')", :class => "smlrBtn")
+          - if @company
+            .flRight{:style => "margin-left: 10px; margin-right: 10px;"}
+              = select(:brand_privacy_setting, :profile, BrandUserGroup::ACCESS_TYPES, {:disabled => "0"}, :class => "select_type", :id => "email_access_type_#{i}")
+              = select_tag "email_brand_#{i}", options_from_collection_for_select(@company.brands,:id,:name)
+        - i += 1

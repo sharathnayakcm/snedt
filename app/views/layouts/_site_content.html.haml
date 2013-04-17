@@ -1,0 +1,52 @@
+- if (request.path.index("admin"))
+  %br
+  .admin_menu
+    = render :partial => "/admin/shared/navigation"
+  .clear
+
+  %div{:align => "center", :style => "margin:-35px 20px 20px;"}
+    = inner_content
+- else
+  - if current_user
+    = render :partial => "layouts/affiliates"
+    
+  #personalMainStream.streamMain.streamWrapper.cornerAll.flLeft
+    - if current_user && !request.path.inspect.index("edit") && controller_name != "profiles" && !request.path.inspect.index("services") && !request.path.inspect.index("welcome")
+
+      .homeHeader
+        .streamHeader
+          %ul#topNavigation
+            %li
+              = link_to(content_tag(:span, 'Home', :id => 'myStreamIco'), my_streams_path, :id => "tab-0")
+            %li
+              = link_to(content_tag(:span, 'Post', :id => 'postIco'), new_stream_path, :id => "tab-1")
+            %li
+              = link_to(content_tag(:span, 'Social Inbox', :id => 'socialInboxIco'), social_inbox_path, :id => "tab-2")
+            %li
+              = link_to(content_tag(:span, 'Topics', :id => 'topicIco'), topics_path, :id => "cont-3")
+            %li
+              = link_to(content_tag(:span, 'Activities', :id => 'activityIco'), activities_path, :id => "cont-4")
+            %li
+              %a#cont-5.tabLink{:href => "javascript:;", :onclick => "$j('.shareServiceControl').hide();"}
+                %span#videoIco
+                  Badges
+    - elsif request.path.inspect.index("edit")
+      :javascript
+        var topNavLinkId = '';
+      .accountHeader
+        .titles
+          %h4= t :account_settings
+    - else
+      :javascript
+        var topNavLinkId = '';
+
+    = inner_content
+
+:javascript
+  function toggle_visibility(id) {
+    var e = document.getElementById(id);
+    if(e.style.display == 'block')
+      e.style.display = 'none';
+    else
+      e.style.display = 'block';
+  }

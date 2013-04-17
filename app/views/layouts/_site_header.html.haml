@@ -1,0 +1,62 @@
+#ednt-Header
+  #ednt-HeaderInner
+    #mainLogo
+      %h1
+        %a{:href=>"/"}
+          %img{:src=>"/images/mainLogo.png", :alt=>"edintity"}
+    - if current_user && params[:signup] != 'true'
+      #headerSearchWrapper.flLeft
+        - form_tag('/users/search_user') do |f|
+          %span
+            =text_field_tag :searchword, '', :maxlength => 15, :size => 15, :id => 'mainSearch', :value => "#{t :search_name_brand}", :autocomplete => "off",:onfocus => "if(!this._haschanged){this.value=''};this._haschanged=true;", :onkeyup => "#{remote_function(:url => search_user_from_header_users_path, :method => :get, :with => "'searchword='+this.value")}", :onclick => "toggle_visibility('searchDropdown');"
+        #searchDropdown
+      #navigation.flRight
+        %ul
+          %li#personal{:class => "#{controller_name == "home" ||params[:controller] == "Users::Services"||controller_name == "users"||controller_name == "profiles"? 'navSelected' : ''}"}
+            %a.cornerAll{:href => root_url}
+              %span.arrowDown
+                =t :personal
+            #dropNav.navDropDown
+              .dropHead
+                %a.cornerTop{:href => root_url}
+                  %span.arrowDown
+                    =t :personal
+              .dropContent
+                %ul
+                  %li
+                    %a{:href => "/home"}
+                      %span#homeIco
+                        =t :home
+                  %li
+                    %a{:href => profiles_path(:id => current_user.user_name)}
+                      %span#profileIco
+                        =t :profile
+                  %li
+                    %a{:href => user_services_path(current_user,:signup =>"false")}
+                      %span#servicesIco
+                        =t :services
+                  %li
+                    %a{:href => edit_user_path(current_user)}
+                      %span#settingIco
+                        =t :settings
+          %li#adminConsol{:class => "#{request.path.index("admin") ? 'navSelected':''}"}
+            - if current_user.is_admin == true
+              - if (request.path.index("admin"))
+                %a.cornerAll{:href =>  admin_dashboard_index_path(current_user)}
+                  =t :admin_console
+              -else
+                %a.cornerAll{:href =>  admin_users_path(current_user)}
+                  =t :admin_console
+          %li#logout
+            %a.cornerAll{:href => "/logout"}
+              =t :sign_out
+    - elsif current_user.blank?
+      #loginArea.flRight
+        .loginLable
+          %p
+            = t :already_registered
+        .loginButton.flRight
+          %a{:href=>"#", :onclick=>"toggle_visibility('loginForm');"}
+            =t :login
+        #loginForm{:style=>"display:none;"}
+          = render :partial => "user_sessions/login_home"

@@ -1,0 +1,14 @@
+Test Twitter API
+
+     <% if @link %>
+        You have not authorize my app into your twitter
+
+       <%= link_to "Click here to authorize myapp.me", @link %>
+     <% else %>
+        Try to update your status
+
+        <% form_tag "/twits/update_status", :method => "post" do %>
+          <%= text_field_tag "status" %>
+          <%= submit_tag "Update" %>
+        <% end %>
+      <% end %>

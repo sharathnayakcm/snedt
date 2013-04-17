@@ -1,0 +1,3 @@
+%strong= link.title
+%span{:id => "rss_actions_#{link.id}",:style => "display:none"}
+  = link_to_remote ((link.status) ? "Inactivate" : "Activate"), :url => change_status_admin_admin_rss_links_path(:id => link.id)

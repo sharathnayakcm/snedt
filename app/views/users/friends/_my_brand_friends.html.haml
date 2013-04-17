@@ -1,0 +1,22 @@
+- invite = company.brand_user_groups.find_by_user_id(user.id)
+- current_user.reload
+%span.nameResult.flLeft
+  = user.get_full_name(current_user)
+  %i (#{user.user_name})
+%span.userType Individual
+- if current_user.id == user.id
+  .greenBtn.flRight
+    %a.smlrBtn
+      = t :this_is_you
+- else
+  .brand_invite_btn{:id => "brand_invite_#{user.id}"}
+    - if company.is_allowed_to_add_user_group?
+      .blueBtn.flRight
+        = link_to_remote "#{t :invite}", :html => {:class => "smlrBtn"}, :url => invite_friends_to_brand_user_friends_path(current_user, :follower => user.id), :method => :get, :with => " 'brand_id=' +$('brand_#{user.id}').value + '&access_type_id=' +$('access_type_#{user.id}').value"
+    - else
+      .blueBtn.flRight
+        = link_to(t(:invite), "javascript:void(0)", :title => "You have exceed your invite limit, please upgrade your account to inivite unlimited users", :onclick => "alert('You have exceed your invite limit, please upgrade your account to inivite unlimited users')", :class => "smlrBtn")
+- unless current_user.id == user.id
+  .flRight{:style => "margin-left: 10px; margin-right: 10px;"}
+    = select(:brand_privacy_setting, :profile, BrandUserGroup::ACCESS_TYPES, {:disabled => "0"}, :class => "select_type", :id => "access_type_#{user.id}")
+    = select_tag "brand_#{user.id}", options_from_collection_for_select(company.brands,:id,:name)

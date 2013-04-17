@@ -1,0 +1,23 @@
+-form_remote_for(:user_privacy_setting, {:url => { :id => current_user.id, :user_id => @privacy_setting.id, :controller => "Users::Privacies", :action => "update"}})  do |f|
+  - pgs = @privacy_groups.blank? ? [] : [["#{t :custom_groups}", '0']] + @privacy_groups.collect {|x| x.grp_array}
+  .privacySetup.cornerAll
+    %ul
+      %li
+        .privacyRestrict
+          %label.accntPrivacyGeneral{:for => "privacyProfileView"}
+            =t :profile_setting
+          = select(:user_privacy_setting, :profile, [["#{t 'everyone'}",'1'], ["#{t 'followers'}",'2'], ["#{t 'following'}",'3'],["#{t 'friends'}",'4'], ["#{t 'just_me'}",'5']] + pgs,{:selected => @privacy_setting.profile, :disabled => "0"}, :class => "select_type")
+      %li
+        .privacyRestrict
+          %label.accntPrivacyGeneral{:for => "privacyProfileView"}
+            =t :profile_searchable
+          = select(:user_privacy_setting, :is_searchable, [["Yes",1], ["No",0]],{:selected => @privacy_setting.is_searchable ? 1 : 0, :disabled => "0"}, :class => "select_type")
+      %li
+        .privacyRestrict
+          %input{:name => "user_privacy_setting[friends_find]", :type => "checkbox", :checked => current_user.friends_find}
+          /= check_box_tag 'user_privacy_setting_friends_find', true, current_user.friends_find
+          %label.accntPrivacyGeneral{:for => "privacyProfileView", :style => "float:none !important"}
+            =t :email_text
+    .savePersonalChanges
+      .blueBtn
+        = submit_tag "#{t :save_changes}", :id => "submit", :class => "smlrBtn"

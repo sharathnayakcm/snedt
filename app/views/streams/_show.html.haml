@@ -1,0 +1,261 @@
+%li.SharedPostStream{:id => "stream_content_#{stream.id}"}
+  %div{:id=>"social_inbox_topics_#{stream.id}"}
+  - @social_inbox = request.path.inspect.index("social_inbox") ? true :false
+  - @user_tags = stream.stream_tags.map{|t| t.tag.name}.join(",")
+  - @tags = current_user.tags.map.collect{|tag| tag.name}.join(",")
+  .streamLine
+    .streamTopic
+      -if !@social_inbox
+        - if stream.topic.present?
+          %a{:href => "javascript:void(0);"}
+            = stream.user.full_name
+          ="#{t :added_topic}"
+          = link_to stream.topic.title, my_streams_path(:topic_id => stream.topic.id)
+        - else
+          -unless @social_inbox
+            %a{:href => "javascript:void(0);"}
+              = stream.user.full_name
+
+
+    - if stream.service_id.present?
+      %a.medPhotoStream{:href => "javascript:void(0);"}
+        - if @brand
+          -unless brand_type == "brand"
+            - if stream.company && !stream.company.profile_image.blank?
+              = image_tag stream.company.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :class => "userPicMed"
+            - else
+              = image_tag("brandPicMed.jpg")
+          - else
+            - unless @brand.profile_image.blank?
+              = image_tag @brand.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :class => "userPicMed"
+            - else
+              = image_tag("brandPicMed.jpg")
+        - else
+          /-  if stream.service_id.nil? || stream.assets.length > 0
+          /  - unless stream.user.profile_image.blank?
+          /    = image_tag stream.user.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :class => "userPicMed"
+          /  - else
+          /    = image_tag("userTes.png")
+          - if stream.sender.profile_image_url
+            %img{:src => "#{stream.sender.profile_image_url}", :height => "55px"}
+          /- else
+          /  = image_tag("userTes.png")
+        %span.overlay
+          - if session[:locale] == "arabic"
+            %img{:src => "/images/userFrameRight.png"}
+          - else
+            %img{:src => "/images/userFrame.png"}
+    /%a{:onclick=>"toggle_visibility('reporAbuseModal');", :href=>"#", :class=>"reportPost"}= t :report_abuse
+    - if current_user && stream.user != current_user
+      = link_to_remote_redbox t(:report_as_abuse), {:url => report_abuse_streams_path(:id =>stream.id)}, {:title => "#{t :abuse_content_title}", :class=>"reportPost"}
+    .streamLineWrapper
+      /.actSelector.flRight
+      /  %ul
+      /    - if !stream.service_id.nil? && stream.service_id == 1
+      /      %li{:id => "retweet_#{stream.id}"}
+      /        - if stream.retweeted
+      /          = link_to '' , 'javascript: void(0);', :class => 'retweeted'
+      /        - else
+      /          = link_to_remote '' ,:url => retweet_streams_path(:id =>stream.id, :user_service_ids => current_user.user_services.twitter_authorized.map{|us| us.id}), :method => :get, :html => {:class => 'retweet'}
+      /    - if stream.user_service && stream.user_service.default_stream_action
+      /      - can_favorite = stream.user_service.default_stream_action.favourite
+      /    - else
+      /      - can_favorite = stream.stream_action && stream.stream_action.favourite
+      /    - if current_user && can_favorite
+      /      %li
+      /        - fav_class = current_user && current_user.is_favourite_stream(stream) ? "favTrue" : "fav"
+      /        = link_to_remote '' ,:url => mark_as_favourite_stream_path(stream), :method => :get, :html => { :class => fav_class, :id => "fav_#{stream.id}"}
+      /    - if stream.user == current_user && @custom_tab.blank?
+      /      %li
+      /        - read_class = stream.is_read ? "markRead" : "markUnread"
+      /        = link_to_remote '' ,:url => toggle_read_stream_path(stream, :controller_name => @controller_name || controller.controller_name), :method => :get, :html => { :class => read_class, :id => "read_#{stream.id}"}
+      /    - if stream.user == current_user
+      /      %l
+      /        - if @show_popup && !(stream.service_id.nil? || stream.assets.length > 0)
+      /          = link_to_remote_redbox "", {:url => {:controller => :streams, :action => :delete_stream_confirm, :id => stream.id}, :before => "$j('object').hide();"}, :class => "removePost"
+      /        - else
+      /          = link_to_remote "",:url => delete_stream_streams_path(:id => stream.id), :html => {:class => "removePost"}
+      %h6
+        - if stream.user_service
+          -if @social_inbox
+            %span.networkIco{:id => "#{stream.user_service.service.name.downcase.gsub(' ','')}Service"}
+            .userDesc
+              %a{:href => "javascript:void(0);"}
+                - if stream.service_id == 9 && stream.user_service
+                  = !stream.sender.name.blank? ? stream.sender.name : stream.user_service.user_name
+                - else
+                  = stream.sender.name ? stream.sender.name : "#{t :untitled}"
+            - if stream.topic.present?
+              .stream_topic_added_pic{:id=> "topic_img_#{stream.id}"}
+                %img{:src => "/images/brandPicMed.jpg", :height => "25px",:class=>"stream_topic_img",:title => "#{stream.topic.title}"}
+            %div{:id => "added_topic_img_#{stream.id}"}
+        .msgBody
+          = render :partial => "streams/media", :locals => {:stream => stream}
+          = render :partial => "streams/stream_video", :locals => {:stream => stream}
+          = render :partial => "streams/stream_text", :locals => {:stream => stream}
+      -unless @social_inbox
+        %div{:id => "selected_tags_#{stream.id}"}
+          -if @user_tags.present?
+            = render :partial => "topics/stream_tags", :locals => {:tags => @user_tags}
+      .metaCommentTable
+        - if stream.topic_id.present? && stream.stream_id.present? && !@social_inbox && stream.user.id == current_user.id
+          .userDesc
+            = "Source From"
+            %a{:href => "javascript:void(0);"}
+              - if stream.service_id == 9 && stream.user_service
+                = !stream.sender.name.blank? ? stream.sender.name : stream.user_service.user_name
+              - else
+                = stream.sender.name ? stream.sender.name : "#{t :untitled}"
+            = "@"
+            %span.networkIco{:id => "#{stream.user_service.service.name.downcase.gsub(' ','')}Service",:style=>"margin-left:10px;"}
+
+        - if stream.user_service
+          /- can_comment = stream.user_service.default_stream_action.allow_comments
+        - else
+          - can_comment = stream.stream_action && stream.stream_action.allow_comments
+        %ul
+          - unless stream.stream_created_at < Date.today - 1.week
+            %li.date
+              %a
+                - if session[:locale] == "arabic"
+                  %span{:style => "direction:ltr;"}= to_local(stream.stream_created_at).strftime("%Y %b %d") unless  stream.stream_created_at.blank?
+                - else
+                  = time_ago_in_words(stream.stream_created_at).to_s + '  ago'  unless  stream.stream_created_at.blank?
+          - else
+            %li.timing
+              %a
+                = to_local(stream.stream_created_at).strftime("%d %b %Y") unless  stream.stream_created_at.blank?
+
+          - if !@social_inbox && stream.service_id.blank?
+            %li
+              = link_to "#{stream.comments.count} #{t :share_new}" ,'javascript: void(0);', :html => {}, :onclick => "jQuery('.sharingOptCheck_#{stream.id}').toggle();"
+              .sharingOptCheckStream{ :id => "sharingOptCheckStream_#{stream.id}", :style => "display:none; position:absolute !important; top: 15px", :class => "shareServiceControl streamshare sharingOptCheck_#{stream.id}"}
+                .shareToServiceDropdown.cornerBottom.transBg
+                  %span.closeShareOpt
+                    %a.uiIconInside{:href=>"javascript:void(0)", :onclick=>"toggle_visibility('sharingOptCheckStream_#{stream.id}');"}
+                  - if @brand
+                    - status_link_services = @brand.active_services.link_sharing_services
+                  - else
+                    - status_link_services = current_user.active_services.link_sharing_services
+                  - if status_link_services.length > 0
+                    - remote_form_for :stream, stream, :url => share_stream_streams_path, :method => :post do |f|
+                      %input{:name => "stream_id", :type => 'hidden', :value => stream.id}
+                      %ul{:id => "stream_share"}
+                        %li
+                          == Your Message(optional)
+                        %li
+                          = text_area_tag "status_optional_message", "#{t(:optional_msg)}",:id =>"status_optional_message_#{stream.id}", :cols => '35', :rows => '3', :onkeyup => "char_count_up('#{stream.id}')",:onfocus => "this.value = ''"
+                          .textcharcounter{:id=>"textareaCounter_#{stream.id}"}
+                        %li.stream_url
+                          = "URL : "
+                          - url = request.host_with_port + "/stream/"
+                          - long_url = "http://#{url}#{stream.id}"
+                          .short_link.padding_top_5
+                            = link_to shorten_with_bitly(long_url),long_url
+                        %li.padding_left_10
+                          %a{:href => "javascript:void(0);"}
+                            .flLeft.padding_top_5
+                              %input{:name => "select_all", :type => "checkbox", :value => "", :id => "status_all", :onclick => "if($(this).checked){$j('#sharingOptCheckStream').find('input:checkbox').attr({checked: true});}else{$j('#sharingOptCheckStream_#{stream.id}').find('input:checkbox').attr({checked: false});}"}
+                            .flLeft.share_all.emptyIco= t :share_on_all
+
+                        - status_link_services.each do |user_service|
+                          %li.padding_left_10.clear
+                            %a{:href => "javascript:void(0);", :title => user_service.display_name}
+                              .flLeft.padding_top_5
+                                %input{:name => "serviceid[]", :type => "checkbox", :value => "#{user_service.id}", :onclick => "$j('#status_all').attr({checked: false});"}
+                              .flLeft.networkIco{:id =>"#{user_service.service.name.downcase.gsub(' ','')}Service"}
+                                .twittercharcounter{:id => "twitter_char_count_#{stream.id}"}
+                                = t :share_on
+                                %strong
+                                  = user_service.service.name.downcase
+                        %li.float_right.clear
+                          .blueBtn
+                            %input{:type => 'submit', :value => 'Share'}
+                  - else
+                    %ul
+                      %li
+                        %a &nbsp;
+                      %li
+                        %a= t :you_dont_have_service
+
+            %li.comment
+              - if current_user && can_comment
+                %a.commentIco{:href => "javascript:void(0);", :onclick => "toggle_visibility('write_comment_#{stream.id}');return false;"}
+                  %span{:class => "comment_count_#{stream.id}"}= "#{stream.comments.count} #{t :comment_new}"
+              - elsif current_user
+                %a.commentIco{:href => "javascript:void(0);", :onclick => "notice('#{t :comment_disabled}')"}
+                  %span{:class => "comment_count_#{stream.id}"}= "#{stream.comments.count} #{t :comment_new}"
+              - else
+                %a.commentIco{:href => "javascript:void(0);", :onclick => "notice('#{t :comment_disabled_signup}')"}
+                  %span{:class => "comment_count_#{stream.id}"}= "#{stream.comments.count} #{t :comment_new}"
+            - if stream.user == current_user && stream.service_id == 2 || stream.user == current_user && stream.service_id == 10
+              %li.comment{:id => "show_facebook_comment_#{stream.id}"}
+                = link_to_remote "#{t :facebook_comments}",:url => facebook_comments_stream_path(stream), :before => "$j('#fb_comment_spinner_#{stream.id}').removeClass('hide')"
+                %span.hide{:id => "fb_comment_spinner_#{stream.id}"}
+                  %img{:src => "/images_old/spinner-blue.gif", :height => "13px;"}
+            - if stream.user == current_user && stream.service_id == 1
+              %li.comment{:id => "show_twitter_comment_#{stream.id}"}
+                = link_to_remote "#{t :twitter_comments}",:url => twitter_comments_stream_path(stream), :before => "$j('#twitter_comment_spinner_#{stream.id}').removeClass('hide')"
+                %span.hide{:id => "twitter_comment_spinner_#{stream.id}"}
+                  %img{:src => "/images_old/spinner-blue.gif", :height => "13px;"}
+          %li
+            - if !@social_inbox
+              - fav_unfav = current_user && current_user.is_favourite_stream(stream) ? "Unfavourite" : "Favourite"
+            -else
+              - fav_unfav = current_user && current_user.is_favourite_stream(stream) ? "UnBookmark" : "Bookmark"
+
+            = link_to_remote "#{stream.favourite_streams.count} #{fav_unfav}" ,:url => mark_as_favourite_stream_path(stream,:social_inbox => "#{@social_inbox}"), :method => :get, :html => {:id => "fav_#{stream.id}"}
+          - if !@social_inbox && !current_user.already_thanked(stream.id) && stream.user_id != current_user.id
+            %li{:id=> "thankyou_#{stream.id}"}
+              = link_to_remote "#{stream.comments.count} Thank you" ,:url => add_thankyou_stream_path(stream), :method => :get
+          - if !@social_inbox && !current_user.already_thanked(stream.id) && stream.user_id == current_user.id
+            %li{:id=> "thankyou_#{stream.id}"}
+              %a{:href => "javascript:void(0);"}
+                = "#{stream.comments.count} Thank you"
+
+          -if stream.user_id == current_user.id
+            %li
+              - if @show_popup && !(stream.service_id.nil? || stream.assets.length > 0)
+                = link_to_remote_redbox "Delete", {:url => {:controller => :streams, :action => :delete_stream_confirm, :id => stream.id}, :before => "$j('object').hide();"}, :class => "removePost"
+              - else
+                = link_to_remote "Delete",:url => delete_stream_streams_path(:id => stream.id), :html => {:class => "removePost"}
+          - if stream.topic.blank?
+            %li{:id=>"social_topics_#{stream.id}"}
+              = link_to_remote_redbox  "#{t :add_topic}" ,{:url =>  add_topic_tag_topics_path(:stream_id => stream.id) ,:method => :get}
+              .sharingtopic{ :id => "sharingtopic_#{stream.id}", :style => "display:none; position:absolute !important; top: 15px"}
+                = text_field_tag :topics_name,"search topics to add", :tabindex => "1", :id=>"topics_name" ,:class => "textInput", :autocomplete => 'off',:onfocus => "if(!this._haschanged){this.value=''};this._haschanged=true;", :onkeyup => "#{remote_function(:url => search_stream_topic_users_path, :method => :get, :with => "'searchword='+this.value+ '&stream=#{stream.id}'")}"
+                %span{:id=>"topic_stream_id"}
+                .streamtopicDropdown{:id => "streamtopicDropdown_#{stream.id}"}
+        .commentedWrapper{:id => "stream_comments_#{stream.id}"}
+          = render(:partial => "comments/index", :locals => {:comments => stream.comments, :stream => stream})
+        .commentedWrapper{:id => "stream_fb_comments_#{stream.id}", :style => "margin-top: 1px;"}
+        .commentedWrapper{:id => "stream_twitter_comments_#{stream.id}", :style => "margin-top: 1px;"}
+        - if current_user && can_comment
+          .writeCommentPopup.cornerAll{:style => "display:none;", :id => "write_comment_#{stream.id}"}
+            = render(:partial => "comments/add_comment", :locals => {:stream => stream})
+
+:javascript
+  $j(document).ready(function(){
+    $j('media').media();
+    if($("video_stream_#{stream.id}") != null){
+      jwplayer("video_stream_#{stream.id}").setup({
+        flashplayer: "/player.swf",
+        file: "https://s3-eu-west-1.amazonaws.com/edintity/uploads/videos/#{stream.assets.length > 0 ? stream.assets[0].id : 0}/originals.flv",
+        height: 305,
+        width: 400,
+        skin: "/stormtrooper.zip",
+        controlbar: "bottom",
+        "logo.file":"/images_1/video_logo.png",
+        "logo.position":"bottom-right",
+        "logo.hide":"false",
+        events: {
+          onPlay: function() {
+            if($j("#video_stream_#{stream.id}_wrapper").attr('class') != 'played'){
+              $j("#video_stream_#{stream.id}_wrapper").addClass('played');
+              #{remote_function(:url => {:controller => 'streams', :action => :add_view_count, :id => stream.id})}
+            }
+          }
+        }
+      });
+    }
+  });

@@ -1,0 +1,15 @@
+- brands ||= @brands
+#contentHeadBrand2.contentHeading
+  %h4
+    %a{:href => "javascript:void(0);"}= t :brands
+#accSettingBrandContent2.accSetupContent
+  #brandsSetting
+    .titles
+      %h5= t :added_brands
+      #addNewBrand.blueBtn.flRight
+        - if @company.is_allowed_to_create_brand?
+          %a.smlrBtn{:href => "javascript:void(0);", :onclick => "#{remote_function(:update => "add_new_brand", :url => new_company_brand_path(@company, :brand_id => @company.default_brand.id), :method => :get)}"}
+            %span.addPlusIcon= t :add_brand
+    #add_new_brand
+    #brand_lists
+      = render :partial => "companies/brands/brand_lists"

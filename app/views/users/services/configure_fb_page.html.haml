@@ -1,0 +1,23 @@
+- if @pages.blank?
+  %p
+    = t :no_fb_page
+  .modalConfirmAct.flRight
+    .yellowBtn
+      = link_to_close_redbox("#{t :cancel}", :class => "smlrBtn")
+- else
+  - form_for @user_service, :user => current_user, :url => save_facebook_page_user_services_url(:user_service_id => params[:user_service_id])  do |f|
+    = hidden_field_tag :scope, params[:scope]
+    %ul
+      %li
+        %p
+          =t :select_fb_page
+      - @pages.each do |page|
+        %li
+          %label
+            = page['name']
+          = radio_button_tag :fb_page_id , "#{page['id']}-#{page['access_token']}-#{page['name']}", @user_service.fb_page_id == page['id'] ? true : false
+    .modalConfirmAct.flRight
+      .blueBtn
+        =  submit_tag "#{t :connect}", :class => "smlrBtn", :onclick => ""
+      .yellowBtn
+        =  link_to_close_redbox("#{t :cancel}", :class => "smlrBtn")

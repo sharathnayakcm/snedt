@@ -1,0 +1,27 @@
+.services_secondpart
+  - unless @my_services.blank?
+    .myservices_div
+      .myservices_heading
+        =t :my_services
+      .myservices_list_div{:style => "#{@my_services[0].class == BrandService ? 'width:208px' : ''}"}
+        .myservice_list
+          - unless @my_services.blank?
+            - @my_services.all.each do |service|
+              -unless service.class != UserService
+                %span.myservice_icon= link_to_remote_redbox image_tag("services/#{service.service.name.downcase}.png", :title => service.display_name), {:url => new_user_service_path(current_user, :service_id => service.service.id, :user_service_id => service.id), :method => :get}, :html => { :service_id => service.service.id, :service_path => service.service.url}
+              -else
+                %div.services_icon_1= link_to_remote_redbox image_tag("services/#{service.service.name.downcase}.png", :title => service.display_name), {:url => new_company_service_path(:brand_id => service.brand_id, :service_id => service.service.id,:user_service_id => service.id), :method => :get}, :html => {:class => "fb_idfb_check", :service_id => service.service.id, :service_path => service.service.url}
+          .clear
+  - unless @pending_services.blank?
+    .pending_services_div
+      .pending_service_heading
+        =t :pending_services
+      .pending_services_list_div{:style => "#{@my_services[0].class == BrandService ? 'width:158px' : ''}"}
+        .pending_services_list
+          - unless @pending_services.blank?
+            - @pending_services.all.each do |service|             
+              -if service.class == UserService
+                %div.pending_services_icon= link_to_remote_redbox image_tag("services/#{service.service.name.downcase}.png", :title => service.display_name), {:url => new_user_service_path(current_user, :service_id => service.service.id, :user_service_id => service.id, :pending_service => "true"), :method => :get}, :html => { :service_id => service.service.id, :service_path => service.service.url}
+              -else
+                %div.services_icon_1= link_to_remote_redbox image_tag("services/#{service.service.name.downcase}.png", :title => service.display_name), {:url => new_company_service_path(:brand_id => service.brand_id, :service_id => service.service.id,:user_service_id => service.id,:pending_service => "true"), :method => :get}, :html => {:class => "fb_idfb_check", :service_id => service.service.id, :service_path => service.service.url}
+        .clear

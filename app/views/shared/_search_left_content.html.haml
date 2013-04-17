@@ -1,0 +1,10 @@
+#personalMainStream.streamMain.streamWrapper.cornerAll.flLeft
+  .streamContentSection
+    - if current_user.user_services.blank?
+      %div{ :style => "margin-top:20px; margin-left:130px; font-size: 15px; "}
+        = link_to t(:click_here), user_services_path(current_user,:signup =>"false"), :style => "  color: #77898C; font-weight: bold; text-decoration: underline;"
+        = t(:stay_connected_message)
+    = render :partial => "home/search_result_header"
+    = render :partial => "streams/index"
+  /.backToTop.streamWrapper.cornerAll
+  /  %a{:href => "#"}

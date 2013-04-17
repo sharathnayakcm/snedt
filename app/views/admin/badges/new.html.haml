@@ -1,0 +1,16 @@
+.columns
+  .width_23
+    -if !request.xhr? || @new_record == true
+      .resource_panel
+        - rounded_box_for( |
+            nil, |
+            :header => {:text => "New badge", :level => 4, :color => "green"}, |
+            :footer => { :color => "chrome"}, |
+            :group_name => "badges" |
+          ) do |rounded_box| |
+          .rounded_box_content_padding
+            - form_for(@badge, :url => admin_badges_path(current_user), :html => { :multipart => true }, :method => :post) do |f|
+              = render :partial => "form", :locals => {:f => f}
+
+:javascript
+  dashBoardMenuHiglightion('manage');

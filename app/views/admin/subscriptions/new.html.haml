@@ -1,0 +1,21 @@
+:javascript
+  round_corner();
+  $j(document).ready(function(){
+    round_corner();
+  });
+.columns
+  .width_23
+    -if !request.xhr? || @new_record == true
+      .resource_panel
+        - rounded_box_for( |
+            nil, |
+            :header => {:text => "Add Subscription Plan", :level => 4, :color => "green"}, |
+            :footer => { :color => "chrome"}, |
+            :group_name => "services" |
+          ) do |rounded_box| |
+          .rounded_box_content_padding
+            - form_for(@subscription, :url => admin_subscriptions_path(current_user), :method => :put) do |f|
+              = render :partial => "form", :locals => {:f => f}
+
+:javascript
+  dashBoardMenuHiglightion('manage');

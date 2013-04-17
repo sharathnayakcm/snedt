@@ -1,0 +1,14 @@
+- services ||= @services
+- @services_table.render services do |table|
+  - services.each do |service|
+    - table.tr :id => "service_#{service.id}" do
+      -table.td {service.name}
+      -table.td {service.url}
+      -table.td {service.callback_url}
+      -table.td {service.description}
+      -table.td {service.api_token}
+      -table.td {service.api_key}
+      -table.td {service.service_category.name if service.service_category}
+      -table.td(:action, :id => "action_#{service.id}") do
+        = link_to("Edit", edit_admin_service_path(current_user, service), {:class => "icon", :title => "Edit service"} )
+        = link_to_remote("Delete", :url => admin_service_path(current_user, :id => service.id), :method => :delete, :confirm => "Are you sure want to delete this service?", :html => {:class => "icon", :title => "Delete Service"} )

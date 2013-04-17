@@ -1,0 +1,101 @@
+#ednt-PaymentOpt{}
+
+#paymentOptWrapper{}
+
+#paymentOptWrapper h6{
+	float: right;
+	font-weight: bold;
+	text-shadow: 0 1px 0 #fff;
+	line-height: 26px;
+}
+#cashUOpt, #paypalOpt, #cCardOpt{
+	width: 268px;
+	height: 25px;
+	float: left;
+	margin: 0 10px 25px 0;
+	padding: 10px 10px;
+}
+
+#cashUOpt, #cCardOpt, #freeAcc, #paypalOpt{
+	background: #E0E6E7;
+	cursor: pointer;
+}
+
+#cashUOpt h6{
+}
+
+#cashUOpt:hover, #cCardOpt:hover, #freeAcc:hover, #paypalOpt:hover{
+	background: #eef1f2;
+}
+
+#paypalOpt h6{}
+
+#cCardOpt{}
+
+#cCardOpt h6{}
+
+#freeAcc{
+ 	width: 267px;
+	height: 30px;
+	padding: 10px 10px 9px;
+	margin-right: 310px;
+}
+
+#freeAcc h6{
+	line-height: 31px;
+	margin-left: 15px;
+}
+
+.cashIcon, .paypalIco, .masterCardIcon, .visaIcon, .amexIcon, .discoverIcon, .bankIcon{
+	background: url(/images/paymentOpt.png) no-repeat;
+	height: 24px;
+	width: 34px;
+	cursor: pointer;
+}
+
+.cashIcon{
+	background-position: 0 0;
+	float: left !important;
+}
+
+.paypalIco{
+	background-position: 0 -35px;
+	float: left !important;
+}
+
+.masterCardIcon{
+	background-position: 0 -68px;	
+	float: left !important;
+}
+
+.visaIcon{
+	background-position: 0 -103px;
+}
+
+.amexIcon{
+	background-position: 0 -139px;
+}
+
+.discoverIcon{
+	background-position: 0 -176px;
+}
+
+.bankIcon{
+	background-position: 0 -212px;
+}
+
+ul#ccOption{}
+
+ul#ccOption li{
+	list-style: none outside none;
+	float: right;
+	display: inline;
+	padding: 0 5px 0 0;
+}
+
+ul#ccOption li a{
+	height: 24px;
+	width: 34px;
+	float: left;
+}
+

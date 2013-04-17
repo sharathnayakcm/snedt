@@ -1,0 +1,14 @@
+:javascript
+  $j(document).ready(function(){
+    round_corner();
+    hide_all();
+    empty_all();
+    sign_up_validations();
+  });
+
+.left_content
+  - form_for :user, @user, :url => { :action => "create", :controller => "Admin::Users", :current_user => current_user }, :method => "post" do |f|
+    = render :partial => "admin/users/form", :locals => { :f => f }
+
+:javascript
+  dashBoardMenuHiglightion('manage');

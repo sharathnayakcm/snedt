@@ -1,0 +1,102 @@
+- pgs = @privacy_groups.blank? ? [] : [["#{t :custom_groups}", '0']] + @privacy_groups.collect {|x| x.grp_array}
+#accSetupContent3.accSetupContent
+  .privacySetup.cornerAll
+    %ul
+      -form_remote_for(:user_privacy_setting, {:url => { :id => current_user.id, :user_id => @privacy_setting.id, :controller => "Users::Privacies", :action => "update"}})  do |f|
+        - pgs = @privacy_groups.blank? ? [] : [["#{t :custom_groups}", '0']] + @privacy_groups.collect {|x| x.grp_array}
+        .privacySetup.cornerAll
+          %ul
+            %li
+              .privacyRestrict
+                %label.accntPrivacyGeneral{:for => "privacyProfileView"}= t :profile_setting
+                = select(:user_privacy_setting, :profile, [["#{t 'everyone'}",'1'], ["#{t 'followers'}",'2'], ["#{t 'following'}",'3'],["#{t 'friends'}",'4'], ["#{t 'just_me'}",'5']] + pgs,{:selected => @privacy_setting.profile, :disabled => "0"}, :class => "select_type")
+            %li
+              .privacyHead
+                .privacyHeadLeft.flLeft
+                  %span.userSmlPic.flLeft
+                    %img{:src => "/images/userPicSmall.jpg"}
+                  %span#edintityIcon.smlServicesIco.flLeft
+                    = current_user.full_name
+                .privacyHeadRight.flRight
+                  %span.mainPrivacyControl= t :updates_will_seen_by
+                  .selectOption.flright
+                    = select(:user_privacy_setting, :edintity, [["#{t 'everyone'}",'1'], ["#{t 'followers'}",'2'], ["#{t 'following'}",'3'],["#{t 'friends'}",'4'], ["#{t 'just_me'}",'5']] + pgs,{:selected => @privacy_setting.stream, :disabled => "0"}, :class => "select_type")
+              .privacyContent
+                %ul
+                  %li
+                    %label{:for => "privacyProfileView"}= t :allow_comments
+                    %select.privacyProfileView{:name => "allow_comments[edintity]"}
+                      - if current_user.default_stream_action.allow_comments
+                        %option{:value => "1", :selected => "selected"}= t :yes_true
+                        %option{:value => "0"}= t :no_false
+                      - else
+                        %option{:value => "1"}= t :yes_true
+                        %option{:value => "0", :selected => "selected"}= t :no_false
+                    - if current_user.default_stream_action.allow_comments
+                      %span.lockIconOpen
+                        %a{:href => "javascript:void(0);"} unlock
+                    - else
+                      %span.lockIcon
+                        %a{:href => "javascript:void(0);"} lock
+                  %li
+                    %label{:for => "privacyProfileView"}= t :favorites
+                    %select.privacyProfileView{:name => "favourite[edintity]"}
+                      - if current_user.default_stream_action.favourite
+                        %option{:value => "1", :selected => "selected"}= t :yes_true
+                        %option{:value => "0"}= t :no_false
+                      - else
+                        %option{:value => "1"}= t :yes_true
+                        %option{:value => "0", :selected => "selected"}= t :no_false
+                    - if current_user.default_stream_action.favourite
+                      %span.lockIconOpen
+                        %a{:href => "javascript:void(0);"} unlock
+                    - else
+                      %span.lockIcon
+                        %a{:href => "javascript:void(0);"} lock
+            - current_user.active_services.my_services.all.each do |user_service|
+              %li
+                .privacyHead
+                  .privacyHeadLeft.flLeft
+                    %span.userSmlPic.flLeft
+                      %img{:src => "/images/userPicSmall.jpg"}
+                    %span.smlServicesIco{:id => "#{user_service.service.name.downcase.gsub(' ','')}Service"}
+                      = user_service.profile_name
+                  .privacyHeadRight.flRight
+                    %span.mainPrivacyControl= t :updates_will_seen_by
+                    .selectOption.flright
+                      = select(:user_privacy_setting, user_service.id, [["#{t 'everyone'}",'1'], ["#{t 'followers'}",'2'], ["#{t 'following'}",'3'],["#{t 'friends'}",'4'], ["#{t 'just_me'}",'5']] + pgs,{:selected => user_service.privacy_type_id, :disabled => "0"}, :class => "select_type")
+                .privacyContent
+                  %ul
+                    %li
+                      %label{:for => "privacyProfileView"}= t :allow_comments
+                      %select.privacyProfileView{:name => "allow_comments[#{user_service.id}]"}
+                        - if user_service.default_stream_action.allow_comments
+                          %option{:value => "1", :selected => "selected"}= t :yes_true
+                          %option{:value => "0"}= t :no_false
+                        - else
+                          %option{:value => "1"}= t :yes_true
+                          %option{:value => "0", :selected => "selected"}= t :no_false
+                      - if user_service.default_stream_action.allow_comments
+                        %span.lockIconOpen
+                          %a{:href => "javascript:void(0);"} unlock
+                      - else
+                        %span.lockIcon
+                          %a{:href => "javascript:void(0);"} lock
+                    %li
+                      %label{:for => "privacyProfileView"}= t :favourite
+                      %select.privacyProfileView{:name => "favourite[#{user_service.id}]"}
+                        - if user_service.default_stream_action.favourite
+                          %option{:value => "1", :selected => "selected"}= t :yes_true
+                          %option{:value => "0"}= t :no_false
+                        - else
+                          %option{:value => "1"}= t :yes_true
+                          %option{:value => "0", :selected => "selected"}= t :no_false
+                      - if user_service.default_stream_action.favourite
+                        %span.lockIconOpen
+                          %a{:href => "javascript:void(0);"} unlock
+                      - else
+                        %span.lockIcon
+                          %a{:href => "javascript:void(0);"} lock
+          .savePersonalChanges
+            .blueBtn
+              = submit_tag "#{t :save_changes}", :id => "submit", :class => "smlrBtn"

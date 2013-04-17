@@ -1,0 +1,117 @@
+
+:javascript
+  var topNavLinkId = 'postIco';
+  
+  jQuery("li.dropdown_topic").live('click', function(){
+    var name = jQuery("#topic").val();
+    jQuery("#stream_submit").val("Add to "+name);
+    jQuery("#add_to_stream").show();
+  });
+
+#ednt-PersonalStream.mainStreamWrapper
+  #ajaxLoaderDiv.ajaxLoader.cornerAll.hide
+    %span.ajaxSpinner
+      %img{:alt => "#", :src => "/images/ajax-loader.gif"}/
+  /= render :partial => "shared/top_nav"
+  .streamContentSection{:style => 'padding-left: 10px'}
+    - form_for :stream, :url => streams_path do |f|
+      %div
+        %b== Select a Topic
+      %div
+        = f.select(:topic_id , Topic.all.collect {|p| [ p.title, p.id ] }, {:prompt => 'Pick a Topic'})
+      #searchtopicDropdown.my_post{:style=>"left:11px; top:37px;"}
+      %br
+      = f.hidden_field :message_type_id, :value => "1"
+      %div
+        %b== Your message
+        %span.highlight== (Shared as a link to social services)
+      %div
+        = f.text_area :text, :rows => 5, :cols => 50
+      #my_post_service.formStatusControl
+        .shareRestirict
+          %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('sharingOptCheck');"}
+            %span.blueArrow= t :share_service
+        .blueBtn{:id=>"add_to_stream",:style=>"display:none;"}
+          = f.submit "Add to Stream"
+        .blueBtn{:id=>"pick_a_topic_button"}
+          = submit_tag "Pick a Topic",:disabled => "disable"
+
+
+      #sharingOptCheck.shareServiceControl{:style => "display:none;"}
+        .shareToServiceDropdown.cornerBottom.transBg
+          %span.closeShareOpt
+            %a.uiIconInside{:href=>"#", :onclick=>"toggle_visibility('sharingOptCheck');"}
+          - if @brand
+            - status_link_services = @brand.active_services.link_sharing_services
+          - else
+            - status_link_services = current_user.active_services.link_sharing_services
+          - if status_link_services.length > 0
+            %ul
+              %li
+                == Your Message(optional)
+              %li
+                = text_area_tag "status_optional_message", "#{t(:optional_msg)}", :cols => '35', :rows => '3', :onkeyup => 'new_post_char_count_up()',:onfocus => "(this.value = '');"
+                #textareaCounter{:style => "border:1px solid #F3F3F3;"}
+              %li
+                %a{:href => "javascript:void(0);"}
+                  %input{:name => "select_all", :type => "checkbox", :value => "", :id => "status_all", :onclick => "if($(this).checked){$j('#sharingOptCheck').find('input:checkbox').attr({checked: true});}else{$j('#sharingOptCheck').find('input:checkbox').attr({checked: false});}"}
+                  %span.emptyIco= t :share_on_all
+              - status_link_services.each do |user_service|
+                %li
+                  %a{:href => "javascript:void(0);", :title => user_service.display_name}
+                    %input{:name => "serviceid[]", :type => "checkbox", :value => "#{user_service.id}", :onclick => "$j('#status_all').attr({checked: false});"}
+                    %span.networkIco{:id =>"#{user_service.service.name.downcase.gsub(' ','')}Service"}
+                      %span.twittercharcounter{:id => "new_twitter_char_count", :style => "padding: 0px !important; margin-left: 0px;"}
+                      = t :share_on
+                      %strong
+                        = user_service.service.name.downcase
+      /#fileUploaderVideo.fileUploaderDiv
+      /#fileUploader.fileUploaderDiv
+      /.updateStreamAction
+      /= render :partial => "posts/post_photo"
+    / - if current_user.membership.id != 1
+    /   .updateStreamAction
+    /     = render :partial => "posts/post_video"
+    / - else
+    /   %div{:id => "add_video_free"}
+    /     #fileUploaderVideo.fileUploaderDiv
+    /       .qq-uploader
+    /         .qq-upload-button
+    /           %span{:id => "uploadBrowse" }
+    /             = link_to_remote_redbox "#{t :add_video}", {:url => upgrade_member_video_streams_path, :method => :get}, :class => "smlrBtn", :style => "color: #404041;"
+
+
+:javascript
+  jQuery(document).ready(function(){
+      jQuery('.mceToolbar').hide();
+        jQuery('#stream_text').redactor({
+        buttons: ['bold', 'italic', 'deleted', '|', 
+          'unorderedlist', 'orderedlist', 'outdent', 'indent', '|',
+          'image', 'table', '|',
+          'fontcolor', 'backcolor', '|', 'alignment']
+        });
+    }
+  );
+
+  jQuery("#add_video_free").live('click',function(){
+    jQuery("#new_post_video_upgrade").show();
+   });
+
+  jQuery("#stream_topic_id").live('click', function(){
+    if($j('#stream_topic_id :selected').val() == "" ) {
+      jQuery("#stream_submit").hide();
+      jQuery("#pick_a_topic_button").show();
+    }
+    else {
+      jQuery("#pick_a_topic_button").hide();
+      var topic_id = jQuery(this).attr("topic_id")
+      var name = jQuery("#stream_topic_id option:selected").text().replace(/\s+/g, " ");
+      jQuery("#stream_submit").val("Add to "+name);
+      jQuery("#topics_name").val(name)
+      jQuery("#stream_submit").show();
+      jQuery("#stream_topic_id").attr("value",topic_id);
+      jQuery("#searchtopicDropdown").hide();
+      jQuery("#add_to_stream").show();
+     }
+   });
+  jQuery('.mceToolbar').hide();

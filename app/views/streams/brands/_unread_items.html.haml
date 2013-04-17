@@ -1,0 +1,47 @@
+= javascript_include_tag 'jquery.tools.min.js'
+= stylesheet_link_tag 'tooltip'
+:javascript
+  $j(document).ready(function(){
+     $j('.unread_all a').corner("5px");
+     $j('.read_all a').corner("5px");
+   $j(".filter_panel_actions .tip ").tooltip({position: "top left"});
+  });
+
+.new_item_bar_div
+  .new_item_bar
+    .filter_panel_actions
+      .float_left.text.text_header.bold== Select:
+      .float_left.text.tip= link_to_remote_with_loader " #{t :all} ",:url => {:action => :filter_streams, :controller => "home", :by => "all", :brand_id=>(@brand.id if @brand)}
+      .tooltip= @streams_count.count unless @streams_count.blank?
+      .float_left.text.tip= link_to_remote_with_loader " #{t :read} ",:url => {:action => :filter_streams, :controller => "home", :by => "read", :brand_id=>(@brand.id if @brand)}
+      .tooltip= @streams_count.read_items.count unless @streams_count.blank?
+      .float_left.text.tip= link_to_remote_with_loader " #{t :unread} ",:url => {:action => :filter_streams, :controller => "home", :by => "unread", :brand_id=>(@brand.id if @brand)}
+      .tooltip= @streams_count.unread_items.count unless @streams_count.blank?
+      .float_left.fav_filter= link_to_remote_with_loader "#{image_tag('favourite_heart.png')}",:url => {:action => :filter_streams, :controller => "home", :by => "favourites", :brand_id=>(@brand.id if @brand)}, :html => {:title => "#{t :favourites}"}
+      .float_left
+        %table
+          %tr
+            %td
+              .service_image{:style => "padding-left: 5px;padding-top: 6px;"}
+                = link_to_remote_with_loader '<img src="/images/services/edintity.gif" width="18px" height="18px" border="0" />'.html_safe,:url => {:action => :filter_streams, :controller => "home", :by => "edintity", :brand_id=>(@brand.id if @brand)}
+      .float_left.services_filter{:style => "padding-left: 5px;"}
+        - Service.all.each do |service|
+          - unless service.name.downcase.include?("rss")
+            - service_tag, service_count = brand_service_filters(service)
+            .float_left
+              %table
+                %tr
+                  %td
+                    .align_right.services_count{:style => "color: white; width: 7px; margin-bottom:-9px; margin-left: 17px; background-color: red; font-weight: bold; text-align:center !important;"}= service_count
+                %tr
+                  %td
+                    .service_image
+                      = link_to_remote_with_loader "#{service_tag}",:url => {:action => :filter_streams, :controller => "home", :service_id => service.id,:scope=>controller_name, :brand_id=>(@brand.id if @brand)}
+
+      .float_right
+        .float_left.bold.text.text_header
+          =t :mark_as
+          ==:
+        .float_left.text= link_to_remote_with_loader " #{t :unread} ",:url => {:action => :mark_all_unread, :controller => "streams", :controller_name => @controller_name || controller.controller_name, :brand_id=>(@brand.id if @brand)}, :method => :get
+        .float_left.text= link_to_remote_with_loader " #{t :read}",:url => {:action => :mark_all_read, :controller => "streams", :controller_name => @controller_name || controller.controller_name, :brand_id=>(@brand.id if @brand)}, :method => :get
+.clear

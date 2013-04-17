@@ -1,0 +1,42 @@
+:javascript
+  $j(document).ready(function(){
+     $('type').selectedIndex = 0;
+     $j('#service_list').hide();
+     $j('.box').corner();
+  });
+  function validate() {
+    if(jQuery.trim($j('#pg_name input').val()).length == 0)
+    {
+      notice('Post service group name can not be blank');
+      return false;
+    }
+    else
+    {
+      if($('type').selectedIndex == 0)
+      {
+        notice('Please select a post type from the list');
+        return false;
+      }
+      else
+      {
+        $j('#spinner_tag').show();
+        return  true;
+      }
+    }
+  }
+-if !request.xhr? || @new_record == true
+  .columns
+    .width_15
+      .privacy_group_panel
+        - rounded_box_for( |
+            nil, |
+            :header => {:text => "Post Service Groups", :level => 4, :color => "green"}, |
+
+            :group_name => "privacy_group" |
+          ) do |panel| |
+          #post_service_group_list= render :partial => "post_service_group_list"
+      #form_content
+        = render :partial => "new"
+-else
+  #privacy_group_list= render :partial => "post_service_group_list"
+

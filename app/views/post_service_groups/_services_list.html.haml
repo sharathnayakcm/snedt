@@ -1,0 +1,17 @@
+- if @services
+  .services_text
+    %p
+      = t :services
+  = link_to "#{image_tag '/images_1/bullet_arrow.png', :width => 11}", "javascript:void(0)", :onclick => "toggle_arrow(this);$('pick_services').toggle();", :id => "s_link_2", :class => "services_arrow"
+  #pick_services.psg_service_list
+    - if @services.length > 0
+      - @services.each do |user_service|
+        = check_box_tag "serviceid[]", "#{user_service.id}", @post_service_group && @post_service_group.user_service_ids.to_s.split(",").index(user_service.id.to_s) ? true : false
+        = image_tag("services/#{user_service.service.name.downcase}.png", :title => "#{user_service.display_name}", :width => "20px")
+    - else
+      =t :service_list_text1
+      = @service_type
+      =t :service_list_text2
+      = link_to "#{t :click_here}", user_services_path(current_user)
+
+

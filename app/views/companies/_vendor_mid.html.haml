@@ -1,0 +1,56 @@
+.payment_option{:style => "padding:25px"}
+  .float_left
+    .float_left{:style => "padding-left:35px;padding-bottom:10px;"}== Test link
+    %form{:action => "https://www.cashu.com/cgi-bin/pcashu.cgi", :method => "post"}
+      %input{:name => "merchant_id", :type => "hidden", :value => "edintity"}
+      %input{:name => "token", :type => "hidden", :value => "7880e483c9c9b52b3c5f1e33a5d489fc"}
+      %input{:name => "test_mode", :type => "hidden", :value => "1"}
+      %input{:name => "display_text", :type => "hidden", :value => "BusinessMid"}
+      %input{:name => "currency", :type => "hidden", :value => "USD"}
+      %input{:name => "amount", :type => "hidden", :value => "#{@membership.amount}"}
+      %input{:name => "language", :type => "hidden", :value => "en"}
+      %input{:name => "session_id", :type => "hidden", :value => session.session_id}
+      %input{:name => "txt1", :type => "hidden", :value => "Membership-#{@user.id}-#{@membership.id}-#{@signup ? true : false}-#{@activation ? true : false}-en"}
+      %input{:name => "txt2", :type => "hidden", :value => ""}
+      %input{:name => "txt3", :type => "hidden", :value => ""}
+      %input{:name => "txt4", :type => "hidden", :value => ""}
+      %input{:name => "txt5", :type => "hidden", :value => ""}
+      %input{:alt => "cashu", :name => "submit", :src => "/images/services/cashu.gif", :type => "image"}
+  .float_left
+    .float_left{:style => "padding-left:35px;padding-bottom:10px;"}="&nbsp;"
+    %form{:action => "https://www.cashu.com/cgi-bin/pcashu.cgi", :method => "post"}
+      %input{:name => "merchant_id", :type => "hidden", :value => "edintity"}
+      %input{:name => "token", :type => "hidden", :value => "e3d088e1ebf655131f4da95503be83f6"}
+      %input{:name => "display_text", :type => "hidden", :value => "Mid Business Plan"}
+      %input{:name => "currency", :type => "hidden", :value => "USD"}
+      %input{:name => "amount", :type => "hidden", :value => "#{@membership.amount}"}
+      %input{:name => "language", :type => "hidden", :value => "en"}
+      %input{:name => "session_id", :type => "hidden", :value => session.session_id}
+      %input{:name => "txt1", :type => "hidden", :value => "Membership-#{@company.id}-#{@membership.id}-#{@signup ? true : false}-false-#{session[:locale] || 'en'}-company"}
+      %input{:name => "txt2", :type => "hidden", :value => ""}
+      %input{:name => "txt3", :type => "hidden", :value => ""}
+      %input{:name => "txt4", :type => "hidden", :value => ""}
+      %input{:name => "txt5", :type => "hidden", :value => ""}
+      %input{:alt => "cashu", :name => "submit", :src => "/images/services/cashu.gif", :type => "image"}
+
+
+  /.float_left
+  /  %form{:action => @action_url, :method => "post"}
+  /    %input{:name => "cmd", :type => "hidden", :value => "_s-xclick"}
+  /    %input{:name => "encrypted", :type => "hidden", :value => @encrypted_basic}
+  /    %input{:alt => "paypal", :name => "submit", :src => "/images/services/paypal.gif", :type => "image", :class => "paypal_image"}
+  .float_left
+    .float_left{:style => "padding-left:35px;padding-bottom:10px;"}== Test link
+    %form{:action => "https://payflowlink.paypal.com", :method => "POST"}
+      %input{:name => "LOGIN", :type => "hidden", :value => "edintity"}
+      %input{:name => "PARTNER", :type => "hidden", :value => "PayPal"}
+      %input{:name => "AMOUNT", :type => "hidden", :value => @membership.amount}
+      %input{:name => "TYPE", :type => "hidden", :value => "A"}
+      %input{:name => "CUSTID", :type => "hidden", :value => "#{@company.id}-#{@membership.id}-#{@signup ? true : false}-#{@activation ? true : false}-#{session[:locale] || 'en'}-company"}
+      %input{:alt => "credit card", :name => "submit", :src => "/images/services/paypal_cards.gif", :type => "image", :style => "height:90px;margin-top: -10px;"}
+  .float_left
+    %form{:action => "https://www.paypal.com/cgi-bin/webscr", :method => "post"}
+      %input{:name => "cmd", :type => "hidden", :value => "_s-xclick"}
+      %input{:name => "hosted_button_id", :type => "hidden", :value => "5MUYNS36JDTTL"}
+      %input{:alt => "PayPal - The safer, easier way to pay online!", :border => "0", :name => "submit", :src => "http://edintity.com/images/services/paypal_cards.gif", :type => "image"}
+      %img{:alt => "", :border => "0", :height => "1", :src => "https://www.paypalobjects.com/en_US/i/scr/pixel.gif", :width => "1"}

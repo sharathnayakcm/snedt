@@ -1,0 +1,19 @@
+#ednt-linksPage.mainStreamWrapper
+  .ajaxLoader.cornerAll#ajaxLoaderDiv.hide
+    %span.ajaxSpinner
+      %img{:src=>"/images/ajax-loader.gif", :alt=>"#"}
+  .friendTabNav
+    %ul
+      %li#tabFriend-1.friendTab.cornerTop
+        %a{:href => "javascript:void(0);"} Following
+      %li#tabFriend-2.friendTab.cornerTop.activeTab
+        %a{:href => "javascript:void(0);"} Followers
+      %li#tabFriend-3.friendTab.cornerTop
+        %a{:href => "javascript:void(0);"} Friends
+  #tabFriend-1-1.fullPage.streamWrapper.cornerAll.hide
+    = render :partial => "followings/list"
+  #tabFriend-2-1.fullPage.streamWrapper.cornerAll
+    = render :partial => "followers/list"
+  #tabFriend-3-1.fullPage.streamWrapper.cornerAll.hide
+    = render :partial => "friends/list"
+    

@@ -1,0 +1,176 @@
+@import constants
+
+div.columns
+  +container
+  &:after
+    +container_after
+  div.column
+    float: left
+    margin-right: $column_margin_right
+  div.with_border
+    border-right-width: $border_width
+    margin-right: $column_margin_right / 2 - $border_width
+    padding-right: $column_margin_right / 2
+  div.with_border_column
+    border-right-width: $border_width
+    margin-right: ($column_width + $column_margin_right * 2) / 2 - $border_width
+    padding-right: ($column_width + $column_margin_right * 2) / 2
+  div.width_half
+    width: $column_width * 0.5 + $column_margin_right * 0
+  div.width_1
+    width: $column_width * 1 + $column_margin_right * 0
+  div.width_1_half
+    width: $column_width * 1.5 + $column_margin_right * 0
+  div.width_1_three_fourth
+    width: $column_width * 1.75 + $column_margin_right * 0
+  div.width_2
+    width: $column_width * 2 + $column_margin_right * 1
+  div.width_2_half
+    width: $column_width * 2.5 + $column_margin_right * 1
+  div.width_2_three_fourth
+    width: $column_width * 2.75 + $column_margin_right * 1
+  div.width_3
+    width: $column_width * 3 + $column_margin_right * 2
+  div.width_3_half
+    width: $column_width * 3.5 + $column_margin_right * 2
+  div.width_3_three_fourth
+    width: $column_width * 3.75 + $column_margin_right * 2
+  div.width_4
+    width: $column_width * 4 + $column_margin_right * 3
+  div.width_4_half
+    width: $column_width * 4.5 + $column_margin_right * 4
+  div.width_5
+    width: $column_width * 5 + $column_margin_right * 4
+  div.width_6
+    width: $column_width * 6 + $column_margin_right * 5
+  div.width_7
+    width: $column_width * 7 + $column_margin_right * 6
+  div.width_8
+    width: $column_width * 8 + $column_margin_right * 7
+  div.width_9
+    width: $column_width * 9 + $column_margin_right * 8
+  div.width_10
+    width: $column_width * 10 + $column_margin_right * 9
+  div.width_11
+    width: $column_width * 11 + $column_margin_right * 10
+  div.width_12
+    width: $column_width * 12 + $column_margin_right * 11
+  div.width_13
+    width: $column_width * 13 + $column_margin_right * 12
+  div.width_14
+    width: $column_width * 14 + $column_margin_right * 13
+  div.width_15
+    width: $column_width * 15 + $column_margin_right * 14
+  div.width_16
+    width: $column_width * 16 + $column_margin_right * 15
+  div.width_17
+    width: $column_width * 17 + $column_margin_right * 16
+  div.width_18
+    width: $column_width * 18 + $column_margin_right * 17
+  div.width_19
+    width: $column_width * 19 + $column_margin_right * 18
+  div.width_19_half
+    width: $column_width * 19 + $column_margin_right * 19.5
+  div.width_20
+    width: $column_width * 20 + $column_margin_right * 19
+  div.width_21
+    width: $column_width * 21 + $column_margin_right * 20
+  div.width_22
+    width: $column_width * 22 + $column_margin_right * 21
+  div.width_23
+    width: $column_width * 23 + $column_margin_right * 22
+  div.width_24
+    margin-right: 0
+    width: $column_width * 24 + $column_margin_right * 23
+  div.appends_1
+    padding-right: ($column_width + $column_margin_right) * 1
+  div.appends_2
+    padding-right: ($column_width + $column_margin_right) * 2
+  div.appends_3
+    padding-right: ($column_width + $column_margin_right) * 3
+  div.appends_4
+    padding-right: ($column_width + $column_margin_right) * 4
+  div.appends_5
+    padding-right: ($column_width + $column_margin_right) * 5
+  div.appends_6
+    padding-right: ($column_width + $column_margin_right) * 6
+  div.appends_7
+    padding-right: ($column_width + $column_margin_right) * 7
+  div.appends_8
+    padding-right: ($column_width + $column_margin_right) * 8
+  div.appends_9
+    padding-right: ($column_width + $column_margin_right) * 9
+  div.appends_10
+    padding-right: ($column_width + $column_margin_right) * 10
+  div.appends_11
+    padding-right: ($column_width + $column_margin_right) * 11
+  div.appends_12
+    padding-right: ($column_width + $column_margin_right) * 12
+  div.appends_13
+    padding-right: ($column_width + $column_margin_right) * 13
+  div.appends_14
+    padding-right: ($column_width + $column_margin_right) * 14
+  div.appends_15
+    padding-right: ($column_width + $column_margin_right) * 15
+  div.appends_16
+    padding-right: ($column_width + $column_margin_right) * 16
+  div.appends_17
+    padding-right: ($column_width + $column_margin_right) * 17
+  div.appends_18
+    padding-right: ($column_width + $column_margin_right) * 18
+  div.appends_19
+    padding-right: ($column_width + $column_margin_right) * 19
+  div.appends_20
+    padding-right: ($column_width + $column_margin_right) * 20
+  div.appends_21
+    padding-right: ($column_width + $column_margin_right) * 21
+  div.appends_22
+    padding-right: ($column_width + $column_margin_right) * 22
+  div.appends_23
+    padding-right: ($column_width + $column_margin_right) * 23
+  div.prepends_1
+    padding-left: ($column_width + $column_margin_right) * 1
+  div.prepends_2
+    padding-left: ($column_width + $column_margin_right) * 2
+  div.prepends_3
+    padding-left: ($column_width + $column_margin_right) * 3
+  div.prepends_4
+    padding-left: ($column_width + $column_margin_right) * 4
+  div.prepends_5
+    padding-left: ($column_width + $column_margin_right) * 5
+  div.prepends_6
+    padding-left: ($column_width + $column_margin_right) * 6
+  div.prepends_7
+    padding-left: ($column_width + $column_margin_right) * 7
+  div.prepends_8
+    padding-left: ($column_width + $column_margin_right) * 8
+  div.prepends_9
+    padding-left: ($column_width + $column_margin_right) * 9
+  div.prepends_10
+    padding-left: ($column_width + $column_margin_right) * 10
+  div.prepends_11
+    padding-left: ($column_width + $column_margin_right) * 11
+  div.prepends_12
+    padding-left: ($column_width + $column_margin_right) * 12
+  div.prepends_13
+    padding-left: ($column_width + $column_margin_right) * 13
+  div.prepends_14
+    padding-left: ($column_width + $column_margin_right) * 14
+  div.prepends_15
+    padding-left: ($column_width + $column_margin_right) * 15
+  div.prepends_16
+    padding-left: ($column_width + $column_margin_right) * 16
+  div.prepends_17
+    padding-left: ($column_width + $column_margin_right) * 17
+  div.prepends_18
+    padding-left: ($column_width + $column_margin_right) * 18
+  div.prepends_19
+    padding-left: ($column_width + $column_margin_right) * 19
+  div.prepends_20
+    padding-left: ($column_width + $column_margin_right) * 20
+  div.prepends_21
+    padding-left: ($column_width + $column_margin_right) * 21
+  div.prepends_22
+    padding-left: ($column_width + $column_margin_right) * 22
+  div.prepends_23
+    padding-left: ($column_width + $column_margin_right) * 23

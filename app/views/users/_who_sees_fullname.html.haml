@@ -1,0 +1,4 @@
+%label= t :who_sees_fullname
+- pgs = @privacy_groups.blank? ? [] : [["#{t :custom_groups}", '0']] + @privacy_groups.collect {|x| x.grp_array}
+- fields_for current_user.user_privacy_setting do |ff|
+  = ff.select(:full_name, [["#{t 'everyone'}",'1'], ["#{t 'followers'}",'2'], ["#{t 'following'}",'3'],["#{t 'friends'}",'4'], ["#{t 'just_me'}",'5']] + pgs,{:selected => @user.user_privacy_setting.full_name, :disabled => "0", :class => "select_type"})

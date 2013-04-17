@@ -1,0 +1,20 @@
+- users ||= @users
+- @users_table.render users do |table|
+  - users.each do |user|
+    - unless user == current_user
+      - table.tr :id => "user_#{user.id}" do
+        -table.td {user.full_name}
+        -table.td {user.user_name}
+        -table.td {user.email}
+        -table.td {user.membership ? user.membership.name : ''}
+        -table.td {user.last_login}
+        -table.td {user.user_services.count}
+        -table.td {user.pending_services.count}
+        -table.td {to_local(user.created_at).strftime("%d %b %Y")}
+        -table.td(:id => "user_deleted_#{user.id}") {(to_local(user.deleted_at).strftime("%d %b %Y")) unless user.deleted_at.blank?}
+        -table.td(:check_box, :id => "user_status_#{user.id}") {check_box_tag("active", user.active, user.active ? true : false, :onchange => toggle_status(user)) }
+        -table.td(:action) do
+          = link_to(image_tag("/images_old/icon-edit.png"), {:controller => "admin/users", :action => "edit", :id => user.id, :page => @users.current_page, :per_page => params[:per_page]}, :class => "icon", :title => "Edit User" )
+          - if user.deleted_at.blank?
+            = link_to_remote_with_loader(image_tag("/images_old/icon-delete.png"), :url => {:controller => "admin/users", :action => "destroy", :id => user.id}, :method => :delete, :confirm => "Are you sure want to delete the user?", :html => {:class => "icon", :title => "Delete User"})
+          = link_to_remote_with_loader(image_tag("/images_old/password_reset.png"), :url => reset_password_admin_users_path( :email => user.email ), :method => :get, :html => {:class => "icon", :title => "Reset Password"} )

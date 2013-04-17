@@ -1,0 +1,10 @@
+#contentHeadPersonal2.contentHeading
+  %h4
+    %a{:href => "javascript:void(0);"}= t :personal_settings
+#accSettingPersonalContent2.accSetupContent{:style => "display:#{params[:tab]=='settings' ? 'block':'none'}"}
+  #update_profile
+    = render :partial => "users/profile"
+  .clear
+  %br
+  #update_password
+    = render :partial => "users/password"

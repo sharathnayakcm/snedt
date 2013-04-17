@@ -1,0 +1,411 @@
+#ednt-featuresComparison{s}
+
+.featuresNavWrapper{
+	float: left;
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.featuresBoxes{
+	background: url(../images/gradSprites.png) repeat-x 0 -339px;
+	border: 1px solid #98acb2;
+	height: 38px;
+	float: left;
+}
+
+#featNavigation{
+
+}
+
+#featNavvigation ul{
+	margin: 0;
+	box-shadow: 0 1px 3px #989898, 0 1px 0 #f8f9f9 inset, inset 0 0 0px 1px #e3e6e8;
+}
+
+#featNavigation li{
+	border-right: 1px solid #b8c7cc;
+	box-shadow: 1px 0 0 #fff;
+	display: inline;
+	float: left;
+	list-style: none outside none;
+	padding: 0;
+}
+
+#featNavigation li:last-child{
+	border-right: none;
+	box-shadow: none;
+}
+
+#featNavigation li a, #comparisonPlan a{
+	color: #95a2a6;
+	font-size: 16px;
+	font-weight: bold;
+	text-shadow: 0 1px 0 #F4F4F4;
+	
+}
+
+#featNavigation li a{
+	padding: 11px 35px 9px;
+	float: left;
+}
+
+.firefox #featNavigation li a{
+	padding: 12px 35px 9px;
+}
+
+.windows #featNavigation li a{
+	padding: 10px 35px 8px;
+}
+
+#featNavigation li a:hover, #featNavigation li.featNavOn a, #comparisonPlan a:hover, #comparisonPlan a.featNavOn, #comparisonPlan ul.featuresBoxes li.featNavOn a{
+	color: #4b6973;
+}
+
+#comparisonPlan{
+	height: auto;
+}
+
+#comparisonPlan a{
+	text-align: center;
+	padding: 11px 25px 9px;
+	float: left;
+}
+
+.windows #comparisonPlan a{
+	padding: 9px 25px;
+}
+
+#comparisonTable{
+	float: left;
+	height: 600px;
+	width: 900px;
+	position: relative;
+}
+
+#comparisonFeaturesTable{
+	margin-top: 138px;
+}
+
+#comparisonFeaturesTable ul{
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+}
+
+#comparisonFeaturesTable li{
+	display: block;
+	float: left;
+	width: 100%;
+	padding: 15px 0 14px;
+	font-size: 14px;
+	font-weight: bold;
+	text-shadow: 0 1px 0 #E8EDED;
+}
+
+.windows #comparisonFeaturesTable li{
+	padding: 16px 0 15px;
+}
+
+#comparisonFeaturesTable li.special{
+	padding: 39px 0;
+}
+
+.windows #comparisonFeaturesTable li.special{
+	padding: 47px 0;
+}
+
+#comparisonFeaturesTable li.even{
+	background: #d8dfe1;
+}
+
+#comparisonFeaturesTable li.odd{
+	background: none;
+}
+
+#infoCurrencies{
+	font-size: 11px;
+	text-align: left;
+	font-style: italic;
+	margin: 0 0 0 36px;
+}
+
+.featuresIcon{
+	background: url(../images/uiIcon.png) no-repeat 0 0;
+	padding: 4px 0 6px 30px;
+}
+
+.featuresIcon small{
+	font-size: 11px;
+	font-weight: normal;
+}
+
+.accountSize{
+	background-position: 0 -351px;
+}
+
+.servicesAdd{
+	background-position: 0 -392px;
+}
+
+.uploadLimit{
+	background-position: 0 -430px;		
+}
+
+.postType{
+	background-position: 0 -465px;		
+}
+
+.customProfile{
+	background-position: 0 -503px;		
+}
+
+.users{
+	background-position: 0 -544px;
+}
+
+.brands{
+	background-position: 0 -583px;	
+}
+
+.sslIcon{
+	background-position: 0 -624px;
+}
+
+#featurePlan{
+	position: absolute;
+	top: 0;
+	left: 175px;
+}
+
+#featurePlan .last{
+	margin: 0 0 0 5px;
+}
+
+.blueWrapper{
+	margin: 0 5px 0 15px !important;
+}
+
+.featuresPriceWrapper{
+	position: relative;
+	float: left;
+	margin: 0 5px;
+}
+
+.featuresPriceWrapper ul{}
+
+.featuresPriceWrapper li{}
+
+.featuresPlanPrice{}
+
+h2.planTitle{
+	color: #536E79;
+	font-weight: bold;
+	text-shadow: 0 1px #e4e7e8;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+.featurePlanWrapper{
+	width: 98px;
+	background: #eaeded;
+	border: 1px solid #8da0a6;
+	border-radius: 7px;
+	box-shadow: 0 0 3px #9da4a6, inset 0 0 0 1px #fff;
+	float: left;
+	text-align: center;
+	position: relative;
+	padding: 65px 5px 10px;
+}
+
+.pricingTable{
+	background: url(../images/pricingHead.png) no-repeat 0 0;
+	height: 54px;
+	padding: 5px;
+	width: 100px;
+	position: absolute;
+	top: 0;
+	left: -1px;
+}
+
+#premiumPlan{
+	background-position: 0 -74px;
+}
+
+#bronzePlan{
+	background-position: -120px 0;
+}
+
+#silverPlan{
+	background-position: -120px -74px;
+}
+
+#goldPlan{
+	background-position: 0 -150px;
+}
+
+#platinumPlan{
+	background-position: -120px -151px;
+}
+
+h1.pricingHead, .pricingSubHead{
+	font-weight: bold;
+	color: #fff;
+	text-shadow: 0 1px 0 #404040;
+}
+
+.pricingSubHead{
+	font-size: 12px !important;
+}
+
+.signUpBtn{
+	margin: 5px 0 5px 7px;
+	float: left;
+}
+
+.featuresContent{}
+
+.featuresContent ul{
+	float: left;
+	margin-top: 2px;
+}
+
+.featuresContent li{
+	border-bottom: 1px solid #DBDEDF;
+	border-top: 1px solid #EFF1F2;
+	display: block;
+	float: left;
+	padding: 13px 0 16px;
+	width: 100%;
+	font-weight: bold;
+	font-size: 14px;
+	text-shadow: 0 1px 0 #fff;
+}
+
+.featuresContent li:first-child{
+	border-top: none;
+}
+
+.featuresContent li:last-child{
+	border-bottom: none;
+}
+
+.featuresContent li.featuresSmall{
+	font-size: 11px;
+	line-height: 20px;
+}
+
+.check{
+	background: url(../images/uiIcon.png) no-repeat 0 -309px;
+	padding: 10px 15px;
+	float: left;
+	text-indent: -19999px;
+	text-align: center;
+	margin: 0 0 0 32px;
+}
+
+.features{
+	float: left;
+}
+
+.starterFeatures{}
+
+.starterFeatures li{
+	display: block;
+	float: left;
+	padding: 0;
+	width: 100%;
+	margin-bottom: 35px;
+}
+
+.starterFeatures li div:last-child{
+	padding-right: 0;
+}
+
+.starterFeatures div{
+	width: 265px;
+	text-shadow: 0 1px 0 #ececec;
+	float: left;
+	padding-right: 50px;
+}
+
+.starterFeatures h5{
+	color: #4B6973;
+	line-height: 32px;
+	float: left;
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+.starterFeatures h5 span{
+	padding: 10px 0 10px 40px;
+}
+
+.starterFeatures p{
+	color: #6c7b80;
+	line-height: 20px;
+}
+
+.starterFeature1{
+	background-position: 0 -152px !important;
+}
+
+.starterFeature2{
+	background-position: 0 -196px !important;
+}
+
+.starterFeature3{
+	background-position: 0 -248px !important;
+}
+
+.starterFeature4{
+	background-position: 0 -305px !important;
+}
+
+.starterFeature5{
+	background-position: 0 -365px !important;
+}
+
+.starterFeature6{
+	background-position: 0 -416px !important;
+}
+
+.starterFeature7{
+	background-position: 0 -472px !important;
+}
+
+.starterFeature8{
+	background-position: 0 -530px !important;
+}
+
+.premiumFeature1{
+	background-position: 0 -582px !important;
+}
+
+.premiumFeature2{
+	background-position: 0 -636px !important;
+}
+
+.premiumFeature3{
+	background-position: 0 -693px !important;
+}
+
+.premiumFeature4{
+	background-position: 0 -750px !important;
+}
+
+.premiumFeature5{
+	background-position: 0 -807px !important;
+}
+
+.featureDecription{
+	float: left;
+	margin-bottom:35px;
+	text-shadow: 0 1px 0 #ececec;
+}
+
+.featureDecription ol{}
+
+.featureDecription li{
+	padding: 5px 0;
+	list-style: disc inside none;
+}

@@ -1,0 +1,20 @@
+#mainContent
+  - form_tag password_reset_path, :method => :put do
+    #ednt-PasswordRecovery.ednt-Wrapper
+      .titles
+        %h4=t :reset_password
+      #passRecovery.MP-boxes{:style => "height: 240px !important;"}
+        .passRecoveryInfo
+          %p=t :reset_password_instruction_text
+        #emailRecovery
+          #inputEmailLink
+            %label= t :password
+            = password_field_tag :password, "", :size => 40, :id => "emailAddress"
+          #inputEmailLink
+            %label= t :retype_password
+            = password_field_tag :password_confirmation, "", :size => 40, :id => "emailAddress"
+          #recoveryAction.flRight
+            .blueBtn
+              =submit_tag "#{t :password_reset}"
+            .bronzeBtn
+              = link_to(t(:cancel), root_path)

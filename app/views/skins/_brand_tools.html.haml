@@ -1,0 +1,32 @@
+:javascript
+  function swapImage(){
+    return (
+      $j(this).attr('src') == '/images/arrow-up-toggle.png' ? '/images/arrow-down.png' : '/images/arrow-up-toggle.png'
+    );
+    }
+
+#color_palette{:style => "display:none;left:630px;top:1px;position:absolute;width:300px;height:300px;"}
+  .skin_panel
+    #header_div{:style => "background-color:#616b75;min-height:20px;"}
+      .float_right{:style => "padding:2px;"}
+        = link_to image_tag("fileclose.png", :width => "15", :height => "15"), "javascript:void(0)", :onclick => "$j('#color_palette').hide();"
+    .float_left.skin_panel_header{:style => "min-height:25px;"}
+      //.float_left.skin_header== SKIN TOOLS
+      #your_skins.float_left.your_skins= your_skin_for_brand
+    .clear
+
+    - if @brand.active_skin.blank?
+      #default_skin_text
+        Default Skin
+      #default_skin_preview_div
+        = render :partial => "skins/brand/default_skin_preview"
+    - else
+      #active_skin_text{:style => "height:20px;padding:3px;"}
+        .active_skin_text_title
+          = "Active Skin : #{ @brand.active_skin.name}"
+        .float_right{:style => "padding-right:3px;margin-top:-5px;"}
+          = link_to image_tag("arrow-down.png", :width => "15", :height => "15",:class => "active_skin_style"), "javascript:void(0)", :onclick => "$j('#skin_preview_div').slideToggle('slow');$j(function(){$j('.active_skin_style').attr('src', swapImage );}); if($j('.my_skins:visible')) {$j('.my_skins').slideUp();return false;}"
+        #clear
+      #skin_preview_div
+        = render :partial => "skins/brand/skin_preview"
+%br

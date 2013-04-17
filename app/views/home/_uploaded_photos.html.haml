@@ -1,0 +1,8 @@
+.pathBarNew.cornerAll
+  = hidden_field_tag "stream_image_url", @current_asset.asset.url.gsub('/s3.','/s3-eu-west-1.')
+  = hidden_field_tag "asset_id", @current_asset.id
+  .imagePreview
+    %span.userPicBig
+      = image_tag @current_asset.asset.url.gsub("/s3.","/s3-eu-west-1."),:class => "userPicBigest"
+  .redBtn.flRight
+    = link_to_remote "#{t :remove}", :url => cancel_upload_posts_path(:id => @current_asset.id), :method => :get, :html => {:class => "smlrBtn"}

@@ -1,0 +1,69 @@
+- friends_count = @user.friends.count
+#sideWrapper.flRight
+  #ProfileWrapper.streamSide.streamWrapper.cornerAll
+    - if @user == current_user && action_name != "show_stream"
+      .customSkins
+        .redBtn
+          %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('personalCustomSkin');"}
+            %span.setSkinIcon.uiIconInside
+              =t :customize_skins
+            %span.customArrowDown.uiIconInside.flRight
+        #personalCustomSkin.customSkinPopup.modalWindow.cornerAll{:style => "display:none;"}
+          .customizeHeader
+            %span.setSkinIconBlue.uiIconInside.flLeft
+            %h6 Customize my skin
+            %span.flRight
+              %a.closeCustom.uiIconInside{:href => "javascript:void(0);", :onclick => "toggle_visibility('personalCustomSkin');"}
+          #customStyle.customSkinContent
+            =render :partial => "/profiles/skin_editor"
+    .userBigPictId
+      - unless @user.profile_image.blank?
+        = image_tag @user.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :class => "mainPic"
+      - else
+        = image_tag "/images/bigProfilePic.jpg", :class => "mainPic"
+    .usernameId
+      %h1
+        %a{:href => profiles_path(:id => @user.user_name)}
+          = @user.get_full_name(current_user) if @user
+      - if @user == current_user
+        %a.editUsrProfile{:href => edit_user_path(@user)}
+          %span.editProfileLink
+            = t :edit
+    .socialNetworkWrapper
+      %ul
+        - @user.active_services.each do |user_service|
+          %li
+            - if current_user
+              %a{:href => user_services_path(current_user)}
+                %span{:id => "#{user_service.service.name.downcase.gsub(' ','')}Service",:title => "#{user_service.display_name}"}
+            - else
+              %a
+                %span{:id => "#{user_service.service.name.downcase.gsub(' ','')}Service",:title => "#{user_service.display_name}"}
+    .activityWrapper
+      %ul
+        %li
+          %a
+            = t :followers
+            %span.counter.flRight
+              = (@user.followers.count.to_i - friends_count.to_i)
+        %li
+          %a
+            = t :following
+            %span.counter.flRight
+              = (@user.followings.count.to_i - friends_count.to_i) + @user.company_followers.count.to_i
+        %li
+          %a
+            = t :friends
+            %span.counter.flRight
+              = @user.friends.count.to_i
+    .invitationButton
+      .blueBtn
+        - if current_user && @user != current_user && !@user.marked_as_spammer
+          - if current_user.already_following_user(@user.id)
+            = link_to "#{t :unfollow}", unfollow_followers_path(:following => @user.id, :next_url => "profiles/#{@user.user_name}"), :id => "followBtn"
+          - else  
+            = link_to "#{t :follow}", follow_followers_path(:following => @user.id, :next_url => "profiles/#{@user.user_name}"), :id => "followBtn"
+  - if current_user &&  @user != current_user
+    .reportSpamUser.streamSide.streamWrapper.cornerAll
+      .reportAsSpammer#spammer_link
+        = render :partial => "profiles/report_spammer"

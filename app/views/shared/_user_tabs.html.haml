@@ -1,0 +1,40 @@
+- unused_tabs ||= @unused_tabs
+- @user_tabs = session[:locale] == "arabic" ? @user_tabs.reverse : @user_tabs
+
+- if session[:locale] == nil || session[:locale] == "en"
+  %li.tabs_div
+    .homebutton
+      .homebuttoninner.user_tabs_div#home_tab
+        = link_to "#{t :home}", "/", :class => "home_link"
+
+- @user_tabs.each do |user_tab|
+  %li
+    - if user_tab.tab_name == "RSS Reader"
+      .rssbutton
+        .rssbuttoninner.user_tabs_div#rss_reader_tab
+          = link_to "#{user_tab.tab_name}", {:action => "rss_reader", :controller => "home"}, :id => user_tab.id
+          = link_to_remote image_tag("/images_1/close_button.png"), :url => user_tab_path(user_tab), :method => :delete
+    - elsif  (user_tab.tab_name != "RSS Reader" && user_tab.tab_name != "Followings" && user_tab.tab_name != "Followers" && user_tab.tab_name != "Friends" && user_tab.tab_name != "Home" )
+      .rssbutton
+        .rssbuttoninner.user_tabs_div{:id => "#{user_tab.tab_name}_tab"}
+          = link_to "#{user_tab.tab_name}", :action => "#{user_tab.tab_path}", :controller => "home",:id => user_tab.id
+          = link_to_remote image_tag("/images_1/close_button.png"), :url => user_tab_path(user_tab), :method => :delete
+    - else
+      .rssbutton
+        .rssbuttoninner.user_tabs_div{:id => "#{user_tab.tab_name}_tab"}
+          = link_to "#{user_tab.tab_name}", :controller => "#{user_tab.tab_path}", :action => "streams",:id => user_tab.id
+          = link_to_remote image_tag("/images_1/close_button.png"), :url => user_tab_path(user_tab), :method => :delete
+
+- if session[:locale] == "arabic"
+  %li.tabs_div
+    .homebutton
+      .homebuttoninner.user_tabs_div#home_tab
+        = link_to "#{t :home}", "/", :class => "home_link"
+
+.clear
+:javascript
+  $j(document).ready(function(){
+    $j('.user_tabs_div').removeClass('homebuttoninner').addClass('rssbuttoninner');
+    $j("##{@tab_name}_tab").removeClass('rssbuttoninner').addClass('homebuttoninner');
+  });
+ 

@@ -1,0 +1,12 @@
+#brandListing.paymentHistory.cornerAll
+  %ul.paymentGroup#brandListingul
+    %li.paymentHead.cornerTop
+      %ul.paymentRow
+        %li.firstCol= t :brand_name
+        %li.secondCol= t :brand_admin
+        %li.thirdCol= t :parent_brand_name
+        %li.fourthCol= t :active_services
+        %li.fifthCol= t :pending_services
+        %li.sixCol= t :action
+    - @brands.each do |brand|
+      = render :partial => "companies/brands/brand_item", :locals => { :brand => brand }

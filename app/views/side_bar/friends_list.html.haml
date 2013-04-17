@@ -1,0 +1,42 @@
+:javascript
+  $j(document).ready(function(){
+   $j(".friends select").multiSelect();
+  });
+.content
+  .left_content.friends
+    #stream_content
+    %div.no_users{:style => "padding:10px;font-weight:bold;font-size:14px;"}
+      - unless @friends.blank?
+        =t :you_have
+        %span.friends_list_count
+          = @friends.count
+        =t :friends
+    - form_remote_tag(:url => {:controller => :side_bar, :action => :friends_list }) do
+      %table.users_list
+        - unless @friends.blank?
+          - @friends.each do |friend|
+            %tr
+              %td
+                - unless friend.avatar.blank?
+                  = image_tag friend.avatar.url.gsub("/s3.","/s3-eu-west-1."), :style => "width:50px;height:50px;"
+                - else
+                  = image_tag :src => "/images/person.png"
+              %td.bold
+                = friend.display_full_name(current_user)
+              %td.select
+                - @privacy_groups =  current_user.privacy_groups
+                = collection_select("task", "groups_#{friend.id}" , @privacy_groups, "id", "name", {:selected => lambda{|pg| pg.has_this_user(friend.id)}},{:multiple => true})
+              %td{:id=>"unfollow_#{friend.id}"}
+                = link_to_remote "#{t :unfollow}", :url => toggle_follow_side_bar_path(current_user, :follower => friend.id, :id => "unfollow", :type => "friend"), :method => :get, :html => {:class => "button"}
+                - @friend = User.find(friend.id)
+              %td{ :id => "block_#{friend.id}"}
+                = link_to_remote(@friend.is_blocked ? '#{t :unblock}' : "#{t :block}", :url => toggle_block_side_bar_path(current_user, :follower => friend.id), :method => :get, :html => {:class => "button"})
+        - else
+          %div.no_users
+            %div
+              =t :no_friends
+            %div.find_friends
+              =t :click_to_invite_friends
+              = link_to "#{t :invite_friends}", new_user_friend_path(current_user)
+      = submit_tag ("#{t :save}"), :class => "button_submit", :style => " background-color: #94B080; border: medium none #94B080;margin-left: 13px;  color: #17404E;    font-family: arial;    font-size: 12px;    font-weight: bold;    margin-left: 13px;    padding: 4px;" unless @friends.blank?
+

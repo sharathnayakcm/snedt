@@ -1,0 +1,15 @@
+:javascript
+  $j('.button').corner("4px");
+  $('RB_window').style.width = "500px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 500)/2) + "px";
+.dialogs
+  .dialog_details
+    - form_remote_for :stream, :url => retweet_streams_path(:id => @stream.id), :method => :get do |f|
+      - current_user.user_services.twitter_authorized.each do |user_service|
+        = check_box_tag "user_service_ids[]", user_service.id
+        = image_tag("services/#{user_service.service.name.downcase}.png", :title => "#{user_service.display_name}", :width => "20px")
+        %br
+      .p{:style => "float:right"}
+        = f.submit "#{t :retweet}", :class => "button float_left"
+        = button_to_close_redbox("#{t :cancel}", :class => "button float_left", :onclick => "$j('embed').show();")
+        .clear

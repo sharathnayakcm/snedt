@@ -1,0 +1,137 @@
+.DB-DateOption.date_range
+  .startDate
+    %p=t :start_date
+    = text_field_tag :start_date, @start_date.blank? ? (Time.now - 2592000).strftime("%d/%m/%Y") : @start_date, {:readonly => true,:class => "textInput"}
+  .endDate
+    %p=t :end_date
+    = text_field_tag :end_date, @end_date.blank? ? (Time.now).strftime("%d/%m/%Y") : @end_date, {:readonly => true, :class => "textInput"}
+.clear
+.DB-graphMain#graph_container{:style=>"width: 590px; height: 370px"}
+.clear
+.graphExport
+  .blueBtn.flRight
+    = link_to "Export As CSV", {:controller => "companies/dashboard", :action => :export_csv, :start_date => @start_date, :end_date => @end_date, :type => 'company_services', :name => "followers_by_services_#{Time.now.to_i}"}, :class => "smlrBtn"
+  .blueBtn.flRight
+    = link_to_remote "Get Report", :html => {:class => "smlrBtn"}, :url => {:controller => "companies/dashboard", :action => :load_data}, :with => "'type=company&category=services&start_date=' + $('start_date').value + '&end_date=' + $('end_date').value"
+:javascript
+  var chart;
+  $j("#start_date,#end_date").datepicker({
+     showOn: "button",
+      buttonImage: "/images_old/calendar.png",
+      buttonImageOnly: true
+    });
+  $j(document).ready(function() {
+
+      // define the options
+      var options = {
+
+          chart: {
+              renderTo: 'graph_container'
+          },
+
+          credits: {
+              text: 'edintity.com',
+              href: 'http://www.edintity.com'
+          },
+
+          title: {
+              text: 'Company - followers by service '
+          },
+
+          subtitle: {
+              text: " "
+          },
+
+          xAxis: {
+              type: 'datetime',
+              tickInterval: 30 * 24 * 3600 * 1000, // one week
+              tickWidth: 0,
+              gridLineWidth: 1,
+              labels: {
+                  align: 'left',
+                  x: 3,
+                  y: -3
+              }
+          },
+
+          yAxis: [{ // left y axis
+                  title: {
+                      text: null
+                  },
+                  labels: {
+                      align: 'left',
+                      x: 3,
+                      y: 16,
+                      formatter: function() {
+                          return Highcharts.numberFormat(this.value, 0);
+                      }
+                  },
+                  showFirstLabel: false
+              }, { // right y axis
+                  linkedTo: 0,
+                  gridLineWidth: 0,
+                  opposite: true,
+                  title: {
+                      text: null
+                  },
+                  labels: {
+                      align: 'right',
+                      x: -3,
+                      y: 16,
+                      formatter: function() {
+                          return Highcharts.numberFormat(this.value, 0);
+                      }
+                  },
+                  showFirstLabel: false
+              }],
+
+          legend: {
+              align: 'left',
+              verticalAlign: 'top',
+              y: 20,
+              floating: true,
+              borderWidth: 0
+          },
+
+          tooltip: {
+              shared: true,
+              crosshairs: true
+          },
+
+          plotOptions: {
+              series: {
+                  cursor: 'pointer',
+                  point: {
+                      events: {
+                          click: function() {
+                              hs.htmlExpand(null, {
+                                  pageOrigin: {
+                                      x: this.pageX,
+                                      y: this.pageY
+                                  },
+                                  headingText: this.series.name,
+                                  maincontentText: Highcharts.dateFormat('%A, %b %e, %Y', this.x) +':<br/> '+
+                                      this.y +' Follower(s)',
+                                  width: 200
+                              });
+                          }
+                      }
+                  },
+                  marker: {
+                      lineWidth: 1
+                  }
+              }
+          },
+
+          series: []
+
+      };
+      data_array = #{@company_services_data.to_json}
+      for(var i=0; i<data_array[0].length; i++) {
+        var data = data_array[1][i];
+        var service = data_array[0][i];
+        options.series.push({name: service, data: data});
+      }
+      chart = new Highcharts.Chart(options);
+
+  });

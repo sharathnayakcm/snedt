@@ -1,0 +1,2 @@
+module Companies::DashboardHelper
+end

@@ -1,0 +1,24 @@
+- privacy_groups ||= @privacy_groups
+- @privacy_groups_table.render privacy_groups do |table|
+  - privacy_groups.each do |privacy_group|
+    - table.tr :id => "privacy_group_#{privacy_group.id}" do
+      -table.td {privacy_group.name}
+      -table.td do
+        - types = privacy_group.group_ids.split(",")
+        - user_types = PrivacyType.find_all_by_id(types)
+        - if !(user_types.blank?)
+          = (user_types.collect{ |user_type| user_type.name }).join(", ")
+        - elsif (!(privacy_group.group_user_ids.blank?) && privacy_group.group_ids.blank?)
+          user specific
+        - elsif !(privacy_group.user_ids.blank?)
+          user specific
+
+      -table.td do
+        - user_groups = privacy_group.service_ids.split(",")
+        - user_services = UserService.find_all_by_id(user_groups)
+        - unless user_services.blank?
+          = (user_services.collect{|user_service| image_tag("services/#{user_service.service.name.downcase}.png" , :style => "width:20px;", :title => "#{user_service.display_name}")}).join(" ")
+
+      -table.td(:action) do
+        = link_to_remote_with_loader image_tag("/images_1/edit.png"), :url => edit_privacy_group_path(privacy_group), :method => :get, :update => "form_content"
+        = link_to_remote image_tag("/images_1/delete.png"), :url => privacy_group_path(privacy_group), :method => :delete, :confirm => "Are you sure want to delete?"

@@ -1,0 +1,20 @@
+#modal.modalWrapper.modalWindow.cornerAll{:style => "display: block;"}
+  - unless @header.blank?
+    .modalHeader
+      - if @icon_name
+        %span.smlServicesIco{:id => "modal#{@icon_name.gsub(' ','')}"}
+        .titles
+          %h6= @header
+      - else
+        %span
+        .titles
+          %h6= @header
+  .modalContent.clear
+    = @content_for_layout
+
+
+:javascript
+  setFloatLayer();
+  $('RB_window').style.height = "650px";
+  $('RB_window').style.width = "800px";
+  $('RB_window').style.left = (jQuery(window).width()/8).toString() + 'px';

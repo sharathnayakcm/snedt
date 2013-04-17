@@ -1,0 +1,44 @@
+#ednt-Pricing.ednt-Wrapper
+  #individualPricingWrapper
+    .titles
+      %h1=t :individual_plan
+    = render :partial => "shared/pricing_plan", :collection =>  Membership.active.individual
+    .standardFeatures
+      %ul
+        %li.stdTitle=t :all_plans
+        %li
+          %span.checkIcon=t :ssl_protection
+        %li
+          %span.checkIcon=t :unlimited_account_size
+        %li
+          %span.checkIcon=t :unlimited_services
+
+
+
+  #brandPricingWrapper
+    .titles
+      %h1
+        ="#{t :brands_and_blog_owners}<small>*</small>"
+    = render :partial => "shared/pricing_plan", :collection =>  Membership.active.business
+    .standardFeatures
+      %ul
+        %li.stdTitle=t :all_plans
+        %li
+          %span.checkIcon=t :ssl_protection
+        %li
+          %span.checkIcon=t :unlimited_account_size
+        %li
+          %span.checkIcon=t :unlimited_services
+        %li
+          %span.checkIcon=t :unlimited_custom_skins
+    #brandPricingStarred
+      %span.starred *
+      %ul
+        %li
+          =t :for
+          %b=t :users_who_have_individual_accounts
+          =t :add_brand_plan_to_personal_account
+        %li
+          =t :for
+          %b=t :users_who_dont_have_individual_accounts
+          =t :sign_up_for_personal_account

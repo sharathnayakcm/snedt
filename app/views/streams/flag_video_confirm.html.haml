@@ -1,0 +1,27 @@
+:javascript
+  $j('.button').corner("4px");
+  $('RB_window').style.width = "500px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 500)/2) + "px";
+.dialogs
+  .dialog_details
+    - form_remote_for :stream, :url => flag_video_streams_path(:id => @stream_id), :method => :get do |f|
+      %p
+        =t :flag_description
+      .selected.rounded{:style => "float:left; padding-bottom:25px"}
+        %p
+          = radio_button_tag 'flag', "PORN", true
+          PORN
+          = radio_button_tag 'flag', "HATE"
+          HATE
+          = radio_button_tag 'flag', "VIOLENCE"
+          VIOLENCE
+          = radio_button_tag 'flag', "DANGEROUS"
+          DANGEROUS
+          = radio_button_tag 'flag', "RIGHTS"
+          RIGHTS
+          = radio_button_tag 'flag', "SPAM"
+          SPAM
+      %br
+      .p{:style => "float:right"}
+        = f.submit "#{t :ok}", :class => "button"
+        = button_to_close_redbox("#{t :cancel}", :class => "button", :onclick => "$j('embed').show();")

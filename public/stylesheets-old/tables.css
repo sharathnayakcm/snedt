@@ -1,0 +1,126 @@
+table {
+  border-color: gray;
+  border-style: solid;
+  border-width: 0; }
+  table tr td, table tr th {
+    border-color: gray;
+    border-style: solid;
+    border-width: 0; }
+
+div.table table.data {
+  border-collapse: separate;
+  width: 100%; }
+  div.table table.data tr td.data, div.table table.data tr th.data {
+    padding: 5px 5px; }
+  div.table table.data thead tr th.data {
+    font-size: 12px;
+    background-color: white;
+    background-image: url("/images/backgrounds/chrome_small.png");
+    background-position: bottom center;
+    background-repeat: repeat-x;
+    border-bottom-color: silver;
+    border-bottom-width: 1px;
+    border-right-color: white;
+    border-right-width: 1px;
+    color: #404040;
+    font-weight: bold;
+    padding-bottom: 4px;
+    padding-top: 5px;
+    text-align: center;
+    white-space: nowrap; }
+  div.table table.data thead tr th.link {
+    cursor: pointer !important; }
+  div.table table.data tfoot tr td.data {
+    font-size: 12px;
+    background-color: white;
+    background-image: url("/images/backgrounds/chrome_small.png");
+    background-position: bottom center;
+    background-repeat: repeat-x;
+    border-right-color: white;
+    border-right-width: 1px;
+    border-top-color: silver;
+    border-top-width: 1px;
+    padding-bottom: 5px;
+    padding-top: 4px;
+    text-align: center; }
+  div.table table.data tbody tr {
+    /* TODO: text-align not working in IE */ }
+    div.table table.data tbody tr td.data {
+      font-size: 12px;
+      background-color: white;
+      border-right-color: #e0e0e0;
+      border-right-width: 1px; }
+      div.table table.data tbody tr td.data a, div.table table.data tbody tr td.data *.link {
+        font-weight: bold;
+        cursor: pointer !important; }
+    div.table table.data tbody tr td.fused {
+      padding: 0; }
+    div.table table.data tbody tr td.action, div.table table.data tbody tr td.check_box, div.table table.data tbody tr td.currency, div.table table.data tbody tr td.date, div.table table.data tbody tr td.expander, div.table table.data tbody tr td.number, div.table table.data tbody tr td.percentage, div.table table.data tbody tr td.priority, div.table table.data tbody tr td.stars, div.table table.data tbody tr td.status, div.table table.data tbody tr td.user {
+      white-space: nowrap;
+      width: 1px; }
+    div.table table.data tbody tr td.action {
+      border-right-width: 0;
+      text-align: center; }
+    div.table table.data tbody tr td.currency {
+      text-align: right; }
+    div.table table.data tbody tr td.date {
+      text-align: right; }
+    div.table table.data tbody tr td.number {
+      text-align: right; }
+    div.table table.data tbody tr td.percentage {
+      text-align: right;
+      width: 140px; }
+      div.table table.data tbody tr td.percentage div.percent {
+        width: 50px; }
+      div.table table.data tbody tr td.percentage div.colon {
+        width: 1px; }
+      div.table table.data tbody tr td.percentage div.breakdown {
+        width: 85; }
+    div.table table.data tbody tr td.stars {
+      text-align: center; }
+    div.table table.data tbody tr td.status {
+      text-align: center; }
+  div.table table.data tbody tr.odd > td.data {
+    background-color: white; }
+  div.table table.data tbody tr.odd > td.red {
+    background-color: red; }
+  div.table table.data tbody tr.odd > td.bottom_border {
+    border-bottom: 1px solid white; }
+  div.table table.data tbody tr.even > td.data {
+    background-color: #bcc0c0; }
+  div.table table.data tbody tr.even > td.red {
+    background-color: red; }
+  div.table table.data tbody tr.even > td.bottom_border {
+    border-bottom: 1px solid #1b4a4e; }
+  div.table table.data tbody tr.expansion > td.data {
+    border-top-color: #e0e0e0;
+    border-top-width: 1px;
+    padding-top: 4px; }
+  div.table table.data tbody tr.expansion > td.fused {
+    padding-top: 0; }
+  div.table table.data tbody tr.expansion td.expander {
+    border-right-color: transparent; }
+  div.table table.data tbody.hover tr:hover td.hover {
+    border-bottom-color: #a2b8c0;
+    border-bottom-width: 1px;
+    border-top-color: #a2b8c0;
+    border-top-width: 1px;
+    padding-bottom: 4px;
+    padding-top: 4px; }
+  div.table table.data tbody.hover tr:hover td.fused {
+    padding-bottom: 0;
+    padding-top: 0; }
+  div.table table.data tbody.hover tr:hover td.hover_light_blue {
+    background-color: #bcc0c0; }
+  div.table table.data tbody.hover tr:hover td.hover_blue {
+    background-color: #c3d6e5; }
+  div.table table.data tbody.hover tr td.selected {
+    background-color: #bcc0c0 !important;
+    cursor: pointer; }
+  div.table table.data tbody.hover tr.expansion:hover td.hover {
+    border-bottom-color: transparent !important;
+    border-top-color: #e0e0e0 !important; }
+
+table.login_table tr td {
+  padding-left: 5px;
+  padding-bottom: 0px; }

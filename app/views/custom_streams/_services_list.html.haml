@@ -1,0 +1,12 @@
+#pick_services{:style => "width:440px"}
+  - if @services && @services.length > 0
+    - @services.each do |user_service|
+      = check_box_tag "serviceid[]", "#{user_service.id}", @custom_stream && @custom_stream.user_service_ids.to_s.split(",").index(user_service.id.to_s) ? true : false
+      = image_tag("services/#{user_service.service.name.downcase}.png", :title => "#{user_service.display_name}", :width => "20px")
+  - else
+    =t :service_list_text1
+    = @service_type
+    =t :service_list_text2
+    = link_to "#{t :click_here}", user_services_path(current_user)
+
+

@@ -1,0 +1,90 @@
+:javascript
+  #{remote_function(:url => apply_active_skin_skins_path(:user => @user.id), :method => :get)}
+
+- friends_count = @user.friends.count
+#ednt-PersonalStream.mainStreamWrapper{:style => "margin-top: -15px;"}
+  .ajaxLoader.cornerAll#ajaxLoaderDiv.hide
+    %span.ajaxSpinner
+      %img{:src=>"/images/ajax-loader.gif", :alt=>"#"}
+  .usernameId
+    .flLeft{:style => "padding-right:10px;"}
+      %h1
+        %a{:href => profiles_path(:id => @user.user_name)}
+          = @user.get_full_name(current_user) if @user
+    %div{:style => "padding-top:10px;"}
+      - if @user == current_user
+        %a.editUsrProfile{:href => edit_user_path(@user)}
+          %span.editProfileLink
+            = t :edit
+
+  .clear
+  #myProfileHeader.flLeft{:style => "margin-top: -12px; border-bottom: 2px solid #4B6973; width: 95.6%; padding-bottom: 20px;"}
+    .userBigPictId
+      - unless @user.profile_image.blank?
+        = image_tag "/avatars/original/missing1.png", :class => "mainPic"
+        /= image_tag @user.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1."), :class => "mainPic"
+      - else
+        = image_tag "/images/bigProfilePic.jpg", :class => "mainPic"
+      - if @user != current_user
+        .blueBtn{:style => "text-align:center; margin-top: 5px;"}
+          - if !@user.marked_as_spammer
+            - if current_user.already_following_user(@user.id)
+              = link_to "#{t :unfollow}", unfollow_followers_path(:following => @user.id, :next_url => "profiles/#{@user.user_name}"), :id => "followBtn", :style => "float:none !important;"
+            - else
+              = link_to "#{t :follow}", follow_followers_path(:following => @user.id, :next_url => "profiles/#{@user.user_name}"), :id => "followBtn", :style => "float:none !important;"
+
+    #myPeople.flLeft
+      #myPeopleCount= (@user.followers.count.to_i - friends_count.to_i)
+      #myPeopleTitle
+        = link_to "#{t :followers}",:controller => "profiles", :action => "followers", :id => @user.id
+      #myPeopleCount= (@user.followings.count.to_i - friends_count.to_i) + @user.company_followers.count.to_i
+      #myPeopleTitle
+        = link_to "#{t :following}",:controller => "profiles", :action => "followings", :id => @user.id
+      #myPeopleCount= @user.friends.count.to_i
+      #myPeopleTitle
+        = link_to "#{t :friends}",:controller => "profiles", :action => "friends", :id => @user.id
+    #myTopics.flLeft
+      #myTopicsTitle= t(:topics)
+      - @user.topics(:limit => 3).each do |topic|
+        #myTopicName
+          #topicImage.flLeft
+            - if topic.asset
+              = image_tag topic.asset.asset.url(:thumb).gsub('/s3.','/s3-eu-west-1.'), :class => "profilePicMed"
+            - else
+              = image_tag "/images/userPicMed.png", :class => "profilePicMed"
+          #topicTitleLink.flLeft
+            = link_to topic.title
+          .clear
+      - if @user.topics.size > 3
+        #myTopicMore.flRight
+          = link_to t(:more_lower), topics_path(:user_id => @user.id)
+    .invitationButton.flLeft
+    /.clear
+    .user_block_button
+      #block_unblock_btn
+        -if @user.is_blocked(current_user.id).present? == true
+          = link_to_remote_with_loader("#{t :unblock_user}", :url => blocked_user_path(:id => @user.id, :privacy_page => true), :method => :delete , :class => "smlrBtn",:html=>{:id => "unblock"})
+        -else
+          = link_to_remote_with_loader("#{t :block_user}", :url => blocked_users_path(:id => @user.id, :privacy_page => true), :method => :post , :class => "smlrBtn")
+    #ProfileWrapper.streamSide.streamWrapper.cornerAll
+      - if @user == current_user && action_name != "show_stream"
+        .customSkins
+          .redBtn
+            %a{:href => "javascript:void(0);", :onclick => "toggle_visibility('personalCustomSkin');"}
+              %span.setSkinIcon.uiIconInside
+                =t :customize_skins
+              %span.customArrowDown.uiIconInside.flRight
+          #personalCustomSkin.customSkinPopup.modalWindow.cornerAll{:style => "display:none;"}
+            .customizeHeader
+              %span.setSkinIconBlue.uiIconInside.flLeft
+              %h6 Customize my skin
+              %span.flRight
+                %a.closeCustom.uiIconInside{:href => "javascript:void(0);", :onclick => "toggle_visibility('personalCustomSkin');"}
+            #customStyle.customSkinContent
+              =render :partial => "/profiles/skin_editor"
+  
+  = render :partial => 'profile_left_content'
+  /- if controller_name == "brands" && action_name == "show"
+  /  = render :partial => "brand_profile_right_content"
+  /- else
+  /  = render :partial => "profile_right_content"

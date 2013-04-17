@@ -1,0 +1,22 @@
+#contentHeadBrand6.contentHeading
+  %h4
+    %a{:href => "javascript:void(0);"} Subscription
+#accSettingBrandContent6.accSetupContent
+  #subscription
+    #currentPlan.standardFeatures.cornerAll
+      %span.infoDesc Your current plan
+      %span.blueBar.flRight= @company.membership.name
+    #othersPlanOption
+      = render :partial => "/shared/pricing_plan", :locals => {:button_label => "company"}, :collection =>  @memberships
+    #planFeatures.standardFeatures.cornerAll
+      %ul
+        %li.stdTitle=t :all_plans
+        %li
+          %span.checkIcon=t :ssl_protection
+        %li
+          %span.checkIcon=t :unlimited_account_size
+        %li
+          %span.checkIcon=t :unlimited_services
+        %li
+          %span.checkIcon=t :unlimited_custom_skins
+

@@ -1,0 +1,72 @@
+- if @user_unused_tabs
+  - unused_tabs = []
+  - @user_unused_tabs.each do |tab|
+    - if tab.name == "Custom"
+      - unused_tabs <<  link_to_remote_redbox("#{t :custom}", :url => new_custom_tab_path, :method => :get)
+    - else
+      - unused_tabs <<  link_to_remote(tab.name,:url => user_tabs_path(:tab => tab), :method => :post)
+
+:javascript
+  $j(document).ready(function(){
+    $j('#share_to_services').corner();
+    $j('#tag_extras').corner();
+    $j('.tab_link').click(function(){
+    alert("clicked");
+    $j('.tab_link').parent().removeClass('current');
+    $j(this).parent().addClass('current');
+    $j(this).parent().removeClass('normal_link');
+    });
+    $j("#tabs_user").jSlide({elemByPages:1,pagination:false});
+    });
+%div
+  #tabs_user
+    .slide
+      %ul.horizontal.company_submenu{:id => "user_tabs_new"}
+        = render :partial => "shared/company/company_tabs", :locals => {:unused_tabs => unused_tabs ? unused_tabs : []}
+
+.brand_services_bread_crumb
+  .float_left= link_to(t(:edit_brand), edit_company_brand_path(@brand.company, @brand.id))
+  .float_left= "|"
+  .float_left= link_to "#{t :services}", services_company_brand_path(@brand.company_id, @brand.id)
+  .float_left= "|"
+  .float_left= link_to t(:privacy), privacy_company_brands_path(:brand_id => @brand.id)
+.clear
+
+.brand_form
+  %br
+  %h4== Manage Privacy - #{@brand.name}
+  .brand_dialog_details
+    #content_for_privacy_page{:style => "border:1px solid #99A9A5;margin-left: 16px;margin-top: 10px;padding: 6px;"}
+      -form_for(@brand.brand_privacy, {:url => update_privacy_company_brands_path(@brand.company), :method => :put})  do |f|
+        - pgs = @privacy_groups.blank? ? [] : [["#{t :custom_groups}", '0']] + @privacy_groups.collect {|x| x.grp_array}
+        = hidden_field_tag :brand_id, @brand.id
+        #privacy_page_spacing
+          %div.privacy_text
+            %span.label  #{t :brand_profile_setting}
+          %div.lock_bg
+            %img{:src => "/images/lock.png", :style=> "vertical-align:text-bottom;"}
+            = f.select(:profile, BrandPrivacy::PRIVACY_TYPES, {:disabled => "0"}, :class => "select_type")
+        .clear
+        #privacy_page_spacing
+          %div.privacy_text
+            %span.label #{t :brand_stream_setting}
+          %div.lock_bg
+            %img{:src => "/images/lock.png", :style=> "vertical-align:text-bottom;"}
+            = f.select(:rss, BrandPrivacy::PRIVACY_TYPES, {:disabled => "0"}, :class => "select_type")
+        .clear
+        #privacy_page_spacing
+          %div.privacy_text
+            %span.label #{t :rss_stream_setting}
+          %div.lock_bg
+            %img{:src => "/images/lock.png", :style=> "vertical-align:text-bottom;"}
+            = f.select(:stream, BrandPrivacy::PRIVACY_TYPES, {:disabled => "0"}, :class => "select_type")
+        .clear
+        #privacy_page_spacing
+          %div.privacy_text
+            %span.label #{t :searchable_setting}
+          %div.lock_bg
+            %img{:src => "/images/lock.png", :style=> "vertical-align:text-bottom;"}
+            = f.select(:is_searchable, [["Yes", true], ["No", false]],{:selected => @brand.brand_privacy.is_searchable, :disabled => "0"}, :class => "select_type")
+        .clear
+        = f.submit "#{t :save}", :class => "button"
+        .clear

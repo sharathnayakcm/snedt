@@ -1,0 +1,14 @@
+.content_div{:style=>"width:700px;"}
+  .login_help_container
+    %h3{:style=>"color:#0C3646;"}
+      =t :privacy_groups
+    #content_header{:style=>"padding-bottom:10px;padding-top:20px;"}
+      %span{:style=>"padding:10px;"}
+        = link_to "#{t :new}", {:controller => :privacy_groups, :action => :new}, :style=>"text-decoration:none;color:#0C3646;"
+      %span{:style=>"padding:10px;"}
+        = link_to_remote "#{t :edit}", :url => {:controller => :privacy_groups, :action => :edit}, :html => {:style=>"color:#0C3646;"}
+    #content_text{:style=>"padding-top:20px;"}
+      .pg_div{:style => "padding:10px;color:#0C3646;font-weight:bold"}
+        #edit_drop_down
+          = render :partial => "privacy_groups/pg_drop_down"
+        #edit_form

@@ -1,0 +1,895 @@
+@import url("reset.css");
+/*@import url("local.css");
+@import url("main.css");
+@import url("activation.css");
+@import url("passwordRecovery.css");
+@import url("privacyPolicy.css");
+@import url("aboutUs.css");
+@import url("paymentOpt.css");
+@import url("pricing.css");
+@import url("features.css");
+@import url("calendar.css");
+@import url("signup.css");
+@import url("accSetup.css");
+@import url("stream.css");
+@import url("friends.css");
+@import url("ie7.css");
+@import url("ie8.css");
+@import url("jquery.fancybox-1.3.4.css");
+@import url("modal.css");
+@import url("services.css");*/
+
+/* BODY */
+
+body {
+  background-color: #cdd6d8;
+  font: normal 12px Helvetica, Arial;
+  color: #77898c;
+}
+
+#baseContainer{
+  position: relative;
+  width: 100%;
+}
+/* ----- HEADING ----- */
+h1{font-size: 24px;}
+h2{font-size: 20px;}
+h3{font-size: 18px;}
+h4{font-size: 16px;}
+h5{font-size: 14px;}
+h6{font-size: 12px;}
+
+h1,h2,h3,h4,h5,h6{
+  font-weight: bold;
+}
+
+.titles h1, .titles h2, .titles h3, .titles h4, .titles h5, .titles h6{
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #4b6973;
+  text-shadow: 0 1px 0 #e5e5e5;
+}
+
+/* ----- FIX ----- */
+
+img {
+  border: none;
+}
+
+img a {
+
+}
+
+img a:hover {
+
+}
+
+img.brandSmlPic{
+  background: white;
+  box-shadow: 0 1px 1px #bfbfbf;
+  border: 1px solid white;
+  width: 26px;
+  height: 26px;
+  padding: 1px;
+}
+
+/* ----- LINKS ----- */
+
+a {
+  outline: none;
+  text-decoration: none;
+}
+
+a:hover {
+
+}
+
+a:visited, a:active, a:focus {
+
+}
+/* ----- GENERAL CLASSES ----- */
+.ednt-Wrapper, .mainStreamWrapper{
+  display: block;
+  position: relative;
+  padding: 80px 0;
+  width: 100%;
+  float: left;
+}
+
+.mainStreamWrapper{
+  padding: 50px 0;
+  position: relative;
+}
+
+.flRight{
+  float: right;
+}
+
+.flLeft{
+  float: left;
+}
+
+.clear{
+  clear: both;
+}
+
+.uiIcoInstream{
+  background-image: url(../images/uiIconInside.png);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.uiBigIcon{
+  background-image: url(../images/uiIconBig.png);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+/* Rounded Box - Corners */
+.MP-boxes{
+  border: 1px solid #a1aeb3;
+  border-radius: 5px;
+  background: #e4e9eb;
+  box-shadow: 0 1px 0 #dae1e3;
+  width: 430px;
+}
+
+.warningBox{
+  background: #fae7ac;
+  border: 1px solid #bfa760;
+  box-shadow: inset 0 1px 0 #fcf2c9, inset 0 0 1px #fcf0be;
+}
+
+.cornerAll, .cornerTop, .cornerLeft, .cornerTl { -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px; -khtml-border-top-left-radius: 4px; border-top-left-radius: 4px;}
+.cornerAll, .cornerTop, .cornerRight, .cornerTr { -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px; -khtml-border-top-right-radius: 4px; border-top-right-radius: 4px;}
+.cornerAll, .cornerBottom, .cornerLeft, .cornerBl { -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px; -khtml-border-bottom-left-radius: 4px; border-bottom-left-radius: 4px;}
+.cornerAll, .cornerBottom, .cornerRight, .cornerBr { -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px; -khtml-border-bottom-right-radius: 4px; border-bottom-right-radius: 4px;}
+
+/* Buttons */
+.greenBtn a, .blueBtn a, .bronzeBtn a, .yellowBtn a, .greyBtn a, .redBtn a{
+  background: url(../images/gradSprites.png) repeat-x 0 0;
+  border-radius: 3px;
+  float: left;
+  padding: 5px 10px 5px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  behavior: url(js/lib/PIE.htc);
+
+}
+
+.blueBtn a.smlrBtn, .yellowBtn a.smlrBtn,  .greyBtn a.smlrBtn, .greenBtn a.smlrBtn, .bronzeBtn a.smlrBtn, .redBtn a.smlrBtn{
+  font-size: 12px;
+  padding: 4px 10px !important;
+  font-weight: bold;
+  behavior: url(js/lib/PIE.htc);
+}
+
+.firefox .greenBtn a, .firefox .blueBtn a, .firefox .yellowBtn a, .firefox .greyBtn a, .firefox .redBtn a, .firefox .bronzeBtn a{
+  padding: 6px 10px 5px;
+}
+
+.windows .greenBtn a, .windows .blueBtn a, .windows .yellowBtn a, .windows .greyBtn a, .windows .redBtn a, .windows .bronzeBtn a{
+  padding: 4px 10px 5px;
+}
+
+.greenBtn a{
+  background-position: 0 -133px;
+  border: 1px solid #41633a;
+  text-shadow: 0 1px 0 #2c5525;
+  box-shadow: 0 1px 0 #73c15f inset, 0 0 1px #407b33 inset;
+  behavior: url(js/lib/PIE.htc);
+}
+
+.greenBtn a:hover{
+  background-position: 0 -161px;
+  text-shadow: 0 -1px 0 #2c5525;
+}
+
+.blueBtn a{
+  background-position: 0 -73px;
+  border: 1px solid #175c73;
+  text-shadow: 0 1px 0 #0e4e68;
+  box-shadow: 0 1px 0 #26bad6 inset, 0 0 1px #146b9d inset;
+  behavior: url(js/lib/PIE.htc);
+}
+
+.blueBtn a:hover{
+  background-position: 0 -102px;
+  text-shadow: 0 -1px 0 #0e4e68;
+}
+
+.bronzeBtn a{
+  background-position: 0 -191px;
+  border: 1px solid #47340e;
+  text-shadow: 0 1px 0 #765b14;
+  box-shadow: 0 1px 0 #d6b026 inset, 0 0 1px #9d6014 inset;
+  behavior: url(js/lib/PIE.htc);
+}
+
+.bronzeBtn a:hover{
+  background-position: 0 -219px;
+  text-shadow: 0 -1px 0 #765b14;
+}
+
+.yellowBtn a{
+  background-position: 0 -280px;
+  border: 1px solid #47470e;
+  text-shadow: 0 1px 0 #7f7f34;
+  box-shadow: 0 1px 0 #f4d22f inset, 0 0 1px #d49619 inset;
+  behavior: url(js/lib/PIE.htc);
+}
+
+.yellowBtn a:hover{
+  background-position: 0 -309px;
+  text-shadow: 0 -1px 0 #7f7f34;
+}
+
+.greyBtn a{
+  background-position: 0 -382px;
+  border: 1px solid #44555a;
+  text-shadow: 0 1px 0 #5e6769;
+  box-shadow: 0 1px 0 #c9d3d6 inset, 0 0 1px #84979d inset;
+  behavior: url(js/lib/PIE.htc);
+}
+
+.windows .greyBtn a{
+  background-position: 0 -381px;
+}
+
+.greyBtn a:hover{
+  background-position: 0 -405px;
+  text-shadow: 0 -1px 0 #5e6769;
+}
+
+.redBtn a{
+  background-position: 0 -439px;
+  border: 1px solid #631818;
+  text-shadow: 0 1px 0 #833333;
+  box-shadow: 0 1px 0 #ea6666 inset, 0 0 1px #c03636 inset;
+  behavior: url(js/lib/PIE.htc);
+}
+
+.redBtn a:hover{
+  background-position: 0 -469px;
+  text-shadow: 0 -1px 0 #833333;
+}
+
+/* Text Input */
+input.textInput, input.error{
+  background: #fff;
+  border: 1px solid #c8cdcc;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 2px #ccc;
+  padding: 7px 5px;
+  float: left;
+  font-weight: normal;
+  font-size: 12px;
+  color: #4b5f73;
+  outline: none;
+  text-align: left;
+  behavior: url(js/lib/PIE.htc);
+}
+
+input.error:focus{
+  outline: 2px solid #f25555;
+}
+
+textarea.textWrite{
+  background: #fff;
+  border: 1px solid #c8cdcc;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 2px #ccc;
+  outline: none;
+  font-weight: normal;
+  font-size: 12px;
+  color: #4b5f73;
+  behavior: url(js/lib/PIE.htc);
+}
+
+
+/* ----- HEADER ----- */
+#ednt-Header{
+  background: #126480 url(../images/headerBack.png) repeat-x top left;
+  width: 100%;
+  height: 56px;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  z-index: 25;
+}
+
+#ednt-HeaderInner{
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+  padding-top: 13px;
+  width: 900px;
+  z-index: 1;
+}
+
+#mainLogo{
+  float: left;
+  height: 35px;
+  width: 119px;
+}
+
+#mainLogo h1 a{
+  background: transparent;
+  float: left;
+}
+
+#loginArea{
+  padding: 10px 0 0;
+  text-shadow: 0 1px 0 #000000;
+  position: relative;
+}
+
+.loginLable{
+  float: left;
+}
+
+.loginLable p, .loginButton a{
+  color: #cdd6d8;
+  font-size: 12px;
+}
+
+.loginButton{
+  margin-left: 10px;
+}
+
+.loginButton a{
+  background: rgba(31, 86, 110, 0.95);
+  box-shadow: 0 1px 0 #146a89;
+  border: 1px solid #0d4456;
+  border-radius: 5px;
+  font-weight: bold;
+  padding: 2px 10px;
+}
+.firefox .loginButton a{
+  padding: 2px 10px 1px;
+}
+
+.loginButton a:hover{
+  background: rgba(0,0,0,0.2);
+  behavior: url(js/lib/PIE.htc);
+}
+
+/* ----- SEARCH FORM HEADER -----*/
+
+#headerSearchWrapper{
+  box-shadow: inset 0 1px 2px #ccc, 0 1px 0 #146f8b;
+  border: 1px solid #0e4d63;
+  background: #fafafa;
+  border-radius: 20px;
+  width: 270px;
+  margin-left: 100px;
+  margin-top: 3px;
+  position: relative;
+  behavior: url(js/lib/PIE.htc);
+  z-index: 1;
+}
+
+input#mainSearch{
+  background: url(../images/uiIconInside.png) no-repeat -5px 3px;
+  border: none;
+  outline: none;
+  width: 234px;
+  padding: 4px 10px 4px 25px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #829499;
+}
+
+input#mainSearch:focus{
+  color: #4b6973;
+}
+/*--- Dropdown Search ---*/
+#searchDropdown{
+  position: absolute;
+  top: 24px;
+  left: 0;
+}
+
+.searchDropWrap{
+  float: left;
+}
+
+.personSearchResult, .brandSearchResult{}
+
+.personSearchBar, .brandSearchBar{
+  background: rgba(208,217,219,0.5);
+  border-bottom: 1px solid #D0D9DB;
+  padding: 6px 10px 5px 10px;
+  float: left;
+  width: 329px;
+  color: #829499;
+  font-size: 12px;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #fff;
+}
+
+.personResult, .brandResult{}
+
+.personResult li, .brandResult li{
+  display: block;
+  padding: 0;
+  float: left;
+  width: 100%;
+}
+
+.personResult li a, .brandResult li a{
+  color: #4b6973;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: left;
+  vertical-align: top;
+  padding: 7px 10px 7px 10px;
+  line-height: 18px;
+  white-space: nowrap;
+  float: left;
+  width: 329px;
+}
+
+.personResult li a span, .brandResult li a span{
+  margin: 0 10px 0 0;
+  float: left;
+}
+
+.personResult li:hover a, .brandResult li:hover a{
+  background: rgba(208,217,219,0.5);
+}
+
+.loadingSearch{
+  float: left;
+  padding: 5px 10px;
+  width: 329px;
+}
+
+#searchLoading{
+  height: 16px;
+  width: 16px;
+  margin: 0 auto;
+  display: block;
+  position: relative;
+}
+
+/* ----- HEADER NAVIGATION -----*/
+#navigation{
+  padding: 3px 0 0;
+}
+
+#navigation ul{}
+
+#navigation li{
+  display: inline;
+  float: left;
+  position: relative;
+  padding: 0 5px;
+}
+
+#navigation li a{
+  border: 1px solid transparent;
+  color: #D8E1E4;
+  text-shadow: 0 1px 0 black;
+  font-weight: bolder;
+  padding: 4px 0 4px 1px;
+  line-height: 15px;
+  width: 90px;
+  float: left;
+  text-align: center;
+}
+
+#navigation li#adminConsol a{
+  padding: 4px 2px 4px;
+}
+
+#navigation li a span.arrowDown{
+  background: url(../images/uiIconInside.png) no-repeat 52px -30px;
+  padding: 5px 20px 5px 5px;
+}
+
+#navigation li#brand a{
+  line-height: 5px;
+}
+
+#navigation li#brand a span.arrowDown{
+  background-position: 51px -34px;
+  width: 50px;
+  float: left;
+}
+
+#navigation li#logout{
+  padding: 0 0 0 5px;
+}
+
+#navigation li#logout a{
+  background: rgba(0, 0, 0, 0.15) url(../images/uiIconInside.png) no-repeat -4px -59px;
+  border: 1px solid #0C4052;
+  box-shadow: 0 1px 0 #136782;
+  height: 14px;
+  width: 20px;
+  float: left;
+  text-indent: -19999px;
+  padding: 4px 3px 4px 0;
+  text-align: center;
+}
+
+#navigation li#logout a:hover{
+  background-position: -4px -91px;
+  box-shadow: 0 0 5px #569bb3;
+}
+
+#navigation li.navSelected a, #navigation li:hover a{
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid #0C4052;
+  box-shadow: 0 1px 0 #136782;
+}
+
+#navigation li:hover .navDropDown{
+  display: block;
+}
+
+/*- Navigation Dropdown -*/
+.navDropDown{
+  position: absolute;
+  top: -1px;
+  left: 5px;
+  display: none;
+}
+
+#dropNav .dropHead{
+  z-index: 1;
+  padding: 1px 0 0;
+}
+
+#dropNav .dropHead a{
+  background: #fafafa url(../images/gradSprites.png) repeat-x 0 -543px !important;
+  border-top: 1px solid #0E495E !important;
+  border-left: 1px solid #0E495E !important;
+  border-right: 1px solid #0E495E !important;
+  border-bottom: none !important;
+  color: #4b6973 !important;
+  text-shadow: 0 1px 0 #fff !important;
+  height: 35px;
+  padding: 4px 1px 0 1px !important;
+}
+
+#dropNav .dropHead a span.arrowDown{
+  background-position: 52px -119px !important;
+}
+
+#dropNav .dropHead a span#arrowBrand{
+  background-position: 51px -122px !important;
+}
+
+#dropNav .dropContent{
+  background: rgba(255, 255, 255, 0.95);
+  float: left;
+  border-bottom: 1px solid #9DA4A6;
+  border-left: 1px solid #9DA4A6;
+  border-right: 1px solid #9DA4A6;
+  position: absolute;
+  top: 41px;
+  left: -100px;
+  border-radius: 0 0 4px 4px;
+}
+
+#dropNav .dropContent ul{}
+
+#dropNav .dropContent li{
+  display: block;
+  padding: 0 !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 1px solid #BBC2C4 !important;
+  width: 100%;
+  min-width: 180px;
+}
+
+#dropNav .dropContent li:last-child{
+  border-radius: 0 0 4px 4px;
+  border: none !important;
+}
+
+#dropNav .dropContent li a{
+  border: none !important;
+  background: none !important;
+  color: #4b6973 !important;
+  text-shadow: 0 1px 0 #fff !important;
+  padding: 10px 35px 10px 0 !important;
+  width: 157px !important;
+  line-height: 20px !important;
+  box-shadow: none !important;
+  text-align: left;
+}
+
+#dropNav .dropContent li:hover a{
+  background: #f2f2f2 !important;
+}
+
+#dropNav .dropContent li:last-child:hover a{
+  border-radius: 0 0 4px 4px;
+}
+
+#dropNav .dropContent li span{
+  background: url(../images/uiIconInside.png) no-repeat 0 0;
+  padding: 4px 0px 4px 40px;
+}
+
+#dropNav .dropContent li span#homeIco{
+  background-position: 0 -156px;
+}
+
+#dropNav .dropContent li span#businessIco{
+  background-position: 0 -196px;
+  padding: 5px 0 5px 40px;
+}
+
+#dropNav .dropContent li span#profileIco{
+  background-position: 0 -233px;
+}
+
+#dropNav .dropContent li span#servicesIco{
+  background-position: 0 -270px;
+}
+
+#dropNav .dropContent li span#settingIco{
+  background-position: 0 -308px;
+}
+
+#dropNav .dropContent li span#affiliateIco{
+  background-position: 0 -344px;
+}
+
+/* ----- LOGIN FORM HEADER ----- */
+#loginForm{
+  position: absolute;
+  right: 0;
+  top: 35px;
+  z-index: 1;
+}
+
+.uiLoginForm{
+  background: transparent;
+  box-shadow: 0 0 3px 0 #999999;
+  float: left;
+  behavior: url(js/lib/PIE.htc);
+}
+
+.arrowPointerTop{
+  background: url(../images/arrowTop.png) no-repeat top left;
+ 	height: 5px;
+  position: absolute;
+  right: 22px;
+  top: -4px;
+  width: 10px;
+  z-index: 100;
+}
+#borderTop{
+  border-top: 1px solid #192326;
+  border-right: 1px solid #192326;
+  border-left: 1px solid #192326;
+  height: 7px;
+  position: absolute;
+  width: 499px;
+  z-index: 99;
+}
+
+.firefox #borderTop{
+
+}
+
+.tableLoginTop{
+  background: url(../images/gradSprites.png) repeat-x 0 0;
+  border-top: 1px solid #95a2a6;
+  border-left: 1px solid #95a2a6;
+  border-right: 1px solid #95a2a6;
+  display: block;
+  float: left;
+  height: 44px;
+  padding: 0 5px;
+  width: 489px;
+  position: relative;
+  z-index: 10;
+}
+
+.tableLoginTop ul{
+  margin-top: 4px;
+}
+
+.tableLoginTop li{
+  display: inline;
+  float: left;
+}
+
+.tableLoginTop li input{
+  border: none;
+  outline: none;
+  margin-left: 3px;
+  width: 160px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #859DA6;
+}
+
+.tableLoginTop li.idInput{
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid #c2c9cc;
+  box-shadow: 0 1px 0 #fff, inset 0 1px 2px #c2c9cc;
+  float: left;
+  margin: 5px;
+  padding: 5px 5px 2px;
+}
+
+.tableLoginTop li.idInput span.smallIcon{
+  background-image: url(../images/uiIcon.png);
+}
+
+.tableLoginTop li.idInput span#mail{
+  background-position: -7px 0;
+  float: left;
+  height: 16px;
+  width: 19px;
+}
+
+.tableLoginTop li.idInput span#key{
+  background-position: -8px -33px;
+  float: left;
+  height: 16px;
+  width: 18px;
+}
+
+.tableLoginTop li#loginHit{
+  margin: 4px 0 0 5px;
+}
+
+.tableLoginTop li#loginHit a.signInBtn{
+  background: url(../images/gradSprites.png) repeat-x 0 -73px;
+  box-shadow: 0 1px 0 #FFFFFF, 0 1px 0 #44c5e1 inset, 0 0 1px #44c5e1 inset;
+  border: 1px solid #13485A;
+  border-radius: 3px 3px 3px 3px;
+  color: #FFFFFF;
+  float: left;
+  padding: 5px 10px;
+}
+
+.tableLoginTop li#loginHit a.signInBtn:hover{
+  background-position: 0 -103px;
+}
+
+.tableLoginBottom{
+  background: url(../images/gradSprites.png) repeat-x 0 -45px;
+  border-bottom: 1px solid #95A2A6;
+  border-left: 1px solid #95A2A6;
+  border-right: 1px solid #95A2A6;
+  border-top: 1px solid #c8ced1;
+  float: left;
+  height: 27px;
+  padding: 0 3px;
+  width: 493px;
+}
+
+.uiRemember{
+  float: left;
+  margin: 6px;
+}
+
+.passRecovery{margin: 7px;}
+
+.passRecovery a{
+  cursor: pointer;
+}
+
+.passRecovery a, .uiRemember label{
+  color: #70858c;
+  font-size: 11px;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #fff;
+}
+
+.passRecovery a:hover{
+  color: #8faab3;
+}
+/* ----- END HEADER ----- */
+
+/* ----- MAIN CONTENT CONTAINER ----- */
+#mainContent{
+  width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ----- END MAIN CONTENT CONTAINER ----- */
+
+
+
+#generalNotif{
+  margin: 0 auto;
+  width: 635px;
+  position: fixed;
+  top: 0px;
+  left: 25%;
+  z-index: 100000;
+}
+
+.allNotif{
+  background: #FFEFBF url(../images/gradSprites.png) repeat-x 0 -678px;
+  border-bottom: 1px solid #BFA760;
+  border-left: 1px solid #BFA760;
+  border-right: 1px solid #BFA760;
+  box-shadow: 0 -1px 0 #fcf6e3 inset, 0 1px 0 #fff5d9 inset, 0 0 1px #fcf3d7 inset, 0 1px 3px #999;
+  float: left;
+  width: 635px;
+}
+
+.allNotif a, .allNotif p{
+  line-height: 12px;
+  color: #77898c;
+  font-size: 12px;
+  font-weight: normal;
+  padding: 10px;
+  float: left;
+  text-shadow: 0 1px 0 #f2f2f2;
+}
+
+.allNotif p{
+  clear: both;
+  color: #566e73;
+}
+
+.allNotif a:hover{
+  color: #566e73;
+}
+
+/* ----- FOOTER ----- */
+#footer{
+  border-top: 1px solid #BCC8CA;
+  box-shadow: 0 1px 0 #DAE1E3 inset;
+  float: left;
+  padding: 10px 0;
+  text-shadow: 0 1px 0 #e5e5e5;
+  width: 100%;
+}
+
+#copyright{}
+
+#copyright ul{
+  margin: 0;
+  padding: 0;
+}
+
+#copyright li, #footNavigation li{
+  list-style: disc inside none;
+  padding: 0 2px;
+  float: left;
+  color: #7e898c;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+#copyright li:first-child, #footNavigation li:first-child{
+  list-style: none outside none;
+}
+
+#copyright li a, #footNavigation li a{
+  color: #7e898c;
+}
+
+#copyright li a:hover, #footNavigation li a:hover{
+  color: #336c80;
+}
+
+/*.greenBtn a, .blueBtn a, .bronzeBtn a, .yellowBtn a, .greyBtn a, .redBtn a, .loginButton a, .uiLoginForm,
+.MP-boxes, .warningBox, li.idInput, .tableLoginTop li#loginHit a.signInBtn, .steps, .servicesBoxInner, .contentHeading,
+#searchOnEdintity, #searchByMail, #searchByMailPswrd, .contactPagination ul li.selectedPg a, .paymentPagination ul li.selectedPg a,
+.privacySetup, .privacyHead, #contactTable li.contactHead, #contactTable li.contactFoot, #dropNav .dropContent li:last-child,
+.customSkins .redBtn a, .signupBoxWrap li.signUpHead, .signupBoxWrap li.signUpFoot {
+	behavior: url(js/lib/PIE.htc);
+	position: relative;
+}*/
+
+li {
+  display: list-item !important;
+}

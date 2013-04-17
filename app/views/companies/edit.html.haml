@@ -1,0 +1,15 @@
+#ednt-BrandSetting.ednt-Wrapper
+  .ajaxLoader.cornerAll#ajaxLoaderDiv.hide
+    %span.ajaxSpinner
+      %img{:src=>"/images/ajax-loader.gif", :alt=>"#"}
+  .titles
+    %h4= t :brand_settings
+  #accordionBrandSettings.accSetupWrapper.MP-boxes
+    #accountBrandSetting.accSetupGroup
+      = render :partial => "companies/company_summary"
+      = render :partial => "companies/brands/list"
+      = render :partial => "companies/brands/services"
+      = render :partial => "companies/brands/privacy"
+      = render :partial => "companies/brands/users"
+      = render :partial => "shared/company/company_subscription_tab"
+      = render :partial => "companies/payment_history"

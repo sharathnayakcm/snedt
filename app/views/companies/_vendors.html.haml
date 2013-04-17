@@ -1,0 +1,12 @@
+.new_user_sign_up_lable{:style => "font-size:20px"}
+- if @membership.id == 2
+  = render :partial => "vendor_premium"
+- elsif @membership.id == 3
+  = render :partial => "vendor_bronze"
+- elsif @membership.id == 4
+  = render :partial => "vendor_silver"
+- elsif @membership.id == 5
+  = render :partial => "vendor_gold"
+- elsif @membership.id == 6
+  = render :partial => "vendor_platinum"
+  

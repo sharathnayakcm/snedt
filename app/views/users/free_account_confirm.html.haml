@@ -1,0 +1,8 @@
+.downgradeFree{:style => "width: 450px;"}
+%p Are you sure?
+.modalConfirmAct.flRight
+  .blueBtn{:style => "font-size: 12px !important;"}
+    = link_to "#{t :yes_true}", {:controller => :users, :action => :free_account}
+  .yellowBtn
+    = link_to_close_redbox("#{t :no_false}", :class => "smlrBtn")
+    

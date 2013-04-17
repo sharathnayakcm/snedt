@@ -1,0 +1,162 @@
+- if current_user
+  - friends_count = current_user.friends.count
+  .rightcontent
+    .profile_pic_tab
+      .profile_pic_tab_top
+        %img{:src => "/images_1/right_content_top.png"}
+      .profile_pic_tab_mid
+        .profile_pic
+          .profile_pic_img.profile_img
+            - unless @current_user.profile_image.blank?
+              = image_tag @current_user.profile_image.asset.url.gsub("/s3.","/s3-eu-west-1.")
+            - else
+              = image_tag "/images_1/profile_pic_imgpng.png"
+        .name
+          .profile_name
+            = @current_user.full_name if @current_user
+          .edit_my_profile
+            %h6{:style => "margin:0px;"}
+              = link_to "#{t :edit_profile}", edit_user_path(@current_user) if @current_user
+
+        .sn_pics.services
+          - current_user.active_services.each do |user_service|
+            = link_to image_tag("services/#{user_service.service.name.downcase}.png", :title => "#{user_service.display_name}"), user_services_path(current_user)
+
+        .groups
+          - if params[:controller] == "followers" && params[:action] != "streams"
+            - link_to ('/followers') do
+              .text_followers.selected_tab_right
+                .followers
+                  = "#{t :followers}"
+                .value1#followers_list_count
+                  = (current_user.followers.count.to_i - friends_count.to_i)
+          - else
+            - link_to ('/followers') do
+              .text_followers
+                .followers
+                  = "#{t :followers}"
+                .value1#followers_list_count
+                  = (current_user.followers.count.to_i - friends_count.to_i)
+
+          - if params[:controller] == "followings" && params[:action] != "streams"
+            - link_to ('/followings') do
+              .text_following.selected_tab_right
+                .following
+                  = t :following
+                .value1#followings_list_count
+                  = (current_user.followings.count.to_i - friends_count.to_i) + current_user.company_followers.count.to_i
+          - else
+            - link_to ('/followings') do
+              .text_following
+                .following
+                  = t :following
+                .value1#followings_list_count
+                  = (current_user.followings.count.to_i - friends_count.to_i)  + current_user.company_followers.count.to_i
+
+          - if params[:controller] == "friends" && params[:action] != "streams"
+            - link_to ('/friends') do
+              .text_friends.selected_tab_right
+                .friends
+                  = t :friends
+                .value1#friends_list_count
+                  = current_user.friends.count.to_i
+          - else
+            - link_to ('/friends') do
+              .text_friends
+                .friends
+                  = t :friends
+                .value1#friends_list_count
+                  = current_user.friends.count.to_i
+
+          /- if params[:controller] == "privacy_groups"
+          /  - link_to ('/privacy_groups') do
+          /    .text_privacy_group.selected_tab_right
+          /      .pg
+          /        = t :privacy_groups
+          /      #pg_count.value1
+          /        =current_user.privacy_groups.count.to_i
+          /- else
+          /  - link_to ('/privacy_groups') do
+          /    .text_privacy_group
+          /      .pg
+          /        = t :privacy_groups
+          /      #pg_count.value1
+          /        =current_user.privacy_groups.count.to_i
+
+          /- if params[:controller] == "post_service_groups"
+          /  - link_to ('/post_service_groups') do
+          /    .text_post_service_groups.selected_tab_right
+          /      .psg
+          /        = t :post_service_groups
+          /      #psg_count.value1
+          /        =  current_user.post_service_groups.count.to_i
+          /- else
+          /  - link_to ('/post_service_groups') do
+          /    .text_post_service_groups
+          /      .psg
+          /        = t :post_service_groups
+          /      #psg_count.value1
+          /        =  current_user.post_service_groups.count.to_i
+        .find_or_invite_outer
+          .find_or_invite
+            .find_or_invite_link
+              = link_to "#{t :invite_friends}", new_user_friend_path(current_user)
+      .profile_pic_tab_bottom
+    /.right_second_tab
+    /  .right_second_tab_top2
+    /    %img{:src =>"/images_1/right_content_top.png"}
+    /  .right_second_tab_mid2
+    /    .banner_top
+    /      .rhs_stream
+    /        = t :custom_stream_filters
+    /        = link_to_remote_redbox image_tag("plus.png", :width => "16px", :height => "13px", :alt => "#{t :create}", :title => "Create"), :url => {:controller => :custom_streams, :action => :new}, :before => "$j('embed').hide();"
+    /    .custom_filter
+    /      = "#{t :saved_filters} ("
+    /      %span{:id => "filter_count"}
+    /        = current_user.custom_stream_filters.count
+    /      )
+    /      =link_to "#{image_tag '/images/arrow_up.png', :width => 11}", "javascript:void(0)", :onclick => "$('saved_filters').toggle(); toggle_arrow(this);", :id => "s_link"
+    /      .results#saved_filters{:style=>"display:none"}
+    /        = render :partial => "custom_streams/show"
+    /  .right_second_tab_bottom2
+    .right_third_tab
+      .right_third_tab_top3
+        %img{:src=>"/images_1/right_content_top.png"}
+      .right_third_tab_mid3
+        .stream_search
+          - form_remote_tag(:before => "$j('#stream_notify').show();",:url => {:controller => :home, :action => :search_streams }) do
+            .your_stream_input
+              .your_stream_field
+                = text_field_tag "search_for", ""
+              .your_stream_right_button
+                = image_submit_tag( ("/images_1/search.png"), :class => "button_submit", :onclick => "if($j('#search_for').val().trim() == ''){$j('#stream_notify').hide();return false;}")
+              .drop_down_search
+                .selected.rounded
+                  %div{:style => 'font-size:12px;padding-bottom:2px;'}
+                    = t :search_options
+                    == :
+                  = select_tag "search_type", "<option value='user'>#{t :your_streams}</option><option value='edintity'>#{t :site_name}</option>", :class => "rounded"
+                
+            .clear
+            .custom_filter
+              = "#{t :saved_searches} ("
+              %span{:id => "search_count"}
+                = current_user.saved_searches.count
+              )
+              =link_to "#{image_tag '/images/arrow_up.png', :width => 11}", "javascript:void(0)", :onclick => "$('saved_serach_phrases').toggle(); toggle_arrow(this);", :id => "s_link"
+              .results#saved_serach_phrases{:style=>"display:none"}
+                = render :partial => "home/saved_search_list"
+      .right_third_tab_bottom3
+        %img{:src=> "/images_1/right_content_bottom.png"}
+    /.right_fourth_tab_top4
+    /  %img{:src=> "/images_1/right_content_top.png"}
+    /.right_fourth_tab_mid4
+    /  .notification
+    /    .notification_text
+    /      = "#{t :notifications} (1)"
+    /    .notification_arrow
+    /      %img{:src => "/images/arrow_up.png"}
+    /  .notification_one
+    /    = "Notification one remove"
+    /.right_fourth_tab_bottom4
+    /  %img{:src => "/images_1/right_fourth_bottom.png"}

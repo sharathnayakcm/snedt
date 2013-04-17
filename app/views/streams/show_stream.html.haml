@@ -1,0 +1,25 @@
+- unless @stream.blank?
+  :javascript
+    $j(document).ready(function(){
+        $j(".comments_section .profile_services").hide();
+        show_comments();
+        $j('.auto-submit-star').rating();
+        $j("#comment_show_#{@stream.id} a").click();
+    });
+
+    function show_comments()
+    {
+      $j(".comments_section").live("mouseover", function(){
+      $j(this).find(".profile_services").show();
+        }).live("mouseout", function(){
+      $j(this).find(".profile_services").hide();
+    });
+    }
+
+  #single_stream{:style => "color:#0C3646;margin:15px;"}
+    .single_stream_header{:style => "font-size:10pt;margin-top:10px"}
+      .float_left
+        = render :partial => "streams/show", :locals => {:stream => @stream}
+      .clear
+- else
+  .blocked_content= t(:stream_not_found)

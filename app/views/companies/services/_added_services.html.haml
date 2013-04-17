@@ -1,0 +1,31 @@
+- brand_services = @brand.company.brand_services.find(:all, :conditions => "service_id = #{service.id}")
+%li.serviceGroup
+  .servicesHeading
+    %span.smlServicesIco.servicePageIcon.flLeft{:id => "#{service.name.downcase.gsub(' ','')}Service"}
+      = service.name
+    .optBtn.blueBtn.flRight
+      - if brand_services.blank?
+        = link_to_remote_redbox "#{t :connect}", {:url => new_company_service_path(@brand.company.id, :brand_id => @brand.id, :service_id => service.id), :method => :get}, :class => "smlrBtn"
+      - else
+        = link_to_remote_redbox "#{t :add_more}", {:url => new_company_service_path(@brand.company.id, :brand_id => @brand.id, :service_id => service.id), :method => :get}, :class => "smlrBtn"
+  %ul.serivicesChild
+    - brand_services.each do |user_service|
+      %li
+        .usersID
+          %span.userSmlPic
+            %img{:alt => "", :src => "/images/brandPicSmall.jpg"}
+          = "#{user_service.display_name} - #{user_service.brand.name}"
+        .servicesOption.flRight
+          - if user_service.has_oauth?
+            .greenBtn
+              - if user_service.service_id == Service::SERVICES_ID[:facebook_page]
+                = link_to_remote_redbox "#{t :configure}", {:url => configure_fb_page_user_services_path(current_user, :user_service_id => user_service.id, :scope => "brand"), :method => :get}, :class => "smlrBtn"
+              - else
+                %a.smlrBtn{:href => "javascript:void(0)"}
+                  =t :added
+          - else
+            .yellowBtn
+              = link_to_remote_redbox "#{t :pending}", {:url => new_company_service_path(@brand.company.id, :brand_id => user_service.brand_id, :service_id => service.id, :user_service_id => user_service.id, :pending_service => true), :method => :get}, :class => "smlrBtn"
+          .redBtn
+            %span.myservice_icon
+              = link_to_remote_redbox "#{t :remove}", {:url => new_company_service_path(@brand.company.id, :brand_id => user_service.brand_id, :service_id => service.id, :user_service_id => user_service.id, :delete_service => true, :scope => "brand"), :method => :get}, :class => "smlrBtn"

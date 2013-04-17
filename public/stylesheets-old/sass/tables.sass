@@ -1,0 +1,161 @@
+@import constants
+
+table
+  +border_reset
+  tr
+    td, th
+      +border_reset
+
+div.table
+  table.data
+    border-collapse: separate
+    width: 100%
+    tr
+      td.data, th.data
+        padding: $vertical_grid_unit / 2 $horizontal_grid_unit / 2
+    thead
+      tr
+        th.data
+          font-size: 12px
+          background:
+            color: $white
+            image: url("/images/backgrounds/chrome_small.png")
+            position: bottom center
+            repeat: repeat-x
+          border:
+            bottom:
+              color: $light_gray
+              width: $border_width
+            right:
+              color: $white
+              width: $border_width
+          color: $dark_gray
+          font-weight: bold
+          padding:
+            bottom: $vertical_grid_unit / 2 - $border_width
+            top: $vertical_grid_unit / 2
+          text-align: center
+          white-space: nowrap
+        th.link
+          cursor: pointer !important
+    tfoot
+      tr
+        td.data
+          font-size: 12px
+          background:
+            color: $white
+            image: url("/images/backgrounds/chrome_small.png")
+            position: bottom center
+            repeat: repeat-x
+          border:
+            right:
+              color: $white
+              width: $border_width
+            top:
+              color: $light_gray
+              width: $border_width
+          padding:
+            bottom: $vertical_grid_unit / 2
+            top: $vertical_grid_unit / 2 - $border_width
+          text-align: center
+    tbody
+      tr
+        td.data
+          font-size: 12px
+          background-color: $white
+          border:
+            right:
+              color: $very_light_gray
+              width: $border_width
+          a, *.link
+            font-weight: bold
+            cursor: pointer !important
+        td.fused
+          padding: 0
+        /* TODO: text-align not working in IE
+        td.action, td.check_box, td.currency, td.date, td.expander, td.number, td.percentage, td.priority, td.stars, td.status, td.user
+          white-space: nowrap
+          width: 1px
+        td.action
+          border-right-width: 0
+          text-align: center
+        td.currency
+          text-align: right
+        td.date
+          text-align: right
+        td.number
+          text-align: right
+        td.percentage
+          text-align: right
+          width: 140px
+          div.percent
+            width: 50px
+          div.colon
+            width: 1px
+          div.breakdown
+            width: 85
+        td.stars
+          text-align: center
+        td.status
+          text-align: center
+      tr.odd
+        > td.data
+          background-color: $white
+        > td.red
+          background-color: red
+        > td.bottom_border
+          border-bottom: 1px solid white
+      tr.even
+        > td.data
+          background-color: $site_light_blue
+        > td.red
+          background-color: red
+        > td.bottom_border
+          border-bottom: 1px solid #1b4a4e
+      tr.expansion
+        > td.data
+          border-top:
+            color: $very_light_gray
+            width: $border_width
+          padding-top: $vertical_grid_unit / 2 - $border_width
+        > td.fused
+          padding-top: 0
+        td.expander
+          border-right-color: transparent
+    tbody.hover
+      tr
+        &:hover
+          td.hover
+            border:
+              bottom:
+                color: $dark_blue
+                width: $border_width
+              top:
+                color: $dark_blue
+                width: $border_width
+            padding:
+              bottom: $vertical_grid_unit / 2 - $border_width
+              top: $vertical_grid_unit / 2 - $border_width
+          td.fused
+            padding:
+              bottom: 0
+              top: 0
+          td.hover_light_blue
+            background-color: $site_light_blue
+          td.hover_blue
+            background-color: $pale_blue
+        td.selected
+          background-color: $site_light_blue !important
+          cursor: pointer
+      tr.expansion
+        &:hover
+          td.hover
+            border:
+              bottom-color: transparent !important
+              top-color: $very_light_gray !important
+
+table.login_table
+  tr
+    td
+      padding-left: 5px
+      padding-bottom: 0px

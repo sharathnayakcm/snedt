@@ -1,0 +1,35 @@
+%li.streamControl2
+  = link_to_remote "#{t :all}",:url => {:action => :filter_streams, :controller => "home", :by => "all", :brand_id=>(@brand.id if @brand)}
+%li.streamControl3
+  = link_to_remote "#{t :read}",:url => {:action => :filter_streams, :controller => "home", :by => "read", :brand_id=>(@brand.id if @brand)}
+%li.streamControl4
+  = link_to_remote "#{t :unread}",:url => {:action => :filter_streams, :controller => "home", :by => "unread", :brand_id=>(@brand.id if @brand)}
+%li.streamControl5
+  %a.loudIco{:href => "javascript:void(0);", :onclick => "toggle_visibility('personalNotif');"}
+    %span.greyArrow
+  .notifRed
+    - if @brand
+      = @brand.active_services.count
+    - else
+      = current_user.active_services.count
+  .notifDropdown
+    #personalNotif.notifIconWrap.cornerAll.transBg{:style => "display:none;"}
+      %span.notifArrow.uiIcoInstream
+      %ul
+        %li
+          %a{:onclick => remote_function(:url => {:action => :filter_streams, :controller => "home", :by => "favourites", :brand_id=>(@brand.id if @brand)})}
+            %span.loveIco
+        %li
+          %a{:onclick => remote_function(:url => {:action => :filter_streams, :controller => "home", :by => "edintity", :brand_id=>(@brand.id if @brand)})}
+            %span.edintityIco.networkIco
+        - Service.all.each do |service|
+          - unless service.name.downcase.include?("rss")
+            - if @brand
+              - service_tag, service_count = brand_service_filters(service)
+            - else
+              - service_tag, service_count = service_filter(service)
+            %li
+              %a{:onclick => remote_function(:url => {:action => :filter_streams, :controller => "home", :service_id => service.id, :brand_id=>(@brand.id if @brand)})}
+                .notifRed
+                  = service_count
+                %span.networkIco{:id => "#{service.name.downcase.gsub(' ','')}Service"}

@@ -1,0 +1,9 @@
+- points ||= @points
+- @points_table.render points do |table|
+  - points.each do |point|
+    - table.tr :id => "point_#{point.id}" do
+      -table.td {point.activity_types}
+      -table.td {point.activity_points}
+      -table.td(:action, :id => "action_#{point.id}") do
+        = link_to("Edit", edit_admin_point_path(current_user, point), {:class => "icon", :title => "Edit point"} )
+        = link_to_remote("Delete", :url => admin_point_path(current_user, :id => point.id), :method => :delete, :confirm => "Are you sure want to delete this point?", :html => {:class => "icon", :title => "Delete point"} )

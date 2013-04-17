@@ -1,0 +1,13 @@
+.searchOnEdnty
+  %h6.head
+    =t :search_on_edintity
+  .SOE-affiliates
+    - form_remote_tag :url => search_friends_user_friends_path(current_user), :method => :get do |f|
+      = hidden_field_tag "search_friends", true
+      = hidden_field_tag "company_id", @company.id if @company
+      %h6
+        =t :find_people_who_have_editity_account
+      %input.textInput{:type => "text", :value => "", :name => "keyword"}
+      .blueBtn
+        =submit_tag "#{t :search}", :class => "smlrBtn", :name => "search"
+      %p.smallExmaple= t :on_site_example

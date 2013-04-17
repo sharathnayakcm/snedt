@@ -1,0 +1,41 @@
+:javascript
+  $('RB_window').style.width = "540px";
+  $("RB_window").style['left'] = ((document.body.clientWidth - 540)/2) + "px";
+  $j('.button').corner("4px");
+.dialogs
+  .dialog_details{:style => "padding-left:35px;;padding:0px;width: 490px;"}
+    - form_remote_for :admin_rss_link,:url => admin_admin_rss_links_path, :html => {:id => "rssLink"}, :method => :post do |f|
+      .add_rss_popup
+        .strong=t :enter_feed_url
+        = text_field_tag "rss_link", "", :size => 40
+        .button.add_rss_popup_btn
+          = link_to_remote "#{t :add}", :url => admin_admin_rss_links_path, :method => :post, :with => "$('rssLink').serialize()", :html => {:class => "add_btn"}, :loading => "$('rss_spinner').show();$('rss_close_btn').hide();", :success => "$('rss_close_btn').show();$('rss_spinner').hide();"
+      .add_rss_popup.quiet= "(e.g,. googleblog.blogspot.com)"
+      .align_center= "(#{t :or})"
+      = hidden_field_tag "rss_new_link_added", false
+      .add_rss_popup
+        .strong=t :enter_search_term
+        = text_field_tag "rss_search", "", :size => 40, :onkeyup => "inputChange($('rss_search'));"
+        = hidden_field_tag "feed_results"
+        .button.add_rss_popup_btn
+          = link_to "#{t :search}", "javascript:void(0)", :onclick => "inputChange($('rss_search'));",:class => "add_btn"
+      .add_rss_popup.quiet== (e.g., bbc)
+      .add_rss_popup
+        .feed_list.rounded_box_content_padding
+          #feedControl
+      .clear
+        .psg_buttons
+          .button_1.rss_btn
+            .button
+              //= link_to_remote "#{t :close}", :url =>  close_link_window_rss_path, :method => :get, :with => "$('rssLink').serialize()", :html => {:class => "add_btn"}, :loading => "$('rss_spinner').show();$('rss_close_btn').hide();", :success => "$('rss_close_btn').show();$('rss_spinner').hide();"
+              %a{:href => "javascript:void(0);", :class => "add_btn", :onClick => "$('RB_redbox').hide(); window.location.reload( true );"}
+                =t :close
+          .hidden_btn{:style => "display:none"}
+            .button_1
+              .button
+                = link_to("#{t :close}", admin_admin_rss_links_path, :class => "button")
+              .clear
+                =# link_to_remote_redbox "#{t :delete}", :url => {:controller => :privacy_groups, :action => :delete_confirm, :id => @privacy_group.id}
+          %div.display_none{:id => "spinner_tag"}
+            = image_tag("/images_old/spinner.gif")
+        .clear

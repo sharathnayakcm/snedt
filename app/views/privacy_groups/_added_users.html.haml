@@ -1,0 +1,13 @@
+- @users.each do |user|
+  %li.addedUser.first
+    .flLeft
+      %span.userSmlPic.flLeft
+        %img{:alt => "", :src => "/images/userPicSmall.jpg"}
+      %a.userBlocked{:href => "/profiles/#{user.user_name}"}
+        = user.display_full_name_for_privacy(current_user)
+    .unblock.flRight
+      .redBtn.flRight
+        - if @is_edit
+          %a.smlrBtn{:href => "javascript:void(0)", :onclick => remote_function(:url => remove_added_users_privacy_groups_path(:user_id => user.id), :with => "'edit=#{!@is_edit.blank?}&user_ids='+$('edit_privacy_user_ids').value")} Remove
+        - else
+          %a.smlrBtn{:href => "javascript:void(0)", :onclick => remote_function(:url => remove_added_users_privacy_groups_path(:user_id => user.id), :with => "'user_ids='+$('privacy_user_ids').value")} Remove
